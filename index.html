@@ -383,22 +383,23 @@
 /* =========================================================
    DATA
    ========================================================= */
-const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book' };
+const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book', rosary:'Rosary', bible:'Bible' };
 const CAT_DESC = {
   all: 'Everything currently held in the repository.',
   prayer: 'Traditional and devotional prayers of the Church.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
   history: 'Councils, movements, and turning points in Church history.',
   book: 'Spiritual classics and reference works, with summaries and links.',
-  calendar: 'Solemnities, feast days, novenas, and seasons of the liturgical year.'
+  calendar: 'Solemnities, feast days, novenas, and seasons of the liturgical year.',
+  rosary: 'Pray the Holy Rosary interactively with guided meditations on the mysteries of Christ.',
+  bible: 'Read the complete Catholic Bible with all books and chapters from the Douay-Rheims translation.'
 };
 
 const CAL_TYPE_COLOR = {
-  Solemnity:'var(--gold)',
-  rosary: 'Pray the Holy Rosary interactively with guided meditations on the mysteries of Christ.',
-  bible: 'Read the complete Catholic Bible with all books and chapters from the Douay-Rheims translation.' Feast:'var(--green)', Memorial:'var(--indigo)',
+  Solemnity:'var(--gold)', Feast:'var(--green)', Memorial:'var(--indigo)',
   Season:'var(--purple)', Novena:'var(--wine)'
 };
+
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 const SEED_DATA = [
@@ -710,6 +711,7 @@ let currentRosaryDecade = 0;
 let currentRosaryBead = 0;
 // Bible state
 let currentTestament = 'new';
+
 let currentBibleBook = '';
 let currentBibleChapter = 1;
 
@@ -821,7 +823,6 @@ function render(){
   });
 }
 
-fu
 function renderRosary(){
   sectionTitleEl.textContent = 'Interactive Rosary';
   sectionDescEl.textContent = CAT_DESC.rosary;
