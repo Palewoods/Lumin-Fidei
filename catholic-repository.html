@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Fidei — A Catholic Repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#e9ddc0;
+    --parchment-light:#f6f0dc;
+    --parchment-dark:#dccfa9;
+    --ink:#2a2118;
+    --ink-soft:#5a4d3c;
+    --wine:#7a2426;
+    --wine-dark:#5c1a1c;
+    --gold:#a6824a;
+    --gold-light:#c7a565;
+    --green:#3f5443;
+    --indigo:#33415a;
+    --line: rgba(42,33,24,0.18);
+    --shadow: 0 2px 14px rgba(42,33,24,0.18);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, rgba(255,255,255,0.15), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(0,0,0,0.08), transparent 65%),
+      var(--parchment);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+
+  a{color:var(--wine-dark);}
+
+  ::selection{background:var(--gold-light); color:var(--ink);}
+
+  /* ---------- Masthead ---------- */
+  header.masthead{
+    text-align:center;
+    padding:52px 20px 30px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--parchment-light), transparent);
+  }
+  header.masthead .mark{
+    width:34px; height:34px; margin:0 auto 14px;
+    color:var(--wine);
+  }
+  header.masthead h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    letter-spacing:0.01em;
+  }
+  header.masthead p.tagline{
+    margin:10px auto 0;
+    max-width:520px;
+    color:var(--ink-soft);
+    font-style:italic;
+    font-size:1.05rem;
+  }
+  .rule{
+    width:120px; height:1px; margin:18px auto 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .searchbar{
+    max-width:460px; margin:26px auto 0; display:flex; gap:0;
+    border:1px solid var(--ink); background:var(--parchment-light);
+  }
+  .searchbar input{
+    flex:1; border:none; background:transparent; padding:11px 14px;
+    font-family:'Source Serif 4', serif; font-size:0.98rem; color:var(--ink);
+    outline:none;
+  }
+  .searchbar input::placeholder{color:var(--ink-soft); opacity:0.75;}
+  .searchbar button{
+    border:none; border-left:1px solid var(--ink); background:var(--ink);
+    color:var(--parchment-light); padding:0 18px; cursor:pointer;
+    font-family:'Source Serif 4', serif; font-size:0.92rem;
+  }
+  .searchbar button:hover{background:var(--wine-dark);}
+
+  /* ---------- Layout ---------- */
+  .layout{
+    max-width:1180px; margin:0 auto; padding:36px 24px 90px;
+    display:grid; grid-template-columns:220px 1fr; gap:44px;
+    align-items:start;
+  }
+  @media (max-width:820px){
+    .layout{grid-template-columns:1fr; padding-top:22px;}
+  }
+
+  nav.sidebar{position:sticky; top:20px;}
+  @media (max-width:820px){nav.sidebar{position:static;}}
+
+  nav.sidebar .group-label{
+    font-size:0.78rem; color:var(--ink-soft); margin-bottom:10px; letter-spacing:0.02em;
+  }
+  nav.sidebar ul{list-style:none; margin:0 0 26px; padding:0;}
+  nav.sidebar li{margin:0;}
+  nav.sidebar button.navlink{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    font-family:'Source Serif 4', serif; font-size:1.05rem; color:var(--ink);
+    padding:9px 0 9px 14px; border-left:3px solid transparent;
+    display:flex; justify-content:space-between; gap:8px;
+  }
+  nav.sidebar button.navlink .count{color:var(--ink-soft); font-size:0.88rem;}
+  nav.sidebar button.navlink:hover{color:var(--wine-dark);}
+  nav.sidebar button.navlink.active{
+    border-left-color:var(--cat-color, var(--wine)); color:var(--ink); font-weight:600;
+  }
+  nav.sidebar button.navlink[data-cat="prayer"]{--cat-color:var(--wine);}
+  nav.sidebar button.navlink[data-cat="saint"]{--cat-color:var(--gold);}
+  nav.sidebar button.navlink[data-cat="history"]{--cat-color:var(--green);}
+  nav.sidebar button.navlink[data-cat="book"]{--cat-color:var(--indigo);}
+  nav.sidebar button.navlink[data-cat="all"]{--cat-color:var(--ink);}
+
+  .side-actions{border-top:1px solid var(--line); padding-top:18px; display:flex; flex-direction:column; gap:8px;}
+  .btn{
+    font-family:'Source Serif 4', serif; font-size:0.92rem; cursor:pointer;
+    border:1px solid var(--ink); background:transparent; color:var(--ink);
+    padding:9px 14px; border-radius:var(--radius); text-align:left;
+  }
+  .btn:hover{background:var(--ink); color:var(--parchment-light);}
+  .btn.primary{background:var(--wine); border-color:var(--wine); color:var(--parchment-light);}
+  .btn.primary:hover{background:var(--wine-dark); border-color:var(--wine-dark);}
+  .btn.quiet{border-color:var(--line); color:var(--ink-soft); font-size:0.85rem;}
+  .btn.danger:hover{background:var(--wine-dark); border-color:var(--wine-dark);}
+  input[type=file]{display:none;}
+
+  /* ---------- Main ---------- */
+  main{min-width:0;}
+  .main-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:16px; margin-bottom:6px; flex-wrap:wrap;
+  }
+  .main-head h2{font-size:2rem;}
+  .main-head p.desc{color:var(--ink-soft); margin-top:4px; max-width:60ch;}
+
+  .entry-list{margin-top:22px;}
+  .entry-row{
+    padding:18px 0 18px 18px;
+    border-bottom:1px solid var(--line);
+    border-left:3px solid var(--row-color, var(--wine));
+    cursor:pointer;
+  }
+  .entry-row:hover{background:rgba(166,130,74,0.08);}
+  .entry-row .row-top{display:flex; justify-content:space-between; gap:14px; align-items:baseline;}
+  .entry-row h3{font-size:1.36rem;}
+  .entry-row .cat-badge{
+    font-size:0.72rem; color:var(--ink-soft); white-space:nowrap; padding-top:4px;
+  }
+  .entry-row .byline{color:var(--ink-soft); font-style:italic; font-size:0.92rem; margin-top:2px;}
+  .entry-row .excerpt{margin-top:8px; color:var(--ink); opacity:0.86; font-size:0.97rem;}
+  .entry-row .tags{margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;}
+  .tag{
+    font-size:0.76rem; color:var(--ink-soft); background:rgba(42,33,24,0.06);
+    padding:2px 8px; border-radius:2px;
+  }
+
+  .empty-state{
+    border:1px dashed var(--line); padding:40px 24px; text-align:center;
+    color:var(--ink-soft); margin-top:24px; border-radius:var(--radius);
+  }
+  .empty-state .btn{display:inline-block; margin-top:14px;}
+
+  footer{
+    text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:0.85rem;
+  }
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(20,15,10,0.55);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:40px 16px; overflow-y:auto; z-index:50;
+  }
+  .overlay.open{display:flex;}
+  .modal{
+    background:var(--parchment-light); max-width:640px; width:100%;
+    border:1px solid var(--ink); box-shadow:var(--shadow);
+    padding:32px 32px 26px;
+  }
+  .modal-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px;}
+  .modal-head h2{font-size:1.7rem;}
+  .modal-close{background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--ink-soft); line-height:1;}
+  .modal-close:hover{color:var(--wine);}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.85rem; color:var(--ink-soft); margin-bottom:5px;}
+  .field input, .field select, .field textarea{
+    width:100%; font-family:'Source Serif 4', serif; font-size:0.98rem;
+    border:1px solid var(--line); background:var(--parchment); color:var(--ink);
+    padding:9px 11px; border-radius:var(--radius);
+  }
+  .field textarea{min-height:170px; resize:vertical; line-height:1.55;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+  .field .hint{font-size:0.78rem; color:var(--ink-soft); margin-top:4px;}
+
+  .modal-actions{display:flex; justify-content:space-between; align-items:center; margin-top:22px; gap:10px; flex-wrap:wrap;}
+  .modal-actions .left{display:flex; gap:10px;}
+
+  /* ---------- Reading modal ---------- */
+  .read-modal{max-width:680px;}
+  .read-modal .read-cat{font-size:0.8rem; color:var(--ink-soft); margin-bottom:6px;}
+  .read-modal h2{font-size:2rem; margin-bottom:4px;}
+  .read-modal .byline{font-style:italic; color:var(--ink-soft); margin-bottom:18px;}
+  .read-modal .body-text{font-size:1.05rem; line-height:1.75;}
+  .read-modal .body-text p{margin:0 0 1em;}
+  .read-modal .body-text p:first-of-type:first-letter{
+    font-family:'Cormorant Garamond', serif; font-size:2.6em; float:left; line-height:0.8;
+    padding-right:8px; padding-top:6px; color:var(--wine-dark); font-weight:700;
+  }
+  .read-modal .link-box{margin-top:16px; font-size:0.92rem;}
+  .read-modal .tags{margin-top:20px; display:flex; gap:6px; flex-wrap:wrap;}
+  .read-actions{display:flex; gap:10px; margin-top:26px; border-top:1px solid var(--line); padding-top:18px;}
+
+  @media (max-width:600px){
+    .modal{padding:24px 18px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <svg class="mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2V22M6 6H18" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M9 6C9 6 9 3 12 3C15 3 15 6 15 6" stroke="currentColor" stroke-width="1.2"/>
+  </svg>
+  <h1>Lumen Fidei</h1>
+  <p class="tagline">A living repository of prayers, saints, history, and the written word of the Church</p>
+  <div class="rule"></div>
+  <div class="searchbar">
+    <input id="searchInput" type="text" placeholder="Search the repository…" autocomplete="off">
+    <button id="searchClear">Clear</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="group-label">Browse</div>
+    <ul id="navList">
+      <li><button class="navlink active" data-cat="all">All entries <span class="count" id="count-all"></span></button></li>
+      <li><button class="navlink" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
+      <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
+      <li><button class="navlink" data-cat="history">History <span class="count" id="count-history"></span></button></li>
+      <li><button class="navlink" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
+    </ul>
+    <div class="side-actions">
+      <button class="btn primary" id="openAddBtn">+ Add entry</button>
+      <button class="btn" id="exportBtn">Export library (.json)</button>
+      <button class="btn" id="importBtn">Import library (.json)</button>
+      <input type="file" id="importFile" accept="application/json">
+      <button class="btn quiet" id="resetBtn">Restore default library</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="main-head">
+      <div>
+        <h2 id="sectionTitle">All entries</h2>
+        <p class="desc" id="sectionDesc">Everything currently held in the repository.</p>
+      </div>
+    </div>
+    <div class="entry-list" id="entryList"></div>
+  </main>
+</div>
+
+<footer>Lumen Fidei — your entries are stored in this browser. Export regularly to keep a backup.</footer>
+
+<!-- Add / Edit modal -->
+<div class="overlay" id="editOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="editTitle">Add an entry</h2>
+      <button class="modal-close" id="editClose">×</button>
+    </div>
+    <form id="entryForm">
+      <input type="hidden" id="entryId">
+      <div class="field-row">
+        <div class="field">
+          <label for="entryCategory">Category</label>
+          <select id="entryCategory">
+            <option value="prayer">Prayer</option>
+            <option value="saint">Saint</option>
+            <option value="history">History</option>
+            <option value="book">Book</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="entryAuthor">Author / attribution (optional)</label>
+          <input type="text" id="entryAuthor" placeholder="e.g. St. Thomas Aquinas">
+        </div>
+      </div>
+      <div class="field">
+        <label for="entryTitle">Title</label>
+        <input type="text" id="entryTitle" placeholder="e.g. The Memorare" required>
+      </div>
+      <div class="field">
+        <label for="entryTags">Tags (comma separated, optional)</label>
+        <input type="text" id="entryTags" placeholder="e.g. marian, intercession, traditional">
+      </div>
+      <div class="field">
+        <label for="entryLink">External link (optional — a source, full text, or purchase page)</label>
+        <input type="url" id="entryLink" placeholder="https://…">
+      </div>
+      <div class="field">
+        <label for="entryContent">Text</label>
+        <textarea id="entryContent" placeholder="Paste or write the prayer, biography, historical account, or book description here. Leave a blank line between paragraphs."></textarea>
+        <div class="hint">For a book you don't want to transcribe in full, a summary plus the link above works well.</div>
+      </div>
+      <div class="modal-actions">
+        <div class="left">
+          <button type="button" class="btn danger" id="deleteBtn" style="display:none;">Delete entry</button>
+        </div>
+        <div class="left">
+          <button type="button" class="btn" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn primary">Save entry</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Reading modal -->
+<div class="overlay" id="readOverlay">
+  <div class="modal read-modal">
+    <div class="modal-head">
+      <div>
+        <div class="read-cat" id="readCat"></div>
+        <h2 id="readTitle"></h2>
+        <div class="byline" id="readByline"></div>
+      </div>
+      <button class="modal-close" id="readClose">×</button>
+    </div>
+    <div class="body-text" id="readBody"></div>
+    <div class="link-box" id="readLinkBox"></div>
+    <div class="tags" id="readTags"></div>
+    <div class="read-actions">
+      <button class="btn" id="readEditBtn">Edit this entry</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const STORAGE_KEY = 'lumenFidei.library.v1';
+const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book' };
+const CAT_DESC = {
+  all: 'Everything currently held in the repository.',
+  prayer: 'Traditional and devotional prayers of the Church.',
+  saint: 'Lives and legacies of the saints.',
+  history: 'Councils, movements, and turning points in Church history.',
+  book: 'Spiritual classics and reference works, with summaries and links.'
+};
+
+const SEED_DATA = [
+  { id:'p1', category:'prayer', title:'The Sign of the Cross', author:'', tags:['traditional','daily'],
+    content:'In the name of the Father, and of the Son, and of the Holy Spirit. Amen.' },
+  { id:'p2', category:'prayer', title:'The Lord\u2019s Prayer (Our Father)', author:'Given by Christ, Matthew 6:9\u201313', tags:['traditional','daily','scripture'],
+    content:'Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.' },
+  { id:'p3', category:'prayer', title:'Hail Mary', author:'', tags:['marian','traditional','daily'],
+    content:'Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.' },
+  { id:'p4', category:'prayer', title:'Glory Be (Doxology)', author:'', tags:['traditional','daily','rosary'],
+    content:'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.' },
+  { id:'p5', category:'prayer', title:'The Apostles\u2019 Creed', author:'', tags:['creed','traditional'],
+    content:'I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.' },
+  { id:'p6', category:'prayer', title:'Act of Contrition', author:'', tags:['confession','penance'],
+    content:'O my God, I am heartily sorry for having offended Thee, and I detest all my sins because of Thy just punishments, but most of all because they offend Thee, my God, who art all good and deserving of all my love. I firmly resolve, with the help of Thy grace, to sin no more and to avoid the near occasions of sin. Amen.' },
+  { id:'p7', category:'prayer', title:'Memorare', author:'attributed to St. Bernard of Clairvaux', tags:['marian','intercession'],
+    content:'Remember, O most gracious Virgin Mary, that never was it known that anyone who fled to thy protection, implored thy help, or sought thy intercession was left unaided.\n\nInspired by this confidence, I fly unto thee, O Virgin of virgins, my Mother; to thee do I come, before thee I stand, sinful and sorrowful. O Mother of the Word Incarnate, despise not my petitions, but in thy mercy hear and answer me. Amen.' },
+  { id:'p8', category:'prayer', title:'Prayer to St. Michael the Archangel', author:'Pope Leo XIII', tags:['protection','angels'],
+    content:'St. Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray; and do thou, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.' },
+  { id:'p9', category:'prayer', title:'The Angelus', author:'', tags:['marian','incarnation'],
+    content:'V. The Angel of the Lord declared unto Mary. R. And she conceived of the Holy Spirit. Hail Mary...\n\nV. Behold the handmaid of the Lord. R. Be it done unto me according to thy word. Hail Mary...\n\nV. And the Word was made flesh. R. And dwelt among us. Hail Mary...\n\nV. Pray for us, O holy Mother of God. R. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ our Lord. Amen.' },
+
+  { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226', tags:['founder','poverty','nature'],
+    content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.' },
+  { id:'s2', category:'saint', title:'St. Thérèse of Lisieux', author:'1873\u20131897', tags:['carmelite','little way','doctor of the church'],
+    content:'A French Carmelite nun who died of tuberculosis at twenty-four, Thérèse is known for her "Little Way": the conviction that holiness is found not in grand deeds but in small acts of love done with great fidelity. Her spiritual autobiography, Story of a Soul, was published after her death and became one of the most widely read spiritual works of the modern era.\n\nShe was canonized in 1925 and declared a Doctor of the Church in 1997, one of only a handful of women to hold that title.' },
+  { id:'s3', category:'saint', title:'St. Augustine of Hippo', author:'354\u2013430', tags:['doctor of the church','theology','north africa'],
+    content:'Born in North Africa, Augustine spent his youth pursuing worldly ambition and Manichean philosophy before his dramatic conversion to Christianity in 386, recounted in his Confessions. He became Bishop of Hippo and one of the most influential theologians in Christian history, shaping doctrines on grace, original sin, and the nature of the Church.\n\nHis vast body of writing, including The City of God, continues to be foundational to both Catholic and broader Western thought.' },
+  { id:'s4', category:'saint', title:'St. Thomas Aquinas', author:'1225\u20131274', tags:['doctor of the church','philosophy','dominican'],
+    content:'An Italian Dominican friar and one of the greatest philosopher-theologians of the Middle Ages, Aquinas sought to reconcile faith with the rediscovered philosophy of Aristotle. His masterwork, the Summa Theologica, systematically addresses questions of God, morality, and the sacraments, and remains central to Catholic theological education.\n\nHe is honored as the Angelic Doctor and is the patron saint of students and universities.' },
+  { id:'s5', category:'saint', title:'St. Teresa of Ávila', author:'1515\u20131582', tags:['carmelite','mysticism','doctor of the church'],
+    content:'A Spanish Carmelite nun and mystic, Teresa reformed her order to return it to stricter contemplative observance, founding the Discalced Carmelites alongside St. John of the Cross. Her writings on prayer and the interior life, especially The Interior Castle, remain classics of Christian mysticism.\n\nShe was declared a Doctor of the Church in 1970, the first woman to receive the title.' },
+  { id:'s6', category:'saint', title:'St. Joan of Arc', author:'c. 1412\u20131431', tags:['france','martyr','visionary'],
+    content:'A peasant girl from Domrémy, Joan believed she received visions directing her to support Charles VII and lead French forces during the Hundred Years\u2019 War. She led the army to a decisive victory at Orléans in 1429 but was later captured, tried on charges of heresy by a politically motivated court, and burned at the stake in 1431 at nineteen.\n\nShe was declared innocent by a posthumous retrial in 1456 and canonized in 1920. She is a patron saint of France and of soldiers.' },
+
+  { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'', tags:['councils','early church','creed'],
+    content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
+  { id:'h2', category:'history', title:'The Rule of St. Benedict and Western Monasticism', author:'c. 530', tags:['monasticism','medieval','benedict'],
+    content:'St. Benedict of Nursia founded the monastery of Monte Cassino and wrote a Rule for monastic life balancing prayer, manual labor, and communal living under the motto ora et labora, "pray and work." The Rule\u2019s moderation and practicality made it the dominant model for Western monasticism for centuries.\n\nBenedictine monasteries became centers of learning, agriculture, and the preservation of classical and religious texts throughout the early medieval period, earning Benedict the title of patron of Europe.' },
+  { id:'h3', category:'history', title:'The Great Schism of 1054', author:'', tags:['schism','orthodoxy','medieval'],
+    content:'Long-building tensions between the Latin-speaking Church centered in Rome and the Greek-speaking Church centered in Constantinople came to a head in 1054, when mutual excommunications were exchanged between Pope Leo IX\u2019s legate and Patriarch Michael Cerularius. Disputes over papal authority, the filioque clause in the Creed, and liturgical practice underlay the break.\n\nThe schism formally divided Western (Roman Catholic) and Eastern (Orthodox) Christianity, a division that persists today despite ongoing dialogue toward reconciliation.' },
+  { id:'h4', category:'history', title:'The Council of Trent (1545\u20131563)', author:'', tags:['councils','reformation','counter-reformation'],
+    content:'Called in response to the Protestant Reformation, the Council of Trent met intermittently over eighteen years to clarify Catholic doctrine and reform Church discipline. It reaffirmed the seven sacraments, the authority of Scripture and Tradition together, and addressed abuses such as the sale of indulgences.\n\nTrent shaped Catholic identity and practice for the next four centuries, standardizing the liturgy in what became known as the Tridentine Mass.' },
+  { id:'h5', category:'history', title:'The Second Vatican Council (1962\u20131965)', author:'', tags:['councils','modern era','liturgy'],
+    content:'Convened by Pope John XXIII and concluded under Pope Paul VI, the Second Vatican Council was called to renew the Church\u2019s engagement with the modern world. It produced sixteen documents addressing the liturgy, the nature of the Church, religious freedom, and relations with other faiths.\n\nAmong its most visible effects was the reform of the liturgy, including the introduction of Mass celebrated in vernacular languages alongside Latin.' },
+
+  { id:'b1', category:'book', title:'Confessions', author:'St. Augustine of Hippo, c. 397\u2013400', tags:['classic','autobiography','theology'],
+    content:'A landmark of Western literature, Confessions is Augustine\u2019s autobiographical account of his restless youth, his years among the Manicheans, and his conversion to Christianity, framed throughout as a prayer addressed directly to God. It is widely considered the first Western autobiography and remains a foundational text on grace, memory, and desire.',
+    link:'https://www.gutenberg.org/ebooks/3296' },
+  { id:'b2', category:'book', title:'The Imitation of Christ', author:'Thomas à Kempis, c. 1418\u20131427', tags:['classic','devotional','spirituality'],
+    content:'A devotional handbook emphasizing humility, detachment from worldly concerns, and interior union with Christ. Composed of four books of short meditative chapters, it has been one of the most widely translated and read Christian texts after the Bible itself, shaping spiritual formation for over five centuries.',
+    link:'https://www.gutenberg.org/ebooks/1653' },
+  { id:'b3', category:'book', title:'Introduction to the Devout Life', author:'St. Francis de Sales, 1609', tags:['classic','laity','spirituality'],
+    content:'Written for laypeople rather than clergy or religious, this work argues that a devout life is attainable within ordinary secular circumstances — in marriage, work, and daily routine. Its warm, practical tone made it enormously influential in shaping a spirituality accessible outside the monastery.',
+    link:'https://www.gutenberg.org/ebooks/2716' },
+  { id:'b4', category:'book', title:'Story of a Soul', author:'St. Thérèse of Lisieux, 1898', tags:['classic','autobiography','little way'],
+    content:'The spiritual autobiography of St. Thérèse of Lisieux, compiled from manuscripts written at the request of her Carmelite superiors and published after her death. It presents her "Little Way" of spiritual childhood and has become one of the best-selling religious texts of the modern era.',
+    link:'https://www.gutenberg.org/ebooks/23997' },
+  { id:'b5', category:'book', title:'Summa Theologica', author:'St. Thomas Aquinas, 1265\u20131274', tags:['reference','philosophy','theology'],
+    content:'An unfinished but monumental synthesis of Catholic theology, structured as a series of questions and articles addressing God, creation, morality, Christ, and the sacraments, each weighing objections against a reasoned response. It remains the central reference work of scholastic theology.',
+    link:'https://www.newadvent.org/summa/' }
+];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let library = [];
+let activeCategory = 'all';
+let searchTerm = '';
+
+function loadLibrary(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      library = JSON.parse(raw);
+    } else {
+      library = JSON.parse(JSON.stringify(SEED_DATA));
+      saveLibrary();
+    }
+  }catch(e){
+    console.error('Could not load library, falling back to defaults.', e);
+    library = JSON.parse(JSON.stringify(SEED_DATA));
+  }
+}
+
+function saveLibrary(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(library));
+  }catch(e){
+    alert('Could not save to this browser\u2019s storage. Your entry is kept for this session only — export your library to back it up.');
+  }
+}
+
+function uid(){
+  return 'e' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+}
+
+/* =========================================================
+   RENDERING
+   ========================================================= */
+const entryListEl = document.getElementById('entryList');
+const sectionTitleEl = document.getElementById('sectionTitle');
+const sectionDescEl = document.getElementById('sectionDesc');
+
+function excerptOf(text, len){
+  if(!text) return '';
+  const flat = text.replace(/\s+/g,' ').trim();
+  return flat.length > len ? flat.slice(0, len).trim() + '…' : flat;
+}
+
+function updateCounts(){
+  const counts = { all: library.length, prayer:0, saint:0, history:0, book:0 };
+  library.forEach(e => { if(counts[e.category] !== undefined) counts[e.category]++; });
+  Object.keys(counts).forEach(k => {
+    const el = document.getElementById('count-' + k);
+    if(el) el.textContent = counts[k];
+  });
+}
+
+function currentEntries(){
+  let list = library;
+  if(activeCategory !== 'all'){
+    list = list.filter(e => e.category === activeCategory);
+  }
+  if(searchTerm.trim()){
+    const t = searchTerm.trim().toLowerCase();
+    list = list.filter(e =>
+      (e.title||'').toLowerCase().includes(t) ||
+      (e.author||'').toLowerCase().includes(t) ||
+      (e.content||'').toLowerCase().includes(t) ||
+      (e.tags||[]).some(tag => tag.toLowerCase().includes(t))
+    );
+  }
+  return list;
+}
+
+function render(){
+  updateCounts();
+
+  if(searchTerm.trim()){
+    sectionTitleEl.textContent = 'Search results';
+    sectionDescEl.textContent = `Showing entries matching "${searchTerm.trim()}"`;
+  } else {
+    sectionTitleEl.textContent = activeCategory === 'all' ? 'All entries' : CAT_LABEL[activeCategory] + 's';
+    sectionDescEl.textContent = CAT_DESC[activeCategory];
+  }
+
+  const entries = currentEntries();
+  entryListEl.innerHTML = '';
+
+  if(entries.length === 0){
+    const div = document.createElement('div');
+    div.className = 'empty-state';
+    div.innerHTML = searchTerm.trim()
+      ? `Nothing here matches your search.<br><button class="btn" id="clearFromEmpty">Clear search</button>`
+      : `This section is empty.<br><button class="btn primary" id="addFromEmpty">Add the first entry</button>`;
+    entryListEl.appendChild(div);
+    const clearBtn = document.getElementById('clearFromEmpty');
+    if(clearBtn) clearBtn.addEventListener('click', () => { document.getElementById('searchInput').value=''; searchTerm=''; render(); });
+    const addBtn = document.getElementById('addFromEmpty');
+    if(addBtn) addBtn.addEventListener('click', () => openEditModal());
+    return;
+  }
+
+  const colorVar = { prayer:'var(--wine)', saint:'var(--gold)', history:'var(--green)', book:'var(--indigo)' };
+
+  entries.forEach(entry => {
+    const row = document.createElement('div');
+    row.className = 'entry-row';
+    row.style.setProperty('--row-color', colorVar[entry.category] || 'var(--wine)');
+    row.innerHTML = `
+      <div class="row-top">
+        <h3>${escapeHtml(entry.title)}</h3>
+        <span class="cat-badge">${CAT_LABEL[entry.category] || entry.category}</span>
+      </div>
+      ${entry.author ? `<div class="byline">${escapeHtml(entry.author)}</div>` : ''}
+      <div class="excerpt">${escapeHtml(excerptOf(entry.content, 190))}</div>
+      ${(entry.tags && entry.tags.length) ? `<div class="tags">${entry.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+    `;
+    row.addEventListener('click', () => openReadModal(entry.id));
+    entryListEl.appendChild(row);
+  });
+}
+
+function escapeHtml(str){
+  return (str||'').replace(/[&<>"']/g, m => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[m]));
+}
+
+/* =========================================================
+   NAVIGATION + SEARCH
+   ========================================================= */
+document.getElementById('navList').addEventListener('click', e => {
+  const btn = e.target.closest('.navlink');
+  if(!btn) return;
+  document.querySelectorAll('.navlink').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCategory = btn.dataset.cat;
+  searchTerm = '';
+  document.getElementById('searchInput').value = '';
+  render();
+});
+
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', () => { searchTerm = searchInput.value; render(); });
+document.getElementById('searchClear').addEventListener('click', () => {
+  searchInput.value=''; searchTerm=''; searchInput.focus(); render();
+});
+
+/* =========================================================
+   ADD / EDIT MODAL
+   ========================================================= */
+const editOverlay = document.getElementById('editOverlay');
+const entryForm = document.getElementById('entryForm');
+const editTitle = document.getElementById('editTitle');
+const deleteBtn = document.getElementById('deleteBtn');
+
+function openEditModal(entryId){
+  entryForm.reset();
+  document.getElementById('entryId').value = entryId || '';
+  if(entryId){
+    const e = library.find(x => x.id === entryId);
+    if(e){
+      editTitle.textContent = 'Edit entry';
+      document.getElementById('entryCategory').value = e.category;
+      document.getElementById('entryAuthor').value = e.author || '';
+      document.getElementById('entryTitle').value = e.title || '';
+      document.getElementById('entryTags').value = (e.tags||[]).join(', ');
+      document.getElementById('entryLink').value = e.link || '';
+      document.getElementById('entryContent').value = e.content || '';
+      deleteBtn.style.display = 'inline-block';
+    }
+  } else {
+    editTitle.textContent = 'Add an entry';
+    if(activeCategory !== 'all') document.getElementById('entryCategory').value = activeCategory;
+    deleteBtn.style.display = 'none';
+  }
+  editOverlay.classList.add('open');
+  document.getElementById('entryTitle').focus();
+}
+
+function closeEditModal(){ editOverlay.classList.remove('open'); }
+
+document.getElementById('openAddBtn').addEventListener('click', () => openEditModal());
+document.getElementById('editClose').addEventListener('click', closeEditModal);
+document.getElementById('cancelBtn').addEventListener('click', closeEditModal);
+editOverlay.addEventListener('click', e => { if(e.target === editOverlay) closeEditModal(); });
+
+entryForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const id = document.getElementById('entryId').value;
+  const data = {
+    category: document.getElementById('entryCategory').value,
+    title: document.getElementById('entryTitle').value.trim(),
+    author: document.getElementById('entryAuthor').value.trim(),
+    tags: document.getElementById('entryTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    link: document.getElementById('entryLink').value.trim(),
+    content: document.getElementById('entryContent').value.trim()
+  };
+  if(!data.title){ alert('Please give the entry a title.'); return; }
+
+  if(id){
+    const idx = library.findIndex(x => x.id === id);
+    if(idx > -1) library[idx] = { ...library[idx], ...data };
+  } else {
+    library.unshift({ id: uid(), ...data });
+  }
+  saveLibrary();
+  closeEditModal();
+  activeCategory = 'all';
+  document.querySelectorAll('.navlink').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+  render();
+});
+
+deleteBtn.addEventListener('click', () => {
+  const id = document.getElementById('entryId').value;
+  if(!id) return;
+  if(confirm('Delete this entry? This cannot be undone unless you have an exported backup.')){
+    library = library.filter(x => x.id !== id);
+    saveLibrary();
+    closeEditModal();
+    render();
+  }
+});
+
+/* =========================================================
+   READING MODAL
+   ========================================================= */
+const readOverlay = document.getElementById('readOverlay');
+let currentReadId = null;
+
+function openReadModal(id){
+  const e = library.find(x => x.id === id);
+  if(!e) return;
+  currentReadId = id;
+  document.getElementById('readCat').textContent = CAT_LABEL[e.category] || e.category;
+  document.getElementById('readTitle').textContent = e.title;
+  document.getElementById('readByline').textContent = e.author || '';
+  document.getElementById('readByline').style.display = e.author ? 'block' : 'none';
+
+  const paragraphs = (e.content || '').split(/\n\s*\n/).filter(Boolean);
+  const bodyEl = document.getElementById('readBody');
+  bodyEl.innerHTML = paragraphs.length
+    ? paragraphs.map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('')
+    : '<p style="color:var(--ink-soft); font-style:italic;">No text has been added for this entry yet.</p>';
+
+  const linkBox = document.getElementById('readLinkBox');
+  linkBox.innerHTML = e.link ? `<a href="${escapeHtml(e.link)}" target="_blank" rel="noopener">View source / full text ↗</a>` : '';
+
+  const tagsEl = document.getElementById('readTags');
+  tagsEl.innerHTML = (e.tags||[]).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
+
+  readOverlay.classList.add('open');
+}
+
+document.getElementById('readClose').addEventListener('click', () => readOverlay.classList.remove('open'));
+readOverlay.addEventListener('click', e => { if(e.target === readOverlay) readOverlay.classList.remove('open'); });
+document.getElementById('readEditBtn').addEventListener('click', () => {
+  readOverlay.classList.remove('open');
+  openEditModal(currentReadId);
+});
+
+/* =========================================================
+   IMPORT / EXPORT / RESET
+   ========================================================= */
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(library, null, 2)], { type:'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'lumen-fidei-library.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+const importFile = document.getElementById('importFile');
+document.getElementById('importBtn').addEventListener('click', () => importFile.click());
+importFile.addEventListener('change', () => {
+  const file = importFile.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const incoming = JSON.parse(reader.result);
+      if(!Array.isArray(incoming)) throw new Error('File must contain a list of entries.');
+      let added = 0;
+      incoming.forEach(item => {
+        if(!item.title) return;
+        library.unshift({
+          id: uid(),
+          category: ['prayer','saint','history','book'].includes(item.category) ? item.category : 'book',
+          title: String(item.title),
+          author: item.author ? String(item.author) : '',
+          tags: Array.isArray(item.tags) ? item.tags : (typeof item.tags === 'string' ? item.tags.split(',').map(t=>t.trim()).filter(Boolean) : []),
+          link: item.link ? String(item.link) : '',
+          content: item.content ? String(item.content) : ''
+        });
+        added++;
+      });
+      saveLibrary();
+      render();
+      alert(`Imported ${added} entr${added===1?'y':'ies'} into the repository.`);
+    }catch(err){
+      alert('Could not read that file. Make sure it is a JSON export from this repository, or a JSON list of objects with a "title" field.');
+    }
+    importFile.value = '';
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if(confirm('This replaces everything currently in the repository with the original default library. Export a backup first if you want to keep your additions. Continue?')){
+    library = JSON.parse(JSON.stringify(SEED_DATA));
+    saveLibrary();
+    render();
+  }
+});
+
+/* =========================================================
+   INIT
+   ========================================================= */
+loadLibrary();
+render();
+</script>
+</body>
+</html>
