@@ -699,6 +699,43 @@ const CALENDAR_DATA = [
 ];
 
 /* =========================================================
+   ROSARY DATA
+   ========================================================= */
+const ROSARY_MYSTERIES = {
+  joyful: {name:'Joyful Mysteries',day:'Monday & Saturday',mysteries:[{num:1,title:'The Annunciation',fruit:'Humility'},{num:2,title:'The Visitation',fruit:'Love of Neighbor'},{num:3,title:'The Nativity',fruit:'Poverty of Spirit'},{num:4,title:'The Presentation',fruit:'Obedience'},{num:5,title:'Finding Jesus in the Temple',fruit:'Joy in Finding Jesus'}]},
+  sorrowful: {name:'Sorrowful Mysteries',day:'Tuesday & Friday',mysteries:[{num:1,title:'The Agony in the Garden',fruit:'Contrition for Sins'},{num:2,title:'The Scourging at the Pillar',fruit:'Purity'},{num:3,title:'The Crowning with Thorns',fruit:'Courage'},{num:4,title:'The Carrying of the Cross',fruit:'Patience'},{num:5,title:'The Crucifixion',fruit:'Perseverance'}]},
+  glorious: {name:'Glorious Mysteries',day:'Wednesday & Sunday',mysteries:[{num:1,title:'The Resurrection',fruit:'Faith'},{num:2,title:'The Ascension',fruit:'Hope'},{num:3,title:'The Descent of the Holy Spirit',fruit:'Love of God'},{num:4,title:'The Assumption',fruit:'Desire for Heaven'},{num:5,title:'The Coronation of Mary',fruit:'Trust in Marys Intercession'}]},
+  luminous: {name:'Luminous Mysteries',day:'Thursday',mysteries:[{num:1,title:'The Baptism of Jesus',fruit:'Openness to the Holy Spirit'},{num:2,title:'The Wedding at Cana',fruit:'To Jesus Through Mary'},{num:3,title:'The Proclamation of the Kingdom',fruit:'Repentance and Trust in God'},{num:4,title:'The Transfiguration',fruit:'Desire for Holiness'},{num:5,title:'The Institution of the Eucharist',fruit:'Adoration'}]}
+};
+const ROSARY_PRAYERS = {
+  start:'Make the Sign of the Cross and begin with the Apostles Creed...',
+  creed:'I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.',
+  ourFather:'Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.',
+  hailMary:'Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.',
+  gloryBe:'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.',
+  fatima:'O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to heaven, especially those in most need of Thy mercy.',
+  hailHolyQueen:'Hail, Holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears.\n\nTurn then, most gracious Advocate, thine eyes of mercy toward us, and after this our exile, show unto us the blessed fruit of thy womb, Jesus.\n\nO clement, O loving, O sweet Virgin Mary!\n\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray: O God, whose only begotten Son, by His life, death, and resurrection, has purchased for us the rewards of eternal life, grant, we beseech Thee, that meditating upon these mysteries of the Most Holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise. Through the same Christ our Lord. Amen.'
+};
+
+/* =========================================================
+   BIBLE DATA - Douay-Rheims Catholic Bible
+   ========================================================= */
+const BIBLE_BOOKS = {
+  old: [
+    {name:'Genesis',chapters:50},{name:'Exodus',chapters:40},{name:'Leviticus',chapters:27},{name:'Numbers',chapters:36},{name:'Deuteronomy',chapters:34},{name:'Joshue',chapters:24},{name:'Judges',chapters:21},{name:'Ruth',chapters:4},{name:'1 Kings',chapters:22},{name:'2 Kings',chapters:25},{name:'3 Kings',chapters:22},{name:'4 Kings',chapters:25},{name:'1 Paralipomenon',chapters:29},{name:'2 Paralipomenon',chapters:36},{name:'1 Esdras',chapters:9},{name:'2 Esdras',chapters:16},{name:'Tobias',chapters:14},{name:'Judith',chapters:16},{name:'Esther',chapters:10},{name:'Job',chapters:42},{name:'Psalms',chapters:150},{name:'Proverbs',chapters:31},{name:'Ecclesiastes',chapters:12},{name:'Song of Solomon',chapters:8},{name:'Wisdom',chapters:19},{name:'Ecclesiasticus',chapters:51},{name:'Isaias',chapters:66},{name:'Jeremias',chapters:52},{name:'Lamentations',chapters:5},{name:'Baruch',chapters:6},{name:'Ezechiel',chapters:48},{name:'Daniel',chapters:14},{name:'Osee',chapters:14},{name:'Joel',chapters:3},{name:'Amos',chapters:9},{name:'Abdias',chapters:1},{name:'Jonas',chapters:4},{name:'Michaeas',chapters:7},{name:'Nahum',chapters:3},{name:'Habacuc',chapters:3},{name:'Sophonias',chapters:3},{name:'Aggeus',chapters:2},{name:'Zacharias',chapters:14},{name:'Malachias',chapters:4},{name:'1 Machabees',chapters:16},{name:'2 Machabees',chapters:15}
+  ],
+  new: [
+    {name:'St. Matthew',chapters:28},{name:'St. Mark',chapters:16},{name:'St. Luke',chapters:24},{name:'St. John',chapters:21},{name:'The Acts',chapters:28},{name:'Romans',chapters:16},{name:'1 Corinthians',chapters:16},{name:'2 Corinthians',chapters:13},{name:'Galatians',chapters:6},{name:'Ephesians',chapters:6},{name:'Philippians',chapters:4},{name:'Colossians',chapters:4},{name:'1 Thessalonians',chapters:5},{name:'2 Thessalonians',chapters:3},{name:'1 Timothy',chapters:6},{name:'2 Timothy',chapters:4},{name:'Titus',chapters:3},{name:'Philemon',chapters:1},{name:'Hebrews',chapters:13},{name:'James',chapters:5},{name:'1 Peter',chapters:5},{name:'2 Peter',chapters:3},{name:'1 John',chapters:5},{name:'2 John',chapters:1},{name:'3 John',chapters:1},{name:'Jude',chapters:1},{name:'Apocalypse',chapters:22}
+  ]
+};
+const BIBLE_CONTENT = {
+  old: {Genesis:{1:['In the beginning God created heaven, and earth.','And the earth was void and empty, and darkness was upon the face of the deep; and the spirit of God moved over the waters.','And God said: Be light made. And light was made.']},Psalms:{1:['Blessed is the man who hath not walked in the counsel of the ungodly.','But his will is in the law of the Lord.']}},
+  new: {'St. Matthew':{1:['The book of the generation of Jesus Christ.','Abraham begot Isaac.']},'St. John':{1:['In the beginning was the Word.','The same was in the beginning with God.']}}
+};
+</script>
+</body>
+</html>
+/* =========================================================
    STATE
    ========================================================= */
 const library = SEED_DATA;
@@ -1000,39 +1037,4 @@ function nextChapter(){const book=BIBLE_BOOKS[currentTestament].find(b=>b.name==
    INIT
    ========================================================= */
 render();
-/* =========================================================
-   ROSARY DATA
-   ========================================================= */
-const ROSARY_MYSTERIES = {
-  joyful: {name:'Joyful Mysteries',day:'Monday & Saturday',mysteries:[{num:1,title:'The Annunciation',fruit:'Humility'},{num:2,title:'The Visitation',fruit:'Love of Neighbor'},{num:3,title:'The Nativity',fruit:'Poverty of Spirit'},{num:4,title:'The Presentation',fruit:'Obedience'},{num:5,title:'Finding Jesus in the Temple',fruit:'Joy in Finding Jesus'}]},
-  sorrowful: {name:'Sorrowful Mysteries',day:'Tuesday & Friday',mysteries:[{num:1,title:'The Agony in the Garden',fruit:'Contrition for Sins'},{num:2,title:'The Scourging at the Pillar',fruit:'Purity'},{num:3,title:'The Crowning with Thorns',fruit:'Courage'},{num:4,title:'The Carrying of the Cross',fruit:'Patience'},{num:5,title:'The Crucifixion',fruit:'Perseverance'}]},
-  glorious: {name:'Glorious Mysteries',day:'Wednesday & Sunday',mysteries:[{num:1,title:'The Resurrection',fruit:'Faith'},{num:2,title:'The Ascension',fruit:'Hope'},{num:3,title:'The Descent of the Holy Spirit',fruit:'Love of God'},{num:4,title:'The Assumption',fruit:'Desire for Heaven'},{num:5,title:'The Coronation of Mary',fruit:'Trust in Marys Intercession'}]},
-  luminous: {name:'Luminous Mysteries',day:'Thursday',mysteries:[{num:1,title:'The Baptism of Jesus',fruit:'Openness to the Holy Spirit'},{num:2,title:'The Wedding at Cana',fruit:'To Jesus Through Mary'},{num:3,title:'The Proclamation of the Kingdom',fruit:'Repentance and Trust in God'},{num:4,title:'The Transfiguration',fruit:'Desire for Holiness'},{num:5,title:'The Institution of the Eucharist',fruit:'Adoration'}]}
-};
-const ROSARY_PRAYERS = {
-  start:'Make the Sign of the Cross and begin with the Apostles Creed...',
-  creed:'I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.',
-  ourFather:'Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.',
-  hailMary:'Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.\n\nHoly Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.',
-  gloryBe:'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.',
-  fatima:'O my Jesus, forgive us our sins, save us from the fires of hell, lead all souls to heaven, especially those in most need of Thy mercy.',
-  hailHolyQueen:'Hail, Holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears.\n\nTurn then, most gracious Advocate, thine eyes of mercy toward us, and after this our exile, show unto us the blessed fruit of thy womb, Jesus.\n\nO clement, O loving, O sweet Virgin Mary!\n\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray: O God, whose only begotten Son, by His life, death, and resurrection, has purchased for us the rewards of eternal life, grant, we beseech Thee, that meditating upon these mysteries of the Most Holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise. Through the same Christ our Lord. Amen.'
-};
-/* =========================================================
-   BIBLE DATA - Douay-Rheims Catholic Bible
-   ========================================================= */
-const BIBLE_BOOKS = {
-  old: [
-    {name:'Genesis',chapters:50},{name:'Exodus',chapters:40},{name:'Leviticus',chapters:27},{name:'Numbers',chapters:36},{name:'Deuteronomy',chapters:34},{name:'Joshue',chapters:24},{name:'Judges',chapters:21},{name:'Ruth',chapters:4},{name:'1 Kings',chapters:22},{name:'2 Kings',chapters:25},{name:'3 Kings',chapters:22},{name:'4 Kings',chapters:25},{name:'1 Paralipomenon',chapters:29},{name:'2 Paralipomenon',chapters:36},{name:'1 Esdras',chapters:9},{name:'2 Esdras',chapters:16},{name:'Tobias',chapters:14},{name:'Judith',chapters:16},{name:'Esther',chapters:10},{name:'Job',chapters:42},{name:'Psalms',chapters:150},{name:'Proverbs',chapters:31},{name:'Ecclesiastes',chapters:12},{name:'Song of Solomon',chapters:8},{name:'Wisdom',chapters:19},{name:'Ecclesiasticus',chapters:51},{name:'Isaias',chapters:66},{name:'Jeremias',chapters:52},{name:'Lamentations',chapters:5},{name:'Baruch',chapters:6},{name:'Ezechiel',chapters:48},{name:'Daniel',chapters:14},{name:'Osee',chapters:14},{name:'Joel',chapters:3},{name:'Amos',chapters:9},{name:'Abdias',chapters:1},{name:'Jonas',chapters:4},{name:'Michaeas',chapters:7},{name:'Nahum',chapters:3},{name:'Habacuc',chapters:3},{name:'Sophonias',chapters:3},{name:'Aggeus',chapters:2},{name:'Zacharias',chapters:14},{name:'Malachias',chapters:4},{name:'1 Machabees',chapters:16},{name:'2 Machabees',chapters:15}
-  ],
-  new: [
-    {name:'St. Matthew',chapters:28},{name:'St. Mark',chapters:16},{name:'St. Luke',chapters:24},{name:'St. John',chapters:21},{name:'The Acts',chapters:28},{name:'Romans',chapters:16},{name:'1 Corinthians',chapters:16},{name:'2 Corinthians',chapters:13},{name:'Galatians',chapters:6},{name:'Ephesians',chapters:6},{name:'Philippians',chapters:4},{name:'Colossians',chapters:4},{name:'1 Thessalonians',chapters:5},{name:'2 Thessalonians',chapters:3},{name:'1 Timothy',chapters:6},{name:'2 Timothy',chapters:4},{name:'Titus',chapters:3},{name:'Philemon',chapters:1},{name:'Hebrews',chapters:13},{name:'James',chapters:5},{name:'1 Peter',chapters:5},{name:'2 Peter',chapters:3},{name:'1 John',chapters:5},{name:'2 John',chapters:1},{name:'3 John',chapters:1},{name:'Jude',chapters:1},{name:'Apocalypse',chapters:22}
-  ]
-};
-const BIBLE_CONTENT = {
-  old: {Genesis:{1:['In the beginning God created heaven, and earth.','And the earth was void and empty, and darkness was upon the face of the deep; and the spirit of God moved over the waters.','And God said: Be light made. And light was made.']},Psalms:{1:['Blessed is the man who hath not walked in the counsel of the ungodly.','But his will is in the law of the Lord.']}},
-  new: {'St. Matthew':{1:['The book of the generation of Jesus Christ.','Abraham begot Isaac.']},'St. John':{1:['In the beginning was the Word.','The same was in the beginning with God.']}}
-};
-</script>
-</body>
-</html>
+
