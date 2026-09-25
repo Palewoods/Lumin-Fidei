@@ -20,6 +20,7 @@
     --gold-light:#c7a565;
     --green:#3f5443;
     --indigo:#33415a;
+    --purple:#5b4a72;
     --line: rgba(42,33,24,0.18);
     --shadow: 0 2px 14px rgba(42,33,24,0.18);
     --radius: 3px;
@@ -129,6 +130,7 @@
   nav.sidebar button.navlink[data-cat="saint"]{--cat-color:var(--gold);}
   nav.sidebar button.navlink[data-cat="history"]{--cat-color:var(--green);}
   nav.sidebar button.navlink[data-cat="book"]{--cat-color:var(--indigo);}
+  nav.sidebar button.navlink[data-cat="calendar"]{--cat-color:var(--purple);}
   nav.sidebar button.navlink[data-cat="all"]{--cat-color:var(--ink);}
 
   .side-actions{border-top:1px solid var(--line); padding-top:18px; display:flex; flex-direction:column; gap:8px;}
@@ -179,6 +181,46 @@
     color:var(--ink-soft); margin-top:24px; border-radius:var(--radius);
   }
   .empty-state .btn{display:inline-block; margin-top:14px;}
+
+  /* ---------- Calendar ---------- */
+  .cal-legend{
+    display:flex; flex-wrap:wrap; gap:16px; margin:20px 0 8px;
+    padding:14px 16px; border:1px solid var(--line); background:rgba(42,33,24,0.03);
+  }
+  .cal-legend .item{display:flex; align-items:center; gap:7px; font-size:0.85rem; color:var(--ink-soft);}
+  .cal-legend .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
+
+  .month-group{margin-top:30px;}
+  .month-group h3{
+    font-size:1.5rem; color:var(--wine-dark); border-bottom:1px solid var(--gold-light);
+    padding-bottom:6px; margin-bottom:4px;
+  }
+  .cal-row{
+    display:flex; gap:14px; padding:12px 0 12px 4px;
+    border-bottom:1px solid var(--line); cursor:default;
+  }
+  .cal-date{
+    flex:0 0 64px; font-size:0.92rem; color:var(--ink-soft); padding-top:2px;
+  }
+  .cal-dot{
+    flex:0 0 9px; height:9px; width:9px; border-radius:50%;
+    margin-top:8px; background:var(--row-color, var(--wine));
+  }
+  .cal-body{flex:1; min-width:0;}
+  .cal-body .cal-top{display:flex; justify-content:space-between; gap:12px; align-items:baseline; flex-wrap:wrap;}
+  .cal-name{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.2rem;}
+  .cal-type{font-size:0.74rem; color:var(--ink-soft); white-space:nowrap;}
+  .cal-note{font-size:0.92rem; color:var(--ink); opacity:0.85; margin-top:3px;}
+
+  .intercession-block{
+    margin-top:26px; padding-top:20px; border-top:1px solid var(--line);
+  }
+  .intercession-block h3{
+    font-size:1.05rem; color:var(--wine-dark); margin-bottom:10px; font-weight:600;
+  }
+  .intercession-block p{
+    font-style:italic; line-height:1.75; margin:0;
+  }
 
   footer{
     text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:0.85rem;
@@ -261,6 +303,7 @@
       <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
       <li><button class="navlink" data-cat="history">History <span class="count" id="count-history"></span></button></li>
       <li><button class="navlink" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
+      <li><button class="navlink" data-cat="calendar">Calendar <span class="count" id="count-calendar"></span></button></li>
     </ul>
   </nav>
 
@@ -302,10 +345,17 @@ const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Boo
 const CAT_DESC = {
   all: 'Everything currently held in the repository.',
   prayer: 'Traditional and devotional prayers of the Church.',
-  saint: 'Lives and legacies of the saints.',
+  saint: 'Lives, patronages, and prayers of intercession for the saints.',
   history: 'Councils, movements, and turning points in Church history.',
-  book: 'Spiritual classics and reference works, with summaries and links.'
+  book: 'Spiritual classics and reference works, with summaries and links.',
+  calendar: 'Solemnities, feast days, novenas, and seasons of the liturgical year.'
 };
+
+const CAL_TYPE_COLOR = {
+  Solemnity:'var(--gold)', Feast:'var(--green)', Memorial:'var(--indigo)',
+  Season:'var(--purple)', Novena:'var(--wine)'
+};
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 const SEED_DATA = [
   { id:'p1', category:'prayer', title:'The Sign of the Cross', author:'', tags:['traditional','daily'],
@@ -327,18 +377,133 @@ const SEED_DATA = [
   { id:'p9', category:'prayer', title:'The Angelus', author:'', tags:['marian','incarnation'],
     content:'V. The Angel of the Lord declared unto Mary. R. And she conceived of the Holy Spirit. Hail Mary...\n\nV. Behold the handmaid of the Lord. R. Be it done unto me according to thy word. Hail Mary...\n\nV. And the Word was made flesh. R. And dwelt among us. Hail Mary...\n\nV. Pray for us, O holy Mother of God. R. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ our Lord. Amen.' },
 
-  { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226', tags:['founder','poverty','nature'],
-    content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.' },
-  { id:'s2', category:'saint', title:'St. Thérèse of Lisieux', author:'1873\u20131897', tags:['carmelite','little way','doctor of the church'],
-    content:'A French Carmelite nun who died of tuberculosis at twenty-four, Thérèse is known for her "Little Way": the conviction that holiness is found not in grand deeds but in small acts of love done with great fidelity. Her spiritual autobiography, Story of a Soul, was published after her death and became one of the most widely read spiritual works of the modern era.\n\nShe was canonized in 1925 and declared a Doctor of the Church in 1997, one of only a handful of women to hold that title.' },
-  { id:'s3', category:'saint', title:'St. Augustine of Hippo', author:'354\u2013430', tags:['doctor of the church','theology','north africa'],
-    content:'Born in North Africa, Augustine spent his youth pursuing worldly ambition and Manichean philosophy before his dramatic conversion to Christianity in 386, recounted in his Confessions. He became Bishop of Hippo and one of the most influential theologians in Christian history, shaping doctrines on grace, original sin, and the nature of the Church.\n\nHis vast body of writing, including The City of God, continues to be foundational to both Catholic and broader Western thought.' },
-  { id:'s4', category:'saint', title:'St. Thomas Aquinas', author:'1225\u20131274', tags:['doctor of the church','philosophy','dominican'],
-    content:'An Italian Dominican friar and one of the greatest philosopher-theologians of the Middle Ages, Aquinas sought to reconcile faith with the rediscovered philosophy of Aristotle. His masterwork, the Summa Theologica, systematically addresses questions of God, morality, and the sacraments, and remains central to Catholic theological education.\n\nHe is honored as the Angelic Doctor and is the patron saint of students and universities.' },
-  { id:'s5', category:'saint', title:'St. Teresa of Ávila', author:'1515\u20131582', tags:['carmelite','mysticism','doctor of the church'],
-    content:'A Spanish Carmelite nun and mystic, Teresa reformed her order to return it to stricter contemplative observance, founding the Discalced Carmelites alongside St. John of the Cross. Her writings on prayer and the interior life, especially The Interior Castle, remain classics of Christian mysticism.\n\nShe was declared a Doctor of the Church in 1970, the first woman to receive the title.' },
-  { id:'s6', category:'saint', title:'St. Joan of Arc', author:'c. 1412\u20131431', tags:['france','martyr','visionary'],
-    content:'A peasant girl from Domrémy, Joan believed she received visions directing her to support Charles VII and lead French forces during the Hundred Years\u2019 War. She led the army to a decisive victory at Orléans in 1429 but was later captured, tried on charges of heresy by a politically motivated court, and burned at the stake in 1431 at nineteen.\n\nShe was declared innocent by a posthumous retrial in 1456 and canonized in 1920. She is a patron saint of France and of soldiers.' },
+  { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226, feast day October 4', tags:['founder','poverty','nature'],
+    content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.',
+    intercession:'St. Francis of Assisi, who found God in poverty and in every creature, teach us to hold this world lightly and to love it truly. Pray for us, that we may walk humbly, live simply, and see the hand of the Creator in all things. Amen.' },
+  { id:'s2', category:'saint', title:'St. Thérèse of Lisieux', author:'1873\u20131897, feast day October 1', tags:['carmelite','little way','doctor of the church'],
+    content:'A French Carmelite nun who died of tuberculosis at twenty-four, Thérèse is known for her "Little Way": the conviction that holiness is found not in grand deeds but in small acts of love done with great fidelity. Her spiritual autobiography, Story of a Soul, was published after her death and became one of the most widely read spiritual works of the modern era.\n\nShe was canonized in 1925 and declared a Doctor of the Church in 1997, one of only a handful of women to hold that title.',
+    intercession:'St. Thérèse of Lisieux, Little Flower, who found holiness in life\u2019s smallest acts of love, pray for us. Teach us your Little Way, that we may trust God as a child trusts a father, and offer him even our smallest joys and sufferings. Amen.' },
+  { id:'s3', category:'saint', title:'St. Augustine of Hippo', author:'354\u2013430, feast day August 28', tags:['doctor of the church','theology','north africa'],
+    content:'Born in North Africa, Augustine spent his youth pursuing worldly ambition and Manichean philosophy before his dramatic conversion to Christianity in 386, recounted in his Confessions. He became Bishop of Hippo and one of the most influential theologians in Christian history, shaping doctrines on grace, original sin, and the nature of the Church.\n\nHis vast body of writing, including The City of God, continues to be foundational to both Catholic and broader Western thought.',
+    intercession:'St. Augustine, who searched restlessly before finding peace in God, pray for all who wrestle with doubt and desire. Obtain for us the grace of a sincere conversion, and hearts that find their rest in the Lord alone. Amen.' },
+  { id:'s4', category:'saint', title:'St. Thomas Aquinas', author:'1225\u20131274, feast day January 28', tags:['doctor of the church','philosophy','dominican'],
+    content:'An Italian Dominican friar and one of the greatest philosopher-theologians of the Middle Ages, Aquinas sought to reconcile faith with the rediscovered philosophy of Aristotle. His masterwork, the Summa Theologica, systematically addresses questions of God, morality, and the sacraments, and remains central to Catholic theological education.\n\nHe is honored as the Angelic Doctor and is the patron saint of students and universities.',
+    intercession:'St. Thomas Aquinas, patron of students and scholars, pray for us. Obtain for us a mind eager to seek truth, a will to pursue it honestly, and the grace to hold what we learn always in service of God. Amen.' },
+  { id:'s5', category:'saint', title:'St. Teresa of Ávila', author:'1515\u20131582, feast day October 15', tags:['carmelite','mysticism','doctor of the church'],
+    content:'A Spanish Carmelite nun and mystic, Teresa reformed her order to return it to stricter contemplative observance, founding the Discalced Carmelites alongside St. John of the Cross. Her writings on prayer and the interior life, especially The Interior Castle, remain classics of Christian mysticism.\n\nShe was declared a Doctor of the Church in 1970, the first woman to receive the title.',
+    intercession:'St. Teresa of Ávila, teacher of prayer, pray for us. Help us to persevere through dryness and distraction, and lead us deeper into the interior castle of the soul, where Christ himself dwells. Amen.' },
+  { id:'s6', category:'saint', title:'St. Joan of Arc', author:'c. 1412\u20131431, feast day May 30', tags:['france','martyr','visionary'],
+    content:'A peasant girl from Domrémy, Joan believed she received visions directing her to support Charles VII and lead French forces during the Hundred Years\u2019 War. She led the army to a decisive victory at Orléans in 1429 but was later captured, tried on charges of heresy by a politically motivated court, and burned at the stake in 1431 at nineteen.\n\nShe was declared innocent by a posthumous retrial in 1456 and canonized in 1920. She is a patron saint of France and of soldiers.',
+    intercession:'St. Joan of Arc, who followed God\u2019s call with unshakable courage, pray for us. Give us your boldness in the face of doubt and opposition, and the humility to submit our own certainty to the will of God. Amen.' },
+
+  { id:'s7', category:'saint', title:'St. Peter the Apostle', author:'d. c. 64, feast day June 29', tags:['apostle','pope','martyr'],
+    content:'A fisherman from Galilee called by Christ to be the "rock" on which the Church would be built, Peter was the leader of the twelve apostles and, by tradition, the first Bishop of Rome. Despite denying Christ three times during the Passion, he was restored and commissioned to feed Christ\u2019s flock, later leading the early Church through its first difficult decades.\n\nHe was martyred in Rome under Nero, traditionally crucified upside down at his own request, believing himself unworthy to die as Christ did.',
+    intercession:'St. Peter, first among the apostles, pray for the Church and for its shepherds. Obtain for us the grace to rise after our failures as you did, and to love Christ enough to follow him even to the end. Amen.' },
+  { id:'s8', category:'saint', title:'St. Paul the Apostle', author:'d. c. 64, feast day June 29', tags:['apostle','missionary','martyr'],
+    content:'Once a zealous persecutor of Christians known as Saul, Paul was transformed by an encounter with the risen Christ on the road to Damascus. He became the Church\u2019s greatest missionary, founding communities across the Mediterranean and writing letters that form a large part of the New Testament.\n\nHe was martyred in Rome, tradition holds, by beheading, and is honored alongside Peter as a co-founder of the Roman Church.',
+    intercession:'St. Paul, apostle to the nations, pray for us. Set our hearts ablaze as yours was on the road to Damascus, and give us courage to proclaim the Gospel in season and out of season. Amen.' },
+  { id:'s9', category:'saint', title:'St. John the Apostle', author:'d. c. 100, feast day December 27', tags:['apostle','evangelist','beloved disciple'],
+    content:'Known in his own Gospel as "the disciple whom Jesus loved," John was among the first apostles called and was present at the Transfiguration and the Crucifixion, where Christ entrusted his mother Mary to his care. Tradition credits him with the fourth Gospel, three epistles, and the Book of Revelation.\n\nHe is believed to be the only apostle who did not die a martyr\u2019s death, living to old age in Ephesus.',
+    intercession:'St. John, beloved disciple, pray for us. Teach us to rest close to the heart of Christ as you did, and to love one another as he has loved us. Amen.' },
+  { id:'s10', category:'saint', title:'St. Mary Magdalene', author:'1st century, feast day July 22', tags:['apostle to the apostles','witness','conversion'],
+    content:'Delivered by Christ from grave affliction, Mary Magdalene became one of his most devoted followers, present at the crucifixion when many others had fled. She was the first witness of the Resurrection and was sent by the risen Christ to announce the news to the apostles, earning her the title "Apostle to the Apostles."\n\nIn 2016 Pope Francis raised her liturgical feast to the rank celebrated for the apostles, honoring her unique place in salvation history.',
+    intercession:'St. Mary Magdalene, first witness of the Resurrection, pray for us. Obtain for us your same faithful love for Christ, and the courage to proclaim the joy of the Gospel to a world still in need of hope. Amen.' },
+  { id:'s11', category:'saint', title:'St. Joseph', author:'1st century BC \u2013 1st century AD, feast day March 19', tags:['patron of the church','fatherhood','workers'],
+    content:'The husband of Mary and foster father of Jesus, Joseph appears in Scripture only through his actions: obeying angelic messages in dreams, protecting the Holy Family in flight to Egypt, and raising Jesus in the trade of carpentry. Scripture records no words of his at all, only quiet, faithful obedience.\n\nHe is honored as patron of the universal Church, of fathers, of workers, and of a happy death, having died, by tradition, in the presence of Jesus and Mary.',
+    intercession:'St. Joseph, silent and faithful guardian, pray for us. Watch over our families as you watched over the Holy Family, and obtain for us the grace of a peaceful death in the company of Jesus and Mary. Amen.' },
+  { id:'s12', category:'saint', title:'St. Anne', author:'1st century BC, feast day July 26', tags:['grandparents','mothers','marian'],
+    content:'Though not named in Scripture, St. Anne has been honored since the early Church, by tradition, as the mother of the Virgin Mary and grandmother of Jesus. Devotion to her spread widely through the Middle Ages, and she is invoked especially by mothers, grandparents, and those hoping for children.\n\nShe is venerated alongside her husband, St. Joachim, as an example of quiet faithfulness within family life.',
+    intercession:'St. Anne, grandmother of our Lord, pray for grandparents and for all who long to pass on the faith to those who come after them. Watch over our families across every generation. Amen.' },
+  { id:'s13', category:'saint', title:'St. Benedict of Nursia', author:'c. 480\u2013547, feast day July 11', tags:['monasticism','founder','patron of europe'],
+    content:'Born in Nursia, Italy, Benedict withdrew from society as a young man to live as a hermit before founding the monastery of Monte Cassino and writing his famous Rule, which balanced prayer, manual labor, and community life under the motto ora et labora. His moderate, practical approach became the foundation of Western monasticism.\n\nBenedictine houses preserved learning and stability through the upheavals of the early medieval period, earning him the title patron of Europe.',
+    intercession:'St. Benedict, father of Western monks, pray for us. Teach us to order our days around prayer and honest work, and to seek God with the same steady discipline you gave to your Rule. Amen.' },
+  { id:'s14', category:'saint', title:'St. Patrick', author:'c. 385\u2013461, feast day March 17', tags:['missionary','ireland','bishop'],
+    content:'Captured as a teenager from Roman Britain and enslaved in Ireland, Patrick escaped after six years but later returned as a missionary bishop, having felt called in a vision. He is credited with converting much of pagan Ireland to Christianity, founding churches and monasteries across the island.\n\nThe shamrock, by tradition, was his teaching tool for explaining the Trinity, and he remains one of the most beloved patron saints in the world.',
+    intercession:'St. Patrick, apostle of Ireland, pray for missionaries and for all who bring the Gospel to unfamiliar and difficult places. Give us your courage to return good for the evil once done to us. Amen.' },
+  { id:'s15', category:'saint', title:'St. Anthony of Padua', author:'1195\u20131231, feast day June 13', tags:['franciscan','preacher','lost items'],
+    content:'A Portuguese-born Franciscan friar renowned for his preaching and deep knowledge of Scripture, Anthony was declared a Doctor of the Church for the clarity and power of his sermons. He spent much of his ministry in Padua, Italy, known for his charity to the poor and his gift for reconciling enemies.\n\nHe is popularly invoked as the finder of lost items and lost causes, a devotion rooted in a legend of a stolen book miraculously returned.',
+    intercession:'St. Anthony of Padua, wonder-worker, pray for us. Help us find what is truly lost — faith grown cold, relationships broken, hope set aside — and restore in us confidence in God\u2019s providence. Amen.' },
+  { id:'s16', category:'saint', title:'St. Jude Thaddeus', author:'1st century, feast day October 28', tags:['apostle','desperate causes','martyr'],
+    content:'One of the twelve apostles, Jude is traditionally identified as the author of the New Testament epistle bearing his name and is said to have preached the Gospel in Mesopotamia and Persia before being martyred there. Because his name resembled that of the traitor Judas, devotion to him was historically neglected, which by tradition led him to intercede especially readily for those in desperate need.\n\nHe is one of the most widely invoked saints in the Church today, particularly in times of hardship thought to be beyond hope.',
+    intercession:'St. Jude, patron of hopeless causes, pray for us. In our most desperate hours, when no other help seems near, obtain for us the grace to trust that nothing is beyond the mercy of God. Amen.' },
+  { id:'s17', category:'saint', title:'St. Nicholas of Myra', author:'c. 270\u2013343, feast day December 6', tags:['bishop','generosity','children'],
+    content:'A bishop in Asia Minor during the early fourth century, Nicholas became famous for his secret generosity, most notably providing dowries for three poor sisters by tossing gold through their window under cover of night so they would not face destitution. He is said to have attended the Council of Nicaea and defended orthodox teaching on the divinity of Christ.\n\nHis legend of quiet, anonymous gift-giving eventually gave rise to the popular figure of Santa Claus.',
+    intercession:'St. Nicholas, generous bishop, pray for us. Teach us to give freely and quietly, seeking no praise, and to care for children and the poor as you once did in Myra. Amen.' },
+  { id:'s18', category:'saint', title:'St. George', author:'d. c. 303, feast day April 23', tags:['martyr','soldiers','courage'],
+    content:'A soldier in the Roman army, George was martyred under Emperor Diocletian for refusing to renounce his Christian faith, reportedly enduring prolonged torture with steadfast courage before his execution. Little else about his life is reliably documented, but his witness of fidelity under persecution spread rapidly and inspired the popular legend of him slaying a dragon to save a princess, understood as a symbol of his triumph over evil.\n\nHe is a patron saint of soldiers, England, and several other nations.',
+    intercession:'St. George, valiant martyr, pray for us. Give us courage to stand firm in our faith when it is tested, and to face evil, whatever form it takes, without losing hope in Christ\u2019s victory. Amen.' },
+  { id:'s19', category:'saint', title:'St. Sebastian', author:'d. c. 288, feast day January 20', tags:['martyr','soldiers','athletes'],
+    content:'A captain in the Roman imperial guard, Sebastian was discovered to be secretly Christian and, by tradition, was ordered shot with arrows and left for dead. He survived, was nursed back to health, and confronted the emperor directly about the persecution of Christians, for which he was ultimately clubbed to death.\n\nHis survival of the arrows made him a popular subject in art and a patron of soldiers and athletes.',
+    intercession:'St. Sebastian, steadfast martyr, pray for us. Give soldiers, athletes, and all who face danger in their work the courage to hold to their faith under pressure and pain. Amen.' },
+  { id:'s20', category:'saint', title:'St. Monica', author:'331\u2013387, feast day August 27', tags:['mothers','patience','perseverance'],
+    content:'The mother of St. Augustine, Monica spent decades praying for her son\u2019s conversion through years of his wandering into worldly ambition and heterodox belief. Her patience and tears, as Augustine himself recorded, were instrumental in his eventual return to the faith and his baptism.\n\nShe is remembered as a model of persevering prayer for the conversion of loved ones who seem far from God.',
+    intercession:'St. Monica, patient mother, pray for us. Hear the prayers of every parent who weeps for a child astray, and obtain for them the same steadfast hope that carried you through years of waiting. Amen.' },
+  { id:'s21', category:'saint', title:'St. Jerome', author:'c. 342\u2013420, feast day September 30', tags:['doctor of the church','scripture','translator'],
+    content:'A brilliant and famously irritable scholar, Jerome dedicated much of his life to translating the Bible from Hebrew and Greek into Latin, producing the Vulgate, which remained the Church\u2019s standard biblical text for over a thousand years. He lived for decades as a hermit and monk near Bethlehem, immersed in study and controversy alike.\n\nHe is honored as a Doctor of the Church and the patron of biblical scholars and translators.',
+    intercession:'St. Jerome, lover of Scripture, pray for us. Give us your hunger for the word of God, and remind us, as you often said, that ignorance of Scripture is ignorance of Christ. Amen.' },
+  { id:'s22', category:'saint', title:'St. Ambrose', author:'c. 340\u2013397, feast day December 7', tags:['doctor of the church','bishop','milan'],
+    content:'A Roman governor unexpectedly acclaimed bishop of Milan by popular demand while still an unbaptized catechumen, Ambrose became one of the most influential churchmen of his age, instructing Augustine and famously standing up to emperors on matters of Church authority. His eloquent preaching and hymn-writing shaped Western liturgical music.\n\nHe is honored as a Doctor of the Church, remembered for his courage in defending the Church\u2019s independence from imperial power.',
+    intercession:'St. Ambrose, fearless bishop, pray for us. Give Church leaders your courage to speak truth to power, and give us all a love for the beauty of the liturgy that you helped shape. Amen.' },
+  { id:'s23', category:'saint', title:'St. Ignatius of Loyola', author:'1491\u20131556, feast day July 31', tags:['founder','jesuits','discernment'],
+    content:'A Spanish soldier wounded in battle, Ignatius underwent a profound conversion during a long recovery, later founding the Society of Jesus (the Jesuits) to serve the Church through education, missionary work, and spiritual direction. His Spiritual Exercises, a structured method of prayer and discernment, remain widely used today.\n\nHe emphasized finding God "in all things," bringing contemplative depth into active, engaged life in the world.',
+    intercession:'St. Ignatius of Loyola, pray for us. Teach us to discern God\u2019s will in the ordinary movements of our hearts, and to seek him not only in prayer but in all our daily work. Amen.' },
+  { id:'s24', category:'saint', title:'St. Francis Xavier', author:'1506\u20131552, feast day December 3', tags:['missionary','jesuit','asia'],
+    content:'A close companion of St. Ignatius of Loyola and one of the first Jesuits, Francis Xavier became one of history\u2019s most extensive Christian missionaries, traveling across India, Southeast Asia, and Japan to preach the Gospel, reportedly baptizing tens of thousands of converts. He died within sight of mainland China, still hoping to enter it as a missionary.\n\nHe is honored as a patron of foreign missions alongside St. Thérèse of Lisieux.',
+    intercession:'St. Francis Xavier, tireless missionary, pray for us. Give missionaries strength for the journey to unfamiliar lands, and set our own hearts on fire to carry Christ to those who have not yet heard of him. Amen.' },
+  { id:'s25', category:'saint', title:'St. John Vianney', author:'1786\u20131859, feast day August 4', tags:['priests','confession','patience'],
+    content:'Known as the Curé of Ars for the small French parish he served for over forty years, John Vianney struggled academically as a seminarian yet became one of history\u2019s most sought-after confessors, reportedly spending up to sixteen hours a day hearing confessions as pilgrims traveled from across Europe to see him.\n\nHe is the patron saint of parish priests, remembered for his humility, penance, and tireless availability to souls in need.',
+    intercession:'St. John Vianney, patron of priests, pray for all who serve as confessors and pastors. Give them your patience and love for souls, and give penitents the courage to seek mercy without fear. Amen.' },
+  { id:'s26', category:'saint', title:'St. Padre Pio', author:'1887\u20131968, feast day September 23', tags:['stigmata','confession','italy'],
+    content:'An Italian Capuchin friar who bore the visible wounds of Christ\u2019s stigmata for roughly fifty years, Padre Pio became one of the twentieth century\u2019s most sought-after spiritual figures, drawing enormous crowds to his monastery in San Giovanni Rotondo. He spent long hours each day hearing confessions and was reported by many to possess gifts of healing and spiritual insight.\n\nHe was canonized in 2002 and remains one of the most widely venerated saints of the modern era.',
+    intercession:'St. Padre Pio, who bore the wounds of Christ, pray for us. Help us to unite our own sufferings to his, and to seek healing and mercy with the same trust you showed throughout your life. Amen.' },
+  { id:'s27', category:'saint', title:'St. Maximilian Kolbe', author:'1894\u20131941, feast day August 14', tags:['martyr','charity','world war ii'],
+    content:'A Polish Franciscan friar imprisoned at Auschwitz, Kolbe volunteered to die in place of a fellow prisoner, a husband and father, who had been selected for starvation as punishment for another inmate\u2019s escape. He led his fellow condemned prisoners in prayer during their final days and was ultimately killed by lethal injection.\n\nHe is honored as a martyr of charity, and the man he saved was present at his canonization in 1982.',
+    intercession:'St. Maximilian Kolbe, martyr of charity, pray for us. Give us even a portion of your willingness to lay down our lives for another, and strengthen all who suffer persecution for their faith. Amen.' },
+  { id:'s28', category:'saint', title:'St. Faustina Kowalska', author:'1905\u20131938, feast day October 5', tags:['divine mercy','visionary','poland'],
+    content:'A Polish nun of humble background and little formal education, Faustina reported visions of Jesus who asked her to spread devotion to his Divine Mercy. Her spiritual diary, recorded at the direction of her confessors, became the foundation for the Divine Mercy devotion and image now found throughout the world.\n\nShe was canonized in 2000 by Pope John Paul II, her fellow Pole, who also established Divine Mercy Sunday on her recommendation.',
+    intercession:'St. Faustina, apostle of Divine Mercy, pray for us. Help us to trust in Jesus as you did, and to carry his message of mercy to a world so often convinced it is beyond forgiveness. Amen.' },
+  { id:'s29', category:'saint', title:'St. John Paul II', author:'1920\u20132005, feast day October 22', tags:['pope','poland','youth'],
+    content:'Born Karol Wojtyła in Poland, he survived Nazi occupation and Communist rule before being elected pope in 1978, the first non-Italian pope in over four centuries. His nearly twenty-seven-year pontificate was marked by extensive world travel, a central role in the fall of Communism in Eastern Europe, and a particular closeness to young people through World Youth Day.\n\nHe survived an assassination attempt in 1981 and later personally forgave the man who shot him. He was canonized in 2014.',
+    intercession:'St. John Paul II, pray for us. Give young people the courage you so often called for, to "be not afraid," and help all of us to forgive as freely as you forgave your own attacker. Amen.' },
+  { id:'s30', category:'saint', title:'St. Teresa of Calcutta', author:'1910\u20131997, feast day September 5', tags:['charity','missionaries of charity','poor'],
+    content:'Born Anjezë Gonxhe Bojaxhiu in what is now North Macedonia, Mother Teresa spent nearly two decades teaching before feeling called to serve "the poorest of the poor" on the streets of Calcutta. She founded the Missionaries of Charity, which grew into a worldwide order caring for the dying, the abandoned, and the destitute.\n\nHer later revealed private writings disclosed decades of profound spiritual darkness borne quietly alongside her public work. She was canonized in 2016.',
+    intercession:'St. Teresa of Calcutta, pray for us. Teach us to see Christ in the poorest and most overlooked, and to keep serving faithfully even when, like you, we feel no consolation in our faith. Amen.' },
+  { id:'s31', category:'saint', title:'St. Rita of Cascia', author:'1381\u20131457, feast day May 22', tags:['widows','difficult marriages','impossible causes'],
+    content:'Married young to a violent and unfaithful husband, Rita endured an eighteen-year marriage before his death, and later lost both her sons as well. She then entered an Augustinian convent, where she lived a life of deep penance and, by tradition, received a wound on her forehead resembling a thorn from Christ\u2019s crown.\n\nShe is widely invoked as a patron of difficult marriages, widows, and seemingly impossible or hopeless situations.',
+    intercession:'St. Rita of Cascia, patron of impossible causes, pray for us. You who bore great suffering within your own family, intercede for all in difficult marriages and troubled homes, that they may find peace. Amen.' },
+  { id:'s32', category:'saint', title:'St. Bernadette Soubirous', author:'1844\u20131879, feast day April 16', tags:['visionary','lourdes','marian'],
+    content:'A poor, sickly fourteen-year-old girl in Lourdes, France, Bernadette reported eighteen apparitions of a "beautiful lady" who identified herself as the Immaculate Conception, revealing a spring of water that became famous for reported healings. She endured intense scrutiny and skepticism from both civil and Church authorities before her visions were officially recognized.\n\nShe later entered religious life and asked to be forgotten, living quietly until her death from illness at thirty-five.',
+    intercession:'St. Bernadette, humble seer of Lourdes, pray for the sick and for all who seek healing in body or spirit. Teach us your simplicity of faith before the mysteries God chooses to reveal. Amen.' },
+  { id:'s33', category:'saint', title:'St. Catherine of Siena', author:'1347\u20131380, feast day April 29', tags:['doctor of the church','mystic','papacy'],
+    content:'An Italian laywoman and Dominican tertiary, Catherine experienced profound mystical union with Christ from a young age and became an influential voice in Church affairs, most famously persuading Pope Gregory XI to return the papacy from Avignon to Rome. Unable to read or write until later in life, she dictated hundreds of letters and a major mystical work, The Dialogue.\n\nShe was declared a Doctor of the Church in 1970, alongside Teresa of Ávila.',
+    intercession:'St. Catherine of Siena, pray for us. Give us your fearless honesty in speaking truth to those in authority, and your deep union of heart with Christ that made such courage possible. Amen.' },
+  { id:'s34', category:'saint', title:'St. Elizabeth Ann Seton', author:'1774\u20131821, feast day January 4', tags:['convert','education','united states'],
+    content:'A wealthy Episcopalian widow with five children, Elizabeth Ann Seton converted to Catholicism after encountering the faith in Italy, a decision that cost her much of her social standing and family support. She founded the Sisters of Charity of St. Joseph, establishing the first free Catholic school for girls in America and pioneering the American parochial school system.\n\nShe was canonized in 1975, the first person born in the United States to be declared a saint.',
+    intercession:'St. Elizabeth Ann Seton, pray for us. Give widowed and single parents your resourcefulness and faith, and inspire Catholic educators to serve children with the same devotion you brought to your schools. Amen.' },
+  { id:'s35', category:'saint', title:'St. Dominic', author:'1170\u20131221, feast day August 8', tags:['founder','dominicans','preaching'],
+    content:'A Spanish priest troubled by the spread of heresy in southern France, Dominic founded the Order of Preachers, known as the Dominicans, dedicated to rigorous study and public preaching in defense of Catholic doctrine. He insisted his friars live in poverty so their preaching would be credible to those they hoped to reach.\n\nDevotion to the Rosary has long been associated with Dominic and his order, though the precise history of that connection is debated by historians.',
+    intercession:'St. Dominic, father of preachers, pray for us. Give us a hunger for truth and the courage to speak it plainly, and help us to pray the Rosary with the depth your order has long taught. Amen.' },
+  { id:'s36', category:'saint', title:'St. Vincent de Paul', author:'1581\u20131660, feast day September 27', tags:['charity','poor','founder'],
+    content:'A French priest who once experienced enslavement himself before his ordination, Vincent de Paul devoted his life to organizing systematic care for the poor, the sick, and abandoned children, founding the Congregation of the Mission and, with St. Louise de Marillac, the Daughters of Charity. His approach professionalized and expanded Catholic charitable work well beyond his own lifetime.\n\nHis name is carried today by the worldwide Society of St. Vincent de Paul, which continues direct service to the poor.',
+    intercession:'St. Vincent de Paul, pray for us. Give us your practical love for the poor, one that moves beyond good intentions into real, organized, patient service. Amen.' },
+  { id:'s37', category:'saint', title:'St. Rose of Lima', author:'1586\u20131617, feast day August 23', tags:['penance','south america','first american saint'],
+    content:'Born Isabel Flores de Oliva in Lima, Peru, Rose lived a life of intense penance and prayer while supporting her family through embroidery and gardening, resisting pressure to marry in order to consecrate her life to Christ. She cared for the sick and poor of her city from a small hermitage built in her family\u2019s garden.\n\nCanonized in 1671, she was the first person born in the Americas to be declared a saint.',
+    intercession:'St. Rose of Lima, pray for us. Give young people facing pressure to abandon their calling the same firm resolve you showed, and a heart devoted to serving the poor of their own city. Amen.' },
+  { id:'s38', category:'saint', title:'St. Martin de Porres', author:'1579\u20131639, feast day November 3', tags:['charity','racial reconciliation','peru'],
+    content:'Born in Lima to a Spanish nobleman and a freed Black woman, Martin faced discrimination for his mixed heritage yet was admitted to the Dominican order, where he served as a lay brother caring for the sick, the poor, and even animals. He was known for extraordinary humility, insisting on the lowliest tasks despite reports of remarkable spiritual gifts.\n\nHe was canonized in 1962 and is honored as a patron of racial harmony and social justice.',
+    intercession:'St. Martin de Porres, pray for us. Teach us your humility in choosing the lowest place, and your tender care for the sick, the poor, and all creatures, without regard for their standing in the eyes of the world. Amen.' },
+  { id:'s39', category:'saint', title:'St. Kateri Tekakwitha', author:'1656\u20131680, feast day July 14', tags:['native american','purity','first north american saint'],
+    content:'Born to a Mohawk father and Christian Algonquin mother in what is now New York State, Kateri survived smallpox as a child, which left her partially blind and scarred. She converted to Christianity as a young woman against significant opposition from her community, eventually fleeing to a Christian settlement in Canada, where she lived a life of intense prayer and penance until her death at twenty-four.\n\nShe was canonized in 2012, the first Native American to be declared a saint.',
+    intercession:'St. Kateri Tekakwitha, Lily of the Mohawks, pray for us. Give indigenous peoples and converts facing opposition from their own communities the same courage and peace you found in following Christ. Amen.' },
+  { id:'s40', category:'saint', title:'St. Michael the Archangel', author:'feast day September 29', tags:['angels','protection','spiritual warfare'],
+    content:'Named in Scripture as "one of the chief princes" and the great protector who contends against the forces of evil, Michael appears in the Book of Daniel, the Letter of Jude, and the Book of Revelation, where he leads the heavenly hosts against the dragon. His name, meaning "Who is like God?", is understood as his answer to Satan\u2019s pride.\n\nHe is venerated as the protector of the Church and is traditionally invoked for defense against spiritual and physical danger.',
+    intercession:'St. Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil, and by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.' },
+  { id:'s41', category:'saint', title:'St. Lucy', author:'283\u2013304, feast day December 13', tags:['martyr','eyesight','light'],
+    content:'A young Christian woman in Syracuse, Sicily, Lucy had consecrated her virginity to God and used her dowry to aid the poor, refusing an arranged marriage. Denounced as a Christian during the persecution of Diocletian, she was tortured and killed after reportedly resisting attempts to move or defile her body.\n\nHer name, meaning "light," made her a natural patron for eyesight, and her feast falls near the winter solstice, historically celebrated with candlelit processions.',
+    intercession:'St. Lucy, virgin and martyr, pray for us. Protect the eyesight of the blind and the ailing, and be for us a light of faith in the darkest seasons of our lives. Amen.' },
+  { id:'s42', category:'saint', title:'St. Agnes', author:'c. 291\u2013304, feast day January 21', tags:['martyr','purity','youth'],
+    content:'A twelve- or thirteen-year-old girl of a noble Roman family, Agnes was martyred during the persecution of Diocletian after refusing marriage in order to remain consecrated to Christ. Ancient accounts describe her calm courage in the face of threats and execution, remarkable given her young age.\n\nShe became one of the most venerated virgin martyrs of the early Church, commemorated in the Roman Canon of the Mass to this day.',
+    intercession:'St. Agnes, young and fearless martyr, pray for us. Give children and young people the courage to remain faithful to Christ even under pressure from those around them. Amen.' },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -368,6 +533,126 @@ const SEED_DATA = [
     link:'https://www.newadvent.org/summa/' }
 ];
 
+const CALENDAR_DATA = [
+  // ---- Moveable dates & seasons (vary each year) ----
+  { month:0, name:'Ash Wednesday', type:'Season', note:'Marks the beginning of Lent, forty days of prayer, fasting, and almsgiving leading to Easter. Ashes are placed on the forehead as a sign of penance.' },
+  { month:0, name:'Lent', type:'Season', note:'The forty-day penitential season from Ash Wednesday to Holy Thursday, recalling Christ\u2019s time in the desert and preparing the faithful for Easter.' },
+  { month:0, name:'Palm Sunday', type:'Feast', note:'Opens Holy Week, commemorating Christ\u2019s triumphant entry into Jerusalem. Palm branches are blessed and distributed at Mass.' },
+  { month:0, name:'Holy Thursday', type:'Solemnity', note:'Commemorates the Last Supper and the institution of the Eucharist and the priesthood, part of the Sacred Triduum.' },
+  { month:0, name:'Good Friday', type:'Solemnity', note:'The solemn commemoration of the Crucifixion and death of Christ. A day of fasting and abstinence; no Mass is celebrated.' },
+  { month:0, name:'Holy Saturday & the Easter Vigil', type:'Solemnity', note:'A day of quiet at the tomb, culminating after sunset in the Easter Vigil, the Church\u2019s greatest liturgy, proclaiming the Resurrection.' },
+  { month:0, name:'Easter Sunday', type:'Solemnity', note:'The Solemnity of the Resurrection of the Lord, the center of the entire liturgical year. Falls on the first Sunday after the first full moon following the spring equinox.' },
+  { month:0, name:'Easter Season', type:'Season', note:'The fifty joyful days from Easter Sunday to Pentecost, celebrating the Resurrection and Christ\u2019s appearances to the disciples.' },
+  { month:0, name:'Divine Mercy Novena', type:'Novena', note:'Begins on Good Friday and continues for nine days, taught by Christ to St. Faustina, concluding on the Saturday before Divine Mercy Sunday.' },
+  { month:0, name:'Divine Mercy Sunday', type:'Feast', note:'Celebrated on the Second Sunday of Easter, honoring the boundless mercy of Christ revealed to St. Faustina Kowalska.' },
+  { month:0, name:'Ascension of the Lord', type:'Solemnity', note:'Commemorates Christ\u2019s ascension into heaven forty days after Easter; in many regions the celebration is transferred to the following Sunday.' },
+  { month:0, name:'Pentecost Novena', type:'Novena', note:'The very first novena, prayed by the apostles and Mary in the days between the Ascension and Pentecost, awaiting the Holy Spirit.' },
+  { month:0, name:'Pentecost', type:'Solemnity', note:'Celebrates the descent of the Holy Spirit upon the apostles fifty days after Easter, traditionally regarded as the birth of the Church.' },
+  { month:0, name:'Trinity Sunday', type:'Solemnity', note:'Celebrated the Sunday after Pentecost in honor of the mystery of the Holy Trinity.' },
+  { month:0, name:'Corpus Christi', type:'Solemnity', note:'The Solemnity of the Most Holy Body and Blood of Christ, celebrated the Sunday (or Thursday) after Trinity Sunday, often marked with Eucharistic processions.' },
+  { month:0, name:'Sacred Heart of Jesus', type:'Solemnity', note:'Celebrated on the Friday following the octave of Corpus Christi, honoring Christ\u2019s love symbolized by his pierced heart.' },
+  { month:0, name:'Christ the King', type:'Solemnity', note:'The final Sunday of the liturgical year, proclaiming Christ\u2019s kingship over all creation before Advent begins anew.' },
+  { month:0, name:'First Sunday of Advent', type:'Season', note:'Begins the new liturgical year and the four-week season of hopeful waiting for the celebration of Christ\u2019s birth.' },
+  { month:0, name:'Advent', type:'Season', note:'A season of preparation and expectation before Christmas, marked by the lighting of the Advent wreath\u2019s four candles.' },
+
+  // ---- January ----
+  { month:1, day:1, name:'Solemnity of Mary, Mother of God', type:'Solemnity', note:'Honors Mary\u2019s divine motherhood on the octave day of Christmas. A holy day of obligation.' },
+  { month:1, day:4, name:'St. Elizabeth Ann Seton', type:'Memorial', note:'Feast of the first native-born American saint, founder of the Sisters of Charity.' },
+  { month:1, day:20, name:'St. Sebastian', type:'Memorial', note:'Roman soldier and martyr, patron of soldiers and athletes.' },
+  { month:1, day:21, name:'St. Agnes', type:'Memorial', note:'Young virgin martyr of the early Roman Church.' },
+  { month:1, day:25, name:'Conversion of St. Paul', type:'Feast', note:'Commemorates Saul\u2019s transformation into Paul, apostle to the Gentiles, on the road to Damascus.' },
+  { month:1, day:28, name:'St. Thomas Aquinas', type:'Memorial', note:'Doctor of the Church and patron of Catholic schools and universities.' },
+
+  // ---- February ----
+  { month:2, day:2, name:'Presentation of the Lord (Candlemas)', type:'Feast', note:'Commemorates Mary and Joseph presenting the infant Jesus in the Temple. Candles are blessed, symbolizing Christ as light of the world.' },
+  { month:2, day:3, name:'St. Blaise', type:'Memorial', note:'Bishop and martyr; throats are traditionally blessed on this day in his honor.' },
+  { month:2, day:11, name:'Our Lady of Lourdes', type:'Memorial', note:'Commemorates the apparitions of Mary to St. Bernadette Soubirous in 1858. Also observed as the World Day of the Sick.' },
+  { month:2, day:14, name:'St. Valentine', type:'Memorial', note:'Roman priest and martyr, long associated with the blessing of couples and betrothed love.' },
+  { month:2, day:22, name:'Chair of St. Peter', type:'Feast', note:'Celebrates the teaching authority entrusted to Peter and his successors as head of the Church.' },
+
+  // ---- March ----
+  { month:3, day:17, name:'St. Patrick', type:'Memorial', note:'Apostle and patron of Ireland, celebrated widely wherever the Irish diaspora has settled.' },
+  { month:3, day:19, name:'St. Joseph, Spouse of the Blessed Virgin Mary', type:'Solemnity', note:'Honors the foster father of Jesus, patron of the universal Church, fathers, and workers.' },
+  { month:3, day:25, name:'Annunciation of the Lord', type:'Solemnity', note:'Commemorates the angel Gabriel\u2019s announcement to Mary and the Incarnation of Christ, nine months before Christmas.' },
+
+  // ---- April ----
+  { month:4, day:16, name:'St. Bernadette Soubirous', type:'Memorial', note:'Visionary of Lourdes, remembered for her humility and simple, unwavering faith.' },
+  { month:4, day:23, name:'St. George', type:'Memorial', note:'Roman soldier and martyr, patron of soldiers and of England.' },
+  { month:4, day:29, name:'St. Catherine of Siena', type:'Feast', note:'Doctor of the Church and mystic who helped return the papacy to Rome from Avignon.' },
+
+  // ---- May ----
+  { month:5, day:1, name:'St. Joseph the Worker', type:'Memorial', note:'Honors the dignity of human labor through the example of Joseph\u2019s trade as a carpenter.' },
+  { month:5, day:13, name:'Our Lady of Fatima', type:'Memorial', note:'Commemorates the 1917 Marian apparitions to three shepherd children in Fatima, Portugal.' },
+  { month:5, day:22, name:'St. Rita of Cascia', type:'Memorial', note:'Patron of difficult marriages and seemingly impossible situations.' },
+  { month:5, day:30, name:'St. Joan of Arc', type:'Memorial', note:'French visionary and martyr, patron of France and of soldiers.' },
+  { month:5, day:31, name:'Visitation of the Blessed Virgin Mary', type:'Feast', note:'Commemorates Mary\u2019s visit to her cousin Elizabeth, recorded in the Gospel of Luke.' },
+
+  // ---- June ----
+  { month:6, day:13, name:'St. Anthony of Padua', type:'Memorial', note:'Franciscan preacher and Doctor of the Church, popularly invoked for lost items and causes.' },
+  { month:6, day:24, name:'Nativity of St. John the Baptist', type:'Solemnity', note:'One of the few birth feasts in the calendar, honoring the forerunner of Christ.' },
+  { month:6, day:29, name:'Ss. Peter and Paul', type:'Solemnity', note:'Honors the two great pillars of the early Church, both martyred in Rome.' },
+
+  // ---- July ----
+  { month:7, day:11, name:'St. Benedict', type:'Memorial', note:'Father of Western monasticism and patron of Europe.' },
+  { month:7, day:14, name:'St. Kateri Tekakwitha', type:'Memorial', note:'The first Native American saint, known as the Lily of the Mohawks.' },
+  { month:7, day:22, name:'St. Mary Magdalene', type:'Feast', note:'First witness of the Resurrection, honored as "Apostle to the Apostles."' },
+  { month:7, day:25, name:'St. Christopher', type:'Memorial', note:'Traditionally invoked as patron of travelers; his legendary act of carrying the Christ Child across a river gives him his name, "Christ-bearer."' },
+  { month:7, day:26, name:'Ss. Joachim and Anne', type:'Memorial', note:'Honors the parents of the Virgin Mary and grandparents of Jesus.' },
+  { month:7, day:31, name:'St. Ignatius of Loyola', type:'Memorial', note:'Founder of the Society of Jesus and author of the Spiritual Exercises.' },
+
+  // ---- August ----
+  { month:8, day:4, name:'St. John Vianney', type:'Memorial', note:'The Curé of Ars, patron saint of parish priests.' },
+  { month:8, day:6, name:'Transfiguration of the Lord', type:'Feast', note:'Commemorates Christ revealing his divine glory to Peter, James, and John on the mountain.' },
+  { month:8, day:8, name:'St. Dominic', type:'Memorial', note:'Founder of the Order of Preachers, associated with the promotion of the Rosary.' },
+  { month:8, day:14, name:'St. Maximilian Kolbe', type:'Memorial', note:'Martyr of charity who gave his life for a fellow prisoner at Auschwitz.' },
+  { month:8, day:15, name:'Assumption of the Blessed Virgin Mary', type:'Solemnity', note:'Celebrates Mary\u2019s body and soul being taken up into heaven. A holy day of obligation.' },
+  { month:8, day:23, name:'St. Rose of Lima', type:'Memorial', note:'The first saint born in the Americas, known for her life of penance and charity.' },
+  { month:8, day:27, name:'St. Monica', type:'Memorial', note:'Mother of St. Augustine, remembered for decades of persevering prayer for his conversion.' },
+
+  // ---- September ----
+  { month:9, day:3, name:'St. Gregory the Great', type:'Memorial', note:'Pope and Doctor of the Church, reformer of the liturgy and Gregorian chant.' },
+  { month:9, day:5, name:'St. Teresa of Calcutta', type:'Memorial', note:'Founder of the Missionaries of Charity, remembered for her care of "the poorest of the poor."' },
+  { month:9, day:8, name:'Nativity of the Blessed Virgin Mary', type:'Feast', note:'Celebrates the birth of Mary, traditionally set nine months after her Immaculate Conception.' },
+  { month:9, day:14, name:'Exaltation of the Holy Cross', type:'Feast', note:'Commemorates the finding of the True Cross and its veneration as the instrument of salvation.' },
+  { month:9, day:23, name:'St. Padre Pio', type:'Memorial', note:'Capuchin friar who bore the stigmata for nearly fifty years.' },
+  { month:9, day:27, name:'St. Vincent de Paul', type:'Memorial', note:'Patron of charitable societies and organized service to the poor.' },
+  { month:9, day:29, name:'Ss. Michael, Gabriel, and Raphael, Archangels', type:'Feast', note:'Honors the three archangels named in Scripture.' },
+  { month:9, day:30, name:'St. Jerome', type:'Memorial', note:'Translator of the Latin Vulgate and Doctor of the Church.' },
+
+  // ---- October ----
+  { month:10, day:1, name:'St. Thérèse of Lisieux', type:'Memorial', note:'The "Little Flower," Doctor of the Church and co-patron of missions.' },
+  { month:10, day:2, name:'Guardian Angels', type:'Memorial', note:'Honors the angels appointed by God to watch over each person.' },
+  { month:10, day:4, name:'St. Francis of Assisi', type:'Memorial', note:'Founder of the Franciscans, patron of animals and ecology.' },
+  { month:10, day:5, name:'St. Faustina Kowalska', type:'Memorial', note:'Apostle of Divine Mercy.' },
+  { month:10, day:7, name:'Our Lady of the Rosary', type:'Memorial', note:'Commemorates the victory attributed to the Rosary at the Battle of Lepanto; opens the traditional month of the Rosary.' },
+  { month:10, day:15, name:'St. Teresa of Ávila', type:'Memorial', note:'Carmelite reformer, mystic, and Doctor of the Church.' },
+  { month:10, day:22, name:'St. John Paul II', type:'Memorial', note:'Pope for nearly twenty-seven years, a key figure in the fall of Communism in Europe.' },
+  { month:10, day:28, name:'Ss. Simon and Jude', type:'Feast', note:'Honors two of the twelve apostles; Jude is popularly invoked for desperate causes.' },
+
+  // ---- November ----
+  { month:11, day:1, name:'All Saints\u2019 Day', type:'Solemnity', note:'Honors all the saints in heaven, known and unknown. A holy day of obligation.' },
+  { month:11, day:2, name:'All Souls\u2019 Day', type:'Feast', note:'A day of prayer for the faithful departed, especially souls in purgatory.' },
+  { month:11, day:3, name:'St. Martin de Porres', type:'Memorial', note:'Peruvian Dominican brother known for humility and care of the poor and sick.' },
+  { month:11, day:9, name:'Dedication of the Lateran Basilica', type:'Feast', note:'Commemorates the cathedral church of Rome, the pope\u2019s own basilica.' },
+  { month:11, day:22, name:'St. Cecilia', type:'Memorial', note:'Patron saint of musicians and church music.' },
+  { month:11, day:30, name:'St. Andrew the Apostle', type:'Feast', note:'The first apostle called by Christ. Traditionally begins the "Christmas Anticipation" novena, recited fifteen times daily through Christmas Eve.' },
+
+  // ---- December ----
+  { month:12, day:3, name:'St. Francis Xavier', type:'Memorial', note:'Jesuit missionary to India, Southeast Asia, and Japan.' },
+  { month:12, day:4, name:'Novena to Our Lady of Guadalupe begins', type:'Novena', note:'A nine-day novena leading up to her feast on December 12.' },
+  { month:12, day:6, name:'St. Nicholas', type:'Memorial', note:'Bishop of Myra known for secret generosity to the poor.' },
+  { month:12, day:7, name:'St. Ambrose', type:'Memorial', note:'Bishop of Milan and Doctor of the Church.' },
+  { month:12, day:8, name:'Immaculate Conception of the Blessed Virgin Mary', type:'Solemnity', note:'Celebrates Mary being conceived free from original sin. A holy day of obligation.' },
+  { month:12, day:12, name:'Our Lady of Guadalupe', type:'Feast', note:'Commemorates Mary\u2019s appearance to St. Juan Diego in Mexico in 1531; patroness of the Americas.' },
+  { month:12, day:13, name:'St. Lucy', type:'Memorial', note:'Virgin and martyr, patron of eyesight, honored near the winter solstice.' },
+  { month:12, day:16, name:'Christmas Novena begins', type:'Novena', note:'A traditional nine-day novena of preparation running through Christmas Eve.' },
+  { month:12, day:25, name:'Christmas (Nativity of the Lord)', type:'Solemnity', note:'Celebrates the birth of Jesus Christ. A holy day of obligation.' },
+  { month:12, day:26, name:'St. Stephen, First Martyr', type:'Feast', note:'Honors the first Christian martyr, stoned to death shortly after Pentecost.' },
+  { month:12, day:27, name:'St. John the Apostle', type:'Feast', note:'The "beloved disciple," traditionally credited with the fourth Gospel.' },
+  { month:12, day:28, name:'Holy Innocents', type:'Feast', note:'Commemorates the children of Bethlehem killed by Herod in his attempt to kill the infant Jesus.' },
+  { month:12, day:31, name:'St. Sylvester I', type:'Memorial', note:'Pope during the reign of Constantine; his feast closes the calendar year.' }
+];
+
 /* =========================================================
    STATE
    ========================================================= */
@@ -395,6 +680,8 @@ function updateCounts(){
     const el = document.getElementById('count-' + k);
     if(el) el.textContent = counts[k];
   });
+  const calEl = document.getElementById('count-calendar');
+  if(calEl) calEl.textContent = CALENDAR_DATA.length;
 }
 
 function currentEntries(){
@@ -408,10 +695,21 @@ function currentEntries(){
       (e.title||'').toLowerCase().includes(t) ||
       (e.author||'').toLowerCase().includes(t) ||
       (e.content||'').toLowerCase().includes(t) ||
+      (e.intercession||'').toLowerCase().includes(t) ||
       (e.tags||[]).some(tag => tag.toLowerCase().includes(t))
     );
   }
   return list;
+}
+
+function currentCalendarItems(){
+  if(!searchTerm.trim()) return CALENDAR_DATA;
+  const t = searchTerm.trim().toLowerCase();
+  return CALENDAR_DATA.filter(e =>
+    (e.name||'').toLowerCase().includes(t) ||
+    (e.note||'').toLowerCase().includes(t) ||
+    (e.type||'').toLowerCase().includes(t)
+  );
 }
 
 function render(){
@@ -421,8 +719,15 @@ function render(){
     sectionTitleEl.textContent = 'Search results';
     sectionDescEl.textContent = `Showing entries matching "${searchTerm.trim()}"`;
   } else {
-    sectionTitleEl.textContent = activeCategory === 'all' ? 'All entries' : CAT_LABEL[activeCategory] + 's';
+    sectionTitleEl.textContent = activeCategory === 'all' ? 'All entries'
+      : activeCategory === 'calendar' ? 'Calendar of Feasts & Observances'
+      : CAT_LABEL[activeCategory] + 's';
     sectionDescEl.textContent = CAT_DESC[activeCategory];
+  }
+
+  if(activeCategory === 'calendar'){
+    renderCalendar();
+    return;
   }
 
   const entries = currentEntries();
@@ -457,6 +762,69 @@ function render(){
     `;
     row.addEventListener('click', () => openReadModal(entry.id));
     entryListEl.appendChild(row);
+  });
+}
+
+function renderCalendar(){
+  entryListEl.innerHTML = '';
+
+  const items = currentCalendarItems();
+
+  const legend = document.createElement('div');
+  legend.className = 'cal-legend';
+  legend.innerHTML = Object.entries(CAL_TYPE_COLOR).map(([type,color]) =>
+    `<div class="item"><span class="dot" style="background:${color}"></span>${type}</div>`
+  ).join('');
+  entryListEl.appendChild(legend);
+
+  if(items.length === 0){
+    const div = document.createElement('div');
+    div.className = 'empty-state';
+    div.innerHTML = `Nothing here matches your search.<br><button class="btn" id="clearFromEmpty">Clear search</button>`;
+    entryListEl.appendChild(div);
+    document.getElementById('clearFromEmpty').addEventListener('click', () => { document.getElementById('searchInput').value=''; searchTerm=''; render(); });
+    return;
+  }
+
+  const movable = items.filter(e => e.month === 0);
+  const fixed = items.filter(e => e.month !== 0).sort((a,b) => a.month - b.month || a.day - b.day);
+
+  function buildRow(entry, dateLabel){
+    const row = document.createElement('div');
+    row.className = 'cal-row';
+    row.innerHTML = `
+      <div class="cal-date">${dateLabel}</div>
+      <div class="cal-dot" style="--row-color:${CAL_TYPE_COLOR[entry.type] || 'var(--wine)'}"></div>
+      <div class="cal-body">
+        <div class="cal-top">
+          <div class="cal-name">${escapeHtml(entry.name)}</div>
+          <div class="cal-type">${escapeHtml(entry.type)}</div>
+        </div>
+        <div class="cal-note">${escapeHtml(entry.note || '')}</div>
+      </div>
+    `;
+    return row;
+  }
+
+  if(movable.length){
+    const group = document.createElement('div');
+    group.className = 'month-group';
+    group.innerHTML = `<h3>Moveable dates & seasons</h3>`;
+    movable.forEach(e => group.appendChild(buildRow(e, 'Varies')));
+    entryListEl.appendChild(group);
+  }
+
+  let currentMonth = null;
+  let group = null;
+  fixed.forEach(e => {
+    if(e.month !== currentMonth){
+      currentMonth = e.month;
+      group = document.createElement('div');
+      group.className = 'month-group';
+      group.innerHTML = `<h3>${MONTH_NAMES[currentMonth-1]}</h3>`;
+      entryListEl.appendChild(group);
+    }
+    group.appendChild(buildRow(e, MONTH_NAMES[e.month-1].slice(0,3) + ' ' + e.day));
   });
 }
 
@@ -506,6 +874,16 @@ function openReadModal(id){
   bodyEl.innerHTML = paragraphs.length
     ? paragraphs.map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('')
     : '<p style="color:var(--ink-soft); font-style:italic;">No text has been added for this entry yet.</p>';
+
+  let intercessionEl = document.getElementById('readIntercession');
+  if(intercessionEl) intercessionEl.remove();
+  if(e.intercession){
+    intercessionEl = document.createElement('div');
+    intercessionEl.id = 'readIntercession';
+    intercessionEl.className = 'intercession-block';
+    intercessionEl.innerHTML = `<h3>Prayer of Intercession</h3><p>${escapeHtml(e.intercession)}</p>`;
+    bodyEl.insertAdjacentElement('afterend', intercessionEl);
+  }
 
   const linkBox = document.getElementById('readLinkBox');
   linkBox.innerHTML = e.link ? `<a href="${escapeHtml(e.link)}" target="_blank" rel="noopener">View source / full text ↗</a>` : '';
