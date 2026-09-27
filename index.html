@@ -63,7 +63,7 @@
     background: linear-gradient(180deg, var(--parchment-light), transparent);
   }
   header.masthead .mark{
-    width:34px; height:34px; margin:0 auto 14px;
+    width:24px; height:36px; margin:0 auto 14px;
     color:var(--wine);
   }
   header.masthead h1{
@@ -226,18 +226,6 @@
     font-style:italic; line-height:1.75; margin:0;
   }
 
-  /* ---------- Bible chapter grid (in reading modal) ---------- */
-  .chapter-grid{
-    display:flex; flex-wrap:wrap; gap:7px; margin-top:10px;
-  }
-  .chapter-grid a{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:34px; height:30px; font-size:0.85rem;
-    border:1px solid var(--line); color:var(--ink); text-decoration:none;
-    border-radius:2px; background:var(--parchment);
-  }
-  .chapter-grid a:hover{background:var(--teal); color:#fff; border-color:var(--teal);}
-
   /* ---------- Rosary ---------- */
   .rosary-wrap{max-width:640px; margin:10px auto 0; text-align:center;}
   .rosary-intro{color:var(--ink-soft); font-size:0.95rem; margin-bottom:18px;}
@@ -314,7 +302,6 @@
   }
   .read-modal .link-box{margin-top:16px; font-size:0.92rem;}
   .read-modal .tags{margin-top:20px; display:flex; gap:6px; flex-wrap:wrap;}
-  .read-actions{display:flex; gap:10px; margin-top:26px; border-top:1px solid var(--line); padding-top:18px;}
 
   @media (max-width:600px){
     .modal{padding:24px 18px 20px;}
@@ -324,9 +311,9 @@
 <body>
 
 <header class="masthead">
-  <svg class="mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2V22M6 6H18" stroke="currentColor" stroke-width="1.4"/>
-    <path d="M9 6C9 6 9 3 12 3C15 3 15 6 15 6" stroke="currentColor" stroke-width="1.2"/>
+  <svg class="mark" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8.5" y="0" width="7" height="36" fill="currentColor"/>
+    <rect x="0" y="10" width="24" height="7.5" fill="currentColor"/>
   </svg>
   <h1>Lumen Fidei</h1>
   <p class="tagline">A living repository of prayers, saints, history, and the written word of the Church</p>
@@ -1100,6 +1087,8 @@ function openReadModal(id){
 
   let intercessionEl = document.getElementById('readIntercession');
   if(intercessionEl) intercessionEl.remove();
+  const staleNotable = document.getElementById('readNotable');
+  if(staleNotable) staleNotable.remove();
   if(e.intercession){
     intercessionEl = document.createElement('div');
     intercessionEl.id = 'readIntercession';
@@ -1108,7 +1097,6 @@ function openReadModal(id){
     bodyEl.insertAdjacentElement('afterend', intercessionEl);
   }
   if(e.notable){
-    intercessionEl = document.getElementById('readIntercession') || bodyEl;
     const notableEl = document.createElement('div');
     notableEl.id = 'readNotable';
     notableEl.className = 'intercession-block';
