@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lumen Fidei — A Catholic Repository</title>
+<title>Sanctify — A Catholic Repository</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -24,10 +24,33 @@
     --teal:#2d5d5f;
     --rose:#8a4257;
     --amber:#a8672a;
+    --ink-rgb: 42,33,24;
     --line: rgba(42,33,24,0.18);
     --shadow: 0 2px 14px rgba(42,33,24,0.18);
     --radius: 3px;
   }
+
+  :root[data-theme="dark"]{
+    --parchment:#181410;
+    --parchment-light:#211c16;
+    --parchment-dark:#2e2619;
+    --ink:#e9e0cb;
+    --ink-soft:#a89b80;
+    --wine:#c15759;
+    --wine-dark:#e2989a;
+    --gold:#c9a568;
+    --gold-light:#e0c48c;
+    --green:#84a789;
+    --indigo:#8698ba;
+    --purple:#a897bd;
+    --teal:#72b3b5;
+    --rose:#cf8ea3;
+    --amber:#dba763;
+    --ink-rgb: 233,224,203;
+    --line: rgba(233,224,203,0.14);
+    --shadow: 0 2px 18px rgba(0,0,0,0.55);
+  }
+  :root[data-theme="dark"] ::selection{ color: var(--parchment); }
 
   *{box-sizing:border-box;}
 
@@ -64,7 +87,7 @@
     background: linear-gradient(180deg, var(--parchment-light), transparent);
   }
   header.masthead .mark{
-    width:24px; height:36px; margin:0 auto 14px;
+    width:22px; height:37px; margin:0 auto 14px;
     color:var(--wine);
   }
   header.masthead h1{
@@ -180,7 +203,7 @@
   .entry-row .excerpt{margin-top:8px; color:var(--ink); opacity:0.86; font-size:0.97rem;}
   .entry-row .tags{margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;}
   .tag{
-    font-size:0.76rem; color:var(--ink-soft); background:rgba(42,33,24,0.06);
+    font-size:0.76rem; color:var(--ink-soft); background:rgba(var(--ink-rgb),0.06);
     padding:2px 8px; border-radius:2px;
   }
 
@@ -193,7 +216,7 @@
   /* ---------- Calendar ---------- */
   .cal-legend{
     display:flex; flex-wrap:wrap; gap:16px; margin:20px 0 8px;
-    padding:14px 16px; border:1px solid var(--line); background:rgba(42,33,24,0.03);
+    padding:14px 16px; border:1px solid var(--line); background:rgba(var(--ink-rgb),0.03);
   }
   .cal-legend .item{display:flex; align-items:center; gap:7px; font-size:0.85rem; color:var(--ink-soft);}
   .cal-legend .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
@@ -239,7 +262,7 @@
     border:1px solid var(--ink); background:transparent; color:var(--ink);
     padding:9px 16px; border-radius:var(--radius);
   }
-  .rosary-mystery-btn:hover{background:rgba(42,33,24,0.06);}
+  .rosary-mystery-btn:hover{background:rgba(var(--ink-rgb),0.06);}
   .rosary-mystery-btn.active{background:var(--rose); border-color:var(--rose); color:var(--parchment-light);}
   .rosary-suggestion{font-style:italic; color:var(--ink-soft); font-size:0.88rem; margin-bottom:20px;}
   .rosary-stage{
@@ -269,7 +292,7 @@
   .shop-card .shop-visit{flex:0 0 auto;}
   .shop-note{
     margin-top:24px; padding:16px 18px; border:1px solid var(--line);
-    background:rgba(42,33,24,0.03); font-size:0.9rem; color:var(--ink-soft);
+    background:rgba(var(--ink-rgb),0.03); font-size:0.9rem; color:var(--ink-soft);
   }
 
   /* ---------- Today panel & patron filters ---------- */
@@ -291,6 +314,20 @@
     padding:6px 13px; border-radius:14px;
   }
   .patron-chip:hover{background:var(--gold); border-color:var(--gold); color:var(--parchment-light);}
+
+  /* ---------- Theme toggle ---------- */
+  .theme-toggle{
+    position:fixed; top:18px; right:18px; z-index:60;
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--ink); background:var(--parchment-light); color:var(--ink);
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .theme-toggle:hover{background:var(--gold); border-color:var(--gold); color:var(--parchment-light);}
+  .theme-toggle svg{width:18px; height:18px;}
+  @media (max-width:600px){
+    .theme-toggle{top:12px; right:12px; width:34px; height:34px;}
+  }
 
   footer{
     text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:0.85rem;
@@ -346,15 +383,24 @@
     .modal{padding:24px 18px 20px;}
   }
 </style>
+<script>
+  try{
+    var t = localStorage.getItem('sanctify.theme');
+    if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){}
+</script>
 </head>
 <body>
 
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+
 <header class="masthead">
-  <svg class="mark" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8.5" y="0" width="7" height="36" fill="currentColor"/>
-    <rect x="0" y="10" width="24" height="7.5" fill="currentColor"/>
+  <svg class="mark" viewBox="0 0 24 40" xmlns="http://www.w3.org/2000/svg">
+    <rect x="9" y="1" width="6" height="38" fill="currentColor"/>
+    <rect x="2" y="10" width="20" height="6" fill="currentColor"/>
   </svg>
-  <h1>Lumen Fidei</h1>
+  <h1>Sanctify</h1>
   <p class="tagline">A living repository of prayers, saints, history, and the written word of the Church</p>
   <div class="rule"></div>
   <div class="searchbar">
@@ -392,7 +438,7 @@
   </main>
 </div>
 
-<footer>Lumen Fidei — a repository of Catholic prayers, saints, history, and books.</footer>
+<footer>Sanctify — a repository of Catholic prayers, saints, history, and books.</footer>
 
 <!-- Reading modal -->
 <div class="overlay" id="readOverlay">
@@ -1219,6 +1265,32 @@ function escapeHtml(str){
     '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
   }[m]));
 }
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+const SUN_ICON = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V5M12 19V21.5M4.2 4.2L6 6M18 18L19.8 19.8M2.5 12H5M19 12H21.5M4.2 19.8L6 18M18 6L19.8 4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const MOON_ICON = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>';
+
+const themeToggleBtn = document.getElementById('themeToggle');
+
+function currentTheme(){
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+}
+
+function applyThemeIcon(){
+  themeToggleBtn.innerHTML = currentTheme() === 'dark' ? SUN_ICON : MOON_ICON;
+  themeToggleBtn.title = currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('sanctify.theme', next); }catch(e){}
+  applyThemeIcon();
+});
+
+applyThemeIcon();
 
 /* =========================================================
    NAVIGATION + SEARCH
