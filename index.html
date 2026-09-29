@@ -23,6 +23,7 @@
     --purple:#5b4a72;
     --teal:#2d5d5f;
     --rose:#8a4257;
+    --amber:#a8672a;
     --line: rgba(42,33,24,0.18);
     --shadow: 0 2px 14px rgba(42,33,24,0.18);
     --radius: 3px;
@@ -135,6 +136,9 @@
   nav.sidebar button.navlink[data-cat="bible"]{--cat-color:var(--teal);}
   nav.sidebar button.navlink[data-cat="calendar"]{--cat-color:var(--purple);}
   nav.sidebar button.navlink[data-cat="rosary"]{--cat-color:var(--rose);}
+  nav.sidebar button.navlink[data-cat="stations"]{--cat-color:var(--wine);}
+  nav.sidebar button.navlink[data-cat="chaplet"]{--cat-color:var(--teal);}
+  nav.sidebar button.navlink[data-cat="shop"]{--cat-color:var(--amber);}
   nav.sidebar button.navlink[data-cat="all"]{--cat-color:var(--ink);}
 
   .side-actions{border-top:1px solid var(--line); padding-top:18px; display:flex; flex-direction:column; gap:8px;}
@@ -253,6 +257,41 @@
   .rosary-progress{font-size:0.82rem; color:var(--ink-soft); margin-top:14px;}
   .rosary-restart{margin-top:22px;}
 
+  /* ---------- Shop ---------- */
+  .shop-list{margin-top:8px;}
+  .shop-card{
+    padding:20px 0; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:18px; align-items:flex-start; flex-wrap:wrap;
+  }
+  .shop-card h3{font-size:1.3rem;}
+  .shop-card .shop-domain{font-size:0.82rem; color:var(--ink-soft); font-style:italic; margin-top:2px;}
+  .shop-card .shop-desc{margin-top:8px; max-width:56ch; font-size:0.97rem;}
+  .shop-card .shop-visit{flex:0 0 auto;}
+  .shop-note{
+    margin-top:24px; padding:16px 18px; border:1px solid var(--line);
+    background:rgba(42,33,24,0.03); font-size:0.9rem; color:var(--ink-soft);
+  }
+
+  /* ---------- Today panel & patron filters ---------- */
+  .today-panel{
+    border:1px solid var(--gold-light); background:rgba(166,130,74,0.08);
+    padding:16px 18px; margin-bottom:22px;
+  }
+  .today-label{font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--wine-dark); margin-bottom:8px;}
+  .today-item{display:flex; align-items:baseline; gap:8px; font-size:0.95rem; margin-top:4px;}
+  .today-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .today-type{color:var(--ink-soft); font-size:0.82rem;}
+
+  .patron-filters{margin-bottom:22px;}
+  .patron-filters-label{font-size:0.85rem; color:var(--ink-soft); margin-bottom:8px;}
+  .patron-filters-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .patron-chip{
+    font-family:'Source Serif 4', serif; font-size:0.85rem; cursor:pointer;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink);
+    padding:6px 13px; border-radius:14px;
+  }
+  .patron-chip:hover{background:var(--gold); border-color:var(--gold); color:var(--parchment-light);}
+
   footer{
     text-align:center; padding:30px 20px 50px; color:var(--ink-soft); font-size:0.85rem;
   }
@@ -336,6 +375,9 @@
       <li><button class="navlink" data-cat="bible">Bible <span class="count" id="count-bible"></span></button></li>
       <li><button class="navlink" data-cat="calendar">Calendar <span class="count" id="count-calendar"></span></button></li>
       <li><button class="navlink" data-cat="rosary">Rosary</button></li>
+      <li><button class="navlink" data-cat="stations">Stations of the Cross</button></li>
+      <li><button class="navlink" data-cat="chaplet">Divine Mercy Chaplet</button></li>
+      <li><button class="navlink" data-cat="shop">Shop</button></li>
     </ul>
   </nav>
 
@@ -382,7 +424,10 @@ const CAT_DESC = {
   book: 'Spiritual classics and reference works, with summaries and links.',
   bible: 'All 73 books of the Catholic canon, with study notes and links to read the full text.',
   calendar: 'Solemnities, feast days, novenas, and seasons of the liturgical year.',
-  rosary: 'Pray the Rosary step by step, with the mysteries for each day of the week.'
+  rosary: 'Pray the Rosary step by step, with the mysteries for each day of the week.',
+  shop: 'A few reputable retailers for rosaries, icons, statues, and other Catholic goods.',
+  stations: 'Walk through the fourteen Stations of the Cross with a short meditation at each.',
+  chaplet: 'Pray the Chaplet of Divine Mercy step by step, as given to St. Faustina Kowalska.'
 };
 
 const CAL_TYPE_COLOR = {
@@ -410,6 +455,8 @@ const SEED_DATA = [
     content:'St. Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray; and do thou, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.' },
   { id:'p9', category:'prayer', title:'The Angelus', author:'', tags:['marian','incarnation'],
     content:'V. The Angel of the Lord declared unto Mary. R. And she conceived of the Holy Spirit. Hail Mary...\n\nV. Behold the handmaid of the Lord. R. Be it done unto me according to thy word. Hail Mary...\n\nV. And the Word was made flesh. R. And dwelt among us. Hail Mary...\n\nV. Pray for us, O holy Mother of God. R. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ our Lord. Amen.' },
+  { id:'p10', category:'prayer', title:'Examination of Conscience', author:'a guide for confession', tags:['confession','penance','ten commandments'],
+    content:'A brief examination before confession, organized around the Ten Commandments and the two great commandments of love. Take a few quiet moments with each section, asking the Holy Spirit for honest self-knowledge rather than either excuse or excessive scrupulosity.\n\nLove of God: Have I neglected daily prayer? Have I received the sacraments carelessly or missed Mass on a Sunday or holy day without good reason? Have I doubted or been careless with matters of faith? Have I used God\u2019s name lightly or in anger?\n\nLove of Neighbor: Have I honored my parents, spouse, or those in authority over me? Have I been unjust, unkind, or unforgiving toward anyone? Have I harmed another through anger, gossip, or a lie? Have I been faithful in my relationships and honest in my dealings with others? Have I taken or damaged what belongs to someone else? Have I been jealous of what others have?\n\nOrdering My Own Life: Have I been honest with myself about pride, laziness, or self-indulgence? Have I used food, drink, media, or other things in a way that harms my body or soul? Have I been a good steward of my time and resources?\n\nConclude by asking God\u2019s forgiveness in your own words, and consider praying an Act of Contrition (found elsewhere in this repository) before or after receiving the sacrament.' },
 
   { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226, feast day October 4', tags:['founder','poverty','nature'],
     content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.',
@@ -538,6 +585,66 @@ const SEED_DATA = [
   { id:'s42', category:'saint', title:'St. Agnes', author:'c. 291\u2013304, feast day January 21', tags:['martyr','purity','youth'],
     content:'A twelve- or thirteen-year-old girl of a noble Roman family, Agnes was martyred during the persecution of Diocletian after refusing marriage in order to remain consecrated to Christ. Ancient accounts describe her calm courage in the face of threats and execution, remarkable given her young age.\n\nShe became one of the most venerated virgin martyrs of the early Church, commemorated in the Roman Canon of the Mass to this day.',
     intercession:'St. Agnes, young and fearless martyr, pray for us. Give children and young people the courage to remain faithful to Christ even under pressure from those around them. Amen.' },
+  { id:'s43', category:'saint', title:'St. Cecilia', author:'2nd or 3rd century, feast day November 22', tags:['martyr','musicians','music'],
+    content:'A young Roman noblewoman, Cecilia is honored by tradition as a virgin martyr who converted her husband and brother-in-law to Christianity before all three were put to death for their faith. Later legend credits her with singing to God in her heart on her wedding day even as instruments played around her, which made her the patron of musicians and church music.\n\nHer house in Rome is said to be the site of the basilica that now bears her name.',
+    intercession:'St. Cecilia, patron of musicians, pray for us. Help all who make music for the Church to offer their gift as prayer, and give us ears attentive to the beauty God speaks through sound. Amen.' },
+  { id:'s44', category:'saint', title:'St. Christopher', author:'3rd century, feast day July 25', tags:['travelers','martyr','legend'],
+    content:'Little is reliably known of Christopher\u2019s life beyond an early tradition of his martyrdom, but a beloved medieval legend describes a giant of a man who carried travelers across a dangerous river, one day unknowingly carrying the Christ Child, who grew impossibly heavy with the weight of the world. His name, meaning "Christ-bearer," comes from this story.\n\nThough removed from the universal Roman calendar in 1969 due to uncertain history, devotion to him as patron of travelers remains widespread.',
+    intercession:'St. Christopher, patron of travelers, pray for us. Watch over all who journey by road, sea, or air, and help us to carry Christ to others as faithfully as legend says you carried him yourself. Amen.' },
+  { id:'s45', category:'saint', title:'St. Valentine', author:'d. c. 269, feast day February 14', tags:['martyr','engaged couples','love'],
+    content:'A Roman priest (or possibly bishop) martyred under Emperor Claudius II, little is verified about Valentine\u2019s life beyond his death for the faith. Later medieval legend associated him with secretly marrying Christian couples against imperial decree and with a note signed "from your Valentine" sent to a jailer\u2019s daughter he had befriended, giving rise to his patronage of engaged couples and romantic love.\n\nHis feast has long been a fixture of the Western calendar despite the sparse historical record.',
+    intercession:'St. Valentine, pray for us. Watch over engaged and married couples, that their love may be patient, faithful, and rooted in Christ rather than passing sentiment. Amen.' },
+  { id:'s46', category:'saint', title:'St. Blaise', author:'d. c. 316, feast day February 3', tags:['martyr','bishop','healing'],
+    content:'A physician who became bishop of Sebaste in Armenia, Blaise was martyred under Emperor Licinius after being discovered hiding in a cave during a persecution. Tradition holds that while under arrest he miraculously saved a boy from choking on a fishbone, which gave rise to the enduring custom of blessing throats in his honor.\n\nThe Blessing of St. Blaise, performed with two crossed candles, remains a popular parish devotion on or near his feast day.',
+    intercession:'St. Blaise, physician and bishop, pray for us. Watch over the sick, especially those with afflictions of the throat, and obtain for us healing according to God\u2019s will. Amen.' },
+  { id:'s47', category:'saint', title:'St. Barbara', author:'3rd century, feast day December 4', tags:['martyr','protection','miners'],
+    content:'According to tradition, Barbara was a young woman locked in a tower by her pagan father to keep her from suitors and the outside world, but she secretly converted to Christianity and had a third window added to her tower in honor of the Trinity. Discovered and denounced, she was martyred, with legend holding that her father was struck by lightning immediately afterward.\n\nBecause of that detail, she became a patron invoked against sudden death, lightning, fire, and explosions, and is especially venerated by miners and artillerymen.',
+    intercession:'St. Barbara, pray for us. Protect those who work in dangerous trades, and obtain for all of us the grace of receiving the sacraments before an unexpected death. Amen.' },
+  { id:'s48', category:'saint', title:'St. Anthony the Great', author:'c. 251\u2013356, feast day January 17', tags:['desert fathers','monasticism','founder'],
+    content:'Often called the father of monasticism, Anthony sold his possessions as a young man in Egypt and withdrew into the desert to live a life of solitary prayer and ascetic discipline, enduring, by tradition, fierce spiritual and demonic temptation. His example drew many disciples, giving rise to organized Christian monastic life long before Benedict\u2019s Rule in the West.\n\nHis biography, written by St. Athanasius, became one of the most influential works of early Christian literature.',
+    intercession:'St. Anthony the Great, father of monks, pray for us. Give us your courage to face temptation in solitude, and your unwavering trust in God when the desert of our own lives feels emptiest. Amen.' },
+  { id:'s49', category:'saint', title:'St. Gianna Beretta Molla', author:'1922\u20131962, feast day April 28', tags:['mothers','physicians','pro-life'],
+    content:'An Italian pediatrician, wife, and mother, Gianna discovered a uterine tumor during her fourth pregnancy and refused treatments that would have ended her unborn child\u2019s life, choosing instead an operation that risked her own. She died a week after giving birth to a healthy daughter, having said she wanted her child\u2019s life saved above her own.\n\nCanonized in 2004, she is honored as a modern witness to the dignity of unborn life and the vocation of Christian motherhood.',
+    intercession:'St. Gianna Beretta Molla, pray for us. Give expectant mothers facing difficult diagnoses your courage and trust in God, and strengthen all who work to protect life at its most vulnerable. Amen.' },
+  { id:'s50', category:'saint', title:'St. André Bessette', author:'1845\u20131937, feast day January 6', tags:['healing','holy cross','canada'],
+    content:'A frail, poorly educated laybrother of the Congregation of Holy Cross in Montreal, Brother André served for decades as a doorkeeper, all the while directing the sick and troubled to pray to St. Joseph, to whom he had deep devotion. Thousands reported healings attributed to his intercession, and he oversaw the construction of what became Saint Joseph\u2019s Oratory, one of the largest shrines to St. Joseph in the world.\n\nHe was canonized in 2010.',
+    intercession:'St. André Bessette, pray for us. Teach us your simple, persistent trust in St. Joseph\u2019s intercession, and give hope to the sick and the doubting who come to you as they once came to your door. Amen.' },
+  { id:'s51', category:'saint', title:'St. Damien of Molokai', author:'1840\u20131889, feast day May 10', tags:['missionary','lepers','hawaii'],
+    content:'A Belgian priest of the Sacred Hearts congregation, Damien volunteered to serve a colony of people with leprosy exiled to the island of Molokai in Hawaii, where the sick had been left with little medical care or spiritual support. He lived among them for sixteen years, building homes, a church, and a community of dignity, before contracting the disease himself and dying among the people he served.\n\nHe was canonized in 2009.',
+    intercession:'St. Damien of Molokai, pray for us. Give those who care for the sick and the outcast your willingness to live among them fully, sharing their burdens rather than merely relieving them from a distance. Amen.' },
+  { id:'s52', category:'saint', title:'St. Josephine Bakhita', author:'c. 1869\u20131947, feast day February 8', tags:['human trafficking','conversion','sudan'],
+    content:'Born in Sudan, Bakhita was kidnapped as a child and sold into slavery, enduring years of brutal treatment before an Italian family brought her to Europe, where she encountered the Catholic faith and, eventually, freedom under Italian law. She entered religious life as a Canossian sister, spending decades in humble service known for her serenity and forgiveness toward those who had once enslaved her.\n\nCanonized in 2000, she is honored as a patron against human trafficking.',
+    intercession:'St. Josephine Bakhita, pray for us. Be near to every victim of slavery and trafficking today, and give us your capacity to forgive even those who have caused us the deepest harm. Amen.' },
+  { id:'s53', category:'saint', title:'St. Frances Xavier Cabrini', author:'1850\u20131917, feast day November 13', tags:['immigrants','founder','united states'],
+    content:'An Italian nun who founded the Missionary Sisters of the Sacred Heart, Cabrini was sent by Pope Leo XIII to serve Italian immigrants in the United States rather than pursue her original hope of missionary work in China. She established schools, hospitals, and orphanages across the Americas, tirelessly organizing care for the poor and displaced.\n\nCanonized in 1946, she was the first United States citizen to be declared a saint, honored as patron of immigrants.',
+    intercession:'St. Frances Xavier Cabrini, pray for us. Watch over immigrants and refugees far from home, and give those who serve them your tireless energy and organizational courage. Amen.' },
+  { id:'s54', category:'saint', title:'St. John Bosco', author:'1815\u20131888, feast day January 31', tags:['founder','youth','education'],
+    content:'An Italian priest who grew up in poverty, John Bosco devoted his life to the care and education of poor and at-risk boys in industrializing Turin, developing a "preventive system" of education built on reason, religion, and kindness rather than punishment. He founded the Salesians to continue this work of forming young people in faith and useful trades.\n\nHe is honored as a patron of youth and of young apprentices.',
+    intercession:'St. John Bosco, pray for us. Give educators and youth workers your patience and creativity, and help every young person find in the Church a home rather than a burden. Amen.' },
+  { id:'s55', category:'saint', title:'St. Bridget of Sweden', author:'1303\u20131373, feast day July 23', tags:['mystic','founder','patron of europe'],
+    content:'A Swedish noblewoman, wife, and mother of eight, Bridget experienced visions of Christ\u2019s Passion after her husband\u2019s death and went on to found the Bridgettine order of nuns and monks. She spent much of her later life in Rome, working to reform the Church and urging the pope to return from Avignon, decades before Catherine of Siena made the same appeal.\n\nShe is honored as a patron of Europe alongside Benedict and Catherine of Siena.',
+    intercession:'St. Bridget of Sweden, pray for us. Give widows and mothers who feel called to a new vocation later in life your courage, and help the Church always to hear the voices of the laity. Amen.' },
+  { id:'s56', category:'saint', title:'St. Hildegard of Bingen', author:'1098\u20131179, feast day September 17', tags:['doctor of the church','mystic','music'],
+    content:'A German Benedictine abbess, Hildegard was also a theologian, composer, naturalist, and correspondent to popes and emperors, an extraordinary range of learning for a medieval woman largely self-taught within her monastery. Her visionary theological writings and surviving liturgical music remain studied and performed today.\n\nShe was declared a Doctor of the Church in 2012, one of only a small number of women to hold the title.',
+    intercession:'St. Hildegard of Bingen, pray for us. Give us your wide-eyed wonder at creation and your confidence to use every gift of intellect and art in the service of God. Amen.' },
+  { id:'s57', category:'saint', title:'St. Philip Neri', author:'1515\u20131595, feast day May 26', tags:['founder','joy','rome'],
+    content:'Known as the "Apostle of Rome" and famous for his humor and warmth, Philip Neri spent decades drawing wayward young Romans back to the faith through friendship, informal prayer gatherings, and acts of charity rather than stern preaching. He founded the Congregation of the Oratory, a community of priests living together without formal vows.\n\nHis approach to holiness through joy and ordinary human connection influenced spiritual life well beyond his own century.',
+    intercession:'St. Philip Neri, pray for us. Give us your good humor and your gift for drawing people toward Christ through friendship rather than fear. Amen.' },
+  { id:'s58', category:'saint', title:'St. Charles Borromeo', author:'1538\u20131584, feast day November 4', tags:['bishop','reform','council of trent'],
+    content:'A nephew of Pope Pius IV made cardinal and archbishop of Milan while still in his twenties, Charles Borromeo became one of the most effective implementers of the reforms called for by the Council of Trent, founding seminaries, visiting parishes personally, and caring for the sick during a severe plague in Milan at great personal risk.\n\nHis tireless pastoral reform made him a model for the modern Catholic bishop.',
+    intercession:'St. Charles Borromeo, pray for us. Give bishops and pastors your diligence in caring personally for their people, especially the sick and suffering. Amen.' },
+  { id:'s59', category:'saint', title:'St. Peter Claver', author:'1580\u20131654, feast day September 9', tags:['missionary','enslaved people','charity'],
+    content:'A Spanish Jesuit who ministered for four decades in the port city of Cartagena, in present-day Colombia, Peter Claver met enslaved Africans as they arrived by the thousands from the horrific conditions of the slave ships, offering them food, medical care, and instruction in the faith, and famously calling himself "the slave of the slaves forever."\n\nHe is honored today as a patron of enslaved peoples and of missions to those in bondage.',
+    intercession:'St. Peter Claver, pray for us. Give us your willingness to meet suffering people exactly where they are, with practical care before any word of preaching. Amen.' },
+  { id:'s60', category:'saint', title:'St. Alphonsus Liguori', author:'1696\u20131787, feast day August 1', tags:['doctor of the church','founder','moral theology'],
+    content:'An Italian lawyer who abandoned a successful legal career for the priesthood, Alphonsus founded the Redemptorist congregation to preach missions to the rural poor and wrote extensively on moral theology, seeking a balanced path between excessive severity and laxity in the confessional. He also composed popular hymns and devotional works still used today.\n\nHe was declared a Doctor of the Church in 1871 and is honored as patron of confessors and moral theologians.',
+    intercession:'St. Alphonsus Liguori, pray for us. Give confessors and moral theologians a balance of mercy and truth, and help us approach the sacrament of confession with confidence in God\u2019s forgiveness. Amen.' },
+  { id:'s61', category:'saint', title:'St. Isidore the Farmer', author:'1070\u20131130, feast day May 15', tags:['farmers','laity','spain'],
+    content:'A Spanish farm laborer who worked the fields near Madrid his entire life, Isidore was known for rising early to attend Mass before his labor and for his generosity to the poor, even when it meant sharing from his own family\u2019s meager provisions. Legends tell of angels helping him plow while he prayed.\n\nHe is honored as a patron of farmers and rural laborers, and of Madrid, where his relics are venerated.',
+    intercession:'St. Isidore the Farmer, pray for us. Watch over farmers and all who labor on the land, and help us balance work and prayer as faithfully as you did. Amen.' },
+  { id:'s62', category:'saint', title:'St. Zita', author:'1212\u20131272, feast day April 27', tags:['domestic workers','laity','italy'],
+    content:'An Italian laywoman who worked as a domestic servant in the same household in Lucca for nearly fifty years, Zita was known for her humility, her generosity to the poor from her own small wages, and her quiet, constant prayer amid demanding daily labor. Initially resented by fellow servants for her piety, she eventually won the household\u2019s deep respect and affection.\n\nShe is honored as a patron of domestic workers and servants.',
+    intercession:'St. Zita, pray for us. Give domestic and service workers dignity in their labor, and help all of us find holiness in the small, unnoticed tasks of an ordinary day. Amen.' },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -878,6 +985,53 @@ function excerptOf(text, len){
   return flat.length > len ? flat.slice(0, len).trim() + '…' : flat;
 }
 
+function buildTodayPanel(){
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  const matches = CALENDAR_DATA.filter(e => e.month === month && e.day === day);
+  const panel = document.createElement('div');
+  panel.className = 'today-panel';
+  const dateStr = today.toLocaleDateString(undefined, { month:'long', day:'numeric' });
+  if(matches.length){
+    panel.innerHTML = `
+      <div class="today-label">Today, ${escapeHtml(dateStr)}</div>
+      ${matches.map(m => `<div class="today-item"><span class="today-dot" style="background:${CAL_TYPE_COLOR[m.type]||'var(--wine)'}"></span><strong>${escapeHtml(m.name)}</strong> <span class="today-type">(${escapeHtml(m.type)})</span></div>`).join('')}
+    `;
+  } else {
+    panel.innerHTML = `<div class="today-label">Today, ${escapeHtml(dateStr)}</div><div class="today-item">No fixed feast on today\u2019s date \u2014 check the Calendar tab for moveable feasts and the current liturgical season.</div>`;
+  }
+  return panel;
+}
+
+const PATRON_FILTERS = [
+  { label:'Travelers', term:'travelers' },
+  { label:'Musicians', term:'musicians' },
+  { label:'Mothers', term:'mothers' },
+  { label:'Students', term:'students' },
+  { label:'The Sick', term:'sick' },
+  { label:'Difficult Marriages', term:'difficult marriages' },
+  { label:'Impossible Causes', term:'impossible' },
+  { label:'Immigrants', term:'immigrants' },
+  { label:'Farmers', term:'farmers' },
+  { label:'Priests', term:'priests' }
+];
+
+function buildPatronFilterRow(){
+  const row = document.createElement('div');
+  row.className = 'patron-filters';
+  row.innerHTML = `<div class="patron-filters-label">Find a patron saint for:</div>
+    <div class="patron-filters-row">${PATRON_FILTERS.map(f => `<button class="patron-chip" data-term="${escapeHtml(f.term)}">${escapeHtml(f.label)}</button>`).join('')}</div>`;
+  row.querySelectorAll('.patron-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      searchTerm = btn.dataset.term;
+      document.getElementById('searchInput').value = searchTerm;
+      render();
+    });
+  });
+  return row;
+}
+
 function updateCounts(){
   const counts = { all: library.length, prayer:0, saint:0, history:0, book:0, bible:0 };
   library.forEach(e => { if(counts[e.category] !== undefined) counts[e.category]++; });
@@ -927,6 +1081,9 @@ function render(){
     sectionTitleEl.textContent = activeCategory === 'all' ? 'All entries'
       : activeCategory === 'calendar' ? 'Calendar of Feasts & Observances'
       : activeCategory === 'rosary' ? 'The Holy Rosary'
+      : activeCategory === 'shop' ? 'Catholic Shops'
+      : activeCategory === 'stations' ? 'Stations of the Cross'
+      : activeCategory === 'chaplet' ? 'Divine Mercy Chaplet'
       : CAT_LABEL[activeCategory] + 's';
     sectionDescEl.textContent = CAT_DESC[activeCategory];
   }
@@ -939,9 +1096,28 @@ function render(){
     renderRosary();
     return;
   }
+  if(activeCategory === 'shop'){
+    renderShop();
+    return;
+  }
+  if(activeCategory === 'stations'){
+    renderStations();
+    return;
+  }
+  if(activeCategory === 'chaplet'){
+    renderChaplet();
+    return;
+  }
 
   const entries = currentEntries();
   entryListEl.innerHTML = '';
+
+  if(activeCategory === 'all' && !searchTerm.trim()){
+    entryListEl.appendChild(buildTodayPanel());
+  }
+  if(activeCategory === 'saint' && !searchTerm.trim()){
+    entryListEl.appendChild(buildPatronFilterRow());
+  }
 
   if(entries.length === 0){
     const div = document.createElement('div');
@@ -1259,6 +1435,195 @@ function renderRosary(){
   document.getElementById('rosaryRestartBtn').addEventListener('click', () => {
     rosarySequence = null; rosaryStep = 0; renderRosary();
   });
+}
+
+/* =========================================================
+   SHOP
+   ========================================================= */
+const SHOP_DATA = [
+  { name:'Aquinas and More', domain:'aquinasandmore.com', url:'https://www.aquinasandmore.com',
+    desc:'A family-run Catholic retailer based in Colorado, carrying books, Bibles, rosaries, medals, statues, icons, and vestments, with a long-standing pledge to sell nothing contrary to Church teaching.' },
+  { name:'The Catholic Company', domain:'catholiccompany.com', url:'https://www.catholiccompany.com',
+    desc:'One of the largest Catholic gift retailers online, with a wide selection of rosaries, statues, jewelry, home blessings, and gifts for Baptism, First Communion, and Confirmation.' },
+  { name:'CatholicShop.com', domain:'catholicshop.com', url:'https://www.catholicshop.com',
+    desc:'Specializes in rosaries of every style, from simple cord rosaries to fine gemstone and sterling silver pieces, alongside saint medals, statues, and books.' },
+  { name:'Holyart', domain:'holyart.com', url:'https://www.holyart.com',
+    desc:'An Italian company founded in 2006 producing statues, icons, vestments, and church furnishings through a network of Italian artisan workshops, shipping worldwide.' }
+];
+
+function renderShop(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'shop-list';
+  SHOP_DATA.forEach(shop => {
+    const card = document.createElement('div');
+    card.className = 'shop-card';
+    card.innerHTML = `
+      <div>
+        <h3>${escapeHtml(shop.name)}</h3>
+        <div class="shop-domain">${escapeHtml(shop.domain)}</div>
+        <div class="shop-desc">${escapeHtml(shop.desc)}</div>
+      </div>
+      <div class="shop-visit"><a class="btn" href="${escapeHtml(shop.url)}" target="_blank" rel="noopener">Visit site ↗</a></div>
+    `;
+    wrap.appendChild(card);
+  });
+  entryListEl.appendChild(wrap);
+  const note = document.createElement('div');
+  note.className = 'shop-note';
+  note.textContent = 'These are independent retailers, not affiliated with this site. We do our best to point to established, reputable shops, but always use your own judgment before buying.';
+  entryListEl.appendChild(note);
+}
+
+/* =========================================================
+   STATIONS OF THE CROSS
+   ========================================================= */
+const STATIONS_VERSICLE = { v:'We adore You, O Christ, and we bless You,', r:'because by Your holy cross You have redeemed the world.' };
+const STATIONS_DATA = [
+  { title:'Jesus is Condemned to Death', meditation:'Pilate washes his hands of responsibility and hands Jesus over to be crucified, though he finds no guilt in him. We consider how often we stay silent in the face of injustice simply to avoid discomfort.' },
+  { title:'Jesus Carries His Cross', meditation:'Jesus accepts the instrument of his own execution and begins the long walk to Calvary. We ask for the grace to accept the crosses of our own lives without bitterness.' },
+  { title:'Jesus Falls the First Time', meditation:'Weakened by scourging and loss of blood, Jesus falls beneath the weight of the cross. We remember that even Christ stumbled, and ask for compassion toward our own weakness and that of others.' },
+  { title:'Jesus Meets His Mother', meditation:'Along the road, Jesus encounters Mary, who shares silently in his suffering. We ask Mary to accompany us in our own sorrows as she accompanied her son.' },
+  { title:'Simon of Cyrene Helps Jesus Carry the Cross', meditation:'A passerby is compelled to help Jesus bear the cross. We pray for the willingness to help carry the burdens of others, even ones we did not choose.' },
+  { title:'Veronica Wipes the Face of Jesus', meditation:'By tradition, a woman steps forward to wipe the face of Jesus. We ask for the courage to offer small mercies even amid a hostile crowd.' },
+  { title:'Jesus Falls the Second Time', meditation:'Jesus falls again under the cross\u2019s weight. We consider how repeated failure need not mean abandoning the journey, only rising again.' },
+  { title:'Jesus Meets the Women of Jerusalem', meditation:'Jesus tells the weeping women not to weep for him but for themselves and their children. True compassion, he reminds us, looks honestly at our own need for conversion.' },
+  { title:'Jesus Falls the Third Time', meditation:'A final fall, nearest to Calvary, where exhaustion is nearly complete. We ask for perseverance in the last, hardest steps of any difficult path.' },
+  { title:'Jesus is Stripped of His Garments', meditation:'Jesus is stripped in public humiliation before his execution. We consider the call to strip away pride and attachment to worldly things.' },
+  { title:'Jesus is Nailed to the Cross', meditation:'Jesus is nailed to the wood and raised up between two criminals. We meditate on a suffering willingly accepted for love of us.' },
+  { title:'Jesus Dies on the Cross', meditation:'Jesus commends his spirit to the Father and dies. We pause in silence before the mystery of a God who dies for his creation.' },
+  { title:'Jesus is Taken Down from the Cross', meditation:'Jesus\u2019 body is removed and placed in the arms of his grieving mother. We ask Mary to receive our own sorrows as she once received her son\u2019s body.' },
+  { title:'Jesus is Laid in the Tomb', meditation:'Jesus is laid in the tomb, and the stone is rolled shut. We wait in the stillness of Holy Saturday, trusting in the resurrection still to come.' }
+];
+
+let stationsStep = null;
+
+function renderStations(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'rosary-wrap';
+
+  if(stationsStep === null){
+    wrap.innerHTML = `
+      <p class="rosary-intro">Walk through the fourteen Stations of the Cross, traditionally prayed on Fridays and especially during Lent. Each station pairs a moment of Christ\u2019s Passion with a short meditation.</p>
+      <button class="btn primary" id="stationsBeginBtn">Begin</button>
+    `;
+    entryListEl.appendChild(wrap);
+    document.getElementById('stationsBeginBtn').addEventListener('click', () => { stationsStep = 0; renderStations(); });
+    return;
+  }
+
+  const s = STATIONS_DATA[stationsStep];
+  const total = STATIONS_DATA.length;
+  wrap.innerHTML = `
+    <div class="rosary-stage">
+      <div class="step-meta">Station ${stationsStep+1} of ${total}</div>
+      <div class="step-label">${escapeHtml(s.title)}</div>
+      <div class="step-prayer">${escapeHtml(s.meditation)}</div>
+      <div class="step-prayer" style="margin-top:16px; font-style:italic;">${escapeHtml(STATIONS_VERSICLE.v)}<br>${escapeHtml(STATIONS_VERSICLE.r)}</div>
+    </div>
+    <div class="rosary-nav">
+      <button class="btn" id="stationsBackBtn" ${stationsStep===0?'disabled':''}>Back</button>
+      <button class="btn primary" id="stationsNextBtn">${stationsStep === total-1 ? 'Finish' : 'Next'}</button>
+    </div>
+    <div class="rosary-progress">Station ${stationsStep+1} of ${total}</div>
+    <div class="rosary-restart"><button class="btn quiet" id="stationsRestartBtn">Start over</button></div>
+  `;
+  entryListEl.appendChild(wrap);
+
+  const backBtn = document.getElementById('stationsBackBtn');
+  if(backBtn) backBtn.addEventListener('click', () => { if(stationsStep>0){ stationsStep--; renderStations(); } });
+  document.getElementById('stationsNextBtn').addEventListener('click', () => {
+    if(stationsStep < total-1){ stationsStep++; renderStations(); }
+    else { stationsStep = null; renderStations(); }
+  });
+  document.getElementById('stationsRestartBtn').addEventListener('click', () => { stationsStep = null; renderStations(); });
+}
+
+/* =========================================================
+   DIVINE MERCY CHAPLET
+   ========================================================= */
+const CHAPLET_PRAYERS = {
+  opening: 'You expired, Jesus, but the source of life gushed forth for souls, and an ocean of mercy opened up for the whole world. O Fount of Life, unfathomable Divine Mercy, envelop the whole world and empty Yourself out upon us.',
+  eternalFather: 'Eternal Father, I offer You the Body and Blood, Soul and Divinity of Your dearly beloved Son, Our Lord Jesus Christ, in atonement for our sins and those of the whole world.',
+  forTheSake: 'For the sake of His sorrowful Passion, have mercy on us and on the whole world.',
+  holyGod: 'Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.',
+  closing: 'Eternal God, in whom mercy is endless and the treasury of compassion inexhaustible, look kindly upon us and increase Your mercy in us, that in difficult moments we might not despair nor become despondent, but with great confidence submit ourselves to Your holy will, which is Love and Mercy itself.'
+};
+
+let chapletSequence = null;
+let chapletStep = 0;
+
+function buildChapletSequence(){
+  const seq = [];
+  seq.push({ label:'Sign of the Cross', prayer:ROSARY_PRAYERS.cross });
+  seq.push({ label:'Opening', prayer:CHAPLET_PRAYERS.opening });
+  seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather });
+  seq.push({ label:'Hail Mary', prayer:ROSARY_PRAYERS.hailMary });
+  seq.push({ label:'Apostles\u2019 Creed', prayer:ROSARY_PRAYERS.creed });
+  for(let d=1; d<=5; d++){
+    seq.push({ label:'Eternal Father', prayer:CHAPLET_PRAYERS.eternalFather, decade:d });
+    for(let j=1; j<=10; j++) seq.push({ label:'For the Sake of His Sorrowful Passion', prayer:CHAPLET_PRAYERS.forTheSake, decade:d, bead:j });
+  }
+  for(let k=1; k<=3; k++) seq.push({ label:`Holy God (${k} of 3)`, prayer:CHAPLET_PRAYERS.holyGod });
+  seq.push({ label:'Closing Prayer', prayer:CHAPLET_PRAYERS.closing });
+  return seq;
+}
+
+function renderChaplet(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'rosary-wrap';
+
+  if(!chapletSequence){
+    wrap.innerHTML = `
+      <p class="rosary-intro">The Chaplet of Divine Mercy, given by Christ to St. Faustina Kowalska, is traditionally prayed on rosary beads, especially at 3:00 pm, the "Hour of Mercy."</p>
+      <button class="btn primary" id="chapletBeginBtn">Begin praying</button>
+    `;
+    entryListEl.appendChild(wrap);
+    document.getElementById('chapletBeginBtn').addEventListener('click', () => {
+      chapletSequence = buildChapletSequence(); chapletStep = 0; renderChaplet();
+    });
+    return;
+  }
+
+  const step = chapletSequence[chapletStep];
+  const total = chapletSequence.length;
+  let beadsHtml = '';
+  if(step.decade){
+    const dots = [];
+    for(let j=1;j<=10;j++){
+      const cls = ['rosary-bead'];
+      if(step.bead && j <= step.bead) cls.push('filled');
+      if(step.bead === j) cls.push('current');
+      dots.push(`<span class="${cls.join(' ')}"></span>`);
+    }
+    beadsHtml = `<div class="rosary-beads">${dots.join('')}</div>`;
+  }
+
+  wrap.innerHTML = `
+    <div class="rosary-stage">
+      <div class="step-meta">${step.decade ? 'Decade ' + step.decade + ' of 5' : 'Divine Mercy Chaplet'}</div>
+      <div class="step-label">${escapeHtml(step.label)}</div>
+      <div class="step-prayer">${escapeHtml(step.prayer)}</div>
+      ${beadsHtml}
+    </div>
+    <div class="rosary-nav">
+      <button class="btn" id="chapletBackBtn" ${chapletStep===0?'disabled':''}>Back</button>
+      <button class="btn primary" id="chapletNextBtn">${chapletStep === total-1 ? 'Finish' : 'Next'}</button>
+    </div>
+    <div class="rosary-progress">Step ${chapletStep+1} of ${total}</div>
+    <div class="rosary-restart"><button class="btn quiet" id="chapletRestartBtn">Start over</button></div>
+  `;
+  entryListEl.appendChild(wrap);
+
+  const backBtn = document.getElementById('chapletBackBtn');
+  if(backBtn) backBtn.addEventListener('click', () => { if(chapletStep>0){ chapletStep--; renderChaplet(); } });
+  document.getElementById('chapletNextBtn').addEventListener('click', () => {
+    if(chapletStep < total-1){ chapletStep++; renderChaplet(); }
+    else { chapletSequence = null; chapletStep = 0; renderChaplet(); }
+  });
+  document.getElementById('chapletRestartBtn').addEventListener('click', () => { chapletSequence = null; chapletStep = 0; renderChaplet(); });
 }
 
 /* =========================================================
