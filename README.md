@@ -1,1 +1,1 @@
-The website is located at https://lumin-fidei.pages.dev/
+The website is located at https://sanctify.pages.dev/
