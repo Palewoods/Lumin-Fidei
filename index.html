@@ -239,12 +239,29 @@
   .skip-link{position:absolute; left:-9999px; top:8px; z-index:100; background:var(--ink); color:var(--parchment-light); padding:8px 14px;}
   .skip-link:focus{left:12px;}
   .topbar{
-    position:sticky; top:0; z-index:50; height:64px;
-    display:flex; align-items:center; gap:14px; padding:0 20px;
+    position:sticky; top:0; z-index:50; height:66px;
     background:var(--parchment-light);
     border-bottom:1px solid var(--line);
     box-shadow:0 1px 8px rgba(var(--ink-rgb),0.05);
   }
+  .topbar-inner{max-width:1240px; height:100%; margin:0 auto; padding:0 24px; display:flex; align-items:center; gap:18px;}
+  .topnav{display:flex; align-items:center; gap:2px; margin-left:10px;}
+  .topnav-link{
+    position:relative; background:none; border:none; cursor:pointer; padding:10px 13px; border-radius:20px;
+    font-family:'Source Serif 4', serif; font-size:0.96rem; font-weight:500; color:var(--ink-soft);
+    transition:color 0.12s ease, background 0.12s ease;
+  }
+  .topnav-link:hover{color:var(--ink); background:rgba(var(--ink-rgb),0.05);}
+  .topnav-link.active{color:var(--ink); font-weight:600;}
+  .topnav-link.active::after{content:''; position:absolute; left:14px; right:14px; bottom:3px; height:2px; border-radius:2px; background:var(--wine);}
+  .top-actions{display:flex; align-items:center; gap:8px;}
+  .top-action{position:relative;}
+  .top-action.active{border-color:var(--wine); color:var(--wine-dark);}
+  .top-badge{
+    position:absolute; top:-3px; right:-3px; min-width:18px; height:18px; padding:0 5px; border-radius:9px;
+    background:var(--wine); color:var(--parchment-light); font-size:0.68rem; font-weight:600; line-height:18px; text-align:center;
+  }
+  .top-badge[hidden]{display:none;}
   .icon-btn{
     flex:0 0 auto; width:40px; height:40px; border-radius:50%; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
@@ -261,7 +278,7 @@
   .brand:hover span{color:var(--wine-dark);}
 
   .searchbar{
-    flex:1; max-width:560px; margin:0 auto; position:relative; display:flex; align-items:center;
+    flex:1; max-width:340px; margin:0 0 0 auto; position:relative; display:flex; align-items:center;
     border:1px solid var(--line); background:var(--parchment); border-radius:22px; height:42px;
     transition:border-color 0.15s ease, box-shadow 0.15s ease;
   }
@@ -287,13 +304,8 @@
   #searchClear:hover{color:var(--wine);}
 
   /* ---------- Layout ---------- */
-  .layout{
-    max-width:1240px; margin:0 auto; padding:30px 24px 80px;
-    display:grid; grid-template-columns:232px minmax(0, 1fr); gap:44px;
-    align-items:start;
-  }
+  .layout{max-width:1240px; margin:0 auto; padding:34px 24px 80px;}
 
-  nav.sidebar{position:sticky; top:84px; max-height:calc(100vh - 100px); overflow-y:auto; padding-right:4px; scrollbar-width:thin;}
   .nav-group + .nav-group{margin-top:18px;}
   nav.sidebar .group-label{
     font-size:0.68rem; text-transform:uppercase; letter-spacing:0.16em; font-weight:600;
@@ -320,20 +332,29 @@
   .nav-scrim{position:fixed; inset:0; z-index:54; background:rgba(20,15,10,0.45);}
   .nav-scrim[hidden]{display:none;}
 
-  @media (max-width:880px){
+  /* The full section list lives in a slide-out drawer; the top navigation covers wide screens */
+  nav.sidebar{
+    position:fixed; top:0; bottom:0; left:0; z-index:55; width:min(300px, 84vw); max-height:none;
+    background:var(--parchment-light); padding:22px 14px 30px; box-shadow:var(--shadow); overflow-y:auto;
+    transform:translateX(-105%); transition:transform 0.22s ease; visibility:hidden;
+  }
+  body.nav-open nav.sidebar{transform:none; visibility:visible;}
+  body.nav-open{overflow:hidden;}
+  nav.sidebar .group-link{display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer; font-family:'Source Serif 4', serif; padding:0;}
+  nav.sidebar .group-link:hover{color:var(--wine-dark);}
+  .nl-spark{text-align:center; line-height:20px; color:var(--gold);}
+  @media (max-width:1060px){
     .menu-btn{display:flex;}
-    .topbar{padding:0 12px; gap:10px;}
+    .topnav{display:none;}
+    .topbar-inner{padding:0 14px; gap:10px;}
+    .searchbar{max-width:none;}
+  }
+  @media (max-width:600px){
     .brand span{display:none;}
-    .surprise-btn span{display:none;}
     .search-kbd{display:none;}
-    .layout{grid-template-columns:minmax(0, 1fr); padding:20px 16px 70px;}
-    nav.sidebar{
-      position:fixed; top:0; bottom:0; left:0; z-index:55; width:min(300px, 84vw); max-height:none;
-      background:var(--parchment-light); padding:22px 14px 30px; box-shadow:var(--shadow);
-      transform:translateX(-105%); transition:transform 0.22s ease; visibility:hidden;
-    }
-    body.nav-open nav.sidebar{transform:none; visibility:visible;}
-    body.nav-open{overflow:hidden;}
+    .layout{padding:20px 16px 70px;}
+    .top-actions{gap:6px;}
+    #topAsk{display:none;}
   }
 
   /* ---------- Section header ---------- */
@@ -1195,6 +1216,121 @@
   @media (max-width:820px){ .home-ask{grid-template-columns:auto minmax(0, 1fr);} .home-ask-box{grid-column:1 / -1;} }
   @media (max-width:600px){ .ask-bubble{max-width:92%;} .ask-hero{flex-direction:column;} }
 
+  /* ---------- Breadcrumb ---------- */
+  .breadcrumb{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:0.8rem; color:var(--ink-soft); margin-bottom:2px;}
+  .breadcrumb:empty{display:none;}
+  .breadcrumb button{background:none; border:none; padding:0; cursor:pointer; font-family:'Source Serif 4', serif; font-size:0.8rem; color:var(--sec-color, var(--wine));}
+  .breadcrumb button:hover{text-decoration:underline;}
+
+  /* ---------- Buttons ---------- */
+  .btn.pill{border-radius:24px; padding:12px 26px; text-align:center; font-weight:600;}
+  .hero-link{font-size:1rem; font-weight:500;}
+
+  /* ---------- Section eyebrows and titles (Home) ---------- */
+  .section-eyebrow{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; font-weight:600; color:var(--gold); margin-bottom:8px;}
+  .section-title{font-size:clamp(2rem, 4vw, 2.9rem); line-height:1.1; margin:0 0 22px;}
+  .home > section{margin-bottom:56px;}
+
+  /* ---------- Home hero ---------- */
+  .home-hero{min-height:min(560px, 76vh); grid-template-columns:minmax(0, 1.25fr) minmax(0, 1fr); padding:48px 52px; border-radius:24px;}
+  .home-hero h1{font-size:clamp(2.5rem, 5.4vw, 4.4rem); line-height:1.02; margin:18px 0 16px; font-weight:700; letter-spacing:-0.005em;}
+  .hero-tagline{font-size:1.12rem; max-width:48ch;}
+  .hero-actions{align-items:center; gap:18px; margin-top:26px;}
+  .hero-feast{font-size:0.95rem; color:var(--ink-soft); margin-top:22px;}
+  .hero-rosette{max-width:380px; justify-self:center;}
+
+  /* ---------- Four ways in ---------- */
+  .pillars{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px;}
+  .pillar{
+    display:flex; flex-direction:column; align-items:flex-start; gap:10px; text-align:left; cursor:pointer;
+    padding:26px 22px; border-radius:18px; border:1px solid var(--line); background:var(--parchment-light);
+    font-family:'Source Serif 4', serif; color:var(--ink); transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .pillar:hover, .pillar:focus-visible{transform:translateY(-3px); box-shadow:0 12px 26px rgba(var(--ink-rgb),0.12); outline:none;}
+  .pillar-icon{width:58px; height:58px; padding:12px; border-radius:16px; color:var(--tile-color); background:color-mix(in srgb, var(--tile-color) 12%, transparent);}
+  .pillar-icon svg{width:100%; height:100%; display:block;}
+  .pillar-title{font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-weight:700;}
+  .pillar-text{font-size:0.9rem; color:var(--ink-soft); line-height:1.5; flex:1;}
+  .bento-cta{font-size:0.88rem; font-weight:600; color:var(--tile-color, var(--wine));}
+
+  /* ---------- Begin chips and paths ---------- */
+  .begin-chips, .hub-chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .hub-chip{
+    cursor:pointer; padding:9px 18px; border-radius:22px; border:1px solid var(--line); background:var(--parchment-light);
+    font-family:'Source Serif 4', serif; font-size:0.92rem; color:var(--ink); transition:border-color 0.12s ease, color 0.12s ease;
+  }
+  .hub-chip:hover{border-color:var(--gold); color:var(--wine-dark);}
+  .paths{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px;}
+  .path-card{
+    display:flex; flex-direction:column; gap:8px; cursor:pointer; padding:26px; border-radius:20px; border:1px solid var(--line);
+    background:linear-gradient(160deg, var(--parchment-light), color-mix(in srgb, var(--tile-color) 8%, var(--parchment-light)));
+    border-top:3px solid var(--tile-color); transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .path-card:hover, .path-card:focus-visible{transform:translateY(-3px); box-shadow:0 12px 26px rgba(var(--ink-rgb),0.12); outline:none;}
+  .path-card h3{font-size:1.55rem; line-height:1.15;}
+  .path-card p{margin:0; flex:1; color:var(--ink-soft); font-size:0.93rem;}
+  .path-card .daily-kicker{color:var(--tile-color);}
+
+  /* ---------- Closing verse bands ---------- */
+  .home-verse, .hub-verse{
+    text-align:center; padding:56px 24px; border-radius:24px; border:1px solid var(--line);
+    background:radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 14%, transparent), transparent 70%), var(--parchment-light);
+  }
+  .home-verse blockquote, .hub-verse blockquote{margin:0 auto 10px; max-width:30ch; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:clamp(1.6rem, 3vw, 2.3rem); line-height:1.3;}
+  .home-verse cite, .hub-verse cite{display:block; font-style:normal; font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft);}
+  .home-verse .btn{margin-top:24px;}
+  .hub-verse{margin-top:48px;}
+
+  /* ---------- Hub pages ---------- */
+  .hub-head{padding:18px 0 34px;}
+  .hub-eyebrow{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; font-weight:600; color:var(--hub-color);}
+  .hub-title{font-size:clamp(3.2rem, 8vw, 5.4rem); line-height:0.95; margin:10px 0 14px; font-weight:700;}
+  .hub-title span{color:var(--hub-color);}
+  .hub-intro{max-width:58ch; font-size:1.1rem; color:var(--ink-soft); margin:0 0 22px;}
+  .hub-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; font-weight:600; color:var(--ink-soft); margin-bottom:14px;}
+  .bento{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px;}
+  .bento-card{
+    display:flex; flex-direction:column; gap:8px; cursor:pointer; padding:24px; border-radius:20px; min-height:210px;
+    border:1px solid var(--line); background:var(--parchment-light); transition:transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .bento-card:hover, .bento-card:focus-visible{transform:translateY(-3px); box-shadow:0 12px 26px rgba(var(--ink-rgb),0.12); border-color:color-mix(in srgb, var(--tile-color) 45%, var(--line)); outline:none;}
+  .bento-card.big{grid-column:span 2; grid-row:span 2; padding:32px;
+    background:linear-gradient(150deg, var(--parchment-light), color-mix(in srgb, var(--tile-color) 10%, var(--parchment-light)));}
+  .bento-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
+  .bento-card h3{font-size:1.5rem; line-height:1.15;}
+  .bento-card.big h3{font-size:clamp(2rem, 3.4vw, 2.8rem);}
+  .bento-card p{margin:0; color:var(--ink-soft); font-size:0.93rem; line-height:1.5;}
+  .bento-card.big p{font-size:1.02rem; max-width:52ch;}
+  .bento-foot{margin-top:auto; padding-top:12px; display:flex; justify-content:space-between; align-items:center; gap:10px;}
+  .bento-meta{font-size:0.8rem; color:var(--ink-soft);}
+  .bento-links{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .bento-list{margin:8px 0 0; padding-left:20px; columns:2; column-gap:26px; font-size:0.95rem; line-height:1.7;}
+  .bento-feature{display:flex; align-items:center; gap:14px; margin-top:10px; padding:10px; border-radius:14px; cursor:pointer; text-align:left; max-width:420px;
+    border:1px solid var(--line); background:var(--parchment); font-family:'Source Serif 4', serif; color:var(--ink);}
+  .bento-feature:hover{border-color:var(--gold);}
+  .bento-feature .saint-portrait{flex:0 0 56px; width:56px; height:72px;}
+  .bento-feature strong{display:block; font-family:'Cormorant Garamond', serif; font-size:1.2rem;}
+
+  /* ---------- Footer sitemap ---------- */
+  .footer-inner{align-items:flex-start;}
+  .footer-cols{display:grid; grid-template-columns:repeat(4, minmax(120px, 1fr)); gap:10px 34px;}
+  .footer-cols h4{font-family:'Source Serif 4', serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.16em; color:var(--ink); margin:0 0 10px;}
+  .footer-cols button{display:block; background:none; border:none; padding:3px 0; cursor:pointer; font-family:'Source Serif 4', serif; font-size:0.88rem; color:var(--ink-soft); text-align:left;}
+  .footer-cols button:hover{color:var(--wine-dark);}
+  .site-footer > .footer-note{max-width:1240px; margin:0 auto; padding:16px 24px 34px; border-top:1px solid var(--line); font-size:0.8rem;}
+
+  @media (max-width:980px){
+    .pillars{grid-template-columns:repeat(2, minmax(0, 1fr));}
+    .bento{grid-template-columns:repeat(2, minmax(0, 1fr));}
+    .footer-cols{grid-template-columns:repeat(2, minmax(120px, 1fr));}
+  }
+  @media (max-width:700px){
+    .home-hero{padding:32px 24px; min-height:0;}
+    .pillars, .paths, .bento{grid-template-columns:1fr;}
+    .bento-card.big{grid-column:auto; grid-row:auto; padding:24px;}
+    .bento-list{columns:1;}
+  }
+
   /* ---------- Saint portraits ---------- */
   .entry-row.saint-row{display:flex; gap:18px; align-items:flex-start;}
   .entry-row.saint-row .row-main{flex:1; min-width:0;}
@@ -1319,76 +1455,92 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-  </button>
-  <button class="brand" id="brandHome" aria-label="Sanctify home">
-    <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
-    <span>Sanctify</span>
-  </button>
-  <div class="searchbar" role="search">
-    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-    <input id="searchInput" type="search" placeholder="Search prayers, saints, history…" autocomplete="off" aria-label="Search Sanctify">
-    <kbd class="search-kbd" aria-hidden="true">/</kbd>
-    <button id="searchClear" aria-label="Clear search">×</button>
+  <div class="topbar-inner">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <button class="brand" id="brandHome" aria-label="Sanctify home">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
+      <span>Sanctify</span>
+    </button>
+    <nav class="topnav" id="topnav" aria-label="Main">
+      <button class="topnav-link" data-route="today">Today</button>
+      <button class="topnav-link" data-route="pray">Pray</button>
+      <button class="topnav-link" data-route="library">Library</button>
+      <button class="topnav-link" data-route="learn">Learn</button>
+      <button class="topnav-link" data-route="calendar">Calendar</button>
+    </nav>
+    <div class="searchbar" role="search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="searchInput" type="search" placeholder="Search Sanctify…" autocomplete="off" aria-label="Search Sanctify">
+      <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      <button id="searchClear" aria-label="Clear search">×</button>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn top-action" data-route="ask" aria-label="Ask Sanctify" title="Ask Sanctify" id="topAsk"></button>
+      <button class="icon-btn top-action" data-route="mine" aria-label="My Sanctify" title="My Sanctify" id="topSaved"><span class="top-badge" id="topSavedCount" hidden></span></button>
+      <button id="themeToggle" class="theme-toggle icon-btn" aria-label="Appearance" title="Appearance" aria-haspopup="menu" aria-expanded="false"></button>
+    </div>
   </div>
-  <button class="surprise-btn" id="surpriseBtn" type="button" title="Open a random entry">✦ <span>Surprise me</span></button>
-  <button id="themeToggle" class="theme-toggle icon-btn" aria-label="Appearance" title="Appearance" aria-haspopup="menu" aria-expanded="false"></button>
 </header>
 <div class="theme-menu" id="themeMenu" role="menu" aria-label="Themes" hidden></div>
 
 <div class="nav-scrim" id="navScrim" hidden></div>
 
-<div class="layout">
-  <nav class="sidebar" id="sidebar" aria-label="Sections">
-    <div id="navList">
-      <div class="nav-group">
-        <ul>
-          <li><button class="navlink active" data-cat="home">Home</button></li>
-          <li><button class="navlink" data-cat="daily">Today</button></li>
-          <li><button class="navlink" data-cat="mine">My Sanctify <span class="count" id="count-mine"></span></button></li>
-          <li><button class="navlink" data-cat="ask">Ask Sanctify <span class="count nav-soon" id="askNavBadge">Soon</span></button></li>
-        </ul>
-      </div>
-      <div class="nav-group">
-        <div class="group-label">Library</div>
-        <ul>
-          <li><button class="navlink" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
-          <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
-          <li><button class="navlink" data-cat="theology">Theology <span class="count" id="count-theology"></span></button></li>
-          <li><button class="navlink" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
-          <li><button class="navlink" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
-          <li><button class="navlink" data-cat="bible">Bible <span class="count" id="count-bible"></span></button></li>
-          <li><button class="navlink" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
-        </ul>
-      </div>
-      <div class="nav-group">
-        <div class="group-label">Pray</div>
-        <ul>
-          <li><button class="navlink" data-cat="rosary">Rosary</button></li>
-          <li><button class="navlink" data-cat="stations">Stations of the Cross</button></li>
-          <li><button class="navlink" data-cat="chaplet">Divine Mercy Chaplet</button></li>
-          <li><button class="navlink" data-cat="exam">Examination of Conscience</button></li>
-          <li><button class="navlink" data-cat="timer">Prayer Timer</button></li>
-        </ul>
-      </div>
-      <div class="nav-group">
-        <div class="group-label">Explore</div>
-        <ul>
-          <li><button class="navlink" data-cat="calendar">Calendar <span class="count" id="count-calendar"></span></button></li>
-          <li><button class="navlink" data-cat="plan">Bible Reading Plans</button></li>
-          <li><button class="navlink" data-cat="quiz">Quiz</button></li>
-          <li><button class="navlink" data-cat="shop">Shop</button></li>
-        </ul>
-      </div>
+<!-- Full menu: a slide-out drawer on phones and tablets -->
+<nav class="sidebar" id="sidebar" aria-label="All sections">
+  <div id="navList">
+    <div class="nav-group">
+      <ul>
+        <li><button class="navlink" data-route="home" data-cat="home">Home</button></li>
+        <li><button class="navlink" data-route="today" data-cat="daily">Today</button></li>
+        <li><button class="navlink" data-route="calendar" data-cat="calendar">Calendar <span class="count" id="count-calendar"></span></button></li>
+        <li><button class="navlink" data-route="mine" data-cat="mine">My Sanctify <span class="count" id="count-mine"></span></button></li>
+        <li><button class="navlink" data-route="ask" data-cat="ask">Ask Sanctify <span class="count nav-soon" id="askNavBadge">Soon</span></button></li>
+      </ul>
     </div>
-  </nav>
+    <div class="nav-group">
+      <button class="group-label group-link" data-route="pray">Pray ›</button>
+      <ul>
+        <li><button class="navlink" data-route="pray/prayers" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
+        <li><button class="navlink" data-route="pray/rosary" data-cat="rosary">Rosary</button></li>
+        <li><button class="navlink" data-route="pray/stations" data-cat="stations">Stations of the Cross</button></li>
+        <li><button class="navlink" data-route="pray/chaplet" data-cat="chaplet">Divine Mercy Chaplet</button></li>
+        <li><button class="navlink" data-route="pray/examination" data-cat="exam">Examination of Conscience</button></li>
+        <li><button class="navlink" data-route="pray/timer" data-cat="timer">Prayer Timer</button></li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <button class="group-label group-link" data-route="library">Library ›</button>
+      <ul>
+        <li><button class="navlink" data-route="library/saints" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
+        <li><button class="navlink" data-route="library/books" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
+        <li><button class="navlink" data-route="library/bible" data-cat="bible">The Bible <span class="count" id="count-bible"></span></button></li>
+        <li><button class="navlink" data-route="library/all" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
+        <li><button class="navlink" data-route="library/shop" data-cat="shop">Shop</button></li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <button class="group-label group-link" data-route="learn">Learn ›</button>
+      <ul>
+        <li><button class="navlink" data-route="learn/theology" data-cat="theology">Theology <span class="count" id="count-theology"></span></button></li>
+        <li><button class="navlink" data-route="learn/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
+        <li><button class="navlink" data-route="learn/plans" data-cat="plan">Bible Reading Plans</button></li>
+        <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <ul><li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li></ul>
+    </div>
+  </div>
+</nav>
 
+<div class="layout">
   <main id="main" tabindex="-1">
     <div class="main-head" id="mainHead">
       <div class="section-icon" id="sectionIcon" aria-hidden="true"></div>
       <div>
-        <div class="main-eyebrow" id="sectionEyebrow"></div>
+        <nav class="breadcrumb" id="sectionEyebrow" aria-label="Breadcrumb"></nav>
         <h2 id="sectionTitle">Home</h2>
         <p class="desc" id="sectionDesc"></p>
       </div>
@@ -1401,10 +1553,23 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
-      <div><strong>Sanctify</strong><span>A living repository of prayers, saints, history, and the written word of the Church.</span></div>
+      <div><strong>Sanctify</strong><span>Prayers, saints, Scripture, and two thousand years of the Church, gathered in one place. Free, with no ads and no account.</span></div>
     </div>
-    <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Douay-Rheims translation. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
+    <div class="footer-cols">
+      <div><h4>Pray</h4>
+        <button data-route="pray/prayers">Prayers</button><button data-route="pray/rosary">Rosary</button><button data-route="pray/stations">Stations of the Cross</button>
+        <button data-route="pray/chaplet">Divine Mercy Chaplet</button><button data-route="pray/examination">Examination of Conscience</button><button data-route="pray/timer">Prayer Timer</button></div>
+      <div><h4>Library</h4>
+        <button data-route="library/saints">Saints</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
+        <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
+      <div><h4>Learn</h4>
+        <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
+        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button></div>
+      <div><h4>Sanctify</h4>
+        <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="ask">Ask Sanctify</button></div>
+    </div>
   </div>
+  <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Douay-Rheims translation. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
 </footer>
 
 <!-- Reading modal -->
@@ -3124,7 +3289,10 @@ function updateCounts(){
   const askBadge = document.getElementById('askNavBadge');
   if(askBadge) askBadge.hidden = aiConnected();
   const mineEl = document.getElementById('count-mine');
-  if(mineEl) mineEl.textContent = store.get('saved', []).length || '';
+  const savedCount = store.get('saved', []).length;
+  if(mineEl) mineEl.textContent = savedCount || '';
+  const topBadge = document.getElementById('topSavedCount');
+  if(topBadge){ topBadge.textContent = savedCount; topBadge.hidden = !savedCount; }
   const calEl = document.getElementById('count-calendar');
   if(calEl) calEl.textContent = CALENDAR_DATA.length;
 }
@@ -3157,29 +3325,38 @@ function render(){
   const sec = SECTIONS[activeCategory] || SECTIONS.all;
   const head = document.getElementById('mainHead');
 
-  head.hidden = activeCategory === 'home' && !searching;
+  const isHub = activeCategory.startsWith('hub-');
+  head.hidden = (activeCategory === 'home' || isHub) && !searching;
+  const crumbs = document.getElementById('sectionEyebrow');
   if(searching){
     const scope = LIBRARY_CATS.has(activeCategory) && activeCategory !== 'all' ? ' in ' + sec.name : '';
     head.style.setProperty('--sec-color', 'var(--wine)');
     document.getElementById('sectionIcon').innerHTML = navIcon('search');
-    document.getElementById('sectionEyebrow').textContent = 'Search';
+    crumbs.textContent = 'Search';
     sectionTitleEl.textContent = 'Results for “' + searchTerm.trim() + '”';
     sectionDescEl.textContent = activeCategory === 'calendar' ? 'Matching feasts and observances.' : `Matching entries${scope}.`;
   } else {
+    const route = ROUTES[currentRoute] || {};
     head.style.setProperty('--sec-color', sec.color);
     document.getElementById('sectionIcon').innerHTML = navIcon(sec.icon);
-    document.getElementById('sectionEyebrow').textContent = sec.group || '';
-    sectionTitleEl.textContent = sec.name;
-    sectionDescEl.textContent = CAT_DESC[activeCategory] || '';
+    // Breadcrumb: Home › Learn › Theology
+    const trail = [];
+    for(let p = route.parent; p; p = (ROUTES[p] || {}).parent) trail.unshift(p);
+    crumbs.innerHTML = trail.length
+      ? [`<button data-route="home">Home</button>`, ...trail.map(p => `<button data-route="${p}">${escapeHtml(routeName(p))}</button>`)].join('<span aria-hidden="true">›</span>')
+      : '';
+    sectionTitleEl.textContent = route.name || sec.name;
+    sectionDescEl.textContent = route.desc || CAT_DESC[activeCategory] || '';
   }
 
   if(!globalSearch){
     const special = {
       home:renderHome, calendar:renderCalendar, rosary:renderRosary, shop:renderShop, stations:renderStations,
       chaplet:renderChaplet, history:renderHistory, daily:renderDaily, theology:renderTheology,
-      mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan, ask:renderAsk
+      mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan, ask:renderAsk,
+      'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
-    const needsNoSearch = new Set(['home', 'daily', 'theology']);
+    const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
     if(special[activeCategory] && !(searching && needsNoSearch.has(activeCategory))){
       special[activeCategory]();
       return;
@@ -3991,9 +4168,7 @@ function massReadingsUrl(d){
 }
 
 function goToSection(cat){
-  const btn = document.querySelector(`.navlink[data-cat="${cat}"]`);
-  if(btn) btn.click();
-  window.scrollTo({ top:0, behavior:'smooth' });
+  navigate(ROUTES[cat] ? cat : (CAT_ROUTE[cat] || 'home'));
 }
 
 function renderDaily(){
@@ -4157,7 +4332,8 @@ function renderTheology(){
       <button class="patron-chip${theologyGroup === 'all' ? ' active' : ''}" data-group="all">Everything</button>
       ${THEOLOGY_GROUPS.map(g => `<button class="patron-chip${theologyGroup === g.key ? ' active' : ''}" data-group="${g.key}">${escapeHtml(g.name)}</button>`).join('')}
     </div>`;
-  chips.querySelectorAll('.patron-chip').forEach(b => b.addEventListener('click', () => { theologyGroup = b.dataset.group; renderTheology(); }));
+  const groupRoute = { all:'learn/theology', belief:'learn/theology/beliefs', defense:'learn/theology/apologetics' };
+  chips.querySelectorAll('.patron-chip').forEach(b => b.addEventListener('click', () => navigate(groupRoute[b.dataset.group])));
   entryListEl.appendChild(chips);
 
   THEOLOGY_GROUPS.filter(g => theologyGroup === 'all' || g.key === theologyGroup).forEach(g => {
@@ -4601,7 +4777,7 @@ function renderHistory(){
   chips.querySelectorAll('.patron-chip[data-era]').forEach(btn => {
     btn.addEventListener('click', () => { activeEra = btn.dataset.era; renderHistory(); });
   });
-  chips.querySelector('#marianToggle').addEventListener('click', () => { historyMarianOnly = !historyMarianOnly; renderHistory(); });
+  chips.querySelector('#marianToggle').addEventListener('click', () => navigate(historyMarianOnly ? 'learn/history' : 'learn/history/apparitions'));
   entryListEl.appendChild(chips);
 
   const eras = HISTORY_ERAS.filter(er => activeEra === 'all' || er.key === activeEra);
@@ -5225,6 +5401,9 @@ const SECTIONS = {
   daily:{ name:'Today', group:'Today', icon:'daily', color:'var(--gold)' },
   mine:{ name:'My Sanctify', group:'Personal', icon:'mine', color:'var(--rose)' },
   ask:{ name:'Ask Sanctify', group:'AI Guide', icon:'ask', color:'var(--indigo)' },
+  'hub-pray':{ name:'Pray', icon:'prayer', color:'var(--wine)' },
+  'hub-library':{ name:'Library', icon:'book', color:'var(--indigo)' },
+  'hub-learn':{ name:'Learn', icon:'theology', color:'var(--purple)' },
   prayer:{ name:'Prayers', group:'Library', icon:'prayer', color:'var(--wine)' },
   saint:{ name:'Saints', group:'Library', icon:'saint', color:'var(--gold)' },
   theology:{ name:'Theology', group:'Library', icon:'theology', color:'var(--purple)' },
@@ -5251,6 +5430,9 @@ document.querySelectorAll('.navlink').forEach(btn => {
   btn.insertAdjacentHTML('afterbegin', `<span class="nl-icon">${navIcon(sec.icon)}</span>`);
 });
 
+document.getElementById('topAsk').innerHTML = navIcon('ask');
+document.getElementById('topSaved').insertAdjacentHTML('afterbegin', navIcon('mine'));
+
 function setNavOpen(open){
   document.body.classList.toggle('nav-open', open);
   document.getElementById('navScrim').hidden = !open;
@@ -5261,6 +5443,123 @@ document.getElementById('navScrim').addEventListener('click', () => setNavOpen(f
 document.addEventListener('keydown', e => { if(e.key === 'Escape' && document.body.classList.contains('nav-open')) setNavOpen(false); });
 document.getElementById('brandHome').addEventListener('click', () => goToSection('home'));
 
+/* ---------- Hub pages: Pray, Library, Learn ---------- */
+function countOf(cat){ return library.filter(e => e.category === cat).length; }
+
+const HUBS = {
+  pray:{
+    eyebrow:'Prayer & devotion', title:'Pray',
+    intro:'Pray with the whole Church: the prayers of the saints, the Rosary, the Way of the Cross, and quiet time alone with God.',
+    cards:() => {
+      const m = MYSTERIES[mysterySetFor(startOfToday())];
+      const novenas = store.get('novenas', []).filter(n => n.done.filter(Boolean).length < 9).length;
+      return [
+        { route:'pray/rosary', big:true, kicker:`Today · ${WEEKDAY_NAMES[startOfToday().getDay()]}`, title:`The ${m.name}`,
+          desc:'Pray the Rosary bead by bead, with a meditation for each mystery. The mysteries change with the day of the week.',
+          extra:`<ol class="bento-list">${m.list.map(x => `<li>${escapeHtml(x.name)}</li>`).join('')}</ol>`, meta:'About 20 minutes', cta:'Begin praying' },
+        { route:'pray/prayers', desc:'Every prayer as an illustrated card, from the Sign of the Cross to the Te Deum, some in Latin and Spanish.', meta:`${countOf('prayer')} prayer cards` },
+        { route:'pray/stations', desc:'Walk the fourteen Stations with Christ, with a short meditation at each.', meta:'14 stations' },
+        { route:'pray/chaplet', desc:'The Chaplet of Divine Mercy, as given to St. Faustina, prayed on rosary beads.', meta:'About 15 minutes' },
+        { route:'pray/examination', desc:'Prepare for Confession with a guided examination, following the Ten Commandments.', meta:'Private: nothing is saved' },
+        { route:'pray/timer', desc:'Set aside time for silent prayer or a Holy Hour, with a gentle bell to begin and end.', meta:'5 minutes to an hour' },
+        { route:'mine', title:'Novenas & Intentions', icon:'mine', desc:'Keep a list of your prayer intentions, and pray a nine-day novena with any saint.', meta:novenas ? `${novenas} novena${novenas > 1 ? 's' : ''} in progress` : 'Stored only on this device' }
+      ];
+    }
+  },
+  library:{
+    eyebrow:'The whole library', title:'Library',
+    intro:'The saints and their lives, the books that formed them, and all 73 books of the Catholic Bible.',
+    cards:() => {
+      const d = startOfToday();
+      const feastIds = observancesFor(d).flatMap(o => o.saints || []);
+      const saint = feastIds.length ? library.find(x => x.id === feastIds[0]) : dailyPick(library.filter(e => e.category === 'saint'), 11, d);
+      return [
+        { route:'library/saints', big:true, kicker:'The communion of saints', title:'Saints',
+          desc:'Lives, feast days, patronages, and prayers of intercession, from the apostles to saints of our own time. Find a patron for any need, or the saint of any day.',
+          extra:`<button class="bento-feature" data-open="${saint.id}"><span class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</span><span><span class="daily-kicker">${feastIds.length ? 'Feast today' : 'Saint of the day'}</span><strong>${escapeHtml(saint.title)}</strong></span></button>`,
+          meta:`${countOf('saint')} saints`, cta:'Browse the saints' },
+        { route:'library/books', desc:'Spiritual classics, Church documents, and great Catholic literature, with summaries and links to read.', meta:`${countOf('book')} books` },
+        { route:'library/bible', desc:'All 73 books of the Catholic canon, grouped by section, with study notes and links to the full text.', meta:'73 books' },
+        { route:'library/all', desc:'Every prayer, saint, book, event, and teaching in one searchable list.', meta:`${library.length} entries` },
+        { action:'surprise', title:'Surprise Me', icon:'all', color:'var(--gold)', desc:'Open a random prayer, saint, book, event, or teaching, and discover something new.', meta:'A little serendipity', cta:'Surprise me' },
+        { route:'library/shop', desc:'A few reputable retailers for rosaries, icons, statues, and other Catholic goods.', meta:'Trusted shops' }
+      ];
+    }
+  },
+  learn:{
+    eyebrow:'Study the faith', title:'Learn',
+    intro:'What the Church believes and why, two thousand years of her history, and ways to grow in knowledge of the faith.',
+    cards:() => [
+      { route:'learn/theology', big:true, kicker:'Doctrine & apologetics', title:'Theology',
+        desc:'The core teachings of the Catholic faith, each with the Scripture passages and Catechism paragraphs behind it, and charitable answers to the objections Catholics most often hear.',
+        links:[['Core Catholic Beliefs', 'learn/theology/beliefs'], ['Defending the Faith', 'learn/theology/apologetics']],
+        meta:`${countOf('theology')} topics`, cta:'Start learning' },
+      { route:'learn/history', desc:'Two thousand years on one timeline, from Pentecost to the present day.',
+        links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions']], meta:`${countOf('history')} events` },
+      { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
+      { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
+      { route:'ask', desc:'An AI guide to the faith, grounded in the Catechism and the Sanctify library.', meta:aiConnected() ? 'Connected' : 'Coming soon' },
+      (() => {
+        const t = dailyPick(library.filter(e => e.category === 'theology'), 79, startOfToday());
+        return { open:t.id, icon:t.art && NAV_ICONS[t.art] ? t.art : 'theology', color:'var(--purple)', kicker:'Topic of the day', title:t.title,
+          desc:excerptOf(t.content, 130), meta:t.group === 'belief' ? 'Core belief' : 'Defending the faith', cta:'Read' };
+      })()
+    ]
+  }
+};
+
+function renderHub(key){
+  entryListEl.innerHTML = '';
+  const hub = HUBS[key];
+  const cards = hub.cards();
+  const sec = SECTIONS['hub-' + key];
+  const verse = dailyPick(DAILY_VERSES, { pray:61, library:73, learn:89 }[key], startOfToday());
+  const wrap = document.createElement('div');
+  wrap.className = 'hub';
+  wrap.style.setProperty('--hub-color', sec.color);
+  const cardTitle = c => c.title || routeName(c.route);
+  wrap.innerHTML = `
+    <section class="hub-head">
+      <div class="hub-eyebrow">${escapeHtml(hub.eyebrow)}</div>
+      <h1 class="hub-title">${escapeHtml(hub.title)}<span>.</span></h1>
+      <p class="hub-intro">${escapeHtml(hub.intro)}</p>
+      <div class="hub-chips">${cards.filter(c => !c.open).map(c => c.route
+        ? `<button class="hub-chip" data-route="${c.route}">${escapeHtml(c.big ? routeName(c.route) : cardTitle(c))}</button>`
+        : `<button class="hub-chip" data-action="${c.action}">${escapeHtml(cardTitle(c))}</button>`).join('')}</div>
+    </section>
+    <div class="hub-label">Where to begin</div>
+    <div class="bento">${cards.map(c => {
+      const s = c.route ? SECTIONS[ROUTES[c.route].cat] : null;
+      const color = c.color || (s && s.color) || 'var(--wine)';
+      const icon = c.icon || (s && s.icon) || 'all';
+      const target = c.route ? `data-route="${c.route}"` : c.open ? `data-open="${c.open}"` : `data-action="${c.action}"`;
+      return `<article class="bento-card${c.big ? ' big' : ''}" ${target} tabindex="0" style="--tile-color:${color}">
+        <div class="bento-top"><span class="tile-icon">${navIcon(icon)}</span>${c.kicker ? `<span class="daily-kicker">${escapeHtml(c.kicker)}</span>` : ''}</div>
+        <h3>${escapeHtml(cardTitle(c))}</h3>
+        <p>${escapeHtml(c.desc)}</p>
+        ${c.extra || ''}
+        ${c.links ? `<div class="bento-links">${c.links.map(([label, r]) => `<button class="patron-chip" data-route="${r}">${escapeHtml(label)}</button>`).join('')}</div>` : ''}
+        <div class="bento-foot"><span class="bento-meta">${escapeHtml(c.meta || '')}</span><span class="bento-cta">${escapeHtml(c.cta || 'Open')} →</span></div>
+      </article>`;
+    }).join('')}</div>
+    <section class="hub-verse">
+      <blockquote>“${escapeHtml(verse.text)}”</blockquote>
+      <cite>${escapeHtml(verse.ref)}</cite>
+    </section>`;
+  entryListEl.appendChild(wrap);
+
+  wrap.querySelectorAll('[data-action="surprise"]').forEach(el => el.addEventListener('click', e => { e.stopPropagation(); surpriseMe(); }));
+  wrap.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', e => { e.stopPropagation(); openReadModal(el.dataset.open); }));
+  wrap.querySelectorAll('.bento-card').forEach(card => card.addEventListener('keydown', e => {
+    if(e.target !== card || (e.key !== 'Enter' && e.key !== ' ')) return;
+    e.preventDefault();
+    if(card.dataset.route) navigate(card.dataset.route);
+    else if(card.dataset.open) openReadModal(card.dataset.open);
+    else surpriseMe();
+  }));
+  wrap.querySelectorAll('.saint-portrait[data-sid]').forEach(observePortrait);
+}
+
 /* =========================================================
    HOME
    ========================================================= */
@@ -5270,22 +5569,13 @@ function heroRosette(){
     const a = i * Math.PI / 12, r1 = i % 2 ? 62 : 58, r2 = i % 2 ? 84 : 96;
     rays += `M${(110 + r1 * Math.cos(a)).toFixed(1)} ${(110 + r1 * Math.sin(a)).toFixed(1)}L${(110 + r2 * Math.cos(a)).toFixed(1)} ${(110 + r2 * Math.sin(a)).toFixed(1)}`;
   }
+  const cross = document.querySelector('.brand .mark path').getAttribute('d');
   return `<svg class="hero-rosette" viewBox="0 0 220 220" aria-hidden="true">
     <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.35"/>
     <circle cx="110" cy="110" r="52" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
     <path d="${rays}" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
-    <g class="hero-cross" transform="translate(68.4 68.4) scale(1.3)"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></g>
+    <g class="hero-cross" transform="translate(68.4 68.4) scale(1.3)"><path d="${cross}"/></g>
   </svg>`;
-}
-
-function homeTile(cat, count, blurb){
-  const sec = SECTIONS[cat];
-  return `<button class="home-tile" data-go="${cat}" style="--tile-color:${sec.color}">
-    <span class="tile-icon">${navIcon(sec.icon)}</span>
-    <span class="tile-name">${escapeHtml(sec.name)}</span>
-    ${count !== null ? `<span class="tile-count">${count}</span>` : ''}
-    <span class="tile-blurb">${escapeHtml(blurb)}</span>
-  </button>`;
 }
 
 function renderHome(){
@@ -5298,11 +5588,19 @@ function renderHome(){
   const saint = feastIds.length ? library.find(x => x.id === feastIds[0]) : dailyPick(byCat('saint'), 11, d);
   const prayer = dailyPick(byCat('prayer').filter(p => p.id !== 'p10'), 23, d);
   const verse = dailyPick(DAILY_VERSES, 37, d);
+  const closing = dailyPick(DAILY_VERSES, 97, d);
   const card = PRAYER_CARDS[prayer.id] || { art:'cross', accent:'var(--wine)' };
   const mysteries = MYSTERIES[mysterySetFor(d)];
   const feastLine = obs.length
     ? `Today the Church celebrates <strong>${obs.slice(0, 2).map(o => escapeHtml(o.name)).join('</strong> and <strong>')}</strong>.`
     : `A weekday in ${escapeHtml(season.name)}.`;
+  const pillar = (icon, color, title, text, route) => `
+    <button class="pillar" data-route="${route}" style="--tile-color:${color}">
+      <span class="pillar-icon">${navIcon(icon)}</span>
+      <span class="pillar-title">${title}</span>
+      <span class="pillar-text">${text}</span>
+      <span class="bento-cta">Explore →</span>
+    </button>`;
 
   const wrap = document.createElement('div');
   wrap.className = 'home';
@@ -5311,36 +5609,92 @@ function renderHome(){
       <div class="hero-text">
         <div class="hero-date">${WEEKDAY_NAMES[d.getDay()]}, ${MONTH_NAMES[d.getMonth()]} ${d.getDate()}
           <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)}</span></div>
-        <h1>Sanctify</h1>
-        <p class="hero-tagline">A living repository of prayers, saints, history, and the written word of the Church.</p>
-        <p class="hero-feast">${feastLine}</p>
+        <h1>Pray with the Church.<br>Know the faith.<br>Walk with the saints.</h1>
+        <p class="hero-tagline">Prayers, saints, Scripture, and two thousand years of Church history, gathered in one place. Free, with no ads and no account.</p>
         <div class="hero-actions">
-          <button class="btn primary" data-go="daily">Today’s saint, prayer &amp; readings</button>
-          <button class="btn" data-go="rosary">Pray the ${escapeHtml(mysteries.name)}</button>
+          <button class="btn primary pill" data-route="today">Open today</button>
+          <button class="text-link hero-link" data-route="pray/rosary">Pray the ${escapeHtml(mysteries.name)} →</button>
         </div>
+        <p class="hero-feast">${feastLine}</p>
       </div>
       ${heroRosette()}
     </section>
 
-    <section class="home-features">
-      <article class="feature-card feature-saint" data-open="${saint.id}" tabindex="0">
-        <div class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</div>
-        <div>
-          <div class="daily-kicker">${feastIds.length ? 'Feast of the Day' : 'Saint of the Day'}</div>
-          <h3>${escapeHtml(saint.title)}</h3>
-          <p>${escapeHtml(excerptOf(saint.content, 150))}</p>
-        </div>
-      </article>
-      <article class="feature-card feature-verse">
-        <div class="daily-kicker">Verse of the Day</div>
-        <blockquote>“${escapeHtml(verse.text)}”</blockquote>
-        <cite>${escapeHtml(verse.ref)}</cite>
-      </article>
-      <article class="feature-card feature-prayer" data-open="${prayer.id}" tabindex="0" style="--accent:${card.accent}">
-        <span class="pc-art">${cardArt(card.art)}</span>
-        <div class="daily-kicker">Prayer of the Day</div>
-        <h3>${escapeHtml(prayer.title)}</h3>
-      </article>
+    <section class="home-section">
+      <div class="section-eyebrow">Today in the Church</div>
+      <div class="home-features">
+        <article class="feature-card feature-saint" data-open="${saint.id}" tabindex="0">
+          <div class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</div>
+          <div>
+            <div class="daily-kicker">${feastIds.length ? 'Feast of the Day' : 'Saint of the Day'}</div>
+            <h3>${escapeHtml(saint.title)}</h3>
+            <p>${escapeHtml(excerptOf(saint.content, 150))}</p>
+          </div>
+        </article>
+        <article class="feature-card feature-verse">
+          <div class="daily-kicker">Verse of the Day</div>
+          <blockquote>“${escapeHtml(verse.text)}”</blockquote>
+          <cite>${escapeHtml(verse.ref)}</cite>
+        </article>
+        <article class="feature-card feature-prayer" data-open="${prayer.id}" tabindex="0" style="--accent:${card.accent}">
+          <span class="pc-art">${cardArt(card.art)}</span>
+          <div class="daily-kicker">Prayer of the Day</div>
+          <h3>${escapeHtml(prayer.title)}</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-section home-pillars">
+      <div class="section-eyebrow">What's inside</div>
+      <h2 class="section-title">Four ways in.</h2>
+      <div class="pillars">
+        ${pillar('prayer', 'var(--wine)', 'Pray', `${byCat('prayer').length} prayers as illustrated cards, the Rosary, the Stations of the Cross, and the Divine Mercy Chaplet.`, 'pray')}
+        ${pillar('saint', 'var(--gold)', 'The Saints', `${byCat('saint').length} saints with their lives, feast days, patronages, and prayers of intercession.`, 'library/saints')}
+        ${pillar('theology', 'var(--purple)', 'Learn the Faith', `${byCat('theology').length} teachings with Scripture, the Catechism, and answers to objections, plus ${byCat('history').length} events of Church history.`, 'learn')}
+        ${pillar('calendar', 'var(--green)', 'The Church’s Year', 'Every feast and season, with the saint of the day, the liturgical color, and today’s readings.', 'calendar')}
+      </div>
+    </section>
+
+    <section class="home-section home-begin">
+      <div class="section-eyebrow">Where to begin</div>
+      <h2 class="section-title">Begin where you stand.</h2>
+      <div class="begin-chips">
+        <button class="hub-chip" data-open="p2">The Our Father</button>
+        <button class="hub-chip" data-open="p3">The Hail Mary</button>
+        <button class="hub-chip" data-open="p5">The Apostles’ Creed</button>
+        <button class="hub-chip" data-route="pray/rosary">The Rosary</button>
+        <button class="hub-chip" data-route="today">Saint of the day</button>
+        <button class="hub-chip" data-route="pray/examination">Examination of Conscience</button>
+        <button class="hub-chip" data-route="learn/theology/beliefs">Core Catholic Beliefs</button>
+        <button class="hub-chip" data-route="learn/theology/apologetics">Defending the Faith</button>
+        <button class="hub-chip" data-route="learn/history/apparitions">Marian Apparitions</button>
+        <button class="hub-chip" data-action="surprise">✦ Surprise me</button>
+      </div>
+    </section>
+
+    <section class="home-section home-paths">
+      <div class="section-eyebrow">Paths to walk</div>
+      <h2 class="section-title">Where would you like to begin?</h2>
+      <div class="paths">
+        <article class="path-card" data-route="learn/plans" tabindex="0" style="--tile-color:var(--teal)">
+          <div class="daily-kicker">30-day journey</div>
+          <h3>Read the four Gospels</h3>
+          <p>Walk with Jesus through Matthew, Mark, Luke, and John in a month, about three chapters a day, with your progress saved.</p>
+          <span class="bento-cta">Begin →</span>
+        </article>
+        <article class="path-card" data-route="pray/examination" tabindex="0" style="--tile-color:var(--purple)">
+          <div class="daily-kicker">Before Confession</div>
+          <h3>Examine your conscience</h3>
+          <p>A gentle, private guide through the Ten Commandments, with the steps of Confession and an Act of Contrition.</p>
+          <span class="bento-cta">Begin →</span>
+        </article>
+        <article class="path-card" data-route="library/saints" tabindex="0" style="--tile-color:var(--gold)">
+          <div class="daily-kicker">Nine days of prayer</div>
+          <h3>Pray a novena with a saint</h3>
+          <p>Choose a patron from the saints, open their page, and start a novena. Sanctify keeps track of all nine days.</p>
+          <span class="bento-cta">Begin →</span>
+        </article>
+      </div>
     </section>
 
     <section class="home-ask">
@@ -5350,46 +5704,28 @@ function renderHome(){
         <h3>An AI guide to the faith</h3>
         <p>Ask about a teaching, a saint, or a prayer for your needs, with answers grounded in the Catechism and this library.</p>
       </div>
-      <button class="home-ask-box" data-go="ask"><span>Ask a question about the faith…</span>${navIcon('ask')}</button>
+      <button class="home-ask-box" data-route="ask"><span>Ask a question about the faith…</span>${navIcon('ask')}</button>
     </section>
 
     <section class="home-continue" id="homeContinue"></section>
 
-    <section class="home-section">
-      <div class="home-heading"><h3>The Library</h3><button class="text-link" data-go="all">Browse everything →</button></div>
-      <div class="tile-grid">
-        ${homeTile('prayer', byCat('prayer').length, 'From the Our Father to the Te Deum, with illustrated prayer cards.')}
-        ${homeTile('saint', byCat('saint').length, 'Lives, feast days, patronages, and prayers of intercession.')}
-        ${homeTile('theology', byCat('theology').length, 'Core beliefs of the faith, and how to explain and defend them.')}
-        ${homeTile('history', byCat('history').length, 'Two thousand years, from Pentecost to the present day.')}
-        ${homeTile('book', byCat('book').length, 'Spiritual classics, Church documents, and great literature.')}
-        ${homeTile('bible', byCat('bible').length, 'All 73 books of the Catholic Bible, with study notes.')}
-      </div>
-    </section>
-
-    <section class="home-section">
-      <div class="home-heading"><h3>Pray</h3></div>
-      <div class="tile-grid tile-grid-tools">
-        ${homeTile('rosary', null, `Today: the ${mysteries.name}.`)}
-        ${homeTile('stations', null, 'Walk the Way of the Cross, station by station.')}
-        ${homeTile('chaplet', null, 'The Chaplet of Divine Mercy, bead by bead.')}
-        ${homeTile('exam', null, 'Prepare for Confession with a guided examination.')}
-        ${homeTile('timer', null, 'Silent prayer or a Holy Hour, with a gentle bell.')}
-        ${homeTile('plan', null, 'Read the Gospels, the New Testament, or the whole Bible.')}
-      </div>
-    </section>
-
     <section class="home-section home-split">
       <div>
-        <div class="home-heading"><h3>Coming Up</h3><button class="text-link" data-go="calendar">Full calendar →</button></div>
+        <div class="home-heading"><h3>Coming Up</h3><button class="text-link" data-route="calendar">Full calendar →</button></div>
         <div class="home-upcoming" id="homeUpcoming"></div>
       </div>
       <div class="home-quiz">
         <span class="tile-icon" style="--tile-color:var(--amber)">${navIcon('quiz')}</span>
         <h3>Test your knowledge</h3>
         <p>Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.</p>
-        <button class="btn" data-go="quiz">Take the quiz</button>
+        <button class="btn" data-route="learn/quiz">Take the quiz</button>
       </div>
+    </section>
+
+    <section class="home-verse">
+      <blockquote>“${escapeHtml(closing.text)}”</blockquote>
+      <cite>${escapeHtml(closing.ref)}</cite>
+      <button class="btn primary pill" data-route="today">Open today</button>
     </section>`;
   entryListEl.appendChild(wrap);
 
@@ -5398,11 +5734,13 @@ function renderHome(){
   const recent = store.get('recent', []).map(id => library.find(x => x.id === id)).filter(Boolean).slice(0, 4);
   const novenas = store.get('novenas', []).filter(n => n.done.filter(Boolean).length < 9 && library.find(x => x.id === n.id));
   if(recent.length || novenas.length){
-    cont.innerHTML = `<div class="home-heading"><h3>Continue</h3><button class="text-link" data-go="mine">My Sanctify →</button></div>
+    cont.innerHTML = `<div class="home-heading"><h3>Continue</h3><button class="text-link" data-route="mine">My Sanctify →</button></div>
       <div class="continue-row">
-        ${novenas.slice(0, 2).map(n => { const e = library.find(x => x.id === n.id); return `<button class="continue-chip novena-chip" data-go="mine"><span class="daily-kicker">Novena · Day ${novenaDayNumber(n)} of 9</span>${escapeHtml(e.title)}</button>`; }).join('')}
+        ${novenas.slice(0, 2).map(n => { const e = library.find(x => x.id === n.id); return `<button class="continue-chip novena-chip" data-route="mine"><span class="daily-kicker">Novena · Day ${novenaDayNumber(n)} of 9</span>${escapeHtml(e.title)}</button>`; }).join('')}
         ${recent.map(e => `<button class="continue-chip" data-open="${e.id}"><span class="daily-kicker">${escapeHtml(CAT_LABEL[e.category] || e.category)}</span>${escapeHtml(e.title)}</button>`).join('')}
       </div>`;
+  } else {
+    cont.remove();
   }
 
   // Next few observances
@@ -5417,39 +5755,114 @@ function renderHome(){
       <span class="up-text"><span class="up-name">${escapeHtml(u.o.name)}</span><span class="up-type" style="color:${CAL_TYPE_COLOR[u.o.type]}">${escapeHtml(u.o.type)}</span></span>
     </button>`).join('');
   wrap.querySelectorAll('.upcoming-item').forEach(b => b.addEventListener('click', () => {
-    const u = up[Number(b.dataset.i)];
     calView = 'month';
-    goToSection('calendar');
-    selectCalDay(u.day);
+    navigate('calendar');
+    selectCalDay(up[Number(b.dataset.i)].day);
   }));
 
-  wrap.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => goToSection(b.dataset.go)));
+  wrap.querySelectorAll('[data-action="surprise"]').forEach(el => el.addEventListener('click', surpriseMe));
   wrap.querySelectorAll('[data-open]').forEach(el => {
     el.addEventListener('click', () => openReadModal(el.dataset.open));
     el.addEventListener('keydown', ev => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); openReadModal(el.dataset.open); } });
   });
+  wrap.querySelectorAll('.path-card').forEach(c => c.addEventListener('keydown', ev => { if(ev.target === c && (ev.key === 'Enter' || ev.key === ' ')){ ev.preventDefault(); navigate(c.dataset.route); } }));
   wrap.querySelectorAll('.saint-portrait[data-sid]').forEach(observePortrait);
 }
 
 /* =========================================================
    NAVIGATION + SEARCH
    ========================================================= */
-document.getElementById('navList').addEventListener('click', e => {
-  const btn = e.target.closest('.navlink');
-  if(!btn) return;
-  document.querySelectorAll('.navlink').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeCategory = btn.dataset.cat;
+/* ---------- Routes: every page has its own address, e.g. #/learn/theology/apologetics ---------- */
+const ROUTES = {
+  'home':                        { cat:'home' },
+  'today':                       { cat:'daily' },
+  'calendar':                    { cat:'calendar' },
+  'mine':                        { cat:'mine' },
+  'ask':                         { cat:'ask' },
+  'pray':                        { cat:'hub-pray' },
+  'pray/prayers':                { cat:'prayer', parent:'pray' },
+  'pray/rosary':                 { cat:'rosary', parent:'pray' },
+  'pray/stations':               { cat:'stations', parent:'pray' },
+  'pray/chaplet':                { cat:'chaplet', parent:'pray' },
+  'pray/examination':            { cat:'exam', parent:'pray' },
+  'pray/timer':                  { cat:'timer', parent:'pray' },
+  'library':                     { cat:'hub-library' },
+  'library/saints':              { cat:'saint', parent:'library' },
+  'library/books':               { cat:'book', parent:'library' },
+  'library/bible':               { cat:'bible', parent:'library' },
+  'library/all':                 { cat:'all', parent:'library' },
+  'library/shop':                { cat:'shop', parent:'library' },
+  'learn':                       { cat:'hub-learn' },
+  'learn/theology':              { cat:'theology', parent:'learn' },
+  'learn/theology/beliefs':      { cat:'theology', parent:'learn/theology', group:'belief', name:'Core Catholic Beliefs',
+                                   desc:'What the Church teaches, following the order of the Creed, with the Scripture and Catechism passages behind each teaching.' },
+  'learn/theology/apologetics':  { cat:'theology', parent:'learn/theology', group:'defense', name:'Defending the Faith',
+                                   desc:'The reasons behind the faith, and charitable answers to the questions and objections Catholics most often hear.' },
+  'learn/history':               { cat:'history', parent:'learn' },
+  'learn/history/apparitions':   { cat:'history', parent:'learn/history', marian:true, name:'Marian Apparitions',
+                                   desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
+  'learn/plans':                 { cat:'plan', parent:'learn' },
+  'learn/quiz':                  { cat:'quiz', parent:'learn' }
+};
+const CAT_ROUTE = {};
+Object.entries(ROUTES).forEach(([route, r]) => { if(!(r.cat in CAT_ROUTE)) CAT_ROUTE[r.cat] = route; });
+let currentRoute = 'home';
+
+function routeName(route){
+  const r = ROUTES[route];
+  return r.name || (SECTIONS[r.cat] && SECTIONS[r.cat].name) || route;
+}
+
+// Accepts #/pray/rosary, and older links like #saint or #rosary
+function routeFromHash(){
+  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  if(ROUTES[h]) return h;
+  if(CAT_ROUTE[h]) return CAT_ROUTE[h];
+  return 'home';
+}
+
+function applyRoute(route){
+  if(!ROUTES[route]) route = 'home';
+  const r = ROUTES[route];
+  currentRoute = route;
+  activeCategory = r.cat;
   activeEra = 'all';
-  historyMarianOnly = false;
-  theologyGroup = 'all';
   prayerTopic = 'all';
+  theologyGroup = r.group || 'all';
+  historyMarianOnly = !!r.marian;
   searchTerm = '';
-  document.getElementById('searchInput').value = '';
+  searchInput.value = '';
   syncSearchUI();
   setNavOpen(false);
+  const top = route.split('/')[0];
+  document.querySelectorAll('.topnav-link').forEach(b => b.classList.toggle('active', b.dataset.route === top));
+  document.querySelectorAll('.top-action').forEach(b => b.classList.toggle('active', b.dataset.route === top));
+  document.querySelectorAll('.navlink[data-route]').forEach(b => b.classList.toggle('active',
+    b.dataset.route === route || (route.startsWith(b.dataset.route + '/') && !document.querySelector(`.navlink[data-route="${route}"]`))));
+  document.title = route === 'home' ? 'Sanctify — A Catholic Repository' : `${routeName(route)} — Sanctify`;
   window.scrollTo({ top:0 });
   render();
+}
+
+function navigate(route){
+  const target = '#/' + route;
+  // drop any ?q= search from the address once the visitor moves on to a page
+  if(location.hash !== target || location.search) history.pushState(null, '', location.pathname + target);
+  applyRoute(route);
+}
+
+window.addEventListener('popstate', () => { if(!/^#read=/.test(location.hash)) applyRoute(routeFromHash()); });
+window.addEventListener('hashchange', () => {
+  if(/^#read=/.test(location.hash)){ const id = decodeURIComponent(location.hash.slice(6)); if(library.some(e => e.id === id)) openReadModal(id); return; }
+  if(routeFromHash() !== currentRoute) applyRoute(routeFromHash());
+});
+
+// Any element with data-route navigates there
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-route]');
+  if(!el || el.closest('.theme-menu')) return;
+  e.preventDefault();
+  navigate(el.dataset.route);
 });
 
 const searchInput = document.getElementById('searchInput');
@@ -6124,10 +6537,12 @@ function buildFeastFinder(){
 /* =========================================================
    SMALL CONVENIENCES
    ========================================================= */
-document.getElementById('surpriseBtn').addEventListener('click', () => {
+function surpriseMe(){
+  setNavOpen(false);
   const pool = library.filter(e => ['prayer', 'saint', 'book', 'history', 'theology'].includes(e.category));
   openReadModal(pool[Math.floor(Math.random() * pool.length)].id);
-});
+}
+document.getElementById('surpriseBtn').addEventListener('click', surpriseMe);
 
 document.addEventListener('keydown', e => {
   const tag = (document.activeElement && document.activeElement.tagName) || '';
@@ -6509,19 +6924,15 @@ function renderChaplet(){
 /* =========================================================
    INIT
    ========================================================= */
-// Deep links: index.html#saint opens a section, index.html?q=joseph runs a search
-(function applyDeepLink(){
-  const cat = decodeURIComponent(location.hash.slice(1));
-  const btn = cat && document.querySelector(`.navlink[data-cat="${CSS.escape(cat)}"]`);
-  if(btn){
-    document.querySelectorAll('.navlink').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeCategory = cat;
-  }
+// Deep links: #/library/saints opens a page (older #saint links still work); ?q=joseph runs a search
+(function startRoute(){
+  const shared = /^#read=/.test(location.hash);
+  const route = shared ? 'home' : routeFromHash();
+  if(!shared && location.hash && location.hash !== '#/' + route) history.replaceState(null, '', route === 'home' ? location.pathname + location.search : '#/' + route);
+  applyRoute(route);
   const q = new URLSearchParams(location.search).get('q');
-  if(q){ searchTerm = q; document.getElementById('searchInput').value = q; }
+  if(q){ searchTerm = q; searchInput.value = q; syncSearchUI(); render(); }
 })();
-render();
 // Shared links: index.html#read=s1 opens that entry directly
 (function openSharedEntry(){
   const m = /^#read=(.+)$/.exec(location.hash);
