@@ -1,17 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <style>
     .tile{fill:#f6f0dc;stroke:#a6824a}
-    .cross{fill:#7a2426}
+    .chirho{stroke:#7a2426}
     @media (prefers-color-scheme: dark){
       .tile{fill:#211c16;stroke:#c9a568}
-      .cross{fill:#e2989a}
+      .chirho{stroke:#e2989a}
     }
   </style>
   <rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/>
-  <g class="cross">
-    <rect x="29.5" y="8" width="5" height="48" rx="0.6"/>
-    <rect x="24.5" y="14" width="15" height="4.5" rx="0.6"/>
-    <rect x="20.5" y="22.5" width="23" height="4.5" rx="0.6"/>
-    <rect x="16.5" y="31" width="31" height="4.5" rx="0.6"/>
+  <g class="chirho" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(32 33) scale(0.92) translate(-31.75 -33)">
+    <path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/>
   </g>
 </svg>

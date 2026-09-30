@@ -36,6 +36,10 @@
     --radius: 3px;
   }
 
+  :root{
+    --chirho-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E");
+  }
+
   :root[data-theme="dark"]{
     --parchment:#181410;
     --parchment-light:#211c16;
@@ -143,7 +147,54 @@
   :root[data-theme="liturgical"][data-season="green"]{ --wine:#3e6b3a; --wine-dark:#2c4f29; }
   :root[data-theme="liturgical"][data-season="red"]{ --wine:#9b1c1f; --wine-dark:#751417; }
   :root[data-theme="liturgical"][data-season="rose"]{ --wine:#b04a73; --wine-dark:#8a3558; }
-  :root[data-theme="dark"] ::selection, :root[data-theme="candlelight"] ::selection{ color: var(--parchment); }
+  /* Liturgical Season (dark): Vespers base, accent follows the day's liturgical color */
+  :root[data-theme="liturgical-dark"]{
+    --parchment:#15120f; --parchment-light:#1e1a15; --parchment-dark:#2b2519;
+    --ink:#ebe3cf; --ink-soft:#a99c82; --wine:#7fb07a; --wine-dark:#a9d0a4;
+    --gold:#d8b46a; --gold-light:#e7cd92; --green:#7fb07a; --indigo:#8fa3c8; --purple:#b19ad8;
+    --teal:#72b3b5; --rose:#e393b3; --amber:#dba763;
+    --ink-rgb: 235,227,207; --line: rgba(235,227,207,0.14); --shadow: 0 2px 18px rgba(0,0,0,0.55);
+  }
+  :root[data-theme="liturgical-dark"][data-season="violet"]{ --wine:#b99be6; --wine-dark:#d6c4f2; }
+  :root[data-theme="liturgical-dark"][data-season="white"]{ --wine:#e3c46e; --wine-dark:#f1dc9c; }
+  :root[data-theme="liturgical-dark"][data-season="green"]{ --wine:#86bb80; --wine-dark:#b1d8ac; }
+  :root[data-theme="liturgical-dark"][data-season="red"]{ --wine:#e8716f; --wine-dark:#f4a4a2; }
+  :root[data-theme="liturgical-dark"][data-season="rose"]{ --wine:#e991b5; --wine-dark:#f5bdd3; }
+  /* Midnight: deep navy for night prayer */
+  :root[data-theme="midnight"]{
+    --parchment:#0e1420; --parchment-light:#151d2c; --parchment-dark:#1e293c;
+    --ink:#e5eaf4; --ink-soft:#98a6bf; --wine:#93b3ff; --wine-dark:#bcd0ff;
+    --gold:#d9b86a; --gold-light:#e8cf92; --green:#7fbf9a; --indigo:#93b3ff; --purple:#b4a4e8;
+    --teal:#6fc1c6; --rose:#e79ab8; --amber:#e8b36a;
+    --ink-rgb: 229,234,244; --line: rgba(229,234,244,0.13); --shadow: 0 2px 20px rgba(0,0,0,0.6);
+  }
+  /* Stained Glass: jewel tones on dark stone */
+  :root[data-theme="stained-glass"]{
+    --parchment:#13111a; --parchment-light:#1c1925; --parchment-dark:#292435;
+    --ink:#efe9f7; --ink-soft:#aca3be; --wine:#ec5468; --wine-dark:#f5929d;
+    --gold:#f2c14e; --gold-light:#f7d88a; --green:#4fc28b; --indigo:#6b97f2; --purple:#b77cea;
+    --teal:#40c3cb; --rose:#ef74a8; --amber:#f39c4a;
+    --ink-rgb: 239,233,247; --line: rgba(239,233,247,0.14); --shadow: 0 2px 20px rgba(0,0,0,0.6);
+  }
+  /* Ivory & Gold: bright and formal */
+  :root[data-theme="ivory"]{
+    --parchment:#faf7ef; --parchment-light:#fffdf8; --parchment-dark:#efe8d8;
+    --ink:#2b2620; --ink-soft:#6b6153; --wine:#94742a; --wine-dark:#6f5518;
+    --gold:#b8963e; --gold-light:#d7bd78; --green:#4f6b4a; --indigo:#3d4e6e; --purple:#6a557e;
+    --teal:#36686a; --rose:#9a5068; --amber:#a8692a;
+    --ink-rgb: 43,38,32; --line: rgba(43,38,32,0.14); --shadow: 0 2px 14px rgba(43,38,32,0.12);
+  }
+  /* Illuminated Manuscript: vellum, vermilion, and lapis */
+  :root[data-theme="manuscript"]{
+    --parchment:#eee1c4; --parchment-light:#f7eed8; --parchment-dark:#e2d1aa;
+    --ink:#2a1e14; --ink-soft:#6a5641; --wine:#ad2f1d; --wine-dark:#83210e;
+    --gold:#b8862b; --gold-light:#d5ab58; --green:#3d6b3a; --indigo:#23478c; --purple:#5b3a7a;
+    --teal:#2c6a6e; --rose:#9c3f5a; --amber:#b0661e;
+    --ink-rgb: 42,30,20; --line: rgba(42,30,20,0.18); --shadow: 0 2px 14px rgba(42,30,20,0.18);
+  }
+  :root[data-theme="dark"] ::selection, :root[data-theme="candlelight"] ::selection,
+  :root[data-theme="liturgical-dark"] ::selection, :root[data-theme="midnight"] ::selection,
+  :root[data-theme="stained-glass"] ::selection{ color: var(--parchment); }
 
   *{box-sizing:border-box;}
 
@@ -194,7 +245,7 @@
     display:flex; align-items:center; gap:10px; background:none; border:none; cursor:pointer; padding:0;
     color:var(--ink); font-family:'Cormorant Garamond', serif; font-size:1.6rem; font-weight:600; letter-spacing:0.01em;
   }
-  .brand .mark{width:17px; height:27px; color:var(--wine);}
+  .brand .mark{width:28px; height:28px; color:var(--wine);}
   .brand:hover span{color:var(--wine-dark);}
 
   .searchbar{
@@ -462,6 +513,7 @@
   }
   .theme-menu[hidden]{display:none;}
   .theme-menu-label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--ink-soft); padding:6px 8px 8px;}
+  .theme-menu-sep{margin-top:6px; padding-top:12px; border-top:1px solid var(--line);}
   .theme-option{
     display:flex; align-items:center; gap:12px; width:100%; padding:8px; cursor:pointer; text-align:left;
     font-family:'Source Serif 4', serif; color:var(--ink); background:none; border:0; border-radius:var(--radius);
@@ -482,7 +534,7 @@
   .site-footer{border-top:1px solid var(--line); background:var(--parchment-light); color:var(--ink-soft); font-size:0.85rem;}
   .footer-inner{max-width:1240px; margin:0 auto; padding:28px 24px 40px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:18px 40px;}
   .footer-brand{display:flex; gap:14px; align-items:flex-start; max-width:420px;}
-  .footer-brand .mark{flex:0 0 14px; width:14px; height:23px; color:var(--wine); margin-top:3px;}
+  .footer-brand .mark{flex:0 0 24px; width:24px; height:24px; color:var(--wine); margin-top:3px;}
   .footer-brand strong{display:block; font-family:'Cormorant Garamond', serif; font-size:1.25rem; color:var(--ink);}
   .footer-note{max-width:460px; margin:0;}
 
@@ -815,7 +867,7 @@
   .theology-group{margin-bottom:30px;}
   .theology-group-desc{color:var(--ink-soft); font-size:0.95rem; margin:8px 0 4px;}
   .theology-meta{display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:10px; font-size:0.78rem; color:var(--ink-soft);}
-  .theology-meta span::before{content:'\2720'; color:var(--purple); margin-right:5px; font-size:0.7rem;}
+  .theology-meta span::before{content:''; display:inline-block; width:10px; height:10px; margin-right:6px; vertical-align:-1px; background:var(--purple); -webkit-mask:var(--chirho-mask) center / contain no-repeat; mask:var(--chirho-mask) center / contain no-repeat;}
   .theo-points{margin:0; padding-left:20px; line-height:1.65;}
   .theo-points li{margin-bottom:6px;}
   .theo-refs{display:flex; flex-wrap:wrap; gap:6px;}
@@ -866,7 +918,8 @@
   .hero-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
   .hero-actions .btn{border-radius:22px; padding:10px 18px; text-align:center;}
   .hero-rosette{width:100%; height:auto; color:var(--gold);}
-  .hero-cross{fill:var(--wine);}
+  .hero-cross{fill:none; stroke:var(--wine); stroke-width:5; stroke-linecap:round; stroke-linejoin:round;}
+  .pc-rule svg{width:14px; height:14px; display:block; margin:0 auto; color:var(--gold);}
 
   .home-features{display:grid; grid-template-columns:1.35fr 1fr 0.85fr; gap:16px;}
   .feature-card{
@@ -1069,7 +1122,7 @@
   }
   .nav-soon[hidden]{display:none;}
   .ask-orb{
-    flex:0 0 auto; width:54px; height:54px; padding:13px; border-radius:50%; display:block; color:#f6f0dc;
+    flex:0 0 auto; width:54px; height:54px; padding:13px; border-radius:50%; display:block; color:var(--parchment-light);
     background:radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--indigo) 70%, white), var(--indigo) 60%, color-mix(in srgb, var(--indigo) 70%, black));
     box-shadow:0 6px 18px color-mix(in srgb, var(--indigo) 35%, transparent);
   }
@@ -1091,7 +1144,7 @@
   .ask-bubble p{margin:0;}
   .ask-bubble p + p{margin-top:8px;}
   .ask-msg.assistant .ask-bubble{background:var(--parchment-light); border:1px solid var(--line); border-top-left-radius:4px;}
-  .ask-msg.user .ask-bubble{background:var(--indigo); color:#f6f0dc; border-top-right-radius:4px;}
+  .ask-msg.user .ask-bubble{background:var(--indigo); color:var(--parchment-light); border-top-right-radius:4px;}
   .ask-sources{display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:8px; margin-top:12px;}
   .ask-source{
     text-align:left; cursor:pointer; padding:9px 12px; border-radius:10px; border:1px solid var(--line); background:var(--parchment);
@@ -1222,7 +1275,7 @@
   .read-modal.card-mode .read-cat{text-transform:uppercase; letter-spacing:0.22em; font-size:0.68rem; color:var(--gold);}
   .read-modal.card-mode h2{font-size:1.9rem;}
   .read-modal.card-mode .body-text{text-align:center; font-family:'Cormorant Garamond', serif; font-size:1.32rem; line-height:1.6;}
-  .read-modal.card-mode .body-text::before, .read-modal.card-mode .body-text::after{content:'\2720'; display:block; color:var(--accent); font-size:1rem; margin:4px 0 14px;}
+  .read-modal.card-mode .body-text::before, .read-modal.card-mode .body-text::after{content:''; display:block; width:18px; height:18px; margin:4px auto 14px; background:var(--accent); -webkit-mask:var(--chirho-mask) center / contain no-repeat; mask:var(--chirho-mask) center / contain no-repeat;}
   .read-modal.card-mode .body-text::after{margin:6px 0 0;}
   .read-modal.card-mode .body-text p:first-of-type:first-letter{float:none; font-size:inherit; padding:0; line-height:inherit; color:inherit; font-weight:inherit; font-family:inherit;}
   .read-modal.card-mode .link-box, .read-modal.card-mode .tags{justify-content:center; text-align:center;}
@@ -1239,7 +1292,7 @@
 <script>
   try{
     var t = localStorage.getItem('sanctify.theme');
-    if(['light','dark','candlelight','marian','cloister','liturgical','contrast'].indexOf(t) < 0){
+    if(['light','dark','candlelight','marian','cloister','liturgical','contrast','liturgical-dark','midnight','stained-glass','ivory','manuscript'].indexOf(t) < 0){
       t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
     document.documentElement.setAttribute('data-theme', t);
@@ -1257,11 +1310,8 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <button class="brand" id="brandHome" aria-label="Sanctify home">
-    <svg class="mark" viewBox="0 0 30 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="13" y="1" width="4" height="46" fill="currentColor"/>
-      <rect x="8" y="7" width="14" height="4" fill="currentColor"/>
-      <rect x="4.5" y="15" width="21" height="4" fill="currentColor"/>
-      <rect x="1" y="23" width="28" height="4" fill="currentColor"/>
+    <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/>
     </svg>
     <span>Sanctify</span>
   </button>
@@ -1339,7 +1389,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <svg class="mark" viewBox="0 0 30 48" aria-hidden="true"><rect x="13" y="1" width="4" height="46" fill="currentColor"/><rect x="8" y="7" width="14" height="4" fill="currentColor"/><rect x="4.5" y="15" width="21" height="4" fill="currentColor"/><rect x="1" y="23" width="28" height="4" fill="currentColor"/></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></svg>
       <div><strong>Sanctify</strong><span>A living repository of prayers, saints, history, and the written word of the Church.</span></div>
     </div>
     <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Douay-Rheims translation. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
@@ -3668,7 +3718,7 @@ function buildPrayerCards(list){
         <span class="pc-corner tl"></span><span class="pc-corner tr"></span><span class="pc-corner bl"></span><span class="pc-corner br"></span>
         <span class="pc-art">${cardArt(c.art)}</span>
         <span class="pc-title">${escapeHtml(e.title)}</span>
-        <span class="pc-rule">✠</span>
+        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></svg></span>
         <span class="pc-line">${escapeHtml(excerptOf(e.content, 90))}</span>
       </span>`;
     card.addEventListener('click', () => openReadModal(id));
@@ -4395,19 +4445,26 @@ function escapeHtml(str){
 const PALETTE_ICON = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 1 0 0 18c1.3 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.6 1.8-1.6H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="11" r="1.3" fill="currentColor"/><circle cx="10" cy="7" r="1.3" fill="currentColor"/><circle cx="14.5" cy="7" r="1.3" fill="currentColor"/><circle cx="17" cy="10.5" r="1.3" fill="currentColor"/></svg>';
 
 const SEASON_ACCENT = { violet:'#5b3f86', white:'#94701a', green:'#3e6b3a', red:'#9b1c1f', rose:'#b04a73' };
+const SEASON_ACCENT_DARK = { violet:'#b99be6', white:'#e3c46e', green:'#86bb80', red:'#e8716f', rose:'#e991b5' };
+const SEASONAL_THEMES = new Set(['liturgical', 'liturgical-dark']);
 function todaysLiturgicalColor(){
   const name = liturgicalSeason(startOfToday()).colorName;
   return name === 'white and red' ? 'red' : name;
 }
 
 const THEMES = [
-  { key:'light', name:'Parchment', desc:'Warm light pages (default)', swatch:['#f6f0dc','#7a2426'] },
-  { key:'dark', name:'Vespers', desc:'Dark mode for evening prayer', swatch:['#211c16','#c15759'] },
-  { key:'candlelight', name:'Candlelight', desc:'A deep, warm amber glow', swatch:['#24190f','#e0894a'] },
-  { key:'marian', name:'Marian Blue', desc:'Soft blue and white', swatch:['#f7f9fc','#2f5597'] },
-  { key:'cloister', name:'Cloister', desc:'Quiet stone and olive', swatch:['#f1f0eb','#4b5d38'] },
-  { key:'liturgical', name:'Liturgical Season', desc:'Accent follows today’s liturgical color', swatch:['#f6f0dc', SEASON_ACCENT[todaysLiturgicalColor()] || '#3e6b3a'] },
-  { key:'contrast', name:'High Contrast', desc:'Maximum legibility', swatch:['#ffffff','#000000'] }
+  { key:'light', mode:'light', name:'Parchment', desc:'Warm light pages (default)', swatch:['#f6f0dc','#7a2426'] },
+  { key:'liturgical', mode:'light', name:'Liturgical Season', desc:'Accent follows today’s liturgical color', swatch:['#f6f0dc', SEASON_ACCENT[todaysLiturgicalColor()] || '#3e6b3a'] },
+  { key:'manuscript', mode:'light', name:'Illuminated Manuscript', desc:'Vellum, vermilion, and lapis blue', swatch:['#f7eed8','#ad2f1d'] },
+  { key:'ivory', mode:'light', name:'Ivory & Gold', desc:'Bright, formal, and gilded', swatch:['#fffdf8','#b8963e'] },
+  { key:'marian', mode:'light', name:'Marian Blue', desc:'Soft blue and white', swatch:['#f7f9fc','#2f5597'] },
+  { key:'cloister', mode:'light', name:'Cloister', desc:'Quiet stone and olive', swatch:['#f1f0eb','#4b5d38'] },
+  { key:'contrast', mode:'light', name:'High Contrast', desc:'Maximum legibility', swatch:['#ffffff','#000000'] },
+  { key:'dark', mode:'dark', name:'Vespers', desc:'Dark mode for evening prayer', swatch:['#211c16','#c15759'] },
+  { key:'liturgical-dark', mode:'dark', name:'Liturgical Season (Dark)', desc:'Dark, with today’s liturgical color', swatch:['#1e1a15', SEASON_ACCENT_DARK[todaysLiturgicalColor()] || '#86bb80'] },
+  { key:'candlelight', mode:'dark', name:'Candlelight', desc:'A deep, warm amber glow', swatch:['#24190f','#e0894a'] },
+  { key:'midnight', mode:'dark', name:'Midnight', desc:'Deep navy for night prayer', swatch:['#151d2c','#93b3ff'] },
+  { key:'stained-glass', mode:'dark', name:'Stained Glass', desc:'Jewel tones on dark stone', swatch:['#1c1925','#ec5468'] }
 ];
 
 const themeToggleBtn = document.getElementById('themeToggle');
@@ -4420,7 +4477,7 @@ function currentTheme(){
 
 function applyTheme(key, save){
   document.documentElement.setAttribute('data-theme', key);
-  if(key === 'liturgical') document.documentElement.setAttribute('data-season', todaysLiturgicalColor());
+  if(SEASONAL_THEMES.has(key)) document.documentElement.setAttribute('data-season', todaysLiturgicalColor());
   else document.documentElement.removeAttribute('data-season');
   if(save){ try{ localStorage.setItem('sanctify.theme', key); }catch(e){} }
   themeMenu.querySelectorAll('.theme-option').forEach(o => o.setAttribute('aria-checked', o.dataset.theme === key ? 'true' : 'false'));
@@ -4434,12 +4491,14 @@ function setThemeMenuOpen(open){
   if(open){ const cur = themeMenu.querySelector('[aria-checked="true"]') || themeMenu.querySelector('.theme-option'); cur.focus(); }
 }
 
-themeMenu.innerHTML = `<div class="theme-menu-label">Appearance</div>` + THEMES.map(t => `
+const themeOption = t => `
   <button class="theme-option" role="menuitemradio" data-theme="${t.key}" aria-checked="false">
     <span class="theme-swatch" style="--sw-bg:${t.swatch[0]}; --sw-accent:${t.swatch[1]}"></span>
     <span class="theme-option-text"><span class="theme-option-name">${escapeHtml(t.name)}</span><span class="theme-option-desc">${escapeHtml(t.desc)}</span></span>
     <span class="theme-check">✓</span>
-  </button>`).join('');
+  </button>`;
+themeMenu.innerHTML = `<div class="theme-menu-label">Light themes</div>` + THEMES.filter(t => t.mode === 'light').map(themeOption).join('')
+  + `<div class="theme-menu-label theme-menu-sep">Dark themes</div>` + THEMES.filter(t => t.mode === 'dark').map(themeOption).join('');
 
 themeToggleBtn.innerHTML = PALETTE_ICON;
 themeToggleBtn.addEventListener('click', e => { e.stopPropagation(); setThemeMenuOpen(themeMenu.hidden); });
@@ -4918,7 +4977,7 @@ const NAV_ICONS = {
   theology:'<path d="M12 3l9 16H3z"/><circle cx="12" cy="13.5" r="2.6"/>',
   history:'<path d="M12 3l9 4.5H3z"/><path d="M5 10v7.5M9.7 10v7.5M14.3 10v7.5M19 10v7.5M3 21h18M4 18h16"/>',
   book:'<rect x="4" y="4" width="4" height="16" rx=".6"/><rect x="9.5" y="4" width="4" height="16" rx=".6"/><path d="M15.2 5.2l3.7-1 3.7 14.7-3.7 1z"/>',
-  bible:'<path d="M6 3.5h12.5v17H6.5A1.5 1.5 0 0 1 5 19V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16h12"/><path d="M11.75 6.5v6.5M9.25 8.8h5"/>',
+  bible:'<path d="M6 3.5h12.5v17H6.5A1.5 1.5 0 0 1 5 19V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16h12"/><path d="M11.75 5.5v8.5M11.75 5.5h1.2a1.8 1.8 0 0 1 0 3.6h-1.2M9.7 9.6l4.1 3.4M13.8 9.6l-4.1 3.4"/>',
   all:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/>',
   rosary:'<circle cx="12" cy="9" r="6" stroke-dasharray="1.6 2.1"/><path d="M12 15v7M9.5 18h5"/>',
   stations:'<path d="M12 2.5v19M7 7.5h10"/><path d="M8 21.5h8"/>',
@@ -4990,7 +5049,7 @@ function heroRosette(){
     <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.35"/>
     <circle cx="110" cy="110" r="52" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
     <path d="${rays}" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
-    <g class="hero-cross"><rect x="107" y="72" width="6" height="76"/><rect x="99" y="82" width="22" height="6"/><rect x="93" y="94" width="34" height="6"/><rect x="87" y="106" width="46" height="6"/></g>
+    <g class="hero-cross" transform="translate(73.5 72) scale(1.15)"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></g>
   </svg>`;
 }
 

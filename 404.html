@@ -47,6 +47,30 @@
     --gold:#6b4e00; --gold-light:#6b4e00; --ink-rgb:0,0,0;
     --line:rgba(0,0,0,0.5); --shadow:0 0 0 1px #000;
   }
+  :root[data-theme="midnight"]{
+    --parchment:#0e1420; --parchment-light:#151d2c; --parchment-dark:#1e293c;
+    --ink:#e5eaf4; --ink-soft:#98a6bf; --wine:#93b3ff; --wine-dark:#bcd0ff;
+    --gold:#d9b86a; --gold-light:#e8cf92; --ink-rgb:229,234,244;
+    --line:rgba(229,234,244,0.13); --shadow:0 2px 20px rgba(0,0,0,0.6);
+  }
+  :root[data-theme="stained-glass"]{
+    --parchment:#13111a; --parchment-light:#1c1925; --parchment-dark:#292435;
+    --ink:#efe9f7; --ink-soft:#aca3be; --wine:#ec5468; --wine-dark:#f5929d;
+    --gold:#f2c14e; --gold-light:#f7d88a; --ink-rgb:239,233,247;
+    --line:rgba(239,233,247,0.14); --shadow:0 2px 20px rgba(0,0,0,0.6);
+  }
+  :root[data-theme="ivory"]{
+    --parchment:#faf7ef; --parchment-light:#fffdf8; --parchment-dark:#efe8d8;
+    --ink:#2b2620; --ink-soft:#6b6153; --wine:#94742a; --wine-dark:#6f5518;
+    --gold:#b8963e; --gold-light:#d7bd78; --ink-rgb:43,38,32;
+    --line:rgba(43,38,32,0.14); --shadow:0 2px 14px rgba(43,38,32,0.12);
+  }
+  :root[data-theme="manuscript"]{
+    --parchment:#eee1c4; --parchment-light:#f7eed8; --parchment-dark:#e2d1aa;
+    --ink:#2a1e14; --ink-soft:#6a5641; --wine:#ad2f1d; --wine-dark:#83210e;
+    --gold:#b8862b; --gold-light:#d5ab58; --ink-rgb:42,30,20;
+    --line:rgba(42,30,20,0.18); --shadow:0 2px 14px rgba(42,30,20,0.18);
+  }
 
   *{box-sizing:border-box;}
   body{
@@ -67,7 +91,7 @@
     box-shadow:var(--shadow), inset 0 0 0 12px var(--parchment-light), inset 0 0 0 13px var(--wine),
       inset 0 0 0 17px var(--parchment-light), inset 0 0 0 18px var(--gold-light);
   }
-  .mark{width:24px; height:38px; color:var(--wine); display:block; margin:0 auto 10px;}
+  .mark{width:40px; height:40px; color:var(--wine); display:block; margin:0 auto 10px;}
   .brand{font-family:'Cormorant Garamond', serif; font-size:1.1rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--ink-soft); text-decoration:none;}
   .code{font-family:'Cormorant Garamond', serif; font-size:clamp(4.5rem, 16vw, 7rem); font-weight:700; line-height:1; color:var(--wine); margin:18px 0 4px; letter-spacing:0.04em;}
   .sheep{width:132px; height:88px; color:var(--ink-soft); display:block; margin:6px auto 4px;}
@@ -75,7 +99,12 @@
   .lede{color:var(--ink-soft); margin:10px auto 0; max-width:42ch;}
   .verse{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.25rem; margin:22px auto 0; max-width:38ch; color:var(--ink);}
   .verse cite{display:block; font-family:'Source Serif 4', serif; font-style:normal; font-size:0.8rem; color:var(--ink-soft); margin-top:4px;}
-  .rule{color:var(--gold); margin:22px 0 18px; letter-spacing:0.6em;}
+  .rule{display:flex; justify-content:center; gap:18px; margin:22px 0 18px;}
+  .rule span{
+    width:16px; height:16px; background:var(--gold);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
 
   form{display:flex; max-width:400px; margin:0 auto;}
   input{
@@ -101,7 +130,8 @@
 <script>
   try{
     var t = localStorage.getItem('sanctify.theme');
-    if(['dark','candlelight','marian','cloister','contrast'].indexOf(t) < 0){
+    if(t === 'liturgical-dark') t = 'dark';
+    if(['dark','candlelight','marian','cloister','contrast','midnight','stained-glass','ivory','manuscript'].indexOf(t) < 0){
       t = (t === 'light' || t === 'liturgical') ? 'light'
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
@@ -112,11 +142,8 @@
 <body>
   <main class="card">
     <a class="brand" href="/" data-home>
-      <svg class="mark" viewBox="0 0 30 48" aria-hidden="true">
-        <rect x="13" y="1" width="4" height="46" fill="currentColor"/>
-        <rect x="8" y="7" width="14" height="4" fill="currentColor"/>
-        <rect x="4.5" y="15" width="21" height="4" fill="currentColor"/>
-        <rect x="1" y="23" width="28" height="4" fill="currentColor"/>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/>
       </svg>
       Sanctify
     </a>
@@ -137,7 +164,7 @@
 
     <p class="verse">“Rejoice with me, because I have found my sheep that was lost.”<cite>Luke 15:6</cite></p>
 
-    <div class="rule" aria-hidden="true">✠ ✠ ✠</div>
+    <div class="rule" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <form id="searchForm" role="search">
       <label for="q" style="position:absolute; left:-9999px;">Search Sanctify</label>
