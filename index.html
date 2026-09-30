@@ -1058,6 +1058,78 @@
     .shelf{grid-template-columns:repeat(auto-fill, minmax(110px, 1fr));}
   }
 
+  /* ---------- Prayer card gallery ---------- */
+  .prayer-count{margin:4px 0 12px;}
+  .prayer-cards-wrap .prayer-cards{margin-top:0;}
+
+  /* ---------- Ask Sanctify ---------- */
+  nav.sidebar button.navlink .nav-soon{
+    font-size:0.64rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600;
+    color:var(--indigo); background:color-mix(in srgb, var(--indigo) 12%, transparent); padding:2px 7px; border-radius:8px;
+  }
+  .nav-soon[hidden]{display:none;}
+  .ask-orb{
+    flex:0 0 auto; width:54px; height:54px; padding:13px; border-radius:50%; display:block; color:#f6f0dc;
+    background:radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--indigo) 70%, white), var(--indigo) 60%, color-mix(in srgb, var(--indigo) 70%, black));
+    box-shadow:0 6px 18px color-mix(in srgb, var(--indigo) 35%, transparent);
+  }
+  .ask-orb svg{width:100%; height:100%; display:block;}
+  .ask{max-width:780px;}
+  .ask-hero{display:flex; gap:18px; align-items:flex-start; padding:22px; border-radius:16px; border:1px solid var(--line); margin-bottom:22px;
+    background:linear-gradient(135deg, var(--parchment-light), color-mix(in srgb, var(--indigo) 9%, var(--parchment-light)));}
+  .ask-hero h3{font-size:1.5rem; margin-top:6px;}
+  .ask-hero p{margin:6px 0 0; color:var(--ink-soft); font-size:0.95rem;}
+  .ask-status{display:inline-flex; align-items:center; gap:7px; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; color:var(--amber);}
+  .ask-status .dot{width:8px; height:8px; border-radius:50%; background:currentColor;}
+  .ask-status.on{color:var(--green);}
+  .ask-thread{display:flex; flex-direction:column; gap:14px; margin-bottom:16px;}
+  .ask-msg{display:flex; gap:10px; align-items:flex-start;}
+  .ask-msg.user{justify-content:flex-end;}
+  .ask-avatar{flex:0 0 32px; width:32px; height:32px; padding:7px; border-radius:50%; color:var(--indigo); background:color-mix(in srgb, var(--indigo) 13%, transparent);}
+  .ask-avatar svg{width:100%; height:100%; display:block;}
+  .ask-bubble{max-width:82%; padding:12px 16px; border-radius:16px; line-height:1.6; font-size:0.97rem;}
+  .ask-bubble p{margin:0;}
+  .ask-bubble p + p{margin-top:8px;}
+  .ask-msg.assistant .ask-bubble{background:var(--parchment-light); border:1px solid var(--line); border-top-left-radius:4px;}
+  .ask-msg.user .ask-bubble{background:var(--indigo); color:#f6f0dc; border-top-right-radius:4px;}
+  .ask-sources{display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:8px; margin-top:12px;}
+  .ask-source{
+    text-align:left; cursor:pointer; padding:9px 12px; border-radius:10px; border:1px solid var(--line); background:var(--parchment);
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.02rem; color:var(--ink); line-height:1.2;
+  }
+  .ask-source .daily-kicker{display:block; margin-bottom:2px; font-family:'Source Serif 4', serif;}
+  .ask-source:hover{border-color:var(--indigo);}
+  .ask-typing{display:flex; gap:5px; padding:16px 18px;}
+  .ask-typing span{width:7px; height:7px; border-radius:50%; background:var(--ink-soft); animation:askDot 1.2s infinite ease-in-out;}
+  .ask-typing span:nth-child(2){animation-delay:0.15s;} .ask-typing span:nth-child(3){animation-delay:0.3s;}
+  @keyframes askDot{0%, 80%, 100%{opacity:0.25; transform:translateY(0);} 40%{opacity:1; transform:translateY(-3px);}}
+  .ask-suggestions{margin:6px 0 16px;}
+  .ask-form{display:flex; gap:10px; align-items:flex-end; padding:8px; border-radius:18px; border:1px solid var(--line); background:var(--parchment-light); box-shadow:0 2px 10px rgba(var(--ink-rgb),0.06);}
+  .ask-form:focus-within{border-color:var(--indigo);}
+  .ask-form textarea{flex:1; resize:none; border:none; background:transparent; outline:none; padding:9px 10px; font-family:'Source Serif 4', serif; font-size:1rem; color:var(--ink); line-height:1.45; max-height:180px;}
+  .ask-form .btn{border-radius:14px; padding:10px 20px; text-align:center;}
+  .ask-form .btn.primary{background:var(--indigo); border-color:var(--indigo);}
+  .ask-disclaimer{font-size:0.8rem; color:var(--ink-soft); margin:10px 4px 0;}
+  .ask-clear{margin-top:8px;}
+  .read-action.ask-action{color:var(--indigo); border-color:color-mix(in srgb, var(--indigo) 35%, var(--line));}
+
+  .home-ask{
+    display:grid; grid-template-columns:auto minmax(0, 1fr) minmax(0, 1.1fr); gap:18px; align-items:center;
+    padding:20px 22px; border-radius:16px; border:1px solid var(--line);
+    background:linear-gradient(120deg, var(--parchment-light), color-mix(in srgb, var(--indigo) 10%, var(--parchment-light)));
+  }
+  .home-ask h3{font-size:1.4rem;}
+  .home-ask p{margin:4px 0 0; font-size:0.9rem; color:var(--ink-soft);}
+  .home-ask-box{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; text-align:left;
+    padding:13px 16px; border-radius:14px; border:1px solid var(--line); background:var(--parchment);
+    font-family:'Source Serif 4', serif; font-size:0.95rem; color:var(--ink-soft);
+  }
+  .home-ask-box svg{width:20px; height:20px; color:var(--indigo); flex:0 0 auto;}
+  .home-ask-box:hover{border-color:var(--indigo);}
+  @media (max-width:820px){ .home-ask{grid-template-columns:auto minmax(0, 1fr);} .home-ask-box{grid-column:1 / -1;} }
+  @media (max-width:600px){ .ask-bubble{max-width:92%;} .ask-hero{flex-direction:column;} }
+
   /* ---------- Saint portraits ---------- */
   .entry-row.saint-row{display:flex; gap:18px; align-items:flex-start;}
   .entry-row.saint-row .row-main{flex:1; min-width:0;}
@@ -1214,6 +1286,7 @@
           <li><button class="navlink active" data-cat="home">Home</button></li>
           <li><button class="navlink" data-cat="daily">Today</button></li>
           <li><button class="navlink" data-cat="mine">My Sanctify <span class="count" id="count-mine"></span></button></li>
+          <li><button class="navlink" data-cat="ask">Ask Sanctify <span class="count nav-soon" id="askNavBadge">Soon</span></button></li>
         </ul>
       </div>
       <div class="nav-group">
@@ -1306,7 +1379,8 @@ const CAT_DESC = {
   mine: 'Your saved entries, prayer intentions, and novenas. Everything here stays private, stored only in this browser.',
   timer: 'Set aside time for silent prayer, meditation, or a Holy Hour, with a gentle bell to begin and end.',
   quiz: 'Test what you know about the saints, Scripture, Church history, and great Catholic books.',
-  prayer: 'Traditional and devotional prayers of the Church.',
+  prayer: 'Every prayer as an illustrated prayer card. Choose a topic, then open a card to pray it, save it, or print it.',
+  ask: 'An AI guide to the Catholic faith, grounded in the Catechism and the Sanctify library. Coming soon.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
   history: 'Two thousand years of councils, missions, apparitions, and renewals, from Pentecost to the present day.',
   theology: 'What the Church believes and why: the core teachings of the faith, with Scripture, the Catechism, and answers to common objections.',
@@ -2815,6 +2889,8 @@ function updateCounts(){
     const el = document.getElementById('count-' + k);
     if(el) el.textContent = counts[k];
   });
+  const askBadge = document.getElementById('askNavBadge');
+  if(askBadge) askBadge.hidden = aiConnected();
   const mineEl = document.getElementById('count-mine');
   if(mineEl) mineEl.textContent = store.get('saved', []).length || '';
   const calEl = document.getElementById('count-calendar');
@@ -2869,7 +2945,7 @@ function render(){
     const special = {
       home:renderHome, calendar:renderCalendar, rosary:renderRosary, shop:renderShop, stations:renderStations,
       chaplet:renderChaplet, history:renderHistory, daily:renderDaily, theology:renderTheology,
-      mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan
+      mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan, ask:renderAsk
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology']);
     if(special[activeCategory] && !(searching && needsNoSearch.has(activeCategory))){
@@ -3048,11 +3124,6 @@ const PRAYER_TOPICS = [
 ];
 let prayerTopic = 'all';
 function renderPrayers(entries){
-  entryListEl.appendChild(buildPrayerCards());
-  const heading = document.createElement('div');
-  heading.className = 'home-heading';
-  heading.innerHTML = `<h3>Every prayer</h3>`;
-  entryListEl.appendChild(heading);
   const chips = document.createElement('div');
   chips.className = 'patron-filters-row prayer-topics';
   chips.innerHTML = PRAYER_TOPICS.map(([k, label]) => `<button class="patron-chip${prayerTopic === k ? ' active' : ''}" data-topic="${k}">${label}</button>`).join('');
@@ -3065,10 +3136,11 @@ function renderPrayers(entries){
   entryListEl.appendChild(chips);
   const topic = PRAYER_TOPICS.find(t => t[0] === prayerTopic);
   const list = topic && topic[2] ? entries.filter(e => (e.tags || []).some(t => topic[2].includes(t))) : entries;
-  const box = document.createElement('div');
-  box.className = 'compact-rows';
-  renderRows(list, box);
-  entryListEl.appendChild(box);
+  const count = document.createElement('div');
+  count.className = 'view-count prayer-count';
+  count.textContent = `${list.length} prayer ${list.length === 1 ? 'card' : 'cards'}`;
+  entryListEl.appendChild(count);
+  entryListEl.appendChild(buildPrayerCards(list));
 }
 
 /* =========================================================
@@ -3513,7 +3585,12 @@ const CARD_ART = (() => {
     quill: '<path d="M50 7C36 11 24 23 19 43l4-1c3-15 13-27 27-35z"/><path d="M50 7 18 49"/><path d="M11 49h14l-2 9H13z"/><path d="M30 57h22M34 51h18"/>',
     sacredheart: '<path d="M32 55C19 46 12 38 12 30a10 10 0 0 1 20-5 10 10 0 0 1 20 5c0 8-7 16-20 25z"/><path d="M14 36c3-2 5 2 8 0s5 2 8 0 5 2 8 0 5 2 8 0 3 1 4 0"/><path d="M32 23c-3-3-3-7 0-11 3 4 3 8 0 11z"/><path d="M32 3v6M29 5.5h6"/>',
     moon: `<path d="M34 10a22 22 0 1 0 20 30A17 17 0 0 1 34 10z"/>${star(47, 17, 3.2)}${star(55, 27, 2.2)}${star(42, 28, 1.8)}`,
-    lantern: `<circle cx="32" cy="7" r="3"/><path d="M26 16h12l-3-6h-6z"/><path d="M24 16h16v29H24z"/><path d="M22 45h20v5H22z"/><path d="M32 39c-3-3-3-7 0-11 3 4 3 8 0 11z"/>${rays(32, 31, 12, 17, 3, 60, 120)}${rays(32, 31, 12, 17, 3, -120, -60)}`
+    lantern: `<circle cx="32" cy="7" r="3"/><path d="M26 16h12l-3-6h-6z"/><path d="M24 16h16v29H24z"/><path d="M22 45h20v5H22z"/><path d="M32 39c-3-3-3-7 0-11 3 4 3 8 0 11z"/>${rays(32, 31, 12, 17, 3, 60, 120)}${rays(32, 31, 12, 17, 3, -120, -60)}`,
+    anchor: '<circle cx="32" cy="11" r="4.5"/><path d="M32 15.5V56"/><path d="M21 24h22"/><path d="M11 38c1.5 11 10 18 21 18s19.5-7 21-18"/><path d="M11 38l-3.5 5.5M11 38l6 2.5M53 38l3.5 5.5M53 38l-6 2.5"/>',
+    heart: `<path d="M32 55C19 46 12 38 12 29a10 10 0 0 1 20-5 10 10 0 0 1 20 5c0 9-7 17-20 26z"/>${rays(32, 32, 27, 31, 7, -60, 60)}<path d="M26 32c1.5-3 4.5-4 6-4"/>`,
+    shamrock: [0, 120, 240].map(a => `<path d="M32 28C25 23 22.5 13 27.5 10.5 30 9.4 32 11 32 13.5 32 11 34 9.4 36.5 10.5 41.5 13 39 23 32 28Z" transform="rotate(${a} 32 28)"/>`).join('') + '<path d="M32 28c1 10 2 19 7 28"/>',
+    crown: `<path d="M14 46l-4-24 12 10 10-17 10 17 12-10-4 24z"/><path d="M14 52h36"/><circle cx="32" cy="38" r="3"/><circle cx="21" cy="40" r="1.8" fill="currentColor"/><circle cx="43" cy="40" r="1.8" fill="currentColor"/>${star(32, 8, 3.2)}`,
+    flame: '<path d="M32 58c-10 0-16-7-16-16 0-9 8-14 10-24 4 5 4 10 2 14 4-3 7-7 7-13 7 6 13 14 13 23 0 9-6 16-16 16z"/><path d="M32 58c-4 0-7-3-7-7 0-4 4-7 7-12 3 5 7 8 7 12 0 4-3 7-7 7z"/>'
   };
 })();
 
@@ -3540,21 +3617,49 @@ const PRAYER_CARDS = {
   p41:{ art:'quill', accent:'var(--amber)' },
   p43:{ art:'sacredheart', accent:'var(--wine)' },
   p44:{ art:'moon', accent:'var(--indigo)' },
-  p45:{ art:'lantern', accent:'var(--teal)' }
+  p45:{ art:'lantern', accent:'var(--teal)' },
+  p10:{ art:'keys', accent:'var(--indigo)' },
+  p13:{ art:'sunrise', accent:'var(--rose)' },
+  p12:{ art:'chirho', accent:'var(--indigo)' },
+  p18:{ art:'wheat', accent:'var(--green)' },
+  p20:{ art:'candle', accent:'var(--wine)' },
+  p21:{ art:'cross', accent:'var(--indigo)' },
+  p22:{ art:'anchor', accent:'var(--teal)' },
+  p23:{ art:'heart', accent:'var(--wine)' },
+  p25:{ art:'flame', accent:'var(--amber)' },
+  p28:{ art:'stars', accent:'var(--teal)' },
+  p29:{ art:'lantern', accent:'var(--gold)' },
+  p30:{ art:'crown', accent:'var(--gold)' },
+  p31:{ art:'lily', accent:'var(--teal)' },
+  p32:{ art:'monstrance', accent:'var(--wine)' },
+  p34:{ art:'chalice', accent:'var(--wine)' },
+  p35:{ art:'cross', accent:'var(--purple)' },
+  p36:{ art:'chirho', accent:'var(--amber)' },
+  p37:{ art:'dove', accent:'var(--amber)' },
+  p38:{ art:'quill', accent:'var(--indigo)' },
+  p39:{ art:'olive', accent:'var(--purple)' },
+  p40:{ art:'anchor', accent:'var(--purple)' },
+  p42:{ art:'shamrock', accent:'var(--green)' },
+  p46:{ art:'crown', accent:'var(--wine)' },
+  p47:{ art:'rays', accent:'var(--indigo)' },
+  p48:{ art:'lily', accent:'var(--rose)' },
+  p49:{ art:'wheat', accent:'var(--teal)' },
+  p50:{ art:'heart', accent:'var(--teal)' }
 };
 
 function cardArt(key){
   return `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CARD_ART[key] || ''}</svg>`;
 }
 
-function buildPrayerCards(){
+function buildPrayerCards(list){
   const wrap = document.createElement('div');
   wrap.className = 'prayer-cards-wrap';
-  wrap.innerHTML = `<div class="patron-filters-label">Prayer cards — the essential prayers of the faith</div><div class="prayer-cards"></div>`;
+  wrap.innerHTML = `<div class="prayer-cards"></div>`;
   const grid = wrap.querySelector('.prayer-cards');
-  Object.entries(PRAYER_CARDS).forEach(([id, c]) => {
-    const e = library.find(x => x.id === id);
-    if(!e) return;
+  const prayers = list || library.filter(e => e.category === 'prayer');
+  prayers.forEach(e => {
+    const id = e.id;
+    const c = PRAYER_CARDS[id] || { art:'cross', accent:'var(--wine)' };
     const card = document.createElement('button');
     card.className = 'prayer-card';
     card.style.setProperty('--accent', c.accent);
@@ -4632,6 +4737,176 @@ function applyPrayerLang(e){
 }
 
 /* =========================================================
+   ASK SANCTIFY (AI guide, ready to be connected)
+   ---------------------------------------------------------
+   HOW TO CONNECT THE AI LATER
+   This page is public, so an AI API key must never be placed in it.
+   Instead, create a small server-side function that holds the key and
+   calls the model, for example a Cloudflare Pages Function at
+   functions/api/ask.js (served at /api/ask). Then set:
+
+       SanctifyAI.endpoint = '/api/ask';
+
+   The page will POST JSON to that endpoint:
+       { question: "...",
+         history:  [{ role:"user"|"assistant", text:"..." }, ...],
+         sources:  [{ id, title, category, text }, ...] }   // the most relevant Sanctify entries
+   and expects JSON back:
+       { answer: "...", sources: ["s1", "t9", ...] }        // sources is optional
+
+   (Alternatively, assign SanctifyAI.ask = async payload => ({ answer, sources }).)
+   Until one of these is set, questions are answered by searching the library.
+   ========================================================= */
+const SanctifyAI = { endpoint:null, ask:null };
+window.SanctifyAI = SanctifyAI;
+
+function aiConnected(){ return typeof SanctifyAI.ask === 'function' || !!SanctifyAI.endpoint; }
+
+async function callSanctifyAI(payload){
+  if(typeof SanctifyAI.ask === 'function') return SanctifyAI.ask(payload);
+  const r = await fetch(SanctifyAI.endpoint, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
+  if(!r.ok) throw new Error('The AI service returned ' + r.status);
+  return r.json();
+}
+
+const ASK_STOPWORDS = new Set('a an and are as at be but by can could did do does for from had has have how i if in into is it its me my of on or our should so than that the their them then there these they this to us was we what when where which who why will with would you your about tell explain please catholic catholics church'.split(' '));
+
+const ASK_GENERIC = new Set(['saint', 'saints', 'pray', 'praying', 'prayer', 'prayers', 'god', 'jesus', 'christ', 'faith', 'holy']);
+
+// Simple keyword relevance over the library; also used as context for the AI once connected
+function findRelevant(question, limit){
+  const words = question.toLowerCase().replace(/[^a-z0-9À-ɏ\s'-]/g, ' ').split(/\s+/)
+    .map(w => w.replace(/'s$/, '')).filter(w => w.length > 2 && !ASK_STOPWORDS.has(w));
+  if(!words.length) return [];
+  const scored = library.filter(e => e.category !== 'bible' || words.some(w => e.title.toLowerCase().includes(w))).map(e => {
+    const title = e.title.toLowerCase(), tags = (e.tags || []).join(' ').toLowerCase();
+    const body = [(e.content || ''), (e.author || ''), (e.points || []).join(' '), (e.objections || []).map(o => o.q + ' ' + o.a).join(' ')].join(' ').toLowerCase();
+    let score = 0;
+    words.forEach(w => {
+      const weight = ASK_GENERIC.has(w) ? 0.25 : 1;   // common words like "saint" or "pray" count for less
+      if(title.includes(w)) score += 6 * weight;
+      if(tags.includes(w)) score += 3 * weight;
+      const hits = body.split(w).length - 1;
+      score += Math.min(hits, 4) * weight;
+    });
+    return { e, score };
+  }).filter(x => x.score > 0);
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit).map(x => x.e);
+}
+
+const ASK_SUGGESTIONS = [
+  'Why do Catholics pray to saints?',
+  'Which saint should I pray to for a sick friend?',
+  'What is the Real Presence?',
+  'How do I go to Confession?',
+  'What happened at the Council of Nicaea?',
+  'Is there a prayer for peace?'
+];
+
+let askMessages = [];
+let askBusy = false;
+let askDraft = '';
+
+function renderAskMessage(m){
+  const div = document.createElement('div');
+  div.className = 'ask-msg ' + m.role;
+  const paras = (m.text || '').split(/\n\s*\n/).filter(Boolean).map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+  const sources = (m.sources || []).map(id => library.find(x => x.id === id)).filter(Boolean);
+  div.innerHTML = `
+    ${m.role === 'assistant' ? `<span class="ask-avatar">${navIcon('ask')}</span>` : ''}
+    <div class="ask-bubble">
+      ${paras}
+      ${sources.length ? `<div class="ask-sources">${sources.map(s => `<button class="ask-source" data-id="${s.id}"><span class="daily-kicker">${escapeHtml(CAT_LABEL[s.category] || s.category)}</span>${escapeHtml(s.title)}</button>`).join('')}</div>` : ''}
+    </div>`;
+  div.querySelectorAll('.ask-source').forEach(b => b.addEventListener('click', () => openReadModal(b.dataset.id)));
+  return div;
+}
+
+async function submitAsk(question){
+  question = question.trim();
+  if(!question || askBusy) return;
+  askMessages.push({ role:'user', text:question });
+  askDraft = '';
+  const found = findRelevant(question, 6);
+  if(aiConnected()){
+    askBusy = true;
+    renderAsk();
+    try{
+      const res = await callSanctifyAI({
+        question,
+        history:askMessages.slice(-10, -1).map(m => ({ role:m.role, text:m.text })),
+        sources:found.map(e => ({ id:e.id, title:e.title, category:e.category, text:[e.content, e.intercession || ''].join('\n').slice(0, 1500) }))
+      });
+      askMessages.push({ role:'assistant', text:(res && res.answer) || 'Sorry, I could not find an answer to that.', sources:(res && res.sources) || found.slice(0, 4).map(e => e.id) });
+    }catch(err){
+      askMessages.push({ role:'assistant', text:'Sorry, the AI guide could not be reached just now. Here is what I found in the Sanctify library instead.', sources:found.map(e => e.id) });
+    }
+    askBusy = false;
+  } else {
+    askMessages.push(found.length
+      ? { role:'assistant', text:'The AI guide isn’t connected yet. It’s coming soon! In the meantime, here’s what I found in the Sanctify library that may help:', sources:found.map(e => e.id) }
+      : { role:'assistant', text:'The AI guide isn’t connected yet, and I couldn’t find anything in the library for that question. Try different words, or browse Theology for the core teachings of the faith.' });
+  }
+  renderAsk();
+}
+
+function askAbout(e){
+  readOverlay.classList.remove('open');
+  askDraft = `Tell me more about ${e.title}.`;
+  goToSection('ask');
+  const box = document.getElementById('askInput');
+  if(box){ box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
+}
+
+function renderAsk(){
+  entryListEl.innerHTML = '';
+  const connected = aiConnected();
+  const wrap = document.createElement('div');
+  wrap.className = 'ask';
+  wrap.innerHTML = `
+    <section class="ask-hero">
+      <span class="ask-orb">${navIcon('ask')}</span>
+      <div>
+        <span class="ask-status${connected ? ' on' : ''}"><span class="dot"></span>${connected ? 'Connected' : 'Coming soon'}</span>
+        <h3>An AI guide to the Catholic faith</h3>
+        <p>Ask questions in your own words: about a teaching, a saint, a prayer for a particular need, or how to explain the faith to a friend. Answers will draw on the Catechism and the Sanctify library, with sources you can open and check.</p>
+      </div>
+    </section>
+    <div class="ask-thread" id="askThread" aria-live="polite"></div>
+    ${askMessages.length ? '' : `<div class="ask-suggestions"><div class="patron-filters-label">Try asking:</div><div class="patron-filters-row">${ASK_SUGGESTIONS.map(s => `<button class="patron-chip" data-q="${escapeHtml(s)}">${escapeHtml(s)}</button>`).join('')}</div></div>`}
+    <form class="ask-form" id="askForm">
+      <textarea id="askInput" rows="1" maxlength="600" placeholder="Ask a question about the faith…" aria-label="Your question"></textarea>
+      <button class="btn primary" type="submit" ${askBusy ? 'disabled' : ''}>${askBusy ? 'Thinking…' : 'Ask'}</button>
+    </form>
+    <p class="ask-disclaimer">${connected ? 'AI answers can contain mistakes. Check the sources, and for questions of conscience or doctrine, consult the Catechism and a priest.' : 'Until the AI is connected, questions are answered by searching the Sanctify library. Nothing you type is sent anywhere.'}</p>
+    ${askMessages.length ? '<button class="text-link ask-clear" id="askClear">Clear conversation</button>' : ''}`;
+  entryListEl.appendChild(wrap);
+
+  const thread = wrap.querySelector('#askThread');
+  const greeting = { role:'assistant', text:connected
+    ? 'Peace be with you! What would you like to know about the faith?'
+    : 'Peace be with you! I’m Sanctify’s AI guide, and I’m not quite ready yet. You can still ask a question below, and I’ll point you to the most relevant prayers, saints, and teachings in the library.' };
+  [greeting, ...askMessages].forEach(m => thread.appendChild(renderAskMessage(m)));
+  if(askBusy) thread.insertAdjacentHTML('beforeend', `<div class="ask-msg assistant"><span class="ask-avatar">${navIcon('ask')}</span><div class="ask-bubble ask-typing"><span></span><span></span><span></span></div></div>`);
+
+  const input = wrap.querySelector('#askInput');
+  input.value = askDraft;
+  const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 180) + 'px'; };
+  input.addEventListener('input', () => { askDraft = input.value; grow(); });
+  input.addEventListener('keydown', ev => { if(ev.key === 'Enter' && !ev.shiftKey){ ev.preventDefault(); submitAsk(input.value); } });
+  grow();
+  wrap.querySelector('#askForm').addEventListener('submit', ev => { ev.preventDefault(); submitAsk(input.value); });
+  wrap.querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', () => submitAsk(b.dataset.q)));
+  const clear = wrap.querySelector('#askClear');
+  if(clear) clear.addEventListener('click', () => { askMessages = []; renderAsk(); });
+  if(askMessages.length){
+    const last = thread.lastElementChild;
+    if(last) last.scrollIntoView({ block:'nearest' });
+  }
+}
+
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -4654,7 +4929,8 @@ const NAV_ICONS = {
   plan:'<path d="M2.5 5.5h7a2.5 2.5 0 0 1 2.5 2.5v12a2 2 0 0 0-2-2H2.5z"/><path d="M21.5 5.5h-7A2.5 2.5 0 0 0 12 8v12a2 2 0 0 1 2-2h7.5z"/><path d="M15 11l1.6 1.6L19.5 9.8"/>',
   quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".7" fill="currentColor"/>',
   shop:'<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
-  search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>'
+  search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  ask:'<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4.5V16h.5"/><path d="M12 6.8l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z"/>'
 };
 function navIcon(key){
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${NAV_ICONS[key] || ''}</svg>`;
@@ -4664,6 +4940,7 @@ const SECTIONS = {
   home:{ name:'Home', icon:'home', color:'var(--wine)' },
   daily:{ name:'Today', group:'Today', icon:'daily', color:'var(--gold)' },
   mine:{ name:'My Sanctify', group:'Personal', icon:'mine', color:'var(--rose)' },
+  ask:{ name:'Ask Sanctify', group:'AI Guide', icon:'ask', color:'var(--indigo)' },
   prayer:{ name:'Prayers', group:'Library', icon:'prayer', color:'var(--wine)' },
   saint:{ name:'Saints', group:'Library', icon:'saint', color:'var(--gold)' },
   theology:{ name:'Theology', group:'Library', icon:'theology', color:'var(--purple)' },
@@ -4780,6 +5057,16 @@ function renderHome(){
         <div class="daily-kicker">Prayer of the Day</div>
         <h3>${escapeHtml(prayer.title)}</h3>
       </article>
+    </section>
+
+    <section class="home-ask">
+      <span class="ask-orb">${navIcon('ask')}</span>
+      <div class="home-ask-text">
+        <div class="daily-kicker">${aiConnected() ? 'Ask Sanctify' : 'Ask Sanctify · Coming soon'}</div>
+        <h3>An AI guide to the faith</h3>
+        <p>Ask about a teaching, a saint, or a prayer for your needs, with answers grounded in the Catechism and this library.</p>
+      </div>
+      <button class="home-ask-box" data-go="ask"><span>Ask a question about the faith…</span>${navIcon('ask')}</button>
     </section>
 
     <section class="home-continue" id="homeContinue"></section>
@@ -5049,6 +5336,7 @@ function renderReadActions(e){
     <button class="read-action${saved ? ' on' : ''}" data-act="save" aria-pressed="${saved}">${saved ? '★ Saved' : '☆ Save'}</button>
     <button class="read-action" data-act="copy">Copy text</button>
     <button class="read-action" data-act="share">Share</button>
+    <button class="read-action ask-action" data-act="ask">✦ Ask about this</button>
     ${canNovena ? `<button class="read-action" data-act="novena"${activeNovena ? ' disabled' : ''}>${activeNovena ? 'Novena in progress' : 'Start a novena'}</button>` : ''}
     ${PRAYER_ES[e.id] ? `<span class="lang-toggle" role="group" aria-label="Language"><button class="lang-btn" data-lang="en" aria-pressed="true">English</button><button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">Español</button></span>` : ''}`;
   bar.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
@@ -5061,6 +5349,7 @@ function renderReadActions(e){
     renderReadActions(e);
     if(activeCategory === 'mine') renderMine();
   });
+  bar.querySelector('[data-act="ask"]').addEventListener('click', () => askAbout(e));
   bar.querySelector('[data-act="copy"]').addEventListener('click', async () => {
     toast(await copyText(entryPlainText(e)) ? 'Text copied' : 'Could not copy');
   });
