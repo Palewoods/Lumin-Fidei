@@ -130,7 +130,9 @@
 <script>
   try{
     var t = localStorage.getItem('sanctify.theme');
-    if(t === 'liturgical-dark') t = 'dark';
+    // Themes without their own colors here fall back to Vespers (dark) or Parchment (light)
+    if(['liturgical-dark','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian'].indexOf(t) >= 0) t = 'dark';
+    if(['lily','rose-window','fresco'].indexOf(t) >= 0) t = 'light';
     if(['dark','candlelight','marian','cloister','contrast','midnight','stained-glass','ivory','manuscript'].indexOf(t) < 0){
       t = (t === 'light' || t === 'liturgical') ? 'light'
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
