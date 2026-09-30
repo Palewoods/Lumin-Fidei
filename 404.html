@@ -102,8 +102,8 @@
   .rule{display:flex; justify-content:center; gap:18px; margin:22px 0 18px;}
   .rule span{
     width:16px; height:16px; background:var(--gold);
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E") center / contain no-repeat;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
   }
 
   form{display:flex; max-width:400px; margin:0 auto;}
@@ -142,9 +142,7 @@
 <body>
   <main class="card">
     <a class="brand" href="/" data-home>
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/>
-      </svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
       Sanctify
     </a>
 

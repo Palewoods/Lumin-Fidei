@@ -37,7 +37,7 @@
   }
 
   :root{
-    --chirho-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='black' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52'/%3E%3C/svg%3E");
+    --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E");
   }
 
   :root[data-theme="dark"]{
@@ -867,7 +867,7 @@
   .theology-group{margin-bottom:30px;}
   .theology-group-desc{color:var(--ink-soft); font-size:0.95rem; margin:8px 0 4px;}
   .theology-meta{display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:10px; font-size:0.78rem; color:var(--ink-soft);}
-  .theology-meta span::before{content:''; display:inline-block; width:10px; height:10px; margin-right:6px; vertical-align:-1px; background:var(--purple); -webkit-mask:var(--chirho-mask) center / contain no-repeat; mask:var(--chirho-mask) center / contain no-repeat;}
+  .theology-meta span::before{content:''; display:inline-block; width:10px; height:10px; margin-right:6px; vertical-align:-1px; background:var(--purple); -webkit-mask:var(--cross-mask) center / contain no-repeat; mask:var(--cross-mask) center / contain no-repeat;}
   .theo-points{margin:0; padding-left:20px; line-height:1.65;}
   .theo-points li{margin-bottom:6px;}
   .theo-refs{display:flex; flex-wrap:wrap; gap:6px;}
@@ -918,7 +918,7 @@
   .hero-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
   .hero-actions .btn{border-radius:22px; padding:10px 18px; text-align:center;}
   .hero-rosette{width:100%; height:auto; color:var(--gold);}
-  .hero-cross{fill:none; stroke:var(--wine); stroke-width:5; stroke-linecap:round; stroke-linejoin:round;}
+  .hero-cross{fill:var(--wine);}
   .pc-rule svg{width:14px; height:14px; display:block; margin:0 auto; color:var(--gold);}
 
   .home-features{display:grid; grid-template-columns:1.35fr 1fr 0.85fr; gap:16px;}
@@ -1275,8 +1275,8 @@
   .read-modal.card-mode .read-cat{text-transform:uppercase; letter-spacing:0.22em; font-size:0.68rem; color:var(--gold);}
   .read-modal.card-mode h2{font-size:1.9rem;}
   .read-modal.card-mode .body-text{text-align:center; font-family:'Cormorant Garamond', serif; font-size:1.32rem; line-height:1.6;}
-  .read-modal.card-mode .body-text::before, .read-modal.card-mode .body-text::after{content:''; display:block; width:18px; height:18px; margin:4px auto 14px; background:var(--accent); -webkit-mask:var(--chirho-mask) center / contain no-repeat; mask:var(--chirho-mask) center / contain no-repeat;}
-  .read-modal.card-mode .body-text::after{margin:6px 0 0;}
+  .read-modal.card-mode .body-text::before, .read-modal.card-mode .body-text::after{content:''; display:block; width:24px; height:24px; margin:4px auto 14px; background:var(--accent); -webkit-mask:var(--cross-mask) center / contain no-repeat; mask:var(--cross-mask) center / contain no-repeat;}
+  .read-modal.card-mode .body-text::after{margin:8px auto 0;}
   .read-modal.card-mode .body-text p:first-of-type:first-letter{float:none; font-size:inherit; padding:0; line-height:inherit; color:inherit; font-weight:inherit; font-family:inherit;}
   .read-modal.card-mode .link-box, .read-modal.card-mode .tags{justify-content:center; text-align:center;}
   @media (max-width:600px){ .read-modal.card-mode{padding:36px 26px 26px;} .read-modal.card-mode .modal-close{top:22px; right:24px;} }
@@ -1310,9 +1310,7 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <button class="brand" id="brandHome" aria-label="Sanctify home">
-    <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/>
-    </svg>
+    <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
     <span>Sanctify</span>
   </button>
   <div class="searchbar" role="search">
@@ -1389,7 +1387,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
       <div><strong>Sanctify</strong><span>A living repository of prayers, saints, history, and the written word of the Church.</span></div>
     </div>
     <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Douay-Rheims translation. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
@@ -3718,7 +3716,7 @@ function buildPrayerCards(list){
         <span class="pc-corner tl"></span><span class="pc-corner tr"></span><span class="pc-corner bl"></span><span class="pc-corner br"></span>
         <span class="pc-art">${cardArt(c.art)}</span>
         <span class="pc-title">${escapeHtml(e.title)}</span>
-        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></svg></span>
+        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg></span>
         <span class="pc-line">${escapeHtml(excerptOf(e.content, 90))}</span>
       </span>`;
     card.addEventListener('click', () => openReadModal(id));
@@ -4977,7 +4975,7 @@ const NAV_ICONS = {
   theology:'<path d="M12 3l9 16H3z"/><circle cx="12" cy="13.5" r="2.6"/>',
   history:'<path d="M12 3l9 4.5H3z"/><path d="M5 10v7.5M9.7 10v7.5M14.3 10v7.5M19 10v7.5M3 21h18M4 18h16"/>',
   book:'<rect x="4" y="4" width="4" height="16" rx=".6"/><rect x="9.5" y="4" width="4" height="16" rx=".6"/><path d="M15.2 5.2l3.7-1 3.7 14.7-3.7 1z"/>',
-  bible:'<path d="M6 3.5h12.5v17H6.5A1.5 1.5 0 0 1 5 19V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16h12"/><path d="M11.75 5.5v8.5M11.75 5.5h1.2a1.8 1.8 0 0 1 0 3.6h-1.2M9.7 9.6l4.1 3.4M13.8 9.6l-4.1 3.4"/>',
+  bible:'<path d="M6 3.5h12.5v17H6.5A1.5 1.5 0 0 1 5 19V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16h12"/><path d="M11.75 6v7.5M9.25 8.6h5"/>',
   all:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/>',
   rosary:'<circle cx="12" cy="9" r="6" stroke-dasharray="1.6 2.1"/><path d="M12 15v7M9.5 18h5"/>',
   stations:'<path d="M12 2.5v19M7 7.5h10"/><path d="M8 21.5h8"/>',
@@ -5049,7 +5047,7 @@ function heroRosette(){
     <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.35"/>
     <circle cx="110" cy="110" r="52" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
     <path d="${rays}" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
-    <g class="hero-cross" transform="translate(73.5 72) scale(1.15)"><path d="M30 8v50M30 8h7a10.5 10.5 0 0 1 0 21h-7M16 26l28 26M44 26L16 52"/></g>
+    <g class="hero-cross" transform="translate(68.4 68.4) scale(1.3)"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></g>
   </svg>`;
 }
 
