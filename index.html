@@ -257,6 +257,7 @@
   nav.sidebar button.navlink[data-cat="shop"]{--cat-color:var(--amber);}
   nav.sidebar button.navlink[data-cat="all"]{--cat-color:var(--ink);}
   nav.sidebar button.navlink[data-cat="daily"]{--cat-color:var(--gold);}
+  nav.sidebar button.navlink[data-cat="theology"]{--cat-color:var(--purple);}
 
   .side-actions{border-top:1px solid var(--line); padding-top:18px; display:flex; flex-direction:column; gap:8px;}
   .btn{
@@ -644,6 +645,24 @@
   .daily-history{border-top:3px solid var(--green);}
   .daily-history .saint-portrait{flex:0 0 96px; width:96px; height:72px;}
   .daily-bible{border-top:3px solid var(--teal);}
+  .daily-theology{grid-column:1 / -1; border-top:3px solid var(--purple);}
+
+  /* ---------- Theology ---------- */
+  .theology-group{margin-bottom:30px;}
+  .theology-group-desc{color:var(--ink-soft); font-size:0.95rem; margin:8px 0 4px;}
+  .theology-meta{display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:10px; font-size:0.78rem; color:var(--ink-soft);}
+  .theology-meta span::before{content:'\2720'; color:var(--purple); margin-right:5px; font-size:0.7rem;}
+  .theo-points{margin:0; padding-left:20px; line-height:1.65;}
+  .theo-points li{margin-bottom:6px;}
+  .theo-refs{display:flex; flex-wrap:wrap; gap:6px;}
+  .theo-ref{font-size:0.85rem; padding:3px 10px; border:1px solid var(--line); border-radius:12px; background:var(--parchment);}
+  .theo-ccc{font-style:normal !important;}
+  .theo-objection{border:1px solid var(--line); background:var(--parchment); margin-bottom:8px; border-radius:var(--radius);}
+  .theo-objection summary{cursor:pointer; padding:10px 14px; font-weight:600; font-size:0.97rem; list-style:none; position:relative; padding-right:34px;}
+  .theo-objection summary::-webkit-details-marker{display:none;}
+  .theo-objection summary::after{content:'+'; position:absolute; right:14px; top:8px; font-size:1.2rem; color:var(--wine);}
+  .theo-objection[open] summary::after{content:'\2212';}
+  .theo-objection p{font-style:normal !important; padding:0 14px 12px; margin:0; line-height:1.65;}
   @media (max-width:700px){
     .daily-grid{grid-template-columns:1fr;}
     .daily-saint{flex-direction:column; align-items:center; text-align:center;}
@@ -796,6 +815,7 @@
       <li><button class="navlink" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
       <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
       <li><button class="navlink" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
+      <li><button class="navlink" data-cat="theology">Theology <span class="count" id="count-theology"></span></button></li>
       <li><button class="navlink" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
       <li><button class="navlink" data-cat="bible">Bible <span class="count" id="count-bible"></span></button></li>
       <li><button class="navlink" data-cat="calendar">Calendar <span class="count" id="count-calendar"></span></button></li>
@@ -842,13 +862,14 @@
 /* =========================================================
    DATA
    ========================================================= */
-const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book', bible:'Bible' };
+const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book', bible:'Bible', theology:'Theology' };
 const CAT_DESC = {
   all: 'Everything currently held in the repository.',
   daily: 'A saint, a prayer, a verse, and more for each day, chosen fresh every morning.',
   prayer: 'Traditional and devotional prayers of the Church.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
-  history: 'Two thousand years of councils, missions, schisms, and renewals, from Pentecost to the present day.',
+  history: 'Two thousand years of councils, missions, apparitions, and renewals, from Pentecost to the present day.',
+  theology: 'What the Church believes and why: the core teachings of the faith, with Scripture, the Catechism, and answers to common objections.',
   book: 'Spiritual classics and reference works, with summaries and links.',
   bible: 'All 73 books of the Catholic canon, with study notes and links to read the full text.',
   calendar: 'Solemnities, feast days, novenas, and seasons of the liturgical year.',
@@ -1520,7 +1541,7 @@ const SEED_DATA = [
     content:'Pope Pius IX convened the twentieth ecumenical council in 1869. Its constitution Dei Filius taught the harmony of faith and reason, and Pastor Aeternus defined papal primacy and the infallibility of the pope when he speaks ex cathedra on faith and morals.\n\nThe council was suspended when Italian troops captured Rome in 1870, ending the Papal States.' },
   { id:'h42', category:'history', title:'Rerum Novarum and Catholic Social Teaching', author:'1891', year:1891, era:'modern', tags:['social teaching','workers','justice'],
     content:'Responding to the hardships of the Industrial Revolution, Pope Leo XIII issued Rerum Novarum, "On the Condition of Labor." It defended private property and rejected socialism, but also insisted on just wages, workers’ right to organize, and the duty of the state to protect the poor.\n\nIt began the modern tradition of Catholic social teaching, developed by later popes in encyclicals such as Quadragesimo Anno, Centesimus Annus, and Laudato Si’.' },
-  { id:'h43', category:'history', title:'The Apparitions at Fatima', author:'1917', year:1917, era:'modern', tags:['marian','fatima','rosary'],
+  { id:'h43', category:'history', title:'The Apparitions at Fatima', author:'1917', year:1917, era:'modern', tags:['marian','fatima','rosary','apparition'],
     content:'From May to October 1917, the Virgin Mary appeared six times to three shepherd children, Lúcia dos Santos and her cousins Francisco and Jacinta Marto, at Fatima, Portugal. She asked for daily recitation of the Rosary, penance, and the consecration of Russia to her Immaculate Heart.\n\nOn October 13, tens of thousands of people reported the "Miracle of the Sun." The Church approved the apparitions in 1930.' },
   { id:'h44', category:'history', title:'The Lateran Treaty', author:'1929', year:1929, era:'modern', tags:['papacy','vatican','italy'],
     content:'Since 1870 the popes had considered themselves prisoners in the Vatican. In 1929 the Holy See and Italy signed the Lateran Treaty, recognizing Vatican City as an independent sovereign state.\n\nThe tiny state, about 110 acres, guarantees the pope’s independence from any national government.' },
@@ -1779,6 +1800,222 @@ const SEED_DATA = [
     content:'A collection of Mother Teresa’s private letters, published after her death. It revealed that for nearly fifty years she experienced a painful sense of God’s absence, even while serving the poorest of the poor with joy.\n\nIt offers a profound witness to faith persevering through spiritual darkness.' },
   { id:'b93', category:'book', title:'Dilexit Nos', author:'Pope Francis, 2024', tags:['encyclical','sacred heart','love'],
     content:'Pope Francis’s fourth and final encyclical, on the human and divine love of the Heart of Jesus Christ. It was published during the 350th anniversary of the Sacred Heart apparitions to St. Margaret Mary Alacoque.\n\nIt calls a world grown cold and fragmented to rediscover the heart as the center of the person, and Christ’s love as the source of the Church’s mission.' },
+  { id:'h50', category:'history', title:'Our Lady of the Pillar', author:'c. 40 (tradition)', year:40, era:'apostolic', tags:['marian','apparition','spain','tradition'],
+    content:'According to an ancient Spanish tradition, the Virgin Mary appeared to St. James the Greater while he was discouraged by his slow progress preaching in Spain. She was said to be standing on a pillar of jasper by the Ebro River at Zaragoza. She encouraged him and asked for a church to be built there.\n\nIf the tradition is true, this would be the only apparition during Mary’s earthly life. The Basilica of Our Lady of the Pillar still enshrines the pillar, and her feast on October 12 is Spain’s national day of Hispanic heritage.' },
+  { id:'h51', category:'history', title:'Our Lady of Walsingham', author:'1061', year:1061, era:'medieval', tags:['marian','apparition','england','pilgrimage'],
+    content:'According to tradition, the Saxon noblewoman Richeldis de Faverches had a vision of the Virgin Mary in 1061 at Walsingham in Norfolk. She was shown the house at Nazareth where the Annunciation took place and asked to build a replica in England.\n\n"England’s Nazareth" became one of the greatest shrines of medieval Europe until Henry VIII destroyed it in 1538. Pilgrimage revived in the late 19th century, and today both Catholic and Anglican shrines stand in the village.' },
+  { id:'h52', category:'history', title:'Our Lady of Mount Carmel and the Brown Scapular', author:'1251 (tradition)', year:1251, era:'medieval', tags:['marian','apparition','carmelite','scapular'],
+    content:'Carmelite tradition holds that in 1251 the Virgin Mary appeared to St. Simon Stock, prior general of the Carmelites, in Cambridge, England. She is said to have given him the brown scapular as a sign of her protection.\n\nThe brown scapular, two small pieces of wool worn over the shoulders, became one of the most widespread Catholic devotions. The feast of Our Lady of Mount Carmel is kept on July 16.' },
+  { id:'h53', category:'history', title:'Our Lady of Guadalupe', author:'1531', year:1531, era:'reform', tags:['marian','apparition','mexico','americas'],
+    content:'In December 1531, the Virgin Mary appeared four times to St. Juan Diego, an Indigenous convert, on the hill of Tepeyac outside Mexico City. She spoke to him in his native Nahuatl and asked for a church. As a sign for the bishop, she had him gather roses from the winter hillside in his tilma (cloak).\n\nWhen he opened the tilma before Bishop Juan de Zumárraga, an image of Mary was imprinted on it. The image, showing Mary as a pregnant young woman clothed with the sun, hangs in the Basilica of Guadalupe, one of the most visited Catholic shrines in the world. Millions of Indigenous people were baptized in the following decades. She is patroness of the Americas.' },
+  { id:'h54', category:'history', title:'Our Lady of Laus', author:'1664–1718', year:1664, era:'reform', tags:['marian','apparition','france','reconciliation'],
+    content:'In the French Alps, the Virgin Mary appeared to Benoîte Rencurel, a poor and unschooled shepherdess, beginning in 1664 and continuing, by her account, for over fifty years. Mary asked her to build a church and a house for priests "for the conversion of sinners."\n\nThe shrine at Laus became known for the sacrament of Confession and for healings attributed to oil from its sanctuary lamp. The local bishop formally recognized the apparitions in 2008, the first approval in France since Lourdes.' },
+  { id:'h55', category:'history', title:'The Miraculous Medal (Rue du Bac)', author:'1830', year:1830, era:'modern', tags:['marian','apparition','france','miraculous medal'],
+    content:'In 1830, St. Catherine Labouré, a novice with the Daughters of Charity, saw the Virgin Mary several times in the chapel of her convent on the Rue du Bac in Paris. Mary showed her the design of a medal bearing the prayer "O Mary, conceived without sin, pray for us who have recourse to thee."\n\nThe medal spread rapidly amid cholera epidemics. So many graces were attributed to it that people began calling it the "Miraculous Medal." Its prayer helped prepare for the definition of the Immaculate Conception in 1854.' },
+  { id:'h56', category:'history', title:'Our Lady of La Salette', author:'1846', year:1846, era:'modern', tags:['marian','apparition','france','penance'],
+    content:'On September 19, 1846, two young cowherds, Maximin Giraud and Mélanie Calvat, saw a weeping woman seated on a stone high in the French Alps. She spoke of her grief over the neglect of Sunday, blasphemy, and indifference, and warned of coming hardship unless people converted.\n\nAfter investigation, the bishop of Grenoble approved the apparition in 1851. The Basilica of Our Lady of La Salette stands at the site, and the Missionaries of Our Lady of La Salette carry on its message of reconciliation.' },
+  { id:'h57', category:'history', title:'Our Lady of Lourdes', author:'1858', year:1858, era:'modern', tags:['marian','apparition','france','healing'],
+    content:'Between February 11 and July 16, 1858, fourteen-year-old St. Bernadette Soubirous saw a young lady eighteen times in the grotto of Massabielle near Lourdes. The lady asked for prayer and penance and told Bernadette to dig in the ground, where a spring appeared. On March 25 she said, "I am the Immaculate Conception."\n\nThe bishop of Tarbes approved the apparitions in 1862. Lourdes now receives millions of pilgrims a year, especially the sick. Its medical bureau has examined thousands of claimed cures, and the Church has recognized about seventy as miraculous.' },
+  { id:'h58', category:'history', title:'Our Lady of Good Help (Champion, Wisconsin)', author:'1859', year:1859, era:'modern', tags:['marian','apparition','united states','catechesis'],
+    content:'In October 1859, a young Belgian immigrant, Adele Brise, saw a lady dressed in white near Green Bay, Wisconsin. The lady told her to pray for sinners and to "gather the children in this wild country and teach them what they should know for salvation."\n\nAdele spent the rest of her life teaching the faith to children on the frontier. In 1871, when the Peshtigo Fire swept the region, people who took refuge at the chapel survived. In 2010 the bishop of Green Bay approved the apparitions, the first in the United States to receive formal approval.' },
+  { id:'h59', category:'history', title:'Our Lady of Hope (Pontmain)', author:'1871', year:1871, era:'modern', tags:['marian','apparition','france','hope'],
+    content:'On the evening of January 17, 1871, during the Franco-Prussian War, as Prussian troops approached the village of Pontmain, several children saw the Virgin Mary in the night sky. She was dressed in blue with golden stars, and a message appeared beneath her: "But pray, my children. God will hear you in a short time."\n\nThe Prussian advance halted that night, and an armistice followed days later. The bishop of Laval approved the apparition in 1872.' },
+  { id:'h60', category:'history', title:'Our Lady of Knock', author:'1879', year:1879, era:'modern', tags:['marian','apparition','ireland','eucharist'],
+    content:'On the rainy evening of August 21, 1879, fifteen villagers in Knock, County Mayo, saw a silent apparition at the gable wall of their parish church. It showed the Virgin Mary, St. Joseph, and St. John the Evangelist beside an altar with a lamb and a cross. It lasted about two hours, and no words were spoken.\n\nKnock became Ireland’s national Marian shrine. Pope St. John Paul II visited in 1979, and Pope Francis named it an international Marian and Eucharistic shrine in 2021.' },
+  { id:'h61', category:'history', title:'Our Lady of Beauraing', author:'1932–1933', year:1932, era:'modern', tags:['marian','apparition','belgium','children'],
+    content:'Between November 1932 and January 1933, five children in Beauraing, Belgium, reported 33 appearances of the Virgin Mary near a convent school garden. She showed them a heart of gold and asked, "Do you love my Son? Do you love me? Then sacrifice yourselves for me."\n\nThe bishop of Namur approved the apparitions in 1949. Beauraing is known as the shrine of the "Virgin with the Golden Heart."' },
+  { id:'h62', category:'history', title:'Our Lady of Banneux', author:'1933', year:1933, era:'modern', tags:['marian','apparition','belgium','the poor'],
+    content:'Weeks after Beauraing, eleven-year-old Mariette Beco saw a lady in white eight times near her family’s home in Banneux, Belgium. The lady called herself the "Virgin of the Poor," led Mariette to a spring "reserved for all nations," and said, "I come to relieve suffering."\n\nThe bishop of Liège approved the apparitions in 1949. Banneux draws many sick pilgrims, especially from across Europe.' },
+  { id:'h63', category:'history', title:'Our Lady of Akita', author:'1973', year:1973, era:'modern', tags:['marian','apparition','japan','reparation'],
+    content:'In 1973, Sr. Agnes Katsuko Sasagawa, a deaf nun in Akita, Japan, reported messages from the Virgin Mary calling for prayer, penance, and reparation, with the Rosary. A wooden statue of Mary in the convent was reported to have wept 101 times between 1975 and 1981, witnessed by hundreds of people.\n\nIn 1984, Bishop John Shojiro Ito of Niigata declared the events worthy of belief. Sr. Agnes also recovered her hearing, which was attributed to Mary’s intercession.' },
+  { id:'h64', category:'history', title:'Our Lady of Kibeho', author:'1981–1989', year:1981, era:'modern', tags:['marian','apparition','africa','rwanda'],
+    content:'Beginning in November 1981, several students at a girls’ school in Kibeho, Rwanda, reported apparitions of the Virgin Mary, who called herself "Mother of the Word." She called for conversion, prayer, and the Rosary of the Seven Sorrows. In one vision, the visionaries saw rivers of blood and scenes of slaughter.\n\nMany saw these visions as a warning of the 1994 genocide, during which Kibeho itself was the site of massacres. In 2001 the bishop of Gikongoro approved the apparitions to the three principal visionaries. It is the only approved Marian apparition in Africa.' },
+  { id:'h65', category:'history', title:'Medjugorje', author:'1981–present', year:1981, era:'modern', tags:['marian','apparition','bosnia','discernment'],
+    content:'Since June 1981, several visionaries in the village of Medjugorje in Bosnia and Herzegovina have reported ongoing messages from the Virgin Mary, under the title "Queen of Peace." Millions of pilgrims have visited, and many report conversions, confessions, and vocations.\n\nThe Church has not declared the apparitions supernatural. In September 2024, however, the Dicastery for the Doctrine of the Faith granted a nihil obstat to the spiritual experience there. This recognizes its good fruits and permits public devotion, without ruling on whether the apparitions themselves are authentic.' },
+  { id:'h66', category:'history', title:'How the Church Discerns Apparitions', author:'1978 and 2024', year:2024, era:'modern', tags:['marian','apparition','discernment','private revelation'],
+    content:'Reports of apparitions are investigated first by the local bishop. They are examined for doctrinal soundness, the character of the visionaries, lasting spiritual fruits, and any claimed healings. Guidelines issued in 1978 were replaced in May 2024 by new norms from the Dicastery for the Doctrine of the Faith. The most favorable usual verdict is now a nihil obstat, meaning devotion is permitted and encouraged, without a formal declaration that the event is supernatural.\n\nEven fully approved apparitions are "private revelation." Catholics are not required to believe them. As the Catechism teaches (CCC 67), they do not add to the faith but can help people live it more fully in a particular age.' },
+  { id:'h67', category:'history', title:'St. Patrick and the Conversion of Ireland', author:'c. 432', year:432, era:'early', tags:['ireland','missionary','patrick'],
+    content:'Captured by raiders as a boy and enslaved in Ireland, Patrick escaped to Britain and later returned as a bishop, traditionally in 432. He preached across the island and ordained clergy. His Confessio is one of the few firsthand accounts from 5th-century Britain.\n\nWithin generations Ireland became a land of monasteries. Irish monks such as Columba and Columbanus later carried the faith and learning back to Scotland, England, and continental Europe.' },
+  { id:'h68', category:'history', title:'The Galileo Affair', author:'1633', year:1633, era:'reform', tags:['science','galileo','church and state'],
+    content:'Galileo Galilei’s telescope discoveries supported Copernicus’s view that the Earth moves around the Sun. After years of controversy, the Roman Inquisition condemned him in 1633 for defending heliocentrism as proven, and he spent his last years under house arrest near Florence.\n\nThe case has often been used to claim that faith and science are enemies, although the history is more complicated. In 1992, after a commission had studied the case, Pope St. John Paul II acknowledged that the theologians who judged Galileo had erred.' },
+  { id:'h69', category:'history', title:'The Suppression of the Jesuits', author:'1773–1814', year:1773, era:'reform', tags:['jesuit','suppression','papacy'],
+    content:'Under pressure from the Catholic monarchies of Portugal, France, and Spain, which had already expelled the Jesuits from their territories, Pope Clement XIV dissolved the Society of Jesus in 1773. Thousands of Jesuits lost their schools and missions, including the famous "reductions" of Paraguay.\n\nThe Society survived in Russia, where Catherine the Great refused to publish the papal brief. Pope Pius VII restored the Jesuits worldwide in 1814.' },
+  { id:'h70', category:'history', title:'The Oxford Movement', author:'1833–1845', year:1833, era:'modern', tags:['england','newman','conversion'],
+    content:'A group of Anglican clergy at Oxford, including John Henry Newman, John Keble, and Edward Pusey, sought to recover the Church of England’s Catholic heritage: apostolic succession, the sacraments, and the Church Fathers. They published their views in a series of Tracts for the Times.\n\nNewman’s study of the early Church led him into the Catholic Church in 1845, followed by many others. The movement also transformed Anglican worship and spirituality.' },
+  { id:'h71', category:'history', title:'The Hidden Christians of Japan', author:'1865', year:1865, era:'modern', tags:['japan','persecution','faith'],
+    content:'After Christianity was banned in Japan in the early 1600s, thousands of believers kept the faith in secret for more than two centuries without priests. They baptized their children, prayed in disguised forms, and hid Marian images as Buddhist statues.\n\nOn March 17, 1865, a group of villagers approached Fr. Bernard Petitjean at the new Ōura Church in Nagasaki and whispered, "Our hearts are the same as yours." Pope Pius IX called it a miracle of the Orient.' },
+  { id:'h72', category:'history', title:'The Cristero War', author:'1926–1929', year:1926, era:'modern', tags:['mexico','martyrs','persecution','religious freedom'],
+    content:'When Mexico’s government strictly enforced anti-clerical laws, it expelled foreign priests, closed churches, and banned public worship. In response, Catholics rose in armed rebellion under the cry "¡Viva Cristo Rey!" ("Long live Christ the King!").\n\nThousands died before a negotiated settlement in 1929. Among the many martyrs are the Jesuit Bl. Miguel Pro, executed in 1927, and the teenager St. José Sánchez del Río, canonized in 2016.' },
+  { id:'t1', category:'theology', group:'belief', art:'rays', title:'God: One, Living, and Knowable', author:'Catechism of the Catholic Church 27–49, 199–231', ccc:'27–49, 199–231', tags:['god','creed','reason'],
+    content:'Catholics believe in one God, the Creator of all things, who is infinitely good, all-knowing, all-powerful, and eternal. God is not one being among others but Being itself; he revealed his name to Moses as "I AM WHO AM."\n\nThe Church teaches that God can be known with certainty by the natural light of human reason from the created world, even before revelation. Revelation then shows us who God is in himself: a Father who loves us and wants us to share his life.',
+    scripture:['Exodus 3:14','Deuteronomy 6:4','Wisdom 13:1–5','Romans 1:20','1 John 4:8'],
+    points:['God is the uncreated source of everything that exists.','Human reason can know that God exists (First Vatican Council, Dei Filius).','Faith does not contradict reason but completes it.'],
+    objections:[{q:'Isn’t faith just believing without evidence?', a:'No. In Catholic teaching, faith is trust in God who reveals himself, and it is reasonable: it rests on evidence such as the order of creation, the life of Christ, and the witness of the Church. Faith goes beyond what reason can prove, but never against it.'}] },
+  { id:'t2', category:'theology', group:'belief', art:'trinity', title:'The Holy Trinity', author:'Catechism of the Catholic Church 232–267', ccc:'232–267', tags:['trinity','god','creed'],
+    content:'The central mystery of Christian faith is that the one God exists as three divine Persons: the Father, the Son, and the Holy Spirit. They are not three gods, nor three parts of God, nor three "masks" of one Person. Each Person is fully God, sharing one divine nature, yet each is really distinct in relation to the others.\n\nThe Trinity could not be discovered by reason alone. It was revealed by Jesus, who speaks of the Father, calls himself the Son, and promises to send the Spirit. The Church defended this truth at the Councils of Nicaea (325) and Constantinople (381).',
+    scripture:['Matthew 28:19','John 1:1–14','John 14:26','2 Corinthians 13:14'],
+    points:['One God in three Persons, equal in glory and co-eternal.','Christians are baptized "in the name" (singular) of the Father, Son, and Holy Spirit.','God is love because, from all eternity, he is a communion of Persons.'],
+    objections:[{q:'The word "Trinity" isn’t in the Bible.', a:'Neither is "Bible" or "Incarnation." The word is a summary term for what Scripture teaches: there is one God (Deuteronomy 6:4), the Father is God, the Son is God (John 1:1; 20:28), and the Spirit is God (Acts 5:3–4), and they are distinct (Matthew 3:16–17).'},{q:'Isn’t three-in-one a contradiction?', a:'It would be if God were three in the same way he is one. But God is one in nature and three in Persons. That is a mystery beyond full understanding, but not a logical contradiction.'}] },
+  { id:'t3', category:'theology', group:'belief', art:'sunrise', title:'Creation and Original Sin', author:'Catechism of the Catholic Church 279–421', ccc:'279–421', tags:['creation','fall','original sin'],
+    content:'God freely created the world out of nothing, and everything he made is good. Human beings were created in his image, body and soul, male and female, and called to friendship with him. Our first parents, tempted by the devil, chose to disobey God, and so lost the original holiness and justice in which they were created.\n\nThis "original sin" is passed on to all humanity: not as a personal fault, but as a wounded nature, deprived of original holiness and inclined to sin. Christ, the new Adam, came to restore what was lost, and Baptism erases original sin.',
+    scripture:['Genesis 1:27–31','Genesis 3','Romans 5:12–19','1 Corinthians 15:21–22'],
+    points:['Creation is good, and matter is not evil.','Original sin is a state we inherit, not a personal act we committed (CCC 405).','Grace does more than undo the Fall: "where sin abounded, grace did more abound" (Romans 5:20).'],
+    objections:[{q:'Why should I be guilty for Adam’s sin?', a:'The Church does not teach that we are personally guilty of Adam’s act. We inherit a human nature deprived of the grace Adam lost, much as children inherit the consequences of a family’s poverty. That is why it is called sin only "in an analogical sense" (CCC 404).'},{q:'Does the Church reject evolution?', a:'No. Since Pope Pius XII’s Humani Generis (1950), the Church has allowed scientific study of the evolution of the human body, while teaching that each human soul is created directly by God. Pope St. John Paul II called evolution "more than a hypothesis" in 1996.'}] },
+  { id:'t4', category:'theology', group:'belief', art:'chirho', title:'Jesus Christ: True God and True Man', author:'Catechism of the Catholic Church 422–483', ccc:'422–483', tags:['christ','incarnation','creed'],
+    content:'The eternal Son of God became man in Jesus of Nazareth, conceived by the Holy Spirit and born of the Virgin Mary. He is one divine Person with two natures, fully divine and fully human, "without confusion, change, division, or separation" (Council of Chalcedon, 451).\n\nHe did not stop being God when he became man, nor was his humanity only an appearance. He had a real human body and soul, a human mind and will, and was like us in all things but sin.',
+    scripture:['John 1:1, 14','Philippians 2:5–8','Colossians 2:9','Hebrews 4:15'],
+    points:['The Incarnation reveals God’s love and makes our salvation possible.','Because Jesus is truly God, his death has infinite worth; because he is truly man, he dies in our place.','The early councils defended both his divinity (Nicaea) and the unity of his Person (Ephesus, Chalcedon).'],
+    objections:[{q:'Jesus never claimed to be God.', a:'He did, in ways his hearers clearly understood. He forgave sins in his own name (Mark 2:5–7), said "before Abraham was, I AM" (John 8:58), said "I and the Father are one" (John 10:30), and accepted Thomas’s worship: "My Lord and my God" (John 20:28). His opponents sought to kill him "because he made himself equal to God" (John 5:18).'}] },
+  { id:'t5', category:'theology', group:'belief', art:'cross', title:'Salvation: The Cross and the Resurrection', author:'Catechism of the Catholic Church 571–658', ccc:'571–658', tags:['redemption','cross','resurrection'],
+    content:'Jesus freely offered his life on the Cross as a sacrifice for the sins of the whole world, reconciling humanity to God. His death is the supreme act of love and obedience that undoes Adam’s disobedience. On the third day he rose bodily from the dead, conquering death and opening the way to eternal life.\n\nThe Resurrection is a real historical event, witnessed by many, not only a spiritual idea. It confirms everything Jesus taught and is the foundation of Christian hope: "if Christ be not risen again, your faith is vain" (1 Corinthians 15:17).',
+    scripture:['Isaiah 53:5','Mark 10:45','Romans 4:25','1 Corinthians 15:3–8, 17'],
+    points:['Christ died for all people, without exception.','The Cross reveals both the seriousness of sin and the greatness of God’s mercy.','We share in his death and Resurrection through Baptism (Romans 6:3–4).'],
+    objections:[{q:'Why did Jesus have to die? Couldn’t God just forgive?', a:'God could have saved us in other ways, but he chose the way that most fully reveals his love and justice. Christ does not appease an angry Father. He offers, as one of us, the perfect love and obedience humanity owed but could not give. Through that offering he heals us from within.'}] },
+  { id:'t6', category:'theology', group:'belief', art:'dove', title:'The Holy Spirit', author:'Catechism of the Catholic Church 683–747', ccc:'683–747', tags:['holy spirit','grace','pentecost'],
+    content:'The Holy Spirit is the third Person of the Trinity, "the Lord, the giver of life," who proceeds from the Father and the Son and is worshipped and glorified with them. He spoke through the prophets, overshadowed Mary at the Incarnation, and was poured out on the Church at Pentecost.\n\nThe Spirit dwells in the hearts of the baptized, making them children of God. He gives gifts such as wisdom, understanding, counsel, fortitude, knowledge, piety, and fear of the Lord. He guides the Church into all truth and brings forth fruits of holiness such as love, joy, and peace.',
+    scripture:['John 14:16–17, 26','Acts 2:1–4','Romans 8:14–16, 26','Galatians 5:22–23'],
+    points:['The Spirit is a Person, not an impersonal force.','He is the "soul" of the Church, giving life to her sacraments and mission.','Confirmation strengthens the gift of the Spirit first received in Baptism.'],
+    objections:[{q:'Isn’t the Holy Spirit just God’s power?', a:'Scripture speaks of the Spirit as a Person: he teaches (John 14:26), can be grieved (Ephesians 4:30), intercedes (Romans 8:26), and speaks (Acts 13:2). Lying to the Holy Spirit is called lying to God (Acts 5:3–4).'}] },
+  { id:'t7', category:'theology', group:'belief', art:'quill', title:'Scripture and Tradition', author:'Catechism of the Catholic Church 74–141', ccc:'74–141', tags:['revelation','bible','tradition'],
+    content:'God’s revelation, completed in Jesus Christ, is handed on in two ways that flow from the same source: Sacred Scripture, the inspired written Word of God, and Sacred Tradition, the living transmission of the apostles’ teaching. The Church’s teaching office, the Magisterium, is not above the Word of God but serves it, faithfully guarding and explaining it.\n\nScripture is inspired by the Holy Spirit and teaches without error the truth God wanted recorded for our salvation. It should be read within the whole of Scripture, the living Tradition of the Church, and the harmony of the faith.',
+    scripture:['2 Thessalonians 2:15','2 Timothy 3:16–17','John 21:25','1 Timothy 3:15'],
+    points:['Tradition is not a second revelation but the living handing-on of the one Gospel.','The Church discerned which books belong in the Bible.','Catholics are encouraged to read Scripture daily; the Council called ignorance of Scripture "ignorance of Christ" (St. Jerome, quoted in Dei Verbum 25).'],
+    objections:[{q:'Didn’t Jesus condemn human traditions?', a:'He condemned traditions of men that nullify God’s commandments (Mark 7:8–13). But Paul tells believers to "hold the traditions which you have learned, whether by word, or by our epistle" (2 Thessalonians 2:15). Sacred Tradition is apostolic teaching, not human invention.'}] },
+  { id:'t8', category:'theology', group:'belief', art:'lantern', title:'The Church: One, Holy, Catholic, and Apostolic', author:'Catechism of the Catholic Church 748–975', ccc:'748–975', tags:['church','creed','body of christ'],
+    content:'Christ founded one Church, which is both a visible society and the mystical Body of Christ. In the Creed, Catholics profess that this Church is one (united in faith, sacraments, and governance), holy (sanctified by Christ even though her members are sinners), catholic (universal, possessing the fullness of the means of salvation), and apostolic (built on the apostles and led by their successors).\n\nThe Second Vatican Council taught that this Church "subsists in" the Catholic Church. It also recognized that many elements of truth and holiness exist outside her visible boundaries, and that other Christians are truly, if imperfectly, joined to her through Baptism.',
+    scripture:['Matthew 16:18','Matthew 28:19–20','1 Corinthians 12:12–27','Ephesians 4:4–6'],
+    points:['The Church is a sacrament, a sign and instrument of communion with God.','Its holiness comes from Christ, not from the perfection of its members.','Christian unity was Christ’s own prayer: "that they all may be one" (John 17:21).'],
+    objections:[{q:'Isn’t the Church just the invisible fellowship of all believers?', a:'Scripture describes a visible Church with leaders, sacraments, and discipline: one you can "tell" a dispute to (Matthew 18:17), whose elders make binding decisions (Acts 15), and which Paul calls "the pillar and ground of the truth" (1 Timothy 3:15).'}] },
+  { id:'t9', category:'theology', group:'belief', art:'keys', title:'The Pope and the Bishops', author:'Catechism of the Catholic Church 874–896', ccc:'874–896', tags:['papacy','bishops','authority','infallibility'],
+    content:'Christ chose the Twelve and placed Peter at their head, giving him the keys of the kingdom. The bishops are the successors of the apostles, and the Bishop of Rome, the pope, is the successor of Peter. He is the visible principle of the Church’s unity.\n\nThe pope and the bishops in communion with him form the Church’s teaching authority. Under strict conditions, when the pope defines a doctrine of faith or morals for the whole Church (ex cathedra), or when the bishops teach it together with him, the Holy Spirit preserves that teaching from error. This is the charism of infallibility.',
+    scripture:['Matthew 16:18–19','Isaiah 22:22','Luke 22:31–32','John 21:15–17'],
+    points:['Peter’s name means "rock"; Christ built his Church on him.','The "keys" recall the royal steward’s office in Isaiah 22, a lasting office with successors.','Infallibility is rarely invoked. Recent examples include the Immaculate Conception (1854) and the Assumption (1950).'],
+    objections:[{q:'Does infallibility mean the pope can’t sin or make mistakes?', a:'No. Infallibility is not impeccability. Popes are sinners who go to confession, and they can err in personal opinions, policies, and ordinary remarks. Infallibility protects only solemn definitions of faith and morals for the whole Church.'},{q:'Wasn’t Peter called a small stone (petros) and the rock (petra) something else?', a:'Jesus spoke Aramaic, in which both words are kepha (John 1:42 calls Peter "Cephas"). In Greek, the masculine form Petros was needed for a man’s name. The wordplay only makes sense if Peter himself is the rock, as many Protestant scholars now agree.'}] },
+  { id:'t10', category:'theology', group:'belief', art:'monstrance', title:'The Seven Sacraments', author:'Catechism of the Catholic Church 1113–1666', ccc:'1113–1666', tags:['sacraments','grace','worship'],
+    content:'The sacraments are visible signs, instituted by Christ and entrusted to the Church, through which divine life is given to us. There are seven: Baptism, Confirmation, and the Eucharist (the sacraments of initiation); Penance and the Anointing of the Sick (sacraments of healing); and Holy Orders and Matrimony (sacraments at the service of communion).\n\nThe sacraments work through Christ’s own action, not the holiness of the minister ("ex opere operato"). Their fruit in each person also depends on that person’s openness and faith.',
+    scripture:['John 3:5','Matthew 26:26–28','John 20:22–23','James 5:14–15','Acts 8:14–17'],
+    points:['God, who became flesh, uses material signs such as water, bread, wine, and oil to give grace.','Each sacrament meets us at a key moment of life.','The Eucharist is the "source and summit" of Christian life.'],
+    objections:[{q:'Aren’t sacraments just symbols of faith?', a:'In Scripture they do what they signify: Baptism "saves you" (1 Peter 3:21) and is for "the remission of your sins" (Acts 2:38). Jesus breathed on the apostles and gave them power to forgive sins (John 20:23). The sacraments are symbols that really accomplish what they show.'}] },
+  { id:'t11', category:'theology', group:'belief', art:'chalice', title:'The Eucharist and the Mass', author:'Catechism of the Catholic Church 1322–1419', ccc:'1322–1419', tags:['eucharist','mass','real presence','sacrifice'],
+    content:'In the Eucharist, the bread and wine truly become the Body and Blood, soul and divinity, of Jesus Christ. Their appearances remain, but their substance is changed, which the Church calls transubstantiation. Christ is present whole and entire under each form.\n\nThe Mass is also a sacrifice. Not a new sacrifice, but the one sacrifice of Calvary made present, so that we can offer it with Christ and receive its fruits. Catholics are called to receive Communion in a state of grace and to worship Christ present in the tabernacle.',
+    scripture:['John 6:51–58','Matthew 26:26–28','1 Corinthians 10:16','1 Corinthians 11:23–29','Malachi 1:11'],
+    points:['"This is my body": Christ’s words are taken at face value.','The sacrifice of the Cross and the sacrifice of the Mass are one sacrifice (CCC 1367).','Sunday Mass is the heart of Catholic life.'],
+    objections:[{q:'Doesn’t the Mass re-sacrifice Christ, when Hebrews says he died "once"?', a:'The Church agrees his sacrifice was once for all (Hebrews 7:27). The Mass does not repeat or add to it. It makes that one sacrifice present across time, as Christ commanded: "Do this in memory of me." Christ, our high priest, eternally presents his offering to the Father (Hebrews 7:25).'}] },
+  { id:'t12', category:'theology', group:'belief', art:'olive', title:'Confession: The Sacrament of Reconciliation', author:'Catechism of the Catholic Church 1422–1498', ccc:'1422–1498', tags:['confession','penance','forgiveness','mercy'],
+    content:'Christ gave his apostles the power to forgive sins in his name. In the sacrament of Penance, a person who has sinned after Baptism confesses their sins to a priest, expresses sorrow, receives absolution, and does a penance. Mortal sins must be confessed. Confessing venial sins is also strongly recommended.\n\nThe priest acts in the person of Christ and is bound by the absolute seal of confession: he may never reveal what he hears, for any reason, even at the cost of his life.',
+    scripture:['John 20:21–23','Matthew 16:19','Matthew 18:18','James 5:16','2 Corinthians 5:18–20'],
+    points:['Only God forgives sins, and he chose to do so through the ministry of the Church.','Contrition, confession, and satisfaction are the penitent’s part.','It restores friendship with God and with the Church.'],
+    objections:[{q:'Why not confess directly to God?', a:'Catholics do confess to God every day, as in the Act of Contrition. But Jesus gave the apostles authority to forgive or retain sins (John 20:23), which requires hearing them. The sacrament also gives the human certainty of hearing "I absolve you," and it heals the damage sin does to the whole Church.'}] },
+  { id:'t13', category:'theology', group:'belief', art:'lily', title:'Mary, Mother of God', author:'Catechism of the Catholic Church 484–511, 963–975', ccc:'484–511, 963–975', tags:['mary','marian','dogma'],
+    content:'Mary is truly the Mother of God (Theotokos), because the child she conceived is the eternal Son of God. The Church teaches four Marian dogmas: her divine motherhood; her perpetual virginity; her Immaculate Conception (preserved from original sin from the first moment of her existence by the merits of Christ); and her Assumption, body and soul, into heavenly glory.\n\nMary is the first and most perfect disciple. From the Cross, Jesus gave her to the beloved disciple as mother, and so to the whole Church. Catholics honor her above all saints, but always as a creature who leads us to her Son.',
+    scripture:['Luke 1:28, 42–43, 48','John 19:26–27','Galatians 4:4','Revelation 12:1'],
+    points:['"Mother of God" protects the truth that Jesus is one divine Person (Council of Ephesus, 431).','Mary needed a Savior and was saved in a singular way, before sin could touch her.','Veneration of Mary (hyperdulia) is essentially different from the worship given to God alone (CCC 971).'],
+    objections:[{q:'How can a creature be the mother of God, who is eternal?', a:'Mary did not create the divine nature. She is mother of the Person of Jesus, who is God. A mother is mother of a person, not merely of a body. Denying the title implies Jesus is two persons, which the Council of Ephesus rejected.'}] },
+  { id:'t14', category:'theology', group:'belief', art:'candle', title:'The Communion of Saints', author:'Catechism of the Catholic Church 946–962', ccc:'946–962', tags:['saints','intercession','church'],
+    content:'The Church is a single family in Christ that spans heaven, earth, and purgatory: the faithful on earth, the souls being purified, and the blessed in heaven. Death does not break our unity in Christ.\n\nBecause of this communion, the saints in heaven intercede for us, we can pray for the souls in purgatory, and all members share spiritual goods with one another. Honoring the saints glorifies God, whose grace made them holy.',
+    scripture:['Hebrews 12:1','Luke 20:38','Revelation 5:8','James 5:16'],
+    points:['The saints are alive in God, who "is not the God of the dead, but of the living."','Their prayers are powerful because they are fully united with God.','Canonization declares that a person is in heaven and proposes them as a model.'],
+    objections:[{q:'Isn’t asking saints to pray for us taking something away from Jesus?', a:'No more than asking a friend to pray does. All intercession depends on Christ, the one Mediator. See "Praying to the Saints" in Defending the Faith.'}] },
+  { id:'t15', category:'theology', group:'belief', art:'rays', title:'Grace, Faith, and Justification', author:'Catechism of the Catholic Church 1987–2029', ccc:'1987–2029', tags:['grace','justification','salvation','faith'],
+    content:'Salvation is a free gift of God’s grace. No one can earn the grace of justification (CCC 2010). God justifies us through faith and Baptism, not merely declaring us righteous but truly making us righteous, pouring his love into our hearts and making us his children.\n\nFaith, if it is living, works through love. Good works done in grace are not our independent achievements. They are God’s gifts working in us, and he rewards them as a Father. We cooperate freely with grace, and we can lose it through mortal sin and regain it through repentance.',
+    scripture:['Ephesians 2:8–10','Romans 3:28','Galatians 5:6','James 2:24','Philippians 2:12–13'],
+    points:['Grace comes first: every good act begins with God’s initiative.','Justification is both forgiveness and inner renewal.','In 1999, Catholics and Lutherans signed a Joint Declaration on the Doctrine of Justification affirming a shared basic understanding.'],
+    objections:[{q:'Do Catholics believe they can earn salvation by good works?', a:'No. The Council of Trent condemned the idea that anyone can be justified by works done by their own strength, without grace. Catholics believe we are saved by grace alone, received through a faith that becomes active in love.'}] },
+  { id:'t16', category:'theology', group:'belief', art:'joseph', title:'The Moral Life: Conscience and Natural Law', author:'Catechism of the Catholic Church 1691–2082', ccc:'1691–2082', tags:['morality','natural law','conscience','commandments'],
+    content:'God wrote a moral law on the human heart, the natural law, which reason can know: do good and avoid evil, respect life, tell the truth, be faithful. The Ten Commandments express this law, and Christ fulfills it in the commandment of love: love God with all your heart and your neighbor as yourself.\n\nConscience is the inner judgment that applies moral truth to our choices. We must always follow a certain conscience. We also have a duty to form it well through Scripture, the Church’s teaching, prayer, and the virtues.',
+    scripture:['Exodus 20:1–17','Matthew 22:37–40','Romans 2:14–15','John 14:15'],
+    points:['Some acts are wrong in themselves, whatever the intention or circumstances.','The virtues (prudence, justice, fortitude, temperance; faith, hope, love) make goodness easier and joyful.','Catholic social teaching applies these principles to society.'],
+    objections:[{q:'Isn’t morality just personal or cultural opinion?', a:'Cultures differ in customs, but they share deep moral agreement: murder, betrayal, and cowardice are condemned everywhere. People who say morality is relative still protest when they are treated unjustly, which assumes a real standard of justice. The natural law names that standard.'}] },
+  { id:'t17', category:'theology', group:'belief', art:'lantern', title:'Death, Judgment, Heaven, Hell, and Purgatory', author:'Catechism of the Catholic Church 1020–1060', ccc:'1020–1060', tags:['last things','heaven','hell','purgatory','judgment'],
+    content:'At death, each person receives a particular judgment. Those who die in God’s grace and are fully purified enter heaven: perfect, eternal communion with the Holy Trinity, the Virgin Mary, the angels, and the saints. Those who die in God’s grace but still imperfectly purified undergo purgatory, a final purification before entering heaven.\n\nThose who die in unrepented mortal sin, freely refusing God’s love, choose eternal separation from him, which is hell. At the end of time Christ will return in glory, the dead will rise, and the Last Judgment will reveal the full truth of every life. God will make "a new heaven and a new earth."',
+    scripture:['Hebrews 9:27','Matthew 25:31–46','1 Corinthians 3:13–15','2 Maccabees 12:44–46','Revelation 21:1–4'],
+    points:['Heaven is the fulfillment of the deepest human longings.','God predestines no one to hell (CCC 1037). It is the result of a free and persistent refusal of love.','We rise with our own bodies, glorified like the risen Christ (1 Corinthians 15:42–44).'],
+    objections:[{q:'How could a loving God send anyone to hell?', a:'God does not force anyone into heaven or hell. He respects our freedom. Hell is the state of a person who has definitively refused God’s love. As C.S. Lewis put it, the doors of hell are "locked on the inside." God "will have all men to be saved" (1 Timothy 2:4).'}] },
+  { id:'t18', category:'theology', group:'defense', art:'stars', title:'Does God Exist? Classic Arguments', author:'Catechism of the Catholic Church 31–36', ccc:'31–36', tags:['apologetics','existence of god','reason','philosophy'],
+    content:'Catholic tradition holds that God’s existence can be known by reason. St. Thomas Aquinas offered "five ways," and many other arguments have been developed since. None of them is a laboratory proof, but together they show that belief in God is deeply reasonable.',
+    scripture:['Psalm 18:2 [19:1]','Wisdom 13:5','Romans 1:20','Acts 17:24–28'],
+    points:['Contingency: everything around us could have not existed. Something must exist necessarily, by its own nature, to explain why anything exists at all.','First cause: the universe had a beginning, as Big Bang cosmology suggests. What begins to exist has a cause beyond itself.','Order and fine-tuning: the physical constants of the universe fall within narrow ranges that allow life, which suggests intelligence rather than chance.','Moral law: objective moral obligations point to a moral Lawgiver.','Desire: we long for perfect goodness, truth, and beauty that nothing in this world satisfies. "Our heart is restless until it rests in you" (St. Augustine).'],
+    objections:[{q:'Then who created God?', a:'The arguments apply to things that begin to exist or could fail to exist. God is by definition uncaused and necessary: not a being who happens to exist, but Being itself. Asking who made the uncaused cause is like asking what is north of the North Pole.'},{q:'Doesn’t science explain everything without God?', a:'Science explains how nature works, which Catholics value highly. But it cannot explain why there is a nature at all, or why it is orderly and intelligible. Many founders of modern science were believers, and the Big Bang theory was first proposed by a Catholic priest, Georges Lemaître.'}] },
+  { id:'t19', category:'theology', group:'defense', art:'moon', title:'Why Does God Allow Evil and Suffering?', author:'Catechism of the Catholic Church 309–314, 385', ccc:'309–314, 385', tags:['apologetics','problem of evil','suffering'],
+    content:'The existence of evil is the most serious objection to faith. The Church does not offer an easy answer. It says that "only Christian faith as a whole constitutes the answer to this question" (CCC 309). But several truths shed real light on it.',
+    scripture:['Genesis 50:20','Romans 8:18, 28','2 Corinthians 4:17','Revelation 21:4'],
+    points:['Evil is not a thing God created but a lack of a good that should be there (St. Augustine).','Love requires freedom, and freedom makes moral evil possible. God permits it rather than create robots.','A world of stable natural laws, needed for meaningful choice, also brings natural disasters and disease.','God can bring greater good out of evil, as he did through the Cross, the worst evil ever done.','God is not distant from our suffering: in Christ he entered it, and he promises to wipe away every tear.'],
+    objections:[{q:'Couldn’t God create free people who never choose evil?', a:'If God guaranteed that we would always choose good, our choices would not truly be free. God judged that a world with free creatures who can love, even at the risk of sin, is better than a world without love.'},{q:'If evil disproves God, where does the standard of "evil" come from?', a:'The objection itself relies on an objective standard of good and evil. Without God, it is hard to say why suffering is truly wrong rather than just unpleasant. The problem of evil is a problem for everyone.'}] },
+  { id:'t20', category:'theology', group:'defense', art:'quill', title:'Can We Trust the Gospels?', author:'Catechism of the Catholic Church 124–127', ccc:'124–127', tags:['apologetics','bible','history','gospels'],
+    content:'Catholics believe the Gospels are inspired. But they can also be shown to be reliable historical sources by ordinary historical standards, which matters in a conversation with skeptics.',
+    scripture:['Luke 1:1–4','John 19:35','1 Corinthians 15:3–8','2 Peter 1:16'],
+    points:['Early dating: Paul’s letters date from the 50s AD, and the creed he quotes in 1 Corinthians 15 dates within a few years of the Crucifixion. The Gospels were written within the lifetimes of eyewitnesses.','Manuscripts: the New Testament survives in thousands of ancient Greek manuscripts, far more than any other ancient work. One fragment of John (P52) is usually dated to the early second century.','Embarrassing details: the Gospels record things no one would invent, such as Peter’s denial, the disciples’ cowardice, and women as the first witnesses to the Resurrection.','Outside sources: Roman and Jewish writers such as Tacitus (Annals 15.44) and Josephus mention Jesus and his execution under Pontius Pilate.'],
+    objections:[{q:'Don’t the Gospels contradict each other?', a:'The Gospels differ in details, order, and emphasis, as independent eyewitness accounts always do. Such differences are a sign of honest testimony, not collusion. The core story is consistent across all four.'},{q:'Weren’t the Gospels written centuries later by people who never knew Jesus?', a:'No. Even skeptical scholars date all four Gospels to the first century, and early Christian writers such as Papias and Irenaeus attribute them to apostles and their companions.'}] },
+  { id:'t21', category:'theology', group:'defense', art:'sunrise', title:'Did Jesus Really Rise from the Dead?', author:'Catechism of the Catholic Church 639–647', ccc:'639–647', tags:['apologetics','resurrection','history'],
+    content:'The Resurrection is the central claim of Christianity, and it is a historical claim. Several facts accepted by most historians, believers or not, are best explained if Jesus truly rose.',
+    scripture:['Matthew 28:1–10','Luke 24','John 20–21','1 Corinthians 15:3–8'],
+    points:['The empty tomb: even Jesus’ opponents did not deny it; they claimed the body was stolen (Matthew 28:13).','The appearances: Paul lists witnesses, including more than 500 people at once, most of them still alive when he wrote.','The transformation of the disciples: frightened men who had fled became bold preachers willing to die for their testimony.','Converted skeptics: Paul, a persecutor, and James, the doubting relative of Jesus, both came to believe after seeing the risen Lord.','The birth of the Church in Jerusalem, the very city where Jesus was executed and buried.'],
+    objections:[{q:'Maybe the disciples hallucinated.', a:'Hallucinations are private experiences. They do not happen to groups of hundreds at once, do not explain an empty tomb, and would not have convinced hostile skeptics like Paul.'},{q:'Maybe the body was stolen, or Jesus only fainted.', a:'The disciples had no motive to die for a lie they had invented themselves. As for surviving crucifixion: Roman executioners were expert at killing, and a half-dead man could not have convinced anyone he had conquered death.'}] },
+  { id:'t22', category:'theology', group:'defense', art:'keys', title:'Why the Catholic Church? Authority and Succession', author:'Catechism of the Catholic Church 816, 861–862, 880–882', ccc:'816, 861–862, 880–882', tags:['apologetics','church','papacy','apostolic succession'],
+    content:'Why believe that the Catholic Church is the Church Christ founded? Catholics point to the evidence of Scripture and the earliest Christian writers.',
+    scripture:['Matthew 16:18–19','John 17:21','Acts 1:20–26','1 Timothy 3:15','2 Timothy 2:2'],
+    points:['Christ founded a visible Church on Peter and promised that the gates of hell would not prevail against it.','The apostles appointed successors, as seen in Matthias (Acts 1) and Timothy and Titus. Around 96, Clement of Rome wrote that the apostles set rules for bishops to succeed them.','Around 107, Ignatius of Antioch called it "the Catholic Church," and around 180, Irenaeus listed the bishops of Rome from Peter onward.','The Church that recognized the New Testament canon in the 4th century was the same Church with bishops, the Eucharist, and communion with Rome.','The Catholic Church has maintained one faith across two thousand years and every culture.'],
+    objections:[{q:'Haven’t there been corrupt popes and scandals?', a:'Yes, and the Church acknowledges it. But Jesus promised his Church would endure, not that its members would be sinless. Judas was one of the Twelve. That the Church survives its members’ sins is itself striking evidence of that promise.'}] },
+  { id:'t23', category:'theology', group:'defense', art:'quill', title:'The Bible Alone? (Sola Scriptura)', author:'Catechism of the Catholic Church 80–83, 95, 120', ccc:'80–83, 95, 120', tags:['apologetics','bible','tradition','reformation'],
+    content:'Many Protestant Christians hold that Scripture alone is the only infallible rule of faith. Catholics hold Scripture in the highest reverence as God’s Word, but believe it was never meant to stand apart from the Church and Tradition that produced and preserved it.',
+    scripture:['2 Thessalonians 2:15','1 Timothy 3:15','2 Peter 1:20–21','2 Peter 3:16','Acts 8:30–31'],
+    points:['The Bible itself never teaches that Scripture alone is the only authority.','Paul tells Christians to hold fast to traditions passed on "by word" as well as by letter.','The list of books in the Bible is not in the Bible; the Church discerned the canon over several centuries.','The first Christians lived for decades before the New Testament was written or collected.','Scripture says it can be hard to understand and twisted (2 Peter 3:16), and the Ethiopian official needed a guide (Acts 8:31).'],
+    objections:[{q:'Doesn’t 2 Timothy 3:16 say Scripture is enough?', a:'It says all Scripture is inspired and "profitable" for teaching and training, which Catholics joyfully affirm. It does not say Scripture alone is sufficient. When Paul wrote it, "Scripture" meant the Old Testament, which by itself is not enough for Christian faith.'}] },
+  { id:'t24', category:'theology', group:'defense', art:'rays', title:'Faith Alone? (Sola Fide)', author:'Catechism of the Catholic Church 1987–2029, 161–162', ccc:'1987–2029, 161–162', tags:['apologetics','justification','grace','reformation'],
+    content:'Catholics and Protestants agree on more here than is often thought. Both believe we are saved by God’s grace through Christ, not by our own merit. The disagreement concerns whether faith alone justifies, or faith working through love.',
+    scripture:['James 2:14–26','Galatians 5:6','Ephesians 2:8–10','Romans 2:6–7','Matthew 25:31–46'],
+    points:['The only place the Bible uses the phrase "faith alone" is James 2:24: "a man is justified by works, and not by faith only."','Paul describes the faith that saves as "faith that worketh by charity" (Galatians 5:6).','Good works are the fruit of grace, prepared by God "that we should walk in them" (Ephesians 2:10).','Jesus’ description of the final judgment focuses on love shown in deeds (Matthew 25).'],
+    objections:[{q:'Doesn’t Paul say we are justified by faith apart from works of the law (Romans 3:28)?', a:'Yes. In context, "works of the law" means the works of the Mosaic Law, such as circumcision, which Gentiles did not need. Catholics agree that no works done apart from grace can justify. The disagreement is not about earning salvation, which Catholics also reject.'}] },
+  { id:'t25', category:'theology', group:'defense', art:'chirho', title:'Which Books Belong in the Bible?', author:'Catechism of the Catholic Church 120, 138', ccc:'120, 138', tags:['apologetics','bible','canon','deuterocanon'],
+    content:'Catholic Bibles contain seven Old Testament books that most Protestant Bibles omit: Tobit, Judith, 1 and 2 Maccabees, Wisdom, Sirach, and Baruch, plus parts of Esther and Daniel. Catholics call them "deuterocanonical"; Protestants often call them the Apocrypha.',
+    scripture:['2 Maccabees 7','Wisdom 2:12–20','Sirach 2','John 10:22','Hebrews 11:35'],
+    points:['They were part of the Septuagint, the Greek Old Testament most often quoted by the New Testament writers.','Hebrews 11:35 alludes to the martyrs of 2 Maccabees 7, and Jesus celebrated the Feast of Dedication (Hanukkah, John 10:22), whose origin is recorded in Maccabees.','Councils at Rome (382), Hippo (393), and Carthage (397) listed them in the canon, as did the Council of Florence (1442) and the Council of Trent (1546).','Martin Luther moved them to an appendix in his 1534 Bible; later Protestant Bibles often dropped them entirely.'],
+    objections:[{q:'Didn’t the Jews reject these books?', a:'The Jewish canon was not firmly closed in Jesus’ time, and Greek-speaking Jews used the Septuagint. The Church received its Old Testament from the apostles, who used this wider collection, and early Christians read these books as Scripture.'}] },
+  { id:'t26', category:'theology', group:'defense', art:'chalice', title:'The Real Presence in the Eucharist', author:'Catechism of the Catholic Church 1373–1381', ccc:'1373–1381', tags:['apologetics','eucharist','real presence','john 6'],
+    content:'Catholics believe that the Eucharist truly is the Body and Blood of Christ, not merely a symbol. The evidence begins with Jesus’ own words and continues through the unanimous witness of the early Church.',
+    scripture:['John 6:51–69','Matthew 26:26–28','1 Corinthians 10:16','1 Corinthians 11:27–29'],
+    points:['In John 6, Jesus repeats that his flesh is "meat indeed" and that we must eat it, using a Greek verb meaning to gnaw or chew.','When many disciples left because the teaching was hard, Jesus let them go rather than explain it as a metaphor.','Paul says whoever eats unworthily is "guilty of the body and of the blood of the Lord," which is hard to understand if it is only bread.','Around 107, St. Ignatius of Antioch wrote of heretics who "confess not the Eucharist to be the flesh of our Saviour." Around 155, St. Justin Martyr wrote that the Eucharist is "the flesh and blood of that Jesus who was made flesh."'],
+    objections:[{q:'Jesus also said "I am the door" and "I am the vine." Isn’t this a metaphor too?', a:'Those sayings were never taken literally and caused no scandal. John 6 did: listeners understood Jesus literally, left, and he did not correct them. In the Old Testament, "eating someone’s flesh" figuratively meant attacking them (Psalm 26:2 [27:2]), which cannot be what Jesus meant.'}] },
+  { id:'t27', category:'theology', group:'defense', art:'olive', title:'Why Confess to a Priest?', author:'Catechism of the Catholic Church 1441–1445, 1461–1467', ccc:'1441–1445, 1461–1467', tags:['apologetics','confession','forgiveness'],
+    content:'Objections to confession usually come from a good instinct, that only God can forgive sins. The Catholic Church agrees. The question is how God has chosen to share that forgiveness.',
+    scripture:['John 20:21–23','Matthew 9:6–8','2 Corinthians 5:18–20','James 5:16'],
+    points:['The risen Jesus breathed on the apostles and said, "Whose sins you shall forgive, they are forgiven them." They cannot forgive or retain sins without hearing them.','Crowds "glorified God that gave such power to men" (Matthew 9:8), in the plural.','Paul says God gave the apostles "the ministry of reconciliation."','Early Christians practiced public and then private confession; the Didache (c. 100) says "confess your sins in the church."'],
+    objections:[{q:'Isn’t the priest just a sinful man?', a:'He is, and he confesses his own sins too. But in the sacrament he acts in the person of Christ, and forgiveness comes from God, not from the priest’s holiness. Many people also find great healing in speaking their sins aloud and hearing the words of absolution.'}] },
+  { id:'t28', category:'theology', group:'defense', art:'stars', title:'Why Do Catholics Honor Mary?', author:'Catechism of the Catholic Church 487, 964–971', ccc:'487, 964–971', tags:['apologetics','mary','marian'],
+    content:'Catholic devotion to Mary is often misunderstood as worship. The Church teaches that worship (latria) belongs to God alone. Mary receives a special honor (hyperdulia) as the Mother of the Lord, and everything the Church believes about her flows from what it believes about Christ.',
+    scripture:['Luke 1:28','Luke 1:42–48','John 2:1–11','John 19:26–27','Revelation 12:1–6'],
+    points:['"All generations shall call me blessed" (Luke 1:48). Honoring Mary fulfills Scripture.','"Full of grace" (Luke 1:28) translates a Greek perfect participle (kecharitomene) meaning one already filled with grace. It is the basis of the Immaculate Conception, a grace Mary received through Christ’s merits.','The Assumption has biblical precedents in Enoch and Elijah, taken up by God (Genesis 5:24; 2 Kings 2:11).','Jesus gave his mother into John’s care from the Cross, which would be strange if she had other sons to care for her.'],
+    objections:[{q:'The Bible mentions Jesus’ brothers. How can Mary be ever-virgin?', a:'Hebrew and Aramaic had no word for cousin, so "brother" covered relatives. Lot, Abraham’s nephew, is called his "brother" (Genesis 14:14). James and Joses, called Jesus’ brothers, are sons of a different Mary (Matthew 27:56; Mark 15:40).'},{q:'Doesn’t Mary’s Magnificat call God her Savior, proving she was a sinner?', a:'Mary did need a Savior. The Church teaches she was saved in a more perfect way: preserved from sin rather than rescued after falling into it, like a person kept from falling into a pit rather than pulled out after.'}] },
+  { id:'t29', category:'theology', group:'defense', art:'candle', title:'Praying to the Saints', author:'Catechism of the Catholic Church 956, 2683–2684', ccc:'956, 2683–2684', tags:['apologetics','saints','intercession','prayer'],
+    content:'Catholics ask the saints to pray for them, just as Christians on earth ask each other to pray. Praying "to" a saint means asking for their intercession, not worshipping them.',
+    scripture:['James 5:16','1 Timothy 2:1–5','Hebrews 12:1','Revelation 5:8','Revelation 8:3–4','Mark 12:26–27'],
+    points:['Scripture urges us to intercede for one another; the prayer of a righteous person has great power (James 5:16).','The saints are not dead but alive in God (Mark 12:27), part of the "cloud of witnesses" (Hebrews 12:1).','In Revelation, the elders in heaven offer golden bowls of incense, "which are the prayers of saints" (Revelation 5:8).','Christians have asked the martyrs’ prayers since the catacombs, where early inscriptions ask the departed to pray for the living.'],
+    objections:[{q:'Doesn’t 1 Timothy 2:5 say there is only one mediator?', a:'Yes, and the same passage begins by urging Christians to intercede for everyone (1 Timothy 2:1). Christ’s unique mediation does not exclude our sharing in it by praying for each other. It makes it possible.'},{q:'Isn’t talking to the dead forbidden (Deuteronomy 18)?', a:'Deuteronomy forbids necromancy: conjuring spirits to gain secret knowledge. Asking a saint in heaven for prayer is entirely different. Jesus himself spoke with Moses and Elijah at the Transfiguration.'}] },
+  { id:'t30', category:'theology', group:'defense', art:'cross', title:'Statues, Icons, and Relics', author:'Catechism of the Catholic Church 1159–1162, 2129–2132', ccc:'1159–1162, 2129–2132', tags:['apologetics','images','relics','idolatry'],
+    content:'The commandment against "graven images" forbids making idols to worship, not all religious art. God himself commanded images in worship, and the Incarnation made the invisible God visible.',
+    scripture:['Exodus 20:4–5','Exodus 25:18–22','Numbers 21:8–9','1 Kings 6:23–29','Colossians 1:15'],
+    points:['God commanded golden cherubim on the Ark of the Covenant and carvings throughout Solomon’s Temple.','The bronze serpent (Numbers 21) was a God-given image that Jesus applied to himself (John 3:14).','Christ is "the image of the invisible God." The Second Council of Nicaea (787) taught that honor paid to an image passes to the one it represents.','Relics: a dead man came to life on touching Elisha’s bones (2 Kings 13:21), and cloths touched by Paul brought healing (Acts 19:11–12).'],
+    objections:[{q:'Isn’t kneeling before a statue idolatry?', a:'Idolatry means treating a created thing as God. Kneeling is a gesture of reverence that people have also used before kings and parents. Catholics honor what the image represents; no Catholic thinks the statue itself is God.'}] },
+  { id:'t31', category:'theology', group:'defense', art:'lantern', title:'Purgatory in Scripture and Tradition', author:'Catechism of the Catholic Church 1030–1032', ccc:'1030–1032', tags:['apologetics','purgatory','prayer for the dead'],
+    content:'Purgatory is not a second chance or a place of punishment apart from Christ. It is the final purification of those who die in God’s friendship but still carry the effects of sin, so that they can enter heaven’s perfect holiness.',
+    scripture:['2 Maccabees 12:44–46','1 Corinthians 3:13–15','Matthew 12:32','Hebrews 12:14','Revelation 21:27'],
+    points:['Nothing unclean will enter heaven (Revelation 21:27), yet few of us are perfectly holy at death.','Paul describes a person whose work is burned up yet "he himself shall be saved, yet so as by fire" (1 Corinthians 3:15).','Judas Maccabeus offered sacrifice for the dead, "that they might be loosed from sins" (2 Maccabees 12:46).','Early Christians prayed for the dead: Tertullian mentions offerings on the anniversary of a death, and St. Monica asked Augustine to remember her at the altar (Confessions 9).'],
+    objections:[{q:'Doesn’t purgatory deny that Christ’s sacrifice is enough?', a:'No. Purgatory is entirely the work of Christ’s grace. It applies his sacrifice to purify us completely, so that we may see God face to face. It is the last stage of salvation, not an addition to it.'}] },
+  { id:'t32', category:'theology', group:'defense', art:'dove', title:'Why Baptize Infants?', author:'Catechism of the Catholic Church 1250–1252', ccc:'1250–1252', tags:['apologetics','baptism','children'],
+    content:'Some Christians hold that Baptism should only follow a personal profession of faith. The Catholic Church, along with the Orthodox and many Protestant churches, has baptized infants from the earliest centuries. Salvation is a gift of grace, not something we earn by our own decision.',
+    scripture:['Acts 2:38–39','Acts 16:15, 33','1 Corinthians 1:16','Colossians 2:11–12','Mark 10:14'],
+    points:['Whole households were baptized, which likely included children (Acts 16; 1 Corinthians 1:16).','Baptism fulfills circumcision (Colossians 2:11–12), which was given to eight-day-old infants.','Peter said the promise was "to you and to your children" (Acts 2:39).','Around 215, the Apostolic Tradition (attributed to Hippolytus) gives instructions for baptizing children who cannot answer for themselves. Origen called infant baptism a tradition received from the apostles.'],
+    objections:[{q:'A baby can’t have faith. Doesn’t Baptism require faith?', a:'Faith is required, and for infants the faith of the Church and the parents stands in for them until they can profess it themselves. Grace always comes before our response. God acts first, as he did when he made covenants with whole families in the Old Testament.'}] },
+  { id:'t33', category:'theology', group:'defense', art:'sunrise', title:'Faith and Science', author:'Catechism of the Catholic Church 159, 283–284', ccc:'159, 283–284', tags:['apologetics','science','reason','evolution'],
+    content:'The Church teaches that faith and reason can never truly contradict each other, because the same God who reveals the faith created the world that science studies. "Methodical research in all branches of knowledge... can never conflict with the faith" (CCC 159).',
+    scripture:['Wisdom 11:20','Psalm 103:24 [104:24]','Romans 1:20'],
+    points:['The Church founded the university system in the Middle Ages.','Many pioneers of science were Catholic: Copernicus (a church canon), Mendel (an Augustinian friar, father of genetics), Steno (a bishop and founder of geology), and Georges Lemaître (a priest who proposed the Big Bang theory).','The Vatican Observatory is one of the oldest astronomical research institutions in the world.','The Church accepts that evolution can be studied scientifically, while holding that each human soul is directly created by God.'],
+    objections:[{q:'What about Galileo?', a:'The Galileo affair was a real error by churchmen, which Pope St. John Paul II acknowledged in 1992. But it was a complicated clash of personalities, politics, and incomplete science, and it is the exception rather than the rule. The Church’s long support of science is the fuller story.'}] },
+  { id:'t34', category:'theology', group:'defense', art:'joseph', title:'"Call No Man Father"?', author:'Catechism of the Catholic Church 2214–2220', ccc:'2214–2220', tags:['apologetics','priesthood','scripture'],
+    content:'Some object to calling priests "Father," citing Matthew 23:9: "call none your father upon earth; for one is your father, who is in heaven." Read in context, Jesus was not banning a word but warning against pride in religious titles.',
+    scripture:['Matthew 23:8–12','1 Corinthians 4:15','Acts 7:2','1 John 2:13','Romans 4:16'],
+    points:['In the same passage Jesus says not to call anyone "teacher," yet Christians rightly call people teachers.','Paul calls himself a father to the Corinthians: "in Christ Jesus, by the gospel, I have begotten you" (1 Corinthians 4:15).','Stephen addressed the Jewish council as "brethren and fathers" (Acts 7:2), and John writes to "fathers" in the Church (1 John 2:13).','Abraham is called "the father of us all" (Romans 4:16).'],
+    objections:[{q:'So why do Catholics use the title for priests?', a:'Because priests serve as spiritual fathers, bringing people to new life in Baptism and caring for them. The title points to God’s fatherhood rather than competing with it, as Paul’s own use shows.'}] },
 ];
 
 const BIBLE_DATA = [
@@ -2131,7 +2368,7 @@ function buildPatronFilterRow(){
 }
 
 function updateCounts(){
-  const counts = { all: library.length, prayer:0, saint:0, history:0, book:0, bible:0 };
+  const counts = { all: library.length, prayer:0, saint:0, history:0, book:0, bible:0, theology:0 };
   library.forEach(e => { if(counts[e.category] !== undefined) counts[e.category]++; });
   Object.keys(counts).forEach(k => {
     const el = document.getElementById('count-' + k);
@@ -2153,6 +2390,8 @@ function currentEntries(){
       (e.author||'').toLowerCase().includes(t) ||
       (e.content||'').toLowerCase().includes(t) ||
       (e.intercession||'').toLowerCase().includes(t) ||
+      (e.points||[]).some(p => p.toLowerCase().includes(t)) ||
+      (e.objections||[]).some(o => (o.q + ' ' + o.a).toLowerCase().includes(t)) ||
       (e.tags||[]).some(tag => tag.toLowerCase().includes(t))
     );
   }
@@ -2174,6 +2413,7 @@ function render(){
       : activeCategory === 'chaplet' ? 'Divine Mercy Chaplet'
       : activeCategory === 'history' ? 'Church History'
       : activeCategory === 'daily' ? 'Daily'
+      : activeCategory === 'theology' ? 'Theology'
       : CAT_LABEL[activeCategory] + 's';
     sectionDescEl.textContent = CAT_DESC[activeCategory];
   }
@@ -2206,6 +2446,10 @@ function render(){
     renderDaily();
     return;
   }
+  if(activeCategory === 'theology' && !searchTerm.trim()){
+    renderTheology();
+    return;
+  }
 
   const entries = currentEntries();
   entryListEl.innerHTML = '';
@@ -2236,13 +2480,13 @@ function render(){
     return;
   }
 
-  const colorVar = { prayer:'var(--wine)', saint:'var(--gold)', history:'var(--green)', book:'var(--indigo)', bible:'var(--teal)' };
+  const colorVar = { prayer:'var(--wine)', saint:'var(--gold)', history:'var(--green)', book:'var(--indigo)', bible:'var(--teal)', theology:'var(--purple)' };
 
   entries.forEach(entry => {
     const row = document.createElement('div');
     row.className = 'entry-row';
     row.style.setProperty('--row-color', colorVar[entry.category] || 'var(--wine)');
-    const card = PRAYER_CARDS[entry.id];
+    const card = PRAYER_CARDS[entry.id] || (entry.art ? { art:entry.art, accent:'var(--purple)' } : null);
     if(card) row.style.setProperty('--accent', card.accent);
     row.innerHTML = `
       <div class="row-top">
@@ -2874,6 +3118,7 @@ function renderDaily(){
   const book = dailyPick(byCat('book'), 41, d);
   const event = dailyPick(byCat('history'), 53, d);
   const bibleBook = dailyPick(byCat('bible'), 67, d);
+  const topic = dailyPick(byCat('theology'), 79, d);
   const mysteryKey = mysterySetFor(d);
   const mysteries = MYSTERIES[mysteryKey];
   const card = PRAYER_CARDS[prayer.id] || { art:'cross', accent:'var(--wine)' };
@@ -2971,6 +3216,14 @@ function renderDaily(){
       <h3>${escapeHtml(bibleBook.title)}</h3>
       <p>${escapeHtml(excerptOf(bibleBook.content, 220))}</p>
       <span class="daily-more">Study notes →</span>
+    </article>
+
+    <article class="daily-card daily-theology" data-open="${topic.id}" tabindex="0" style="--accent:var(--purple)">
+      <div class="daily-kicker">Know Your Faith · ${topic.group === 'belief' ? 'Core Belief' : 'Defending the Faith'}</div>
+      <h3><span class="row-art">${cardArt(topic.art)}</span>${escapeHtml(topic.title)}</h3>
+      <p>${escapeHtml(excerptOf(topic.content, 260))}</p>
+      ${topic.objections.length ? `<p class="daily-quote"><strong>Q:</strong> ${escapeHtml(topic.objections[0].q)}</p>` : ''}
+      <span class="daily-more">Learn and defend it →</span>
     </article>`;
   entryListEl.appendChild(grid);
 
@@ -2984,6 +3237,81 @@ function renderDaily(){
     rosarySequence = null;
     goToSection('rosary');
   });
+}
+
+/* =========================================================
+   THEOLOGY
+   ========================================================= */
+const THEOLOGY_GROUPS = [
+  { key:'belief', name:'Core Catholic Beliefs', desc:'What the Church teaches, following the order of the Creed, with the Scripture and Catechism passages behind each teaching.' },
+  { key:'defense', name:'Defending the Faith', desc:'Apologetics: the reasons behind the faith, and charitable answers to the questions and objections Catholics most often hear.' }
+];
+let theologyGroup = 'all';
+
+function renderTheology(){
+  entryListEl.innerHTML = '';
+  const entries = library.filter(e => e.category === 'theology');
+
+  const chips = document.createElement('div');
+  chips.className = 'patron-filters';
+  chips.innerHTML = `<div class="patron-filters-label">Show:</div>
+    <div class="patron-filters-row">
+      <button class="patron-chip${theologyGroup === 'all' ? ' active' : ''}" data-group="all">Everything</button>
+      ${THEOLOGY_GROUPS.map(g => `<button class="patron-chip${theologyGroup === g.key ? ' active' : ''}" data-group="${g.key}">${escapeHtml(g.name)}</button>`).join('')}
+    </div>`;
+  chips.querySelectorAll('.patron-chip').forEach(b => b.addEventListener('click', () => { theologyGroup = b.dataset.group; renderTheology(); }));
+  entryListEl.appendChild(chips);
+
+  THEOLOGY_GROUPS.filter(g => theologyGroup === 'all' || g.key === theologyGroup).forEach(g => {
+    const section = document.createElement('section');
+    section.className = 'theology-group';
+    section.innerHTML = `<h3 class="list-heading">${escapeHtml(g.name)}</h3><p class="theology-group-desc">${escapeHtml(g.desc)}</p>`;
+    entries.filter(e => e.group === g.key).forEach(e => {
+      const row = document.createElement('div');
+      row.className = 'entry-row theology-row';
+      row.style.setProperty('--row-color', 'var(--purple)');
+      row.style.setProperty('--accent', 'var(--purple)');
+      row.innerHTML = `
+        <div class="row-top">
+          <h3><span class="row-art">${cardArt(e.art)}</span>${escapeHtml(e.title)}</h3>
+          <span class="cat-badge">${g.key === 'belief' ? 'Belief' : 'Apologetics'}</span>
+        </div>
+        <div class="excerpt">${escapeHtml(excerptOf(e.content, 200))}</div>
+        <div class="theology-meta">
+          <span>${e.scripture.length} Scripture passages</span>
+          <span>CCC ${escapeHtml(e.ccc)}</span>
+          <span>${e.objections.length} common ${e.objections.length === 1 ? 'objection' : 'objections'} answered</span>
+        </div>`;
+      row.addEventListener('click', () => openReadModal(e.id));
+      section.appendChild(row);
+    });
+    entryListEl.appendChild(section);
+  });
+}
+
+// Extra reading-view sections for theology entries
+function buildTheologyBlocks(e){
+  const frag = document.createDocumentFragment();
+  const block = (title, html) => {
+    const div = document.createElement('div');
+    div.className = 'intercession-block theo-block';
+    div.innerHTML = `<h3>${title}</h3>${html}`;
+    frag.appendChild(div);
+  };
+  if(e.points && e.points.length){
+    block(e.group === 'defense' ? 'The Case' : 'Key Points', `<ul class="theo-points">${e.points.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul>`);
+  }
+  if(e.scripture && e.scripture.length){
+    block('In Scripture', `<div class="theo-refs">${e.scripture.map(s => `<span class="theo-ref">${escapeHtml(s)}</span>`).join('')}</div>`);
+  }
+  if(e.ccc){
+    block('In the Catechism', `<p class="theo-ccc">Catechism of the Catholic Church, paragraphs ${escapeHtml(e.ccc)}. <a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM" target="_blank" rel="noopener">Read the Catechism ↗</a></p>`);
+  }
+  if(e.objections && e.objections.length){
+    block('Common Objections', e.objections.map((o, i) =>
+      `<details class="theo-objection"${i === 0 ? ' open' : ''}><summary>${escapeHtml(o.q)}</summary><p>${escapeHtml(o.a)}</p></details>`).join(''));
+  }
+  return frag;
 }
 
 /* =========================================================
@@ -3157,7 +3485,30 @@ const ENTRY_WIKI = {
   b90:["Deus caritas est", "Pope Benedict XVI"],
   b91:["Spe salvi", "Pope Benedict XVI"],
   b92:["Mother Teresa"],
-  b93:["Dilexit nos", "Pope Francis"]
+  b93:["Dilexit nos", "Pope Francis"],
+  h50:["Our Lady of the Pillar"],
+  h51:["Our Lady of Walsingham"],
+  h52:["Brown Scapular", "Our Lady of Mount Carmel"],
+  h53:["Our Lady of Guadalupe"],
+  h54:["Our Lady of Laus", "Benoîte Rencurel"],
+  h55:["Miraculous Medal", "Catherine Labouré"],
+  h56:["Our Lady of La Salette"],
+  h57:["Our Lady of Lourdes", "Sanctuary of Our Lady of Lourdes"],
+  h58:["Shrine of Our Lady of Good Help", "Adele Brise"],
+  h59:["Our Lady of Pontmain"],
+  h60:["Knock Shrine", "Our Lady of Knock"],
+  h61:["Our Lady of Beauraing"],
+  h62:["Our Lady of Banneux"],
+  h63:["Our Lady of Akita"],
+  h64:["Our Lady of Kibeho"],
+  h65:["Medjugorje"],
+  h66:["Marian apparition"],
+  h67:["Saint Patrick"],
+  h68:["Galileo affair", "Galileo Galilei"],
+  h69:["Suppression of the Society of Jesus"],
+  h70:["Oxford Movement"],
+  h71:["Kakure Kirishitan", "Ōura Church"],
+  h72:["Cristero War"]
 };
 const SAINTLY_DESC = /saint|martyr|pope|apostle|bishop|priest|nun|friar|monk|archangel|theolog|mystic|abbess|abbot|virgin|evangelist|missionary|hermit|deacon|jesuit|franciscan|dominican|carmelite|christian|catholic|religious|prophet|mother of|father of|patron|jesus|disciple|church|patriarch|cardinal|gospel|founder/i;
 const PORTRAIT_CACHE_KEY = 'sanctify.saintPortraits.v3';
@@ -3302,10 +3653,12 @@ const HISTORY_ERAS = [
   { key:'modern', name:'Revolution & the Modern Church', span:'1789–present' }
 ];
 let activeEra = 'all';
+let historyMarianOnly = false;
 
 function renderHistory(){
   entryListEl.innerHTML = '';
-  const all = currentEntries().slice().sort((a,b) => (a.year||0) - (b.year||0));
+  let all = currentEntries().slice().sort((a,b) => (a.year||0) - (b.year||0));
+  if(historyMarianOnly) all = all.filter(e => (e.tags || []).includes('apparition'));
 
   const chips = document.createElement('div');
   chips.className = 'patron-filters';
@@ -3313,10 +3666,15 @@ function renderHistory(){
     <div class="patron-filters-row">
       <button class="patron-chip${activeEra==='all'?' active':''}" data-era="all">All eras</button>
       ${HISTORY_ERAS.map(er => `<button class="patron-chip${activeEra===er.key?' active':''}" data-era="${er.key}">${escapeHtml(er.name)}</button>`).join('')}
+    </div>
+    <div class="patron-filters-label" style="margin-top:12px">Topic:</div>
+    <div class="patron-filters-row">
+      <button class="patron-chip${historyMarianOnly ? ' active' : ''}" id="marianToggle" aria-pressed="${historyMarianOnly}">✦ Marian apparitions only</button>
     </div>`;
-  chips.querySelectorAll('.patron-chip').forEach(btn => {
+  chips.querySelectorAll('.patron-chip[data-era]').forEach(btn => {
     btn.addEventListener('click', () => { activeEra = btn.dataset.era; renderHistory(); });
   });
+  chips.querySelector('#marianToggle').addEventListener('click', () => { historyMarianOnly = !historyMarianOnly; renderHistory(); });
   entryListEl.appendChild(chips);
 
   const eras = HISTORY_ERAS.filter(er => activeEra === 'all' || er.key === activeEra);
@@ -3444,6 +3802,8 @@ document.getElementById('navList').addEventListener('click', e => {
   btn.classList.add('active');
   activeCategory = btn.dataset.cat;
   activeEra = 'all';
+  historyMarianOnly = false;
+  theologyGroup = 'all';
   searchTerm = '';
   document.getElementById('searchInput').value = '';
   render();
@@ -3480,6 +3840,8 @@ function openReadModal(id){
   if(intercessionEl) intercessionEl.remove();
   const staleNotable = document.getElementById('readNotable');
   if(staleNotable) staleNotable.remove();
+  document.querySelectorAll('#readOverlay .theo-block').forEach(el => el.remove());
+  if(e.category === 'theology') document.getElementById('readLinkBox').before(buildTheologyBlocks(e));
   if(e.intercession){
     intercessionEl = document.createElement('div');
     intercessionEl.id = 'readIntercession';
