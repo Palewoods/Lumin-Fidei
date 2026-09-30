@@ -256,6 +256,7 @@
   nav.sidebar button.navlink[data-cat="chaplet"]{--cat-color:var(--teal);}
   nav.sidebar button.navlink[data-cat="shop"]{--cat-color:var(--amber);}
   nav.sidebar button.navlink[data-cat="all"]{--cat-color:var(--ink);}
+  nav.sidebar button.navlink[data-cat="daily"]{--cat-color:var(--gold);}
 
   .side-actions{border-top:1px solid var(--line); padding-top:18px; display:flex; flex-direction:column; gap:8px;}
   .btn{
@@ -597,6 +598,58 @@
     .cal-season-key .cal-hint{display:none;}
   }
 
+  /* ---------- Daily page ---------- */
+  .today-daily-link{
+    margin-top:12px; padding:0; background:none; border:none; cursor:pointer;
+    font-family:'Source Serif 4', serif; font-size:0.9rem; color:var(--wine); text-align:left;
+  }
+  .today-daily-link:hover{text-decoration:underline;}
+  .daily-head{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+  .daily-date{font-family:'Cormorant Garamond', serif; font-size:1.6rem; font-weight:600; color:var(--wine-dark); text-align:center; min-width:0;}
+  .daily-feast{
+    padding:14px 18px; margin-bottom:22px; background:var(--parchment-light);
+    border:1px solid var(--line); border-left:4px solid var(--season);
+  }
+  .daily-feast-item{display:flex; align-items:baseline; gap:8px; margin-top:4px; font-size:1rem;}
+  .daily-feast-item .dot{width:8px; height:8px; border-radius:50%; flex-shrink:0; display:inline-block; transform:translateY(-1px);}
+  .daily-link{display:inline-block; margin-top:10px; font-size:0.88rem;}
+  .daily-kicker{font-size:0.7rem; text-transform:uppercase; letter-spacing:0.16em; color:var(--gold); margin-bottom:6px; font-weight:600;}
+  .daily-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:18px;}
+  .daily-card{
+    position:relative; padding:20px 22px; background:var(--parchment-light);
+    border:1px solid var(--line); box-shadow:0 1px 3px rgba(var(--ink-rgb),0.08);
+  }
+  .daily-card[data-open]{cursor:pointer; transition:transform 0.15s ease, box-shadow 0.15s ease;}
+  .daily-card[data-open]:hover, .daily-card[data-open]:focus-visible{transform:translateY(-2px); box-shadow:0 8px 20px rgba(var(--ink-rgb),0.12); outline:none;}
+  .daily-card h3{font-size:1.4rem; line-height:1.2; margin-bottom:4px;}
+  .daily-card p{margin:10px 0 0; font-size:0.95rem;}
+  .daily-card .byline{font-style:italic; color:var(--ink-soft); font-size:0.9rem;}
+  .daily-more{display:inline-block; margin-top:12px; font-size:0.86rem; color:var(--wine);}
+  .daily-quote{font-style:italic; color:var(--ink-soft); border-left:2px solid var(--gold-light); padding-left:12px;}
+  .daily-saint{grid-column:1 / -1; display:flex; gap:24px; align-items:flex-start; border-top:3px solid var(--gold);}
+  .daily-saint .saint-portrait.large{flex:0 0 170px;}
+  .daily-body{flex:1; min-width:0;}
+  .daily-verse{display:flex; flex-direction:column; justify-content:center; text-align:center; border-top:3px solid var(--wine);}
+  .daily-verse blockquote{margin:6px 0 10px; font-family:'Cormorant Garamond', serif; font-size:1.45rem; line-height:1.45; font-style:italic;}
+  .daily-verse cite{font-style:normal; font-size:0.85rem; color:var(--ink-soft);}
+  .daily-prayer{text-align:center; border-top:3px solid var(--accent);}
+  .daily-prayer .pc-art{margin:2px auto 8px;}
+  .daily-prayer-text{white-space:pre-line; font-family:'Cormorant Garamond', serif; font-size:1.12rem !important; line-height:1.55;}
+  .daily-rosary{border-top:3px solid var(--indigo);}
+  .daily-rosary ol{margin:10px 0 16px; padding-left:22px; font-size:0.95rem;}
+  .daily-rosary li{margin:3px 0;}
+  .daily-book, .daily-history{display:flex; gap:16px; align-items:flex-start;}
+  .daily-book{border-top:3px solid var(--indigo);}
+  .daily-book .saint-portrait{flex:0 0 78px; width:78px; height:108px;}
+  .daily-history{border-top:3px solid var(--green);}
+  .daily-history .saint-portrait{flex:0 0 96px; width:96px; height:72px;}
+  .daily-bible{border-top:3px solid var(--teal);}
+  @media (max-width:700px){
+    .daily-grid{grid-template-columns:1fr;}
+    .daily-saint{flex-direction:column; align-items:center; text-align:center;}
+    .daily-saint .daily-quote{text-align:left;}
+  }
+
   /* ---------- Saint portraits ---------- */
   .entry-row.saint-row{display:flex; gap:18px; align-items:flex-start;}
   .entry-row.saint-row .row-main{flex:1; min-width:0;}
@@ -621,8 +674,17 @@
   .saint-portrait.large .portrait-initial{width:90px; height:90px; font-size:3.6rem;}
   .read-portrait figcaption{font-size:0.75rem; margin-top:6px; min-height:1em;}
   .read-portrait figcaption a{color:var(--ink-soft);}
+  /* Books: a cover-like rectangle. History: a small framed plate. */
+  .saint-portrait.shape-book{border-radius:2px 5px 5px 2px; box-shadow:inset 3px 0 0 rgba(var(--ink-rgb),0.18), 2px 3px 8px rgba(var(--ink-rgb),0.18);}
+  .saint-portrait.shape-history{border-radius:4px; height:64px; flex-basis:84px; width:84px;}
+  .saint-portrait.shape-history img{object-position:50% 35%;}
+  .saint-portrait.large.shape-book{border-radius:3px 8px 8px 3px; height:230px;}
+  .saint-portrait.large.shape-history{border-radius:6px; width:200px; height:150px;}
+  .read-portrait:has(.shape-history){width:200px;}
+  .history-thumb{margin-left:6px; align-self:center;}
   @media (max-width:600px){
     .saint-portrait{flex-basis:50px; width:50px; height:64px;}
+    .saint-portrait.shape-history{flex-basis:64px; width:64px; height:48px;}
     .read-portrait{float:none; margin:0 auto 16px;}
   }
 
@@ -730,6 +792,7 @@
     <div class="group-label">Browse</div>
     <ul id="navList">
       <li><button class="navlink active" data-cat="all">All entries <span class="count" id="count-all"></span></button></li>
+      <li><button class="navlink" data-cat="daily">Daily</button></li>
       <li><button class="navlink" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
       <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
       <li><button class="navlink" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
@@ -782,6 +845,7 @@
 const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Book', bible:'Bible' };
 const CAT_DESC = {
   all: 'Everything currently held in the repository.',
+  daily: 'A saint, a prayer, a verse, and more for each day, chosen fresh every morning.',
   prayer: 'Traditional and devotional prayers of the Church.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
   history: 'Two thousand years of councils, missions, schisms, and renewals, from Pentecost to the present day.',
@@ -1629,6 +1693,92 @@ const SEED_DATA = [
   { id:'b60', category:'book', title:'Laudato Si’', author:'Pope Francis, 2015', tags:['encyclical','creation','social teaching'],
     content:'An encyclical "on care for our common home," named for the refrain of St. Francis’s Canticle of the Creatures. It links care for the environment with care for the poor and critiques consumerism and the "throwaway culture."\n\nIt proposes an "integral ecology" in which everything is connected.',
     link:'https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html' },
+  { id:'b61', category:'book', title:'Proslogion', author:'St. Anselm of Canterbury, 1078', tags:['philosophy','theology','prayer'],
+    content:'Written as a prayerful meditation, the Proslogion seeks a single argument that would show God exists. Anselm finds it in the idea of God as the greatest conceivable being, the famous "ontological argument."\n\nPhilosophers from Aquinas to Kant to the present have debated it, but the book begins and ends as a prayer of faith seeking understanding.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Proslogion+Anselm', notable:'"That than which nothing greater can be conceived."' },
+  { id:'b62', category:'book', title:'On Loving God', author:'St. Bernard of Clairvaux, c. 1128', tags:['love','mysticism','cistercian'],
+    content:'A short treatise answering two questions: why God should be loved, and how much. Bernard traces four degrees of love, from loving oneself for one’s own sake to loving oneself only for God’s sake.\n\nIt is one of the gems of medieval spiritual writing, both theological and deeply personal.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=On+Loving+God+Bernard' },
+  { id:'b63', category:'book', title:'The Journey of the Mind into God', author:'St. Bonaventure, 1259', tags:['franciscan','mysticism','contemplation'],
+    content:'Written on Mount La Verna, where St. Francis received the stigmata, this short work describes six stages by which the soul rises to God: through the created world, through its own powers, and finally beyond all understanding into loving union.\n\nIt is a masterpiece of Franciscan spirituality and medieval theology.' },
+  { id:'b64', category:'book', title:'The Scale of Perfection', author:'Walter Hilton, late 14th century', tags:['mysticism','england','prayer'],
+    content:'An English Augustinian canon’s guide to the contemplative life, written for an anchoress. Hilton describes the soul’s reform from sin to the restored image of God, and warns against seeking extraordinary experiences.\n\nIt was one of the most widely read spiritual books in England before the Reformation.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Scale+of+Perfection+Hilton' },
+  { id:'b65', category:'book', title:'Utopia', author:'St. Thomas More, 1516', tags:['classic','philosophy','literature'],
+    content:'More’s witty dialogue describes a traveler’s account of an island commonwealth with no private property, religious tolerance, and communal life. It gave the English language the word "utopia," meaning both "good place" and "no place."\n\nScholars still debate how seriously More meant its ideas, which satirize the injustices of his own Europe.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Utopia+Thomas+More' },
+  { id:'b66', category:'book', title:'A Dialogue of Comfort against Tribulation', author:'St. Thomas More, 1534', tags:['suffering','faith','martyrdom'],
+    content:'Written in the Tower of London while More awaited execution, this dialogue between an old Hungarian and his nephew, facing a Turkish invasion, reflects on how a Christian should meet persecution and death.\n\nThrough its fictional setting, More prepares himself and his readers to stand firm with good humor and trust in God.' },
+  { id:'b67', category:'book', title:'The Book of Her Life', author:'St. Teresa of Ávila, 1565', tags:['autobiography','carmelite','prayer'],
+    content:'Teresa’s autobiography, written at the command of her confessors, recounts her lukewarm early years in the convent, her conversion, and the mystical graces that followed. At its center is a treatise on prayer comparing the soul to a garden watered in four ways.\n\nIt is one of the great spiritual autobiographies, honest and often funny.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Life+of+St.+Teresa+of+Jesus' },
+  { id:'b68', category:'book', title:'The Ascent of Mount Carmel', author:'St. John of the Cross, c. 1579–1585', tags:['carmelite','mysticism','detachment'],
+    content:'A companion to Dark Night of the Soul, the Ascent is a demanding guide to the "active" purification of the senses and spirit through detachment from everything that is not God.\n\nIts sketch of the mountain, with the word "nothing" repeated along the narrow path to the summit, is one of the most famous images in Christian mysticism.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Ascent+of+Mount+Carmel' },
+  { id:'b69', category:'book', title:'The Autobiography of St. Ignatius', author:'St. Ignatius of Loyola, dictated 1553–1555', tags:['jesuit','autobiography','discernment'],
+    content:'Near the end of his life, Ignatius dictated this account of his conversion to a fellow Jesuit. It covers his wounding at Pamplona, his conversion while convalescing, his time at Manresa, and his pilgrimage to Jerusalem.\n\nIgnatius refers to himself throughout as "the pilgrim," and the book shows the Spiritual Exercises taking shape in his own life.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Autobiography+of+St.+Ignatius' },
+  { id:'b70', category:'book', title:'The Roman Catechism', author:'Council of Trent, 1566', tags:['catechism','reference','councils'],
+    content:'Commissioned by the Council of Trent and published under Pope St. Pius V, this catechism was written for parish priests to use in teaching. It covers the Creed, the sacraments, the Ten Commandments, and the Lord’s Prayer.\n\nIt remained the Church’s authoritative catechism for four centuries, until the Catechism of the Catholic Church in 1992.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Catechism+of+the+Council+of+Trent' },
+  { id:'b71', category:'book', title:'The Secret of the Rosary', author:'St. Louis de Montfort, early 18th century', tags:['rosary','marian','devotion'],
+    content:'A collection of fifty-two short chapters, or "roses," explaining the history, power, and method of praying the Rosary, with stories of its fruits and practical advice for praying it well.\n\nIt remains one of the most popular books on the Rosary.' },
+  { id:'b72', category:'book', title:'Preparation for Death', author:'St. Alphonsus Liguori, 1758', tags:['death','conversion','meditation'],
+    content:'A book of meditations on death, judgment, and eternity. Alphonsus wrote it to move sinners to conversion and to help the faithful live each day in light of eternity.\n\nIts plain, urgent style made it one of the most widely read devotional books of the 18th and 19th centuries.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Preparation+for+Death+Liguori' },
+  { id:'b73', category:'book', title:'An Essay on the Development of Christian Doctrine', author:'St. John Henry Newman, 1845', tags:['theology','doctrine','conversion'],
+    content:'Written as Newman was deciding whether to become Catholic, this essay argues that Christian doctrine grows over time like a living idea, unfolding its implications without changing its essence. He proposes tests for telling true development from corruption.\n\nNewman was received into the Catholic Church before he finished it. It deeply influenced later theology, including the Second Vatican Council.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Essay+on+the+Development+of+Christian+Doctrine' },
+  { id:'b74', category:'book', title:'The Idea of a University', author:'St. John Henry Newman, 1852', tags:['education','philosophy','classic'],
+    content:'Lectures Newman gave as founding rector of the Catholic University of Ireland. He argues that a university should cultivate a "liberal education" of the whole mind, with theology among the sciences, rather than training only for a profession.\n\nIt remains a classic of educational philosophy.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Idea+of+a+University+Newman' },
+  { id:'b75', category:'book', title:'The Dream of Gerontius', author:'St. John Henry Newman, 1865', tags:['poetry','death','purgatory'],
+    content:'A long dramatic poem following the soul of a dying old man, Gerontius, from his deathbed through judgment to purgatory, accompanied by his guardian angel. It includes the hymn "Praise to the Holiest in the Height."\n\nEdward Elgar set it to music in 1900 in one of the great English choral works.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Dream+of+Gerontius' },
+  { id:'b76', category:'book', title:'The Hound of Heaven', author:'Francis Thompson, 1890', tags:['poetry','grace','conversion'],
+    content:'Written by a poet who had lived in poverty and opium addiction on the streets of London, this ode describes a soul fleeing God, who pursues it relentlessly like a hound.\n\nIt is one of the most famous religious poems in English.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Hound+of+Heaven+Thompson', notable:'"I fled Him, down the nights and down the days."' },
+  { id:'b77', category:'book', title:'Quo Vadis', author:'Henryk Sienkiewicz, 1896', tags:['novel','martyrs','early church'],
+    content:'Set in Nero’s Rome, this historical novel follows the love of a Roman officer, Marcus Vinicius, for Lygia, a young Christian, amid the great fire and the persecution that followed. Sts. Peter and Paul appear among the characters.\n\nThe title recalls the legend of Peter meeting Christ on the Appian Way. It helped win Sienkiewicz the Nobel Prize in Literature in 1905.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Quo+Vadis+Sienkiewicz' },
+  { id:'b78', category:'book', title:'The Innocence of Father Brown', author:'G.K. Chesterton, 1911', tags:['mystery','fiction','priesthood'],
+    content:'The first collection of detective stories featuring Father Brown, a small, unassuming Catholic priest who solves crimes through his deep understanding of human nature and sin, learned in the confessional.\n\nThe stories are clever puzzles and quiet meditations on reason, grace, and mercy.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Innocence+of+Father+Brown' },
+  { id:'b79', category:'book', title:'The Spirit of the Liturgy', author:'Romano Guardini, 1918', tags:['liturgy','worship','theology'],
+    content:'A short, influential book by the Italian-German priest Romano Guardini on the nature of Catholic worship. Guardini describes the liturgy as "play" before God: done not for any purpose but for its own sake, in the presence of the Father.\n\nIt helped inspire the liturgical movement of the 20th century. Joseph Ratzinger later wrote a book with the same title in tribute.' },
+  { id:'b80', category:'book', title:'Poems of Gerard Manley Hopkins', author:'Gerard Manley Hopkins, SJ, published 1918', tags:['poetry','jesuit','creation'],
+    content:'Hopkins, an English Jesuit priest, wrote startlingly original poems about the glory of God in nature, such as "God’s Grandeur," "Pied Beauty," and "The Windhover." They were published by his friend Robert Bridges nearly thirty years after his death.\n\nHis innovative "sprung rhythm" made him one of the most influential poets of the modern age.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=Poems+of+Gerard+Manley+Hopkins', notable:'"The world is charged with the grandeur of God."' },
+  { id:'b81', category:'book', title:'Kristin Lavransdatter', author:'Sigrid Undset, 1920–1922', tags:['novel','medieval','norway'],
+    content:'A trilogy following the life of a headstrong woman in 14th-century Catholic Norway, from girlhood through a passionate and difficult marriage to old age and a final surrender to God.\n\nUndset became a Catholic in 1924 and won the Nobel Prize in Literature in 1928, largely for this work.' },
+  { id:'b82', category:'book', title:'St. Francis of Assisi (Chesterton)', author:'G.K. Chesterton, 1923', tags:['biography','franciscan','saints'],
+    content:'Chesterton’s lively biography presents Francis as a lover and a "troubadour" of God, and tries to explain to modern readers a saint who seems at once charming and baffling.\n\nIt is written with Chesterton’s usual paradox and warmth.',
+    link:'https://www.gutenberg.org/ebooks/search/?query=St.+Francis+of+Assisi+Chesterton' },
+  { id:'b83', category:'book', title:'The Lord', author:'Romano Guardini, 1937', tags:['christ','gospels','meditation'],
+    content:'A series of meditations on the person and life of Jesus Christ, drawn from sermons Guardini preached over several years. It walks through the Gospels with both theological depth and reverence.\n\nIt became one of the most influential Catholic books of the 20th century.' },
+  { id:'b84', category:'book', title:'Saint Thomas Aquinas: "The Dumb Ox"', author:'G.K. Chesterton, 1933', tags:['biography','philosophy','dominican'],
+    content:'Chesterton’s portrait of St. Thomas Aquinas, the large, quiet friar nicknamed "the Dumb Ox" by his classmates. It introduces Thomas’s life and his philosophy of common sense and the goodness of created being.\n\nThe philosopher Étienne Gilson called it the best book ever written on St. Thomas.' },
+  { id:'b85', category:'book', title:'Theology and Sanity', author:'Frank Sheed, 1946', tags:['theology','catechesis','reason'],
+    content:'An Australian-born lay apologist and publisher explains the central doctrines of the faith, from the Trinity to the Church, arguing that to see reality as it truly is, one must see it in the light of God.\n\nIts clear style makes it a popular introduction to theology for lay readers.' },
+  { id:'b86', category:'book', title:'The Lord of the Rings', author:'J.R.R. Tolkien, 1954–1955', tags:['literature','fantasy','providence'],
+    content:'Tolkien’s epic follows the hobbit Frodo Baggins on a quest to destroy the One Ring. Tolkien, a devout Catholic, described it in a letter as "a fundamentally religious and Catholic work."\n\nThemes of providence, mercy, sacrifice, and humble perseverance run throughout.' },
+  { id:'b87', category:'book', title:'Silence', author:'Shūsaku Endō, 1966', tags:['novel','japan','persecution'],
+    content:'A Japanese Catholic novelist tells the story of a 17th-century Portuguese Jesuit who travels to Japan during the persecution of Christians. He struggles with God’s apparent silence in the face of his people’s suffering.\n\nIt is a searching, much-debated meditation on faith, weakness, and mercy. Martin Scorsese adapted it for film in 2016.' },
+  { id:'b88', category:'book', title:'Humanae Vitae', author:'Pope St. Paul VI, 1968', tags:['encyclical','marriage','life'],
+    content:'Paul VI’s encyclical on human life reaffirms Church teaching on marriage and the transmission of life, including its teaching against artificial contraception. It warns of the consequences if sexuality is separated from its meaning.\n\nIt was one of the most controversial documents of the modern papacy and remains central to Catholic moral teaching on marriage.',
+    link:'https://www.vatican.va/content/paul-vi/en/encyclicals/documents/hf_p-vi_enc_25071968_humanae-vitae.html' },
+  { id:'b89', category:'book', title:'Crossing the Threshold of Hope', author:'Pope St. John Paul II, 1994', tags:['faith','dialogue','modern era'],
+    content:'Written as answers to questions from the Italian journalist Vittorio Messori, this book covers topics from the existence of God and the problem of evil to other religions and the meaning of salvation.\n\nIt became an international bestseller. The title echoes the words of John Paul II’s first homily as pope: "Be not afraid!"' },
+  { id:'b90', category:'book', title:'Deus Caritas Est', author:'Pope Benedict XVI, 2005', tags:['encyclical','love','charity'],
+    content:'Benedict XVI’s first encyclical, "God is Love," reflects on the relationship between eros and agape, human and divine love, and on the Church’s charitable work as an essential expression of her nature.\n\nIt is known for its warmth and clarity.',
+    link:'https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20051225_deus-caritas-est.html' },
+  { id:'b91', category:'book', title:'Spe Salvi', author:'Pope Benedict XVI, 2007', tags:['encyclical','hope','eternal life'],
+    content:'An encyclical on Christian hope, taking its title from Romans 8:24, "in hope we were saved." Benedict reflects on the difference between faith-filled hope and modern faith in progress. He draws on the witness of St. Josephine Bakhita and the martyr Paul Le-Bao-Tinh.\n\nIt includes a moving reflection on prayer, suffering, and judgment as "settings" for learning hope.',
+    link:'https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html' },
+  { id:'b92', category:'book', title:'Come Be My Light', author:'St. Teresa of Calcutta, ed. Brian Kolodiejchuk, 2007', tags:['letters','darkness','charity'],
+    content:'A collection of Mother Teresa’s private letters, published after her death. It revealed that for nearly fifty years she experienced a painful sense of God’s absence, even while serving the poorest of the poor with joy.\n\nIt offers a profound witness to faith persevering through spiritual darkness.' },
+  { id:'b93', category:'book', title:'Dilexit Nos', author:'Pope Francis, 2024', tags:['encyclical','sacred heart','love'],
+    content:'Pope Francis’s fourth and final encyclical, on the human and divine love of the Heart of Jesus Christ. It was published during the 350th anniversary of the Sacred Heart apparitions to St. Margaret Mary Alacoque.\n\nIt calls a world grown cold and fragmented to rediscover the heart as the center of the person, and Christ’s love as the source of the Church’s mission.' },
 ];
 
 const BIBLE_DATA = [
@@ -1938,6 +2088,8 @@ function buildTodayPanel(){
   } else {
     panel.innerHTML = label + `<div class="today-item">A weekday in ${escapeHtml(season.name)} \u2014 open the Calendar tab to see what\u2019s coming up.</div>`;
   }
+  panel.insertAdjacentHTML('beforeend', `<button class="today-daily-link" type="button">Open today’s saint, prayer, and readings →</button>`);
+  panel.querySelector('.today-daily-link').addEventListener('click', () => { dailyDate = startOfToday(); goToSection('daily'); });
   panel.querySelectorAll('.today-item.linked').forEach(el => el.addEventListener('click', () => openReadModal(el.dataset.id)));
   return panel;
 }
@@ -1991,7 +2143,7 @@ function updateCounts(){
 
 function currentEntries(){
   let list = library;
-  if(activeCategory !== 'all'){
+  if(activeCategory !== 'all' && activeCategory !== 'daily'){
     list = list.filter(e => e.category === activeCategory);
   }
   if(searchTerm.trim()){
@@ -2021,6 +2173,7 @@ function render(){
       : activeCategory === 'stations' ? 'Stations of the Cross'
       : activeCategory === 'chaplet' ? 'Divine Mercy Chaplet'
       : activeCategory === 'history' ? 'Church History'
+      : activeCategory === 'daily' ? 'Daily'
       : CAT_LABEL[activeCategory] + 's';
     sectionDescEl.textContent = CAT_DESC[activeCategory];
   }
@@ -2047,6 +2200,10 @@ function render(){
   }
   if(activeCategory === 'history'){
     renderHistory();
+    return;
+  }
+  if(activeCategory === 'daily' && !searchTerm.trim()){
+    renderDaily();
     return;
   }
 
@@ -2096,12 +2253,12 @@ function render(){
       <div class="excerpt">${escapeHtml(excerptOf(entry.content, 190))}</div>
       ${(entry.tags && entry.tags.length) ? `<div class="tags">${entry.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
     `;
-    if(entry.category === 'saint'){
+    if(HAS_PICTURE.has(entry.category)){
       const main = document.createElement('div');
       main.className = 'row-main';
       while(row.firstChild) main.appendChild(row.firstChild);
       const portrait = document.createElement('div');
-      portrait.className = 'saint-portrait';
+      portrait.className = 'saint-portrait' + (entry.category === 'saint' ? '' : ' shape-' + entry.category);
       portrait.dataset.sid = entry.id;
       portrait.innerHTML = portraitPlaceholder(entry.title);
       row.classList.add('saint-row');
@@ -2615,6 +2772,221 @@ function buildPrayerCards(){
 }
 
 /* =========================================================
+   DAILY PAGE
+   ========================================================= */
+// Scripture verses, Douay-Rheims translation (Psalms use Vulgate numbering, with Hebrew numbering in brackets)
+const DAILY_VERSES = [
+  { text:'In the beginning was the Word, and the Word was with God, and the Word was God.', ref:'John 1:1' },
+  { text:'For God so loved the world, as to give his only begotten Son; that whosoever believeth in him, may not perish, but may have life everlasting.', ref:'John 3:16' },
+  { text:'The Lord ruleth me: and I shall want nothing. He hath set me in a place of pasture.', ref:'Psalm 22:1–2 [23]' },
+  { text:'Come to me, all you that labour, and are burdened, and I will refresh you.', ref:'Matthew 11:28' },
+  { text:'Be still and see that I am God.', ref:'Psalm 45:11 [46:10]' },
+  { text:'I am the way, and the truth, and the life. No man cometh to the Father, but by me.', ref:'John 14:6' },
+  { text:'Charity is patient, is kind: charity envieth not, dealeth not perversely; is not puffed up.', ref:'1 Corinthians 13:4' },
+  { text:'And now there remain faith, hope, and charity, these three: but the greatest of these is charity.', ref:'1 Corinthians 13:13' },
+  { text:'I can do all these things in him who strengtheneth me.', ref:'Philippians 4:13' },
+  { text:'Behold the handmaid of the Lord; be it done to me according to thy word.', ref:'Luke 1:38' },
+  { text:'Blessed are the clean of heart: for they shall see God.', ref:'Matthew 5:8' },
+  { text:'Blessed are the peacemakers: for they shall be called children of God.', ref:'Matthew 5:9' },
+  { text:'Seek ye therefore first the kingdom of God, and his justice, and all these things shall be added unto you.', ref:'Matthew 6:33' },
+  { text:'Ask, and it shall be given you: seek, and you shall find: knock, and it shall be opened to you.', ref:'Matthew 7:7' },
+  { text:'Thou art Peter; and upon this rock I will build my church, and the gates of hell shall not prevail against it.', ref:'Matthew 16:18' },
+  { text:'Behold I am with you all days, even to the consummation of the world.', ref:'Matthew 28:20' },
+  { text:'Peace I leave with you, my peace I give unto you: not as the world giveth, do I give unto you. Let not your heart be troubled, nor let it be afraid.', ref:'John 14:27' },
+  { text:'I am the resurrection and the life: he that believeth in me, although he be dead, shall live.', ref:'John 11:25' },
+  { text:'I am the bread of life: he that cometh to me shall not hunger: and he that believeth in me shall never thirst.', ref:'John 6:35' },
+  { text:'Greater love than this no man hath, that a man lay down his life for his friends.', ref:'John 15:13' },
+  { text:'And we know that to them that love God, all things work together unto good.', ref:'Romans 8:28' },
+  { text:'Rejoice in the Lord always; again, I say, rejoice.', ref:'Philippians 4:4' },
+  { text:'Pray without ceasing. In all things give thanks.', ref:'1 Thessalonians 5:17–18' },
+  { text:'God is charity: and he that abideth in charity, abideth in God, and God in him.', ref:'1 John 4:16' },
+  { text:'Behold, I stand at the gate, and knock. If any man shall hear my voice, and open to me the door, I will come in to him.', ref:'Revelation 3:20' },
+  { text:'Trust in the Lord with all thy heart, and lean not upon thy own prudence.', ref:'Proverbs 3:5' },
+  { text:'The fear of the Lord is the beginning of wisdom.', ref:'Proverbs 9:10' },
+  { text:'Create a clean heart in me, O God: and renew a right spirit within my bowels.', ref:'Psalm 50:12 [51:10]' },
+  { text:'Thy word is a lamp to my feet, and a light to my paths.', ref:'Psalm 118:105 [119:105]' },
+  { text:'My soul doth magnify the Lord. And my spirit hath rejoiced in God my Saviour.', ref:'Luke 1:46–47' },
+  { text:'Jesus Christ, yesterday, and to day; and the same for ever.', ref:'Hebrews 13:8' },
+  { text:'Fear not, for I have redeemed thee, and called thee by thy name: thou art mine.', ref:'Isaiah 43:1' },
+  { text:'Can a woman forget her infant, so as not to have pity on the son of her womb? and if she should forget, yet will not I forget thee.', ref:'Isaiah 49:15' },
+  { text:'O taste, and see that the Lord is sweet.', ref:'Psalm 33:9 [34:8]' },
+  { text:'I am the light of the world: he that followeth me, walketh not in darkness, but shall have the light of life.', ref:'John 8:12' },
+  { text:'Father, forgive them, for they know not what they do.', ref:'Luke 23:34' },
+  { text:'Lord, remember me when thou shalt come into thy kingdom.', ref:'Luke 23:42' },
+  { text:'With men this is impossible: but with God all things are possible.', ref:'Matthew 19:26' },
+  { text:'Thou shalt love the Lord thy God with thy whole heart, and with thy whole soul, and with thy whole mind.', ref:'Matthew 22:37' },
+  { text:'Unless you be converted, and become as little children, you shall not enter into the kingdom of heaven.', ref:'Matthew 18:3' },
+  { text:'Draw nigh to God, and he will draw nigh to you.', ref:'James 4:8' },
+  { text:'Casting all your care upon him, for he hath care of you.', ref:'1 Peter 5:7' },
+  { text:'For I know the thoughts that I think towards you, saith the Lord, thoughts of peace, and not of affliction.', ref:'Jeremiah 29:11' },
+  { text:'My grace is sufficient for thee: for power is made perfect in infirmity.', ref:'2 Corinthians 12:9' },
+  { text:'Be you therefore perfect, as also your heavenly Father is perfect.', ref:'Matthew 5:48' }
+];
+
+let dailyDate = startOfToday();
+
+function dayNumber(d){ return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000); }
+
+// A fixed shuffle per list, so each day gets a different item and nothing repeats until the list runs out
+function seededOrder(n, salt){
+  const idx = Array.from({ length:n }, (_, i) => i);
+  let s = (salt * 2654435761) >>> 0 || 1;
+  const rnd = () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; };
+  for(let i = n - 1; i > 0; i--){ const j = Math.floor(rnd() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+  return idx;
+}
+const dailyOrders = {};
+function dailyPick(list, salt, d){
+  if(!list.length) return null;
+  const key = salt + ':' + list.length;
+  const order = dailyOrders[key] || (dailyOrders[key] = seededOrder(list.length, salt));
+  return list[order[((dayNumber(d) % list.length) + list.length) % list.length]];
+}
+
+function mysterySetFor(d){
+  return {0:'glorious',1:'joyful',2:'sorrowful',3:'glorious',4:'luminous',5:'sorrowful',6:'joyful'}[d.getDay()];
+}
+
+function massReadingsUrl(d){
+  const p = n => String(n).padStart(2, '0');
+  return `https://bible.usccb.org/bible/readings/${p(d.getMonth() + 1)}${p(d.getDate())}${String(d.getFullYear()).slice(2)}.cfm`;
+}
+
+function goToSection(cat){
+  const btn = document.querySelector(`.navlink[data-cat="${cat}"]`);
+  if(btn) btn.click();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function renderDaily(){
+  entryListEl.innerHTML = '';
+  const d = dailyDate;
+  const isToday = sameDay(d, startOfToday());
+  const season = liturgicalSeason(d);
+  const obs = observancesFor(d).filter(o => o.type !== 'Season');
+  const byCat = cat => library.filter(e => e.category === cat);
+
+  const feastIds = obs.flatMap(o => o.saints || []);
+  const saint = feastIds.length ? library.find(x => x.id === feastIds[0]) : dailyPick(byCat('saint'), 11, d);
+  const onFeast = feastIds.length > 0;
+  const prayer = dailyPick(byCat('prayer').filter(p => p.id !== 'p10'), 23, d);
+  const verse = dailyPick(DAILY_VERSES, 37, d);
+  const book = dailyPick(byCat('book'), 41, d);
+  const event = dailyPick(byCat('history'), 53, d);
+  const bibleBook = dailyPick(byCat('bible'), 67, d);
+  const mysteryKey = mysterySetFor(d);
+  const mysteries = MYSTERIES[mysteryKey];
+  const card = PRAYER_CARDS[prayer.id] || { art:'cross', accent:'var(--wine)' };
+
+  const head = document.createElement('div');
+  head.className = 'daily-head';
+  head.style.setProperty('--season', season.color);
+  head.innerHTML = `
+    <div class="cal-nav">
+      <button class="cal-nav-btn" data-step="-1" aria-label="Previous day">‹</button>
+      <div class="daily-date">${isToday ? 'Today, ' : ''}${WEEKDAY_NAMES[d.getDay()]}, ${MONTH_NAMES[d.getMonth()]} ${d.getDate()}${d.getFullYear() !== new Date().getFullYear() ? ', ' + d.getFullYear() : ''}</div>
+      <button class="cal-nav-btn" data-step="1" aria-label="Next day">›</button>
+      ${isToday ? '' : '<button class="cal-nav-btn cal-today-btn" data-step="0">Today</button>'}
+    </div>
+    <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)} · ${escapeHtml(season.colorName)}</span>`;
+  head.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => {
+    const step = Number(b.dataset.step);
+    dailyDate = step === 0 ? startOfToday() : addDays(dailyDate, step);
+    renderDaily();
+  }));
+  entryListEl.appendChild(head);
+
+  const feast = document.createElement('div');
+  feast.className = 'daily-feast';
+  feast.style.setProperty('--season', season.color);
+  feast.innerHTML = `
+    <div class="daily-kicker">The Church celebrates</div>
+    ${obs.length
+      ? obs.map(o => `<div class="daily-feast-item"><span class="dot" style="background:${CAL_TYPE_COLOR[o.type] || 'var(--wine)'}"></span><strong>${escapeHtml(o.name)}</strong> <span class="today-type">${escapeHtml(o.type)}</span></div>`).join('')
+      : `<div class="daily-feast-item">A weekday in ${escapeHtml(season.name)}.</div>`}
+    ${dayNotes(d, obs).map(n => `<div class="cal-daynote">${escapeHtml(n)}</div>`).join('')}
+    <a class="daily-link" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Read the Mass readings for this day (USCCB) ↗</a>`;
+  entryListEl.appendChild(feast);
+
+  const grid = document.createElement('div');
+  grid.className = 'daily-grid';
+  grid.innerHTML = `
+    <article class="daily-card daily-saint" data-open="${saint.id}" tabindex="0">
+      <div class="saint-portrait large" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</div>
+      <div class="daily-body">
+        <div class="daily-kicker">${onFeast ? 'Saint of the Day · Feast today' : 'Saint of the Day'}</div>
+        <h3>${escapeHtml(saint.title)}</h3>
+        <div class="byline">${escapeHtml(saint.author || '')}</div>
+        <p>${escapeHtml(excerptOf(saint.content, 320))}</p>
+        ${saint.intercession ? `<p class="daily-quote">${escapeHtml(saint.intercession)}</p>` : ''}
+        <span class="daily-more">Read the full life →</span>
+      </div>
+    </article>
+
+    <article class="daily-card daily-verse">
+      <div class="daily-kicker">Verse of the Day</div>
+      <blockquote>“${escapeHtml(verse.text)}”</blockquote>
+      <cite>${escapeHtml(verse.ref)} · Douay-Rheims</cite>
+      <a class="daily-more" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Today’s full readings ↗</a>
+    </article>
+
+    <article class="daily-card daily-prayer" data-open="${prayer.id}" tabindex="0" style="--accent:${card.accent}">
+      <div class="daily-kicker">Prayer of the Day</div>
+      <div class="pc-art">${cardArt(card.art)}</div>
+      <h3>${escapeHtml(prayer.title)}</h3>
+      <p class="daily-prayer-text">${escapeHtml(prayer.content.length > 420 ? excerptOf(prayer.content, 400) : prayer.content)}</p>
+      <span class="daily-more">Pray it in full →</span>
+    </article>
+
+    <article class="daily-card daily-rosary">
+      <div class="daily-kicker">The Rosary · ${WEEKDAY_NAMES[d.getDay()]}</div>
+      <h3>${escapeHtml(mysteries.name)}</h3>
+      <ol>${mysteries.list.map(m => `<li>${escapeHtml(m.name)}</li>`).join('')}</ol>
+      <button class="btn primary" id="dailyRosaryBtn">Pray the ${escapeHtml(mysteries.name)}</button>
+    </article>
+
+    <article class="daily-card daily-book" data-open="${book.id}" tabindex="0">
+      <div class="saint-portrait shape-book" data-sid="${book.id}">${portraitPlaceholder(book.title)}</div>
+      <div class="daily-body">
+        <div class="daily-kicker">Book of the Day</div>
+        <h3>${escapeHtml(book.title)}</h3>
+        <div class="byline">${escapeHtml(book.author || '')}</div>
+        ${book.notable ? `<p class="daily-quote">${escapeHtml(book.notable)}</p>` : `<p>${escapeHtml(excerptOf(book.content, 200))}</p>`}
+        <span class="daily-more">About this book →</span>
+      </div>
+    </article>
+
+    <article class="daily-card daily-history" data-open="${event.id}" tabindex="0">
+      <div class="saint-portrait shape-history" data-sid="${event.id}">${portraitPlaceholder(event.title)}</div>
+      <div class="daily-body">
+        <div class="daily-kicker">From Church History · ${escapeHtml(event.author || '')}</div>
+        <h3>${escapeHtml(event.title)}</h3>
+        <p>${escapeHtml(excerptOf(event.content, 200))}</p>
+        <span class="daily-more">Read more →</span>
+      </div>
+    </article>
+
+    <article class="daily-card daily-bible" data-open="${bibleBook.id}" tabindex="0">
+      <div class="daily-kicker">Book of the Bible · ${escapeHtml(bibleBook.author || '')}</div>
+      <h3>${escapeHtml(bibleBook.title)}</h3>
+      <p>${escapeHtml(excerptOf(bibleBook.content, 220))}</p>
+      <span class="daily-more">Study notes →</span>
+    </article>`;
+  entryListEl.appendChild(grid);
+
+  grid.querySelectorAll('.saint-portrait[data-sid]').forEach(el => observePortrait(el));
+  grid.querySelectorAll('[data-open]').forEach(el => {
+    el.addEventListener('click', () => openReadModal(el.dataset.open));
+    el.addEventListener('keydown', ev => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); openReadModal(el.dataset.open); } });
+  });
+  document.getElementById('dailyRosaryBtn').addEventListener('click', () => {
+    rosarySet = mysteryKey;
+    rosarySequence = null;
+    goToSection('rosary');
+  });
+}
+
+/* =========================================================
    SAINT PORTRAITS (fetched from Wikipedia, cached locally)
    ========================================================= */
 // Wikipedia article titles for saints whose names don't resolve on their own
@@ -2642,6 +3014,151 @@ const SAINT_WIKI = {
   'St. Isidore of Seville':'Isidore of Seville',
   'Sts. Louis and Zélie Martin':'Louis Martin and Marie-Azélie Guérin'
 };
+// Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
+const ENTRY_WIKI = {
+  h1:["First Council of Nicaea"],
+  h2:["Rule of Saint Benedict", "Benedict of Nursia"],
+  h3:["East–West Schism"],
+  h4:["Council of Trent"],
+  h5:["Second Vatican Council"],
+  h6:["Pentecost"],
+  h7:["Council of Jerusalem"],
+  h8:["Paul the Apostle"],
+  h9:["Crucifixion of Saint Peter (Caravaggio)", "Saint Peter"],
+  h10:["Siege of Jerusalem (70 CE)", "Second Temple"],
+  h11:["New Testament","Codex Sinaiticus","Papyrus 52"],
+  h12:["Persecution of Christians in the Roman Empire", "Catacombs of Rome"],
+  h13:["Desert Fathers", "Anthony the Great"],
+  h14:["Edict of Milan", "Constantine the Great"],
+  h15:["First Council of Constantinople"],
+  h16:["Vulgate", "Jerome"],
+  h17:["Council of Chalcedon", "Council of Ephesus"],
+  h18:["Fall of the Western Roman Empire", "Romulus Augustulus"],
+  h19:["Clovis I"],
+  h20:["Gregorian mission", "Augustine of Canterbury"],
+  h21:["Early Muslim conquests", "Dome of the Rock"],
+  h22:["Second Council of Nicaea", "Byzantine Iconoclasm"],
+  h23:["Charlemagne"],
+  h24:["Cluny Abbey"],
+  h25:["Christianization of Kievan Rus'", "Vladimir the Great"],
+  h26:["Investiture Controversy", "Pope Gregory VII"],
+  h27:["Crusades", "First Crusade"],
+  h28:["Scholasticism", "University of Paris"],
+  h29:["Mendicant orders", "Francis of Assisi"],
+  h30:["Fourth Council of the Lateran", "Pope Innocent III"],
+  h31:["Avignon Papacy", "Palais des Papes"],
+  h32:["Western Schism", "Council of Constance"],
+  h33:["Council of Florence"],
+  h34:["Our Lady of Guadalupe", "Spanish missions in the Americas"],
+  h35:["Ninety-five Theses", "Reformation"],
+  h36:["English Reformation", "Henry VIII"],
+  h37:["Society of Jesus", "Ignatius of Loyola"],
+  h38:["Battle of Lepanto"],
+  h39:["Martyrs of Compiègne", "French Revolution"],
+  h40:["Immaculate Conception", "Our Lady of Lourdes"],
+  h41:["First Vatican Council"],
+  h42:["Rerum novarum", "Pope Leo XIII"],
+  h43:["Our Lady of Fátima"],
+  h44:["Lateran Treaty", "Vatican City"],
+  h45:["Pope Pius XII", "Mit brennender Sorge"],
+  h46:["Assumption of Mary"],
+  h47:["Pope John Paul II"],
+  h48:["Catechism of the Catholic Church"],
+  h49:["Pope Leo XIV", "Pope Francis"],
+  b1:["Confessions (Augustine)", "Augustine of Hippo"],
+  b2:["The Imitation of Christ", "Thomas à Kempis"],
+  b3:["Introduction to the Devout Life", "Francis de Sales"],
+  b4:["Story of a Soul", "Thérèse of Lisieux"],
+  b5:["Summa Theologica", "Thomas Aquinas"],
+  b6:["Rule of Saint Benedict", "Benedict of Nursia"],
+  b7:["Interior Castle", "Teresa of Ávila"],
+  b8:["Dark Night of the Soul", "John of the Cross"],
+  b9:["The City of God", "Augustine of Hippo"],
+  b10:["True Devotion to Mary", "Louis de Montfort"],
+  b11:["The Practice of the Presence of God", "Brother Lawrence"],
+  b12:["Pensées", "Blaise Pascal"],
+  b13:["Faustina Kowalska"],
+  b14:["Orthodoxy (Chesterton book)", "G. K. Chesterton"],
+  b15:["The Seven Storey Mountain", "Thomas Merton"],
+  b16:["Didache"],
+  b17:["Ignatius of Antioch"],
+  b18:["On the Incarnation", "Athanasius of Alexandria"],
+  b19:["Life of Anthony", "Anthony the Great"],
+  b20:["Sayings of the Desert Fathers", "Desert Fathers"],
+  b21:["The Consolation of Philosophy", "Boethius"],
+  b22:["Ecclesiastical History of the English People", "Bede"],
+  b23:["Golden Legend", "Jacobus de Voragine"],
+  b24:["Little Flowers of St. Francis", "Francis of Assisi"],
+  b25:["Divine Comedy", "Dante Alighieri"],
+  b26:["The Cloud of Unknowing"],
+  b27:["Catherine of Siena"],
+  b28:["Revelations of Divine Love", "Julian of Norwich"],
+  b29:["Spiritual Exercises of Ignatius of Loyola", "Ignatius of Loyola"],
+  b30:["Teresa of Ávila"],
+  b31:["Lorenzo Scupoli"],
+  b32:["Francis de Sales"],
+  b33:["Butler's Lives of the Saints", "Alban Butler"],
+  b34:["The Glories of Mary", "Alphonsus Liguori"],
+  b35:["Jean-Pierre de Caussade"],
+  b36:["The Betrothed (Manzoni novel)", "Alessandro Manzoni"],
+  b37:["Fabiola (novel)", "Nicholas Wiseman"],
+  b38:["Apologia Pro Vita Sua", "John Henry Newman"],
+  b39:["Rerum novarum", "Pope Leo XIII"],
+  b40:["Heretics (book)", "G. K. Chesterton"],
+  b41:["Lord of the World", "Robert Hugh Benson"],
+  b42:["Jean-Baptiste Chautard"],
+  b43:["The Everlasting Man", "G. K. Chesterton"],
+  b44:["The Diary of a Country Priest", "Georges Bernanos"],
+  b45:["The Power and the Glory", "Graham Greene"],
+  b46:["Brideshead Revisited", "Evelyn Waugh"],
+  b47:["Josef Pieper"],
+  b48:["Dorothy Day"],
+  b49:["Fulton J. Sheen"],
+  b50:["Flannery O'Connor"],
+  b51:["Second Vatican Council"],
+  b52:["Pope Benedict XVI"],
+  b53:["Walter Ciszek"],
+  b54:["Theology of the Body", "Pope John Paul II"],
+  b55:["Catechism of the Catholic Church"],
+  b56:["Fides et ratio", "Pope John Paul II"],
+  b57:["Jacques Philippe"],
+  b58:["Pope Benedict XVI"],
+  b59:["Evangelii gaudium", "Pope Francis"],
+  b60:["Laudato si'", "Pope Francis"],
+  b61:["Proslogion", "Anselm of Canterbury"],
+  b62:["On Loving God", "Bernard of Clairvaux"],
+  b63:["Itinerarium mentis in Deum", "Bonaventure"],
+  b64:["The Scale of Perfection", "Walter Hilton"],
+  b65:["Utopia (book)", "Thomas More"],
+  b66:["A Dialogue of Comfort against Tribulation", "Thomas More"],
+  b67:["The Life of Saint Teresa of Jesus", "Teresa of Ávila"],
+  b68:["Ascent of Mount Carmel", "John of the Cross"],
+  b69:["Ignatius of Loyola"],
+  b70:["Roman Catechism", "Council of Trent"],
+  b71:["Louis de Montfort"],
+  b72:["Alphonsus Liguori"],
+  b73:["An Essay on the Development of Christian Doctrine", "John Henry Newman"],
+  b74:["The Idea of a University", "John Henry Newman"],
+  b75:["The Dream of Gerontius (poem)", "The Dream of Gerontius"],
+  b76:["The Hound of Heaven", "Francis Thompson"],
+  b77:["Quo Vadis (novel)", "Henryk Sienkiewicz"],
+  b78:["The Innocence of Father Brown", "Father Brown"],
+  b79:["Romano Guardini"],
+  b80:["Gerard Manley Hopkins"],
+  b81:["Kristin Lavransdatter", "Sigrid Undset"],
+  b82:["Francis of Assisi"],
+  b83:["Romano Guardini"],
+  b84:["Thomas Aquinas"],
+  b85:["Frank Sheed"],
+  b86:["The Lord of the Rings", "J. R. R. Tolkien"],
+  b87:["Silence (Endō novel)", "Shūsaku Endō"],
+  b88:["Humanae vitae", "Pope Paul VI"],
+  b89:["Crossing the Threshold of Hope", "Pope John Paul II"],
+  b90:["Deus caritas est", "Pope Benedict XVI"],
+  b91:["Spe salvi", "Pope Benedict XVI"],
+  b92:["Mother Teresa"],
+  b93:["Dilexit nos", "Pope Francis"]
+};
 const SAINTLY_DESC = /saint|martyr|pope|apostle|bishop|priest|nun|friar|monk|archangel|theolog|mystic|abbess|abbot|virgin|evangelist|missionary|hermit|deacon|jesuit|franciscan|dominican|carmelite|christian|catholic|religious|prophet|mother of|father of|patron|jesus|disciple|church|patriarch|cardinal|gospel|founder/i;
 const PORTRAIT_CACHE_KEY = 'sanctify.saintPortraits.v3';
 let portraitCache = {};
@@ -2656,6 +3173,14 @@ function saintWikiCandidates(s){
   if(/^pope/i.test(s.title)) list.push({ title:'Pope ' + core });
   return list;
 }
+
+// Candidate Wikipedia articles for any entry. Books and history events move on to the next
+// candidate when an article has no picture; saints stop at the first matching article.
+function entryWikiCandidates(e){
+  if(e.category === 'saint') return saintWikiCandidates(e);
+  return (ENTRY_WIKI[e.id] || []).map(title => ({ title, trusted:true, needImage:true }));
+}
+const HAS_PICTURE = new Set(['saint', 'book', 'history']);
 
 // Looks up to 50 titles in one request; returns { requestedTitle: page or null }
 async function wikiLookup(titles){
@@ -2677,13 +3202,13 @@ async function wikiLookup(titles){
   return out;
 }
 
-// Resolves every saint's portrait in a handful of batched requests, trying each name candidate in turn
+// Resolves every picture in a handful of batched requests, trying each candidate article in turn
 function loadAllPortraits(){
   if(portraitsPromise) return portraitsPromise;
   if(Date.now() < portraitRetryAt) return Promise.resolve();
   portraitsPromise = (async () => {
-    let pending = library.filter(e => e.category === 'saint' && !(e.id in portraitCache))
-      .map(s => ({ s, cands:saintWikiCandidates(s) }));
+    let pending = library.filter(e => HAS_PICTURE.has(e.category) && !(e.id in portraitCache))
+      .map(s => ({ s, cands:entryWikiCandidates(s) }));
     for(let round = 0; pending.length; round++){
       pending.filter(p => !p.cands[round]).forEach(p => { portraitCache[p.s.id] = null; });
       const batch = pending.filter(p => p.cands[round]);
@@ -2694,29 +3219,43 @@ function loadAllPortraits(){
         chunk.forEach(p => {
           const c = p.cands[round], page = res[c.title];
           const ok = page && !page.missing && !(page.pageprops && 'disambiguation' in page.pageprops)
-            && (c.trusted || SAINTLY_DESC.test(page.description || ''));
+            && (c.trusted || SAINTLY_DESC.test(page.description || ''))
+            && (!c.needImage || page.thumbnail);
           if(ok) portraitCache[p.s.id] = page.thumbnail ? { src:page.thumbnail.source, page:page.fullurl || '' } : null;
           else next.push(p);
         });
       }
       pending = next;
     }
-  })().catch(() => {
+  })().then(flushWaitingPortraits).catch(() => {
     portraitsPromise = null;   // offline or rate-limited: keep what we have, retry after a minute
     portraitRetryAt = Date.now() + 60000;
+    setTimeout(() => { if(portraitWaiting.size) loadAllPortraits(); }, 61000);
   }).finally(() => {
     try{ localStorage.setItem(PORTRAIT_CACHE_KEY, JSON.stringify(portraitCache)); }catch(e){}
   });
   return portraitsPromise;
 }
 
+// Resolves to the picture, null if there is none, or undefined if the lookup hasn't succeeded yet
 function fetchSaintPortrait(s){
   if(s.id in portraitCache) return Promise.resolve(portraitCache[s.id]);
-  return loadAllPortraits().then(() => portraitCache[s.id] || null);
+  return loadAllPortraits().then(() => portraitCache[s.id]);
+}
+
+// Frames still showing a placeholder because a lookup failed; filled in once a retry succeeds
+const portraitWaiting = new Set();
+function flushWaitingPortraits(){
+  const els = [...portraitWaiting];
+  portraitWaiting.clear();
+  els.forEach(el => {
+    const s = el.isConnected && library.find(x => x.id === el.dataset.sid);
+    if(s) fillPortrait(el, s);
+  });
 }
 
 function saintInitial(title){
-  const core = title.replace(/^(pope\s+)?(st\.|sts\.|ss\.)\s+/i, '');
+  const core = title.replace(/^(pope\s+)?(st\.|sts\.|ss\.)\s+/i, '').replace(/^(the|a|an)\s+/i, '').replace(/^[^A-Za-zÀ-ÿ]+/, '');
   return core.charAt(0).toUpperCase();
 }
 
@@ -2726,9 +3265,11 @@ function portraitPlaceholder(title){
 
 function fillPortrait(el, s){
   fetchSaintPortrait(s).then(p => {
-    if(!p || !el.isConnected) return;
+    if(!el.isConnected) return;
+    if(p === undefined){ portraitWaiting.add(el); return; }
+    if(!p) return;
     const img = new Image();
-    img.alt = 'Traditional image of ' + s.title;
+    img.alt = s.category === 'saint' ? 'Traditional image of ' + s.title : 'Illustration for ' + s.title;
     img.decoding = 'async';
     img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('loaded'); };
     img.src = p.src;
@@ -2797,7 +3338,9 @@ function renderHistory(){
           <div class="cal-name">${escapeHtml(e.title)}</div>
           <div class="cal-note">${escapeHtml(excerptOf(e.content, 170))}</div>
         </div>
+        <div class="saint-portrait shape-history history-thumb" data-sid="${e.id}">${portraitPlaceholder(e.title)}</div>
       `;
+      observePortrait(row.querySelector('.history-thumb'));
       row.addEventListener('click', () => openReadModal(e.id));
       group.appendChild(row);
     });
@@ -2953,9 +3496,9 @@ function openReadModal(id){
   }
 
   const portraitEl = document.getElementById('readPortrait');
-  if(e.category === 'saint'){
+  if(HAS_PICTURE.has(e.category)){
     portraitEl.hidden = false;
-    portraitEl.innerHTML = `<div class="saint-portrait large" data-sid="${e.id}">${portraitPlaceholder(e.title)}</div><figcaption></figcaption>`;
+    portraitEl.innerHTML = `<div class="saint-portrait large${e.category === 'saint' ? '' : ' shape-' + e.category}" data-sid="${e.id}">${portraitPlaceholder(e.title)}</div><figcaption></figcaption>`;
     const frame = portraitEl.querySelector('.saint-portrait');
     fillPortrait(frame, e);
     fetchSaintPortrait(e).then(p => {
