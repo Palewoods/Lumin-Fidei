@@ -647,6 +647,137 @@
   .daily-bible{border-top:3px solid var(--teal);}
   .daily-theology{grid-column:1 / -1; border-top:3px solid var(--purple);}
 
+  .daily-links{display:flex; flex-wrap:wrap; gap:4px 20px;}
+
+  /* ---------- Text size ---------- */
+  :root[data-textsize="lg"]{font-size:112.5%;}
+  :root[data-textsize="xl"]{font-size:125%;}
+  .textsize-row{display:flex; gap:6px; padding:0 8px 6px;}
+  .textsize-btn{
+    flex:1; height:36px; cursor:pointer; font-family:'Cormorant Garamond', serif; font-weight:600;
+    border:1px solid var(--line); background:var(--parchment); color:var(--ink); border-radius:var(--radius);
+  }
+  .textsize-btn[aria-pressed="true"]{background:var(--wine); border-color:var(--wine); color:var(--parchment-light);}
+
+  /* ---------- Search extras, toast, back to top ---------- */
+  .surprise-btn{
+    display:block; margin:12px auto 0; padding:4px 12px; cursor:pointer; background:none;
+    border:none; font-family:'Source Serif 4', serif; font-size:0.88rem; color:var(--wine-dark);
+  }
+  .surprise-btn:hover{text-decoration:underline;}
+  .toast{
+    position:fixed; left:50%; bottom:28px; z-index:80; transform:translate(-50%, 20px); opacity:0; pointer-events:none;
+    background:var(--ink); color:var(--parchment-light); padding:10px 18px; font-size:0.9rem;
+    box-shadow:var(--shadow); transition:opacity 0.2s ease, transform 0.2s ease; border-radius:var(--radius);
+  }
+  .toast.show{opacity:1; transform:translate(-50%, 0);}
+  .back-to-top{
+    position:fixed; right:20px; bottom:22px; z-index:40; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--ink); background:var(--parchment-light); color:var(--ink); font-size:1.1rem; cursor:pointer;
+    box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity 0.2s ease;
+  }
+  .back-to-top.show{opacity:1; pointer-events:auto;}
+  .back-to-top:hover{background:var(--gold); border-color:var(--gold); color:var(--parchment-light);}
+
+  /* ---------- Reading view actions ---------- */
+  .read-actions{display:flex; flex-wrap:wrap; gap:8px; margin:-6px 0 18px;}
+  .read-action{
+    font-family:'Source Serif 4', serif; font-size:0.84rem; cursor:pointer; padding:5px 12px;
+    border:1px solid var(--line); background:var(--parchment); color:var(--ink); border-radius:14px;
+  }
+  .read-action:hover:not([disabled]){border-color:var(--gold); color:var(--wine-dark);}
+  .read-action.on{background:var(--gold); border-color:var(--gold); color:var(--parchment-light);}
+  .read-action[disabled]{opacity:0.6; cursor:default;}
+  .read-modal.card-mode .read-actions{justify-content:center;}
+
+  /* ---------- My Sanctify ---------- */
+  .mine-section{margin-bottom:34px;}
+  .mine-section .list-heading{margin-bottom:12px;}
+  .mine-empty{color:var(--ink-soft); font-size:0.95rem;}
+  .mine-row{display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line);}
+  .mine-open{
+    flex:1; min-width:0; display:flex; align-items:baseline; gap:12px; text-align:left; cursor:pointer;
+    background:none; border:none; padding:10px 4px; font-family:'Source Serif 4', serif; color:var(--ink);
+  }
+  .mine-open:hover .mine-title{color:var(--wine);}
+  .mine-cat{flex:0 0 76px; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-soft);}
+  .mine-title{font-family:'Cormorant Garamond', serif; font-size:1.15rem; font-weight:600;}
+  .mine-privacy{font-size:0.82rem; color:var(--ink-soft); text-align:center; margin-top:10px;}
+  .novena-card{padding:16px 18px; margin-bottom:14px; background:var(--parchment-light); border:1px solid var(--line); border-left:4px solid var(--wine);}
+  .novena-card.complete{border-left-color:var(--gold);}
+  .novena-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+  .novena-title{font-family:'Cormorant Garamond', serif; font-size:1.3rem; font-weight:600;}
+  .novena-days{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
+  .novena-day{
+    width:36px; height:36px; border-radius:50%; cursor:pointer; font-family:'Source Serif 4', serif; font-size:0.9rem;
+    border:1px solid var(--gold-light); background:var(--parchment); color:var(--ink);
+  }
+  .novena-day.today{box-shadow:0 0 0 2px var(--wine);}
+  .novena-day.done{background:var(--wine); border-color:var(--wine); color:var(--parchment-light);}
+  .novena-foot{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;}
+  .novena-progress{font-size:0.85rem; color:var(--ink-soft);}
+  .intention-form{display:flex; gap:8px; margin-bottom:14px;}
+  .intention-form input{
+    flex:1; min-width:0; padding:10px 12px; font-family:'Source Serif 4', serif; font-size:0.97rem;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink);
+  }
+  .intention-form input:focus{outline:2px solid var(--gold); outline-offset:-1px;}
+  .intention{display:flex; align-items:flex-start; gap:12px; padding:10px 4px; border-bottom:1px solid var(--line);}
+  .intention-check{
+    flex:0 0 24px; height:24px; margin-top:2px; border-radius:50%; cursor:pointer; font-size:0.85rem;
+    border:1px solid var(--gold); background:var(--parchment-light); color:var(--parchment-light);
+  }
+  .intention.answered .intention-check{background:var(--gold);}
+  .intention-text{flex:1; min-width:0;}
+  .intention.answered .intention-text{color:var(--ink-soft);}
+  .intention-date{display:block; font-size:0.75rem; color:var(--ink-soft); margin-top:2px;}
+  .intention-delete{background:none; border:none; cursor:pointer; color:var(--ink-soft); font-size:1.2rem; line-height:1; padding:4px 8px;}
+  .intention-delete:hover{color:var(--wine);}
+
+  /* ---------- Prayer timer ---------- */
+  .timer-wrap{max-width:520px; margin:6px auto 0; text-align:center;}
+  .timer-presets{display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  .timer-dial{position:relative; width:240px; height:240px; margin:26px auto 18px;}
+  .timer-dial svg{width:100%; height:100%;}
+  #timerRing{transition:stroke-dashoffset 0.25s linear;}
+  .timer-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .timer-face{font-family:'Cormorant Garamond', serif; font-size:3.4rem; font-weight:600; color:var(--wine-dark); font-variant-numeric:tabular-nums;}
+  .timer-sub{font-size:0.8rem; color:var(--ink-soft); letter-spacing:0.08em;}
+  .timer-controls{display:flex; gap:10px; justify-content:center;}
+  .timer-option{display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:0.9rem; color:var(--ink-soft); cursor:pointer;}
+  .timer-verse{margin:28px auto 0; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.3rem; line-height:1.5;}
+  .timer-verse cite{display:block; font-family:'Source Serif 4', serif; font-style:normal; font-size:0.82rem; color:var(--ink-soft); margin-top:6px;}
+  .timer-tip{font-size:0.88rem; color:var(--ink-soft); margin-top:18px;}
+
+  /* ---------- Quiz ---------- */
+  .quiz-wrap{max-width:620px; margin:6px auto 0;}
+  .quiz-intro{text-align:center; padding:20px 0;}
+  .quiz-best{color:var(--ink-soft);}
+  .quiz-score{font-family:'Cormorant Garamond', serif; font-size:4rem; font-weight:700; color:var(--wine);}
+  .quiz-progress{display:flex; justify-content:space-between; font-size:0.85rem; color:var(--ink-soft);}
+  .quiz-bar{height:4px; background:var(--line); margin:8px 0 22px;}
+  .quiz-bar i{display:block; height:100%; background:var(--wine); transition:width 0.3s ease;}
+  .quiz-q{font-size:1.6rem; line-height:1.25; margin-bottom:18px;}
+  .quiz-options{display:grid; gap:10px;}
+  .quiz-option{
+    text-align:left; padding:13px 16px; cursor:pointer; font-family:'Source Serif 4', serif; font-size:1rem;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink); border-radius:var(--radius);
+  }
+  .quiz-option:hover:not([disabled]){border-color:var(--gold); background:rgba(166,130,74,0.1);}
+  .quiz-option[disabled]{cursor:default;}
+  .quiz-option.correct{border-color:var(--green); background:color-mix(in srgb, var(--green) 16%, var(--parchment-light)); font-weight:600;}
+  .quiz-option.wrong{border-color:var(--wine); background:color-mix(in srgb, var(--wine) 12%, var(--parchment-light)); text-decoration:line-through;}
+  .quiz-feedback{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin:18px 0 14px; padding:12px 14px; border-left:4px solid var(--green); background:var(--parchment-light);}
+  .quiz-feedback.bad{border-left-color:var(--wine);}
+
+  /* ---------- Feast-day finder ---------- */
+  .feast-finder{margin:-6px 0 24px; padding:14px 16px; border:1px solid var(--line); background:rgba(var(--ink-rgb),0.03);}
+  .feast-finder-row{display:flex; gap:8px; margin:8px 0 10px;}
+  .feast-finder select{
+    font-family:'Source Serif 4', serif; font-size:0.95rem; padding:6px 10px; cursor:pointer;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink);
+  }
+
   /* ---------- Theology ---------- */
   .theology-group{margin-bottom:30px;}
   .theology-group-desc{color:var(--ink-soft); font-size:0.95rem; margin:8px 0 4px;}
@@ -782,6 +913,8 @@
       t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
     document.documentElement.setAttribute('data-theme', t);
+    var size = JSON.parse(localStorage.getItem('sanctify.textsize') || '"md"');
+    if(size === 'lg' || size === 'xl') document.documentElement.setAttribute('data-textsize', size);
   }catch(e){}
 </script>
 </head>
@@ -801,9 +934,10 @@
   <p class="tagline">A living repository of prayers, saints, history, and the written word of the Church</p>
   <div class="rule"></div>
   <div class="searchbar">
-    <input id="searchInput" type="text" placeholder="Search the repository…" autocomplete="off">
+    <input id="searchInput" type="text" placeholder="Search the repository…  (press / to search)" autocomplete="off" aria-label="Search the repository">
     <button id="searchClear">Clear</button>
   </div>
+  <button class="surprise-btn" id="surpriseBtn" type="button">✦ Surprise me</button>
 </header>
 
 <div class="layout">
@@ -812,6 +946,7 @@
     <ul id="navList">
       <li><button class="navlink active" data-cat="all">All entries <span class="count" id="count-all"></span></button></li>
       <li><button class="navlink" data-cat="daily">Daily</button></li>
+      <li><button class="navlink" data-cat="mine">My Sanctify <span class="count" id="count-mine"></span></button></li>
       <li><button class="navlink" data-cat="prayer">Prayers <span class="count" id="count-prayer"></span></button></li>
       <li><button class="navlink" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
       <li><button class="navlink" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
@@ -822,6 +957,8 @@
       <li><button class="navlink" data-cat="rosary">Rosary</button></li>
       <li><button class="navlink" data-cat="stations">Stations of the Cross</button></li>
       <li><button class="navlink" data-cat="chaplet">Divine Mercy Chaplet</button></li>
+      <li><button class="navlink" data-cat="timer">Prayer Timer</button></li>
+      <li><button class="navlink" data-cat="quiz">Quiz</button></li>
       <li><button class="navlink" data-cat="shop">Shop</button></li>
     </ul>
   </nav>
@@ -849,8 +986,9 @@
         <h2 id="readTitle"></h2>
         <div class="byline" id="readByline"></div>
       </div>
-      <button class="modal-close" id="readClose">×</button>
+      <button class="modal-close" id="readClose" aria-label="Close">×</button>
     </div>
+    <div class="read-actions" id="readActions"></div>
     <figure class="read-portrait" id="readPortrait" hidden></figure>
     <div class="body-text" id="readBody"></div>
     <div class="link-box" id="readLinkBox"></div>
@@ -866,6 +1004,9 @@ const CAT_LABEL = { prayer:'Prayer', saint:'Saint', history:'History', book:'Boo
 const CAT_DESC = {
   all: 'Everything currently held in the repository.',
   daily: 'A saint, a prayer, a verse, and more for each day, chosen fresh every morning.',
+  mine: 'Your saved entries, prayer intentions, and novenas. Everything here stays private, stored only in this browser.',
+  timer: 'Set aside time for silent prayer, meditation, or a Holy Hour, with a gentle bell to begin and end.',
+  quiz: 'Test what you know about the saints, Scripture, Church history, and great Catholic books.',
   prayer: 'Traditional and devotional prayers of the Church.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
   history: 'Two thousand years of councils, missions, apparitions, and renewals, from Pentecost to the present day.',
@@ -2374,13 +2515,15 @@ function updateCounts(){
     const el = document.getElementById('count-' + k);
     if(el) el.textContent = counts[k];
   });
+  const mineEl = document.getElementById('count-mine');
+  if(mineEl) mineEl.textContent = store.get('saved', []).length || '';
   const calEl = document.getElementById('count-calendar');
   if(calEl) calEl.textContent = CALENDAR_DATA.length;
 }
 
 function currentEntries(){
   let list = library;
-  if(activeCategory !== 'all' && activeCategory !== 'daily'){
+  if(!['all', 'daily', 'mine', 'timer', 'quiz'].includes(activeCategory)){
     list = list.filter(e => e.category === activeCategory);
   }
   if(searchTerm.trim()){
@@ -2414,6 +2557,9 @@ function render(){
       : activeCategory === 'history' ? 'Church History'
       : activeCategory === 'daily' ? 'Daily'
       : activeCategory === 'theology' ? 'Theology'
+      : activeCategory === 'mine' ? 'My Sanctify'
+      : activeCategory === 'timer' ? 'Prayer Timer'
+      : activeCategory === 'quiz' ? 'Quiz'
       : CAT_LABEL[activeCategory] + 's';
     sectionDescEl.textContent = CAT_DESC[activeCategory];
   }
@@ -2450,6 +2596,9 @@ function render(){
     renderTheology();
     return;
   }
+  if(activeCategory === 'mine'){ renderMine(); return; }
+  if(activeCategory === 'timer'){ renderTimer(); return; }
+  if(activeCategory === 'quiz'){ renderQuiz(); return; }
 
   const entries = currentEntries();
   entryListEl.innerHTML = '';
@@ -2459,6 +2608,7 @@ function render(){
   }
   if(activeCategory === 'saint' && !searchTerm.trim()){
     entryListEl.appendChild(buildPatronFilterRow());
+    entryListEl.appendChild(buildFeastFinder());
   }
   if(activeCategory === 'prayer' && !searchTerm.trim()){
     entryListEl.appendChild(buildPrayerCards());
@@ -3150,7 +3300,10 @@ function renderDaily(){
       ? obs.map(o => `<div class="daily-feast-item"><span class="dot" style="background:${CAL_TYPE_COLOR[o.type] || 'var(--wine)'}"></span><strong>${escapeHtml(o.name)}</strong> <span class="today-type">${escapeHtml(o.type)}</span></div>`).join('')
       : `<div class="daily-feast-item">A weekday in ${escapeHtml(season.name)}.</div>`}
     ${dayNotes(d, obs).map(n => `<div class="cal-daynote">${escapeHtml(n)}</div>`).join('')}
-    <a class="daily-link" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Read the Mass readings for this day (USCCB) ↗</a>`;
+    <div class="daily-links">
+      <a class="daily-link" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Read the Mass readings for this day (USCCB) ↗</a>
+      <a class="daily-link" href="https://masstimes.org/" target="_blank" rel="noopener">Find Mass and Confession times near you ↗</a>
+    </div>`;
   entryListEl.appendChild(feast);
 
   const grid = document.createElement('div');
@@ -3890,11 +4043,635 @@ function openReadModal(id){
   const tagsEl = document.getElementById('readTags');
   tagsEl.innerHTML = (e.tags||[]).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
 
+  renderReadActions(e);
+  addRecent(e.id);
   readOverlay.classList.add('open');
 }
 
 document.getElementById('readClose').addEventListener('click', () => readOverlay.classList.remove('open'));
 readOverlay.addEventListener('click', e => { if(e.target === readOverlay) readOverlay.classList.remove('open'); });
+
+/* =========================================================
+   PERSONAL DATA (kept only in this browser)
+   ========================================================= */
+const memoryStore = {};
+const store = {
+  get(key, fallback){
+    try{
+      const v = localStorage.getItem('sanctify.' + key);
+      if(v !== null) return JSON.parse(v);
+    }catch(e){}
+    return key in memoryStore ? memoryStore[key] : fallback;
+  },
+  set(key, value){
+    memoryStore[key] = value;
+    try{ localStorage.setItem('sanctify.' + key, JSON.stringify(value)); }catch(e){}
+  }
+};
+
+function isSaved(id){ return store.get('saved', []).includes(id); }
+function toggleSaved(id){
+  const saved = store.get('saved', []);
+  const i = saved.indexOf(id);
+  if(i >= 0) saved.splice(i, 1); else saved.unshift(id);
+  store.set('saved', saved);
+  updateCounts();
+  return i < 0;
+}
+function addRecent(id){
+  const recent = store.get('recent', []).filter(x => x !== id);
+  recent.unshift(id);
+  store.set('recent', recent.slice(0, 12));
+}
+
+function toast(message){
+  let el = document.getElementById('toast');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'toast';
+    el.className = 'toast';
+    el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+  }
+  el.textContent = message;
+  el.classList.add('show');
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+async function copyText(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try{ ok = document.execCommand('copy'); }catch(err){}
+    ta.remove();
+    return ok;
+  }
+}
+
+function entryLink(id){ return location.origin + location.pathname + '#read=' + encodeURIComponent(id); }
+
+function entryPlainText(e){
+  return [e.title, e.author, '', e.content, e.intercession ? '\n' + e.intercession : '', '', entryLink(e.id)]
+    .filter(x => x !== undefined && x !== null).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+function renderReadActions(e){
+  const bar = document.getElementById('readActions');
+  const saved = isSaved(e.id);
+  const canNovena = e.category === 'saint' || e.category === 'prayer';
+  const activeNovena = store.get('novenas', []).some(n => n.id === e.id && n.done.filter(Boolean).length < 9);
+  bar.innerHTML = `
+    <button class="read-action${saved ? ' on' : ''}" data-act="save" aria-pressed="${saved}">${saved ? '★ Saved' : '☆ Save'}</button>
+    <button class="read-action" data-act="copy">Copy text</button>
+    <button class="read-action" data-act="share">Share</button>
+    ${canNovena ? `<button class="read-action" data-act="novena"${activeNovena ? ' disabled' : ''}>${activeNovena ? 'Novena in progress' : 'Start a novena'}</button>` : ''}`;
+  bar.querySelector('[data-act="save"]').addEventListener('click', () => {
+    const nowSaved = toggleSaved(e.id);
+    toast(nowSaved ? 'Saved to My Sanctify' : 'Removed from My Sanctify');
+    renderReadActions(e);
+    if(activeCategory === 'mine') renderMine();
+  });
+  bar.querySelector('[data-act="copy"]').addEventListener('click', async () => {
+    toast(await copyText(entryPlainText(e)) ? 'Text copied' : 'Could not copy');
+  });
+  bar.querySelector('[data-act="share"]').addEventListener('click', async () => {
+    const url = entryLink(e.id);
+    if(navigator.share){
+      try{ await navigator.share({ title:e.title + ' — Sanctify', url }); return; }catch(err){ if(err && err.name === 'AbortError') return; }
+    }
+    toast(await copyText(url) ? 'Link copied' : 'Could not copy link');
+  });
+  const nov = bar.querySelector('[data-act="novena"]');
+  if(nov) nov.addEventListener('click', () => {
+    startNovena(e.id);
+    toast('Novena started — see My Sanctify');
+    renderReadActions(e);
+  });
+}
+
+/* ---------- Novenas ---------- */
+function isoDay(d){ return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+function parseIsoDay(s){ const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); }
+function startNovena(id){
+  const novenas = store.get('novenas', []).filter(n => !(n.id === id && n.done.filter(Boolean).length < 9));
+  novenas.unshift({ id, start:isoDay(startOfToday()), done:Array(9).fill(false) });
+  store.set('novenas', novenas);
+  updateCounts();
+}
+function novenaDayNumber(n){ return Math.min(9, Math.max(1, dayNumber(startOfToday()) - dayNumber(parseIsoDay(n.start)) + 1)); }
+
+/* ---------- My Sanctify page ---------- */
+function miniRow(e, extraHtml){
+  const row = document.createElement('div');
+  row.className = 'mine-row';
+  row.innerHTML = `
+    <button class="mine-open" data-id="${e.id}">
+      <span class="mine-cat">${escapeHtml(CAT_LABEL[e.category] || e.category)}</span>
+      <span class="mine-title">${escapeHtml(e.title)}</span>
+    </button>${extraHtml || ''}`;
+  row.querySelector('.mine-open').addEventListener('click', () => openReadModal(e.id));
+  return row;
+}
+
+function renderMine(){
+  entryListEl.innerHTML = '';
+  const find = id => library.find(x => x.id === id);
+
+  // Novenas
+  const novenas = store.get('novenas', []).filter(n => find(n.id));
+  const novSec = document.createElement('section');
+  novSec.className = 'mine-section';
+  novSec.innerHTML = `<h3 class="list-heading">Novenas</h3>`;
+  if(!novenas.length){
+    novSec.insertAdjacentHTML('beforeend', `<p class="mine-empty">A novena is nine days of prayer for a particular intention. Open any saint or prayer and choose <strong>Start a novena</strong>.</p>`);
+  }
+  novenas.forEach((n, idx) => {
+    const e = find(n.id);
+    const count = n.done.filter(Boolean).length;
+    const today = novenaDayNumber(n);
+    const box = document.createElement('div');
+    box.className = 'novena-card' + (count === 9 ? ' complete' : '');
+    box.innerHTML = `
+      <div class="novena-top">
+        <div><div class="daily-kicker">${count === 9 ? 'Completed' : `Day ${today} of 9`}</div><div class="novena-title">Novena: ${escapeHtml(e.title)}</div></div>
+        <button class="btn quiet novena-remove" aria-label="Remove novena">Remove</button>
+      </div>
+      <div class="novena-days">${n.done.map((d, i) => `<button class="novena-day${d ? ' done' : ''}${i + 1 === today && count < 9 ? ' today' : ''}" data-i="${i}" aria-pressed="${d}" aria-label="Day ${i + 1}${d ? ', prayed' : ''}">${i + 1}</button>`).join('')}</div>
+      <div class="novena-foot">
+        <button class="read-action novena-pray">${e.category === 'saint' ? 'Pray the prayer of intercession' : 'Pray the prayer'}</button>
+        <span class="novena-progress">${count} of 9 days prayed</span>
+      </div>`;
+    box.querySelectorAll('.novena-day').forEach(b => b.addEventListener('click', () => {
+      const all = store.get('novenas', []);
+      const target = all.find(x => x.id === n.id && x.start === n.start);
+      if(!target) return;
+      target.done[Number(b.dataset.i)] = !target.done[Number(b.dataset.i)];
+      store.set('novenas', all);
+      if(target.done.every(Boolean)) toast('Novena complete. Deo gratias!');
+      renderMine();
+    }));
+    box.querySelector('.novena-pray').addEventListener('click', () => openReadModal(e.id));
+    box.querySelector('.novena-remove').addEventListener('click', () => {
+      store.set('novenas', store.get('novenas', []).filter(x => !(x.id === n.id && x.start === n.start)));
+      updateCounts();
+      renderMine();
+    });
+    novSec.appendChild(box);
+  });
+  entryListEl.appendChild(novSec);
+
+  // Prayer intentions
+  const intentions = store.get('intentions', []);
+  const intSec = document.createElement('section');
+  intSec.className = 'mine-section';
+  intSec.innerHTML = `
+    <h3 class="list-heading">Prayer Intentions</h3>
+    <form class="intention-form">
+      <input type="text" maxlength="240" placeholder="Who or what would you like to pray for?" aria-label="New prayer intention">
+      <button class="btn primary" type="submit">Add</button>
+    </form>
+    <div class="intention-list"></div>`;
+  const listEl = intSec.querySelector('.intention-list');
+  const open = intentions.filter(x => !x.answered), answered = intentions.filter(x => x.answered);
+  if(!intentions.length) listEl.innerHTML = `<p class="mine-empty">Keep a list of the people and needs you are praying for. When a prayer is answered, mark it and give thanks.</p>`;
+  const renderIntention = it => {
+    const row = document.createElement('div');
+    row.className = 'intention' + (it.answered ? ' answered' : '');
+    row.innerHTML = `
+      <button class="intention-check" aria-pressed="${!!it.answered}" aria-label="${it.answered ? 'Mark as not yet answered' : 'Mark as answered'}">${it.answered ? '✓' : ''}</button>
+      <div class="intention-text">${escapeHtml(it.text)}<span class="intention-date">Added ${escapeHtml(it.added)}${it.answered ? ' · Answered ' + escapeHtml(it.answered) : ''}</span></div>
+      <button class="intention-delete" aria-label="Delete intention">×</button>`;
+    row.querySelector('.intention-check').addEventListener('click', () => {
+      const all = store.get('intentions', []);
+      const t = all.find(x => x.id === it.id);
+      t.answered = t.answered ? null : startOfToday().toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' });
+      store.set('intentions', all);
+      if(t.answered) toast('Thanks be to God!');
+      renderMine();
+    });
+    row.querySelector('.intention-delete').addEventListener('click', () => {
+      store.set('intentions', store.get('intentions', []).filter(x => x.id !== it.id));
+      renderMine();
+    });
+    return row;
+  };
+  open.forEach(it => listEl.appendChild(renderIntention(it)));
+  if(answered.length){
+    listEl.insertAdjacentHTML('beforeend', `<div class="patron-filters-label" style="margin-top:14px">Prayers answered</div>`);
+    answered.forEach(it => listEl.appendChild(renderIntention(it)));
+  }
+  intSec.querySelector('.intention-form').addEventListener('submit', ev => {
+    ev.preventDefault();
+    const input = ev.target.querySelector('input');
+    const text = input.value.trim();
+    if(!text) return;
+    const all = store.get('intentions', []);
+    all.unshift({ id:Date.now().toString(36), text, added:startOfToday().toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' }), answered:null });
+    store.set('intentions', all);
+    renderMine();
+    const again = entryListEl.querySelector('.intention-form input');
+    if(again) again.focus();
+  });
+  entryListEl.appendChild(intSec);
+
+  // Saved and recent
+  [['saved', 'Saved', 'Tap ☆ Save on any prayer, saint, book, or article to keep it here.'],
+   ['recent', 'Recently Viewed', 'Entries you open will appear here.']].forEach(([key, title, empty]) => {
+    const ids = store.get(key, []).filter(find);
+    const sec = document.createElement('section');
+    sec.className = 'mine-section';
+    sec.innerHTML = `<h3 class="list-heading">${title}</h3>`;
+    if(!ids.length) sec.insertAdjacentHTML('beforeend', `<p class="mine-empty">${empty}</p>`);
+    ids.forEach(id => {
+      const row = miniRow(find(id), key === 'saved' ? `<button class="intention-delete" aria-label="Remove from saved">×</button>` : '');
+      const rm = row.querySelector('.intention-delete');
+      if(rm) rm.addEventListener('click', () => { toggleSaved(id); renderMine(); });
+      sec.appendChild(row);
+    });
+    entryListEl.appendChild(sec);
+  });
+
+  entryListEl.insertAdjacentHTML('beforeend', `<p class="mine-privacy">🔒 Your saved items, intentions, and novenas are stored only on this device, in this browser. Nothing is sent anywhere.</p>`);
+}
+
+/* =========================================================
+   PRAYER TIMER
+   ========================================================= */
+const timerState = { total:10 * 60, remaining:10 * 60, running:false, endsAt:0, tick:null, wakeLock:null, interval:0 };
+
+function playBell(){
+  try{
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    const ctx = playBell.ctx || (playBell.ctx = new Ctx());
+    if(ctx.state === 'suspended') ctx.resume();
+    const now = ctx.currentTime;
+    // A soft bell: a few inharmonic partials with a long decay
+    [[1, 0.5], [2.76, 0.18], [5.4, 0.1], [8.93, 0.05]].forEach(([mult, gain]) => {
+      const osc = ctx.createOscillator(), g = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 392 * mult;
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(gain * 0.5, now + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 4.5 / Math.sqrt(mult));
+      osc.connect(g).connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 5);
+    });
+  }catch(e){}
+}
+
+function fmtTime(s){ s = Math.max(0, Math.ceil(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
+
+async function setWakeLock(on){
+  try{
+    if(on && 'wakeLock' in navigator && !timerState.wakeLock) timerState.wakeLock = await navigator.wakeLock.request('screen');
+    if(!on && timerState.wakeLock){ await timerState.wakeLock.release(); timerState.wakeLock = null; }
+  }catch(e){}
+}
+
+function timerTick(){
+  timerState.remaining = (timerState.endsAt - Date.now()) / 1000;
+  if(timerState.interval && timerState.running){
+    const elapsed = timerState.total - timerState.remaining;
+    const mark = Math.floor(elapsed / (timerState.interval * 60));
+    if(mark > (timerState.lastMark || 0) && timerState.remaining > 1){ timerState.lastMark = mark; playBell(); }
+  }
+  if(timerState.remaining <= 0){
+    timerState.remaining = 0;
+    timerState.running = false;
+    clearInterval(timerState.tick);
+    setWakeLock(false);
+    playBell(); setTimeout(playBell, 1600); setTimeout(playBell, 3200);
+    toast('Your time of prayer is complete');
+  }
+  updateTimerView();
+}
+
+function updateTimerView(){
+  const face = document.getElementById('timerFace');
+  if(!face) return;
+  const frac = timerState.total ? timerState.remaining / timerState.total : 0;
+  face.textContent = fmtTime(timerState.remaining);
+  const ring = document.getElementById('timerRing');
+  const c = 2 * Math.PI * 88;
+  ring.setAttribute('stroke-dasharray', c.toFixed(1));
+  ring.setAttribute('stroke-dashoffset', (c * (1 - frac)).toFixed(1));
+  const btn = document.getElementById('timerStart');
+  btn.textContent = timerState.running ? 'Pause' : (timerState.remaining < timerState.total && timerState.remaining > 0 ? 'Resume' : 'Begin');
+}
+
+function renderTimer(){
+  entryListEl.innerHTML = '';
+  const verse = dailyPick(DAILY_VERSES, 91, startOfToday());
+  const wrap = document.createElement('div');
+  wrap.className = 'timer-wrap';
+  wrap.innerHTML = `
+    <div class="timer-presets" role="group" aria-label="Length of prayer">
+      ${[[5, '5 min'], [10, '10 min'], [15, '15 min'], [20, '20 min'], [30, '30 min'], [60, 'Holy Hour']].map(([m, label]) =>
+        `<button class="patron-chip${timerState.total === m * 60 ? ' active' : ''}" data-min="${m}">${label}</button>`).join('')}
+    </div>
+    <div class="timer-dial">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="88" fill="none" stroke="var(--line)" stroke-width="6"/>
+        <circle id="timerRing" cx="100" cy="100" r="88" fill="none" stroke="var(--wine)" stroke-width="6" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+      </svg>
+      <div class="timer-center">
+        <div class="timer-face" id="timerFace" aria-live="off">${fmtTime(timerState.remaining)}</div>
+        <div class="timer-sub">minutes of prayer</div>
+      </div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn primary" id="timerStart">Begin</button>
+      <button class="btn" id="timerReset">Reset</button>
+    </div>
+    <label class="timer-option"><input type="checkbox" id="timerInterval" ${timerState.interval ? 'checked' : ''}> Ring a gentle bell every 5 minutes</label>
+    <blockquote class="timer-verse">“${escapeHtml(verse.text)}”<cite>${escapeHtml(verse.ref)}</cite></blockquote>
+    <p class="timer-tip">Find a quiet place, put your phone face down, and begin with the Sign of the Cross. When distractions come, gently return to the Lord, perhaps with a short prayer like “Jesus, I trust in you.”</p>`;
+  entryListEl.appendChild(wrap);
+
+  wrap.querySelectorAll('[data-min]').forEach(b => b.addEventListener('click', () => {
+    if(timerState.running) return toast('Pause the timer to change its length');
+    timerState.total = timerState.remaining = Number(b.dataset.min) * 60;
+    timerState.lastMark = 0;
+    renderTimer();
+  }));
+  document.getElementById('timerStart').addEventListener('click', () => {
+    if(timerState.running){
+      timerState.running = false;
+      clearInterval(timerState.tick);
+      timerState.remaining = (timerState.endsAt - Date.now()) / 1000;
+      setWakeLock(false);
+    } else {
+      if(timerState.remaining <= 0){ timerState.remaining = timerState.total; timerState.lastMark = 0; }
+      if(timerState.remaining === timerState.total) playBell();
+      timerState.running = true;
+      timerState.endsAt = Date.now() + timerState.remaining * 1000;
+      clearInterval(timerState.tick);
+      timerState.tick = setInterval(timerTick, 250);
+      setWakeLock(true);
+    }
+    updateTimerView();
+  });
+  document.getElementById('timerReset').addEventListener('click', () => {
+    timerState.running = false;
+    clearInterval(timerState.tick);
+    timerState.remaining = timerState.total;
+    timerState.lastMark = 0;
+    setWakeLock(false);
+    updateTimerView();
+  });
+  document.getElementById('timerInterval').addEventListener('change', ev => { timerState.interval = ev.target.checked ? 5 : 0; });
+  updateTimerView();
+}
+
+/* =========================================================
+   QUIZ (generated from the repository's own content)
+   ========================================================= */
+let quizState = null;
+
+function shuffled(list){
+  const a = list.slice();
+  for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function buildQuizQuestions(n){
+  const by = cat => library.filter(e => e.category === cat);
+  const makers = [];
+
+  // Saint feast days
+  const feastOf = s => { const m = /feast days? ([A-Z][a-z]+ \d{1,2})/.exec(s.author || ''); return m ? m[1] : null; };
+  const saints = by('saint').filter(feastOf);
+  makers.push(() => {
+    const s = saints[Math.floor(Math.random() * saints.length)];
+    const wrong = shuffled(saints.filter(x => feastOf(x) !== feastOf(s))).slice(0, 3);
+    return { q:`Whose feast day is ${feastOf(s)}?`, answer:s.title, options:shuffled([s, ...wrong].map(x => x.title)), id:s.id };
+  });
+
+  // Book authors
+  const authorOf = b => (b.author || '').split(',')[0].trim();
+  const books = by('book').filter(b => /^[A-Z]/.test(authorOf(b)) && !/^(Anonymous|Compiled)/i.test(authorOf(b)));
+  makers.push(() => {
+    const b = books[Math.floor(Math.random() * books.length)];
+    const wrong = shuffled([...new Set(books.map(authorOf))].filter(a => a !== authorOf(b))).slice(0, 3);
+    return { q:`Who wrote “${b.title}”?`, answer:authorOf(b), options:shuffled([authorOf(b), ...wrong]), id:b.id };
+  });
+
+  // Church history dates
+  const events = by('history').filter(h => /^(c\. )?\d{2,4}$/.test(h.author || ''));
+  makers.push(() => {
+    const h = events[Math.floor(Math.random() * events.length)];
+    const wrong = shuffled(events.filter(x => Math.abs(x.year - h.year) > 40)).slice(0, 3).map(x => x.author);
+    return { q:`When did this happen: ${h.title}?`, answer:h.author, options:shuffled([h.author, ...wrong]), id:h.id };
+  });
+
+  // Books of the Bible
+  const SECTION_NAMES = {
+    'Old Testament, Pentateuch':'Old Testament: the Pentateuch', 'Old Testament, Historical':'Old Testament: the Historical Books',
+    'Old Testament, Wisdom':'Old Testament: the Wisdom Books', 'Old Testament, Prophetic':'Old Testament: the Prophets',
+    'New Testament, Gospel':'New Testament: the Gospels', 'New Testament, History':'New Testament: the Acts of the Apostles',
+    'New Testament, Pauline Epistle':'New Testament: the Letters of Paul', 'New Testament, Catholic Epistle':'New Testament: the Catholic Letters',
+    'New Testament, Apocalyptic':'New Testament: Revelation'
+  };
+  const sectionOf = b => SECTION_NAMES[b.author];
+  const bible = by('bible').filter(b => sectionOf(b) && !['Acts', 'Revelation'].some(t => b.title.startsWith(t)));
+  const sections = Object.values(SECTION_NAMES);
+  makers.push(() => {
+    const b = bible[Math.floor(Math.random() * bible.length)];
+    const wrong = shuffled(sections.filter(s => s !== sectionOf(b))).slice(0, 3);
+    return { q:`Where in the Bible is the book of ${b.title} found?`, answer:sectionOf(b), options:shuffled([sectionOf(b), ...wrong]), id:b.id };
+  });
+
+  // Theology: which teaching does a Scripture passage support?
+  const theo = by('theology').filter(t => t.scripture && t.scripture.length);
+  makers.push(() => {
+    const t = theo[Math.floor(Math.random() * theo.length)];
+    const ref = t.scripture[Math.floor(Math.random() * t.scripture.length)];
+    const wrong = shuffled(theo.filter(x => x.id !== t.id && !x.scripture.includes(ref))).slice(0, 3).map(x => x.title);
+    return { q:`${ref} is a key passage for which topic?`, answer:t.title, options:shuffled([t.title, ...wrong]), id:t.id };
+  });
+
+  const out = [], seen = new Set();
+  for(let tries = 0; out.length < n && tries < n * 20; tries++){
+    const q = makers[(out.length + tries) % makers.length]();
+    if(q) q.options = [...new Set(q.options)];
+    if(!q || seen.has(q.q) || q.options.length < 4) continue;
+    seen.add(q.q);
+    out.push(q);
+  }
+  return shuffled(out);
+}
+
+function renderQuiz(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'quiz-wrap';
+  const best = store.get('quizBest', null);
+
+  if(!quizState){
+    wrap.innerHTML = `
+      <div class="quiz-intro">
+        <p>Ten questions drawn at random from the saints, books, Church history, the Bible, and theology on Sanctify. Every quiz is different.</p>
+        ${best !== null ? `<p class="quiz-best">Your best score: <strong>${best} / 10</strong></p>` : ''}
+        <button class="btn primary" id="quizStart">Start the quiz</button>
+      </div>`;
+    entryListEl.appendChild(wrap);
+    document.getElementById('quizStart').addEventListener('click', () => {
+      quizState = { questions:buildQuizQuestions(10), i:0, score:0, picked:null };
+      renderQuiz();
+    });
+    return;
+  }
+
+  const { questions, i } = quizState;
+  if(i >= questions.length){
+    const score = quizState.score;
+    const newBest = best === null || score > best;
+    if(newBest) store.set('quizBest', score);
+    const verdict = score === 10 ? 'Perfect! A true Doctor of the Church.' : score >= 8 ? 'Excellent work.' : score >= 5 ? 'Well done. Keep learning!' : 'Every saint started somewhere. Try again!';
+    wrap.innerHTML = `
+      <div class="quiz-intro">
+        <div class="quiz-score">${score} / 10</div>
+        <p>${verdict}${newBest && best !== null ? ' That’s a new personal best!' : ''}</p>
+        <button class="btn primary" id="quizAgain">Take another quiz</button>
+      </div>`;
+    entryListEl.appendChild(wrap);
+    document.getElementById('quizAgain').addEventListener('click', () => {
+      quizState = { questions:buildQuizQuestions(10), i:0, score:0, picked:null };
+      renderQuiz();
+    });
+    return;
+  }
+
+  const q = questions[i];
+  const answered = quizState.picked !== null;
+  wrap.innerHTML = `
+    <div class="quiz-progress"><span>Question ${i + 1} of ${questions.length}</span><span>Score: ${quizState.score}</span></div>
+    <div class="quiz-bar"><i style="width:${(i / questions.length) * 100}%"></i></div>
+    <h3 class="quiz-q">${escapeHtml(q.q)}</h3>
+    <div class="quiz-options">
+      ${q.options.map(o => {
+        let cls = 'quiz-option';
+        if(answered && o === q.answer) cls += ' correct';
+        else if(answered && o === quizState.picked) cls += ' wrong';
+        return `<button class="${cls}" ${answered ? 'disabled' : ''}>${escapeHtml(o)}</button>`;
+      }).join('')}
+    </div>
+    ${answered ? `
+      <div class="quiz-feedback ${quizState.picked === q.answer ? 'good' : 'bad'}">
+        <span>${quizState.picked === q.answer ? 'Correct!' : `The answer is <strong>${escapeHtml(q.answer)}</strong>.`}</span>
+        <button class="cal-read" id="quizLearn">Learn more →</button>
+      </div>
+      <button class="btn primary" id="quizNext">${i + 1 < questions.length ? 'Next question' : 'See my score'}</button>` : ''}`;
+  entryListEl.appendChild(wrap);
+
+  wrap.querySelectorAll('.quiz-option').forEach(b => b.addEventListener('click', () => {
+    quizState.picked = b.textContent;
+    if(b.textContent === q.answer) quizState.score++;
+    renderQuiz();
+  }));
+  if(answered){
+    document.getElementById('quizLearn').addEventListener('click', () => openReadModal(q.id));
+    document.getElementById('quizNext').addEventListener('click', () => { quizState.i++; quizState.picked = null; renderQuiz(); });
+    document.getElementById('quizNext').focus();
+  }
+}
+
+/* =========================================================
+   FEAST-DAY FINDER (Saints page)
+   ========================================================= */
+function buildFeastFinder(){
+  const box = document.createElement('div');
+  box.className = 'feast-finder';
+  box.innerHTML = `
+    <label class="patron-filters-label" for="feastDate">Find the saints for any day (a birthday, anniversary, or baptism):</label>
+    <div class="feast-finder-row">
+      <select id="feastMonth" aria-label="Month">${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select>
+      <select id="feastDay" aria-label="Day"></select>
+    </div>
+    <div class="feast-results" id="feastResults"></div>`;
+  const monthSel = box.querySelector('#feastMonth'), daySel = box.querySelector('#feastDay');
+  const show = () => {
+    const m = Number(monthSel.value), d = Number(daySel.value);
+    const date = new Date(2024, m - 1, d); // a leap year, so February 29 exists
+    const obs = observancesFor(date).filter(o => o.type !== 'Season' && o.month !== 0 && !o.date);
+    const res = box.querySelector('#feastResults');
+    res.innerHTML = obs.length
+      ? obs.map(o => `<div class="today-item${o.saints ? ' linked' : ''}" ${o.saints ? `data-id="${o.saints[0]}"` : ''}><span class="today-dot" style="background:${CAL_TYPE_COLOR[o.type] || 'var(--wine)'}"></span><strong>${escapeHtml(o.name)}</strong> <span class="today-type">(${escapeHtml(o.type)})</span></div>`).join('')
+      : `<div class="today-item">No saint in Sanctify has a fixed feast on ${MONTH_NAMES[m - 1]} ${d} yet. Every day is also the feast of many other saints in the Roman Martyrology.</div>`;
+    res.querySelectorAll('.linked').forEach(el => el.addEventListener('click', () => openReadModal(el.dataset.id)));
+  };
+  const fillDays = () => {
+    const m = Number(monthSel.value);
+    const dim = new Date(2024, m, 0).getDate();
+    const keep = Math.min(Number(daySel.value) || 1, dim);
+    daySel.innerHTML = Array.from({ length:dim }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('');
+    daySel.value = String(keep);
+  };
+  const t = startOfToday();
+  monthSel.value = String(t.getMonth() + 1);
+  fillDays();
+  daySel.value = String(t.getDate());
+  monthSel.addEventListener('change', () => { fillDays(); show(); });
+  daySel.addEventListener('change', show);
+  show();
+  return box;
+}
+
+/* =========================================================
+   SMALL CONVENIENCES
+   ========================================================= */
+document.getElementById('surpriseBtn').addEventListener('click', () => {
+  const pool = library.filter(e => ['prayer', 'saint', 'book', 'history', 'theology'].includes(e.category));
+  openReadModal(pool[Math.floor(Math.random() * pool.length)].id);
+});
+
+document.addEventListener('keydown', e => {
+  const tag = (document.activeElement && document.activeElement.tagName) || '';
+  const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+  if(e.key === 'Escape' && readOverlay.classList.contains('open')){ readOverlay.classList.remove('open'); return; }
+  if(e.key === '/' && !typing && !readOverlay.classList.contains('open')){
+    e.preventDefault();
+    const input = document.getElementById('searchInput');
+    input.focus();
+    input.scrollIntoView({ block:'center', behavior:'smooth' });
+  }
+});
+
+const backToTop = document.createElement('button');
+backToTop.className = 'back-to-top';
+backToTop.setAttribute('aria-label', 'Back to top');
+backToTop.innerHTML = '↑';
+backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+document.body.appendChild(backToTop);
+window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 900), { passive:true });
+
+/* ---------- Text size ---------- */
+const TEXT_SIZES = [['md', 'A', 'Normal text'], ['lg', 'A', 'Larger text'], ['xl', 'A', 'Largest text']];
+function applyTextSize(size){
+  if(size === 'md') document.documentElement.removeAttribute('data-textsize');
+  else document.documentElement.setAttribute('data-textsize', size);
+  document.querySelectorAll('.textsize-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.size === size)));
+}
+themeMenu.insertAdjacentHTML('beforeend', `
+  <div class="theme-menu-label" style="margin-top:6px">Text size</div>
+  <div class="textsize-row">${TEXT_SIZES.map(([k, l, name], i) =>
+    `<button class="textsize-btn" data-size="${k}" aria-label="${name}" style="font-size:${0.85 + i * 0.2}rem">${l}</button>`).join('')}</div>`);
+themeMenu.querySelectorAll('.textsize-btn').forEach(b => b.addEventListener('click', ev => {
+  ev.stopPropagation();
+  store.set('textsize', b.dataset.size);
+  applyTextSize(b.dataset.size);
+}));
+applyTextSize(store.get('textsize', 'md'));
+
+/* ---------- Offline support ---------- */
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
 
 /* =========================================================
    ROSARY
@@ -4246,6 +5023,13 @@ function renderChaplet(){
   if(q){ searchTerm = q; document.getElementById('searchInput').value = q; }
 })();
 render();
+// Shared links: index.html#read=s1 opens that entry directly
+(function openSharedEntry(){
+  const m = /^#read=(.+)$/.exec(location.hash);
+  if(!m) return;
+  const id = decodeURIComponent(m[1]);
+  if(library.some(e => e.id === id)) openReadModal(id);
+})();
 </script>
 </body>
 </html>
