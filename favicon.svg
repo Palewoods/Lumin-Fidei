@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .tile{fill:#f6f0dc;stroke:#a6824a}
+    .cross{fill:#7a2426}
+    @media (prefers-color-scheme: dark){
+      .tile{fill:#211c16;stroke:#c9a568}
+      .cross{fill:#e2989a}
+    }
+  </style>
+  <rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/>
+  <g class="cross">
+    <rect x="29.5" y="8" width="5" height="48" rx="0.6"/>
+    <rect x="24.5" y="14" width="15" height="4.5" rx="0.6"/>
+    <rect x="20.5" y="22.5" width="23" height="4.5" rx="0.6"/>
+    <rect x="16.5" y="31" width="31" height="4.5" rx="0.6"/>
+  </g>
+</svg>
