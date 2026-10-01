@@ -343,11 +343,11 @@
   nav.sidebar .group-link{display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer; font-family:'Source Serif 4', serif; padding:0;}
   nav.sidebar .group-link:hover{color:var(--wine-dark);}
   .nl-spark{text-align:center; line-height:20px; color:var(--gold);}
-  @media (max-width:1240px){
+  @media (max-width:1320px){
     .topnav-link{padding:10px 9px;}
     .topnav{margin-left:0;}
   }
-  @media (max-width:1060px){
+  @media (max-width:1180px){
     .menu-btn{display:flex;}
     .topnav{display:none;}
     .topbar-inner{padding:0 14px; gap:10px;}
@@ -709,6 +709,22 @@
     .res-chips .patron-chip{flex:0 0 auto;}
   }
 
+  /* ---------- Patronages ---------- */
+  .patron-line{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:-8px 0 18px;}
+  .patron-label{font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-right:4px;}
+  .patron-tag{font-size:0.82rem; padding:3px 10px; border-radius:12px; background:color-mix(in srgb, var(--gold) 13%, transparent); color:var(--ink);}
+  .row-patron{font-size:0.82rem; color:var(--gold); margin:-2px 0 6px;}
+  .g-patron{
+    font-size:0.72rem; color:var(--ink-soft); line-height:1.3; font-style:italic;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .sf-patron-search{
+    display:flex; align-items:center; gap:8px; max-width:520px; margin-bottom:10px; padding:0 12px; height:40px;
+    border:1px solid var(--line); border-radius:20px; background:var(--parchment);
+  }
+  .sf-patron-search:focus-within{border-color:var(--gold); box-shadow:0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);}
+  .sf-patron-search svg{width:16px; height:16px; color:var(--ink-soft); flex:0 0 auto;}
+  .sf-patron-search input{flex:1; min-width:0; height:100%; border:none; outline:none; background:transparent; font-family:'Source Serif 4', serif; font-size:0.95rem; color:var(--ink);}
   /* ---------- Saint finder ---------- */
   .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
   .sf-section{padding-bottom:14px;}
@@ -1770,6 +1786,7 @@
       <button class="topnav-link" data-route="learn">Learn</button>
       <button class="topnav-link" data-route="calendar">Calendar</button>
       <button class="topnav-link" data-route="community">Community</button>
+      <button class="topnav-link" data-route="resources">Resources</button>
     </nav>
     <div class="searchbar" role="search">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
@@ -1829,7 +1846,7 @@
         <li><button class="navlink" data-route="learn/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
         <li><button class="navlink" data-route="learn/plans" data-cat="plan">Bible Reading Plans</button></li>
         <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
-        <li><button class="navlink" data-route="learn/resources" data-cat="resources">Learning Resources</button></li>
+        <li><button class="navlink" data-route="resources" data-cat="resources">Learning Resources</button></li>
       </ul>
     </div>
     <div class="nav-group">
@@ -1867,7 +1884,7 @@
         <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
       <div><h4>Learn</h4>
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
-        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/resources">Learning Resources</button></div>
+        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="resources">Learning Resources</button></div>
       <div><h4>Sanctify</h4>
         <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button></div>
     </div>
@@ -2729,6 +2746,258 @@ const SEED_DATA = [
   { id:'s232', category:'saint', title:'St. Joseph Vaz', author:'1651–1711, feast day January 16', tags:['missionary','sri lanka','india'],
     content:'Joseph was a priest from Goa in India who learned that Catholics in Sri Lanka had been left without priests under persecution by the Dutch. He traveled there disguised as a beggar and ministered secretly for more than twenty years.\n\nHe translated prayers into Tamil and Sinhala, cared for smallpox victims when no one else would, and rebuilt the Church on the island. He is called the "Apostle of Sri Lanka" and was canonized in 2015.',
     intercession:'St. Joseph Vaz, pray for us. Bless the Church in Sri Lanka and India, and help us to serve Christ in the forgotten. Amen.' },
+  { id:'s233', category:'saint', title:'St. Titus', author:'d. c. 96, feast day January 26', tags:['bishop','disciple of paul','crete'],
+    content:'Titus was a Greek convert and one of St. Paul’s most trusted companions. Paul brought him to the Council of Jerusalem as an example of a Gentile Christian who had not been circumcised, and later sent him to settle troubles in Corinth.\n\nPaul left him to organize the Church on the island of Crete, and wrote him the Letter to Titus with instructions for appointing elders. Tradition says he died there as bishop in old age.',
+    intercession:'St. Titus, pray for us. Bless all who are entrusted with building up the Church, and help us to live soberly, justly, and devoutly. Amen.' },
+  { id:'s234', category:'saint', title:'St. Joseph of Arimathea', author:'1st century, feast day March 17', tags:['disciple','burial','courage'],
+    content:'Joseph was a wealthy member of the Jewish council who had become a secret disciple of Jesus. After the Crucifixion he went boldly to Pilate and asked for Jesus’ body.\n\nWith Nicodemus he wrapped the body in linen with spices and laid it in his own new tomb, cut in the rock. Medieval legends connected him with the Holy Grail and with Glastonbury in England.',
+    intercession:'St. Joseph of Arimathea, pray for us. Give us the courage to show our love for Christ openly, and bless all who care for the dead. Amen.' },
+  { id:'s235', category:'saint', title:'St. Lazarus', author:'1st century, feast day July 29', tags:['friend of jesus','resurrection','bethany'],
+    content:'Lazarus of Bethany, brother of Martha and Mary, was a close friend of Jesus. When he died, Jesus wept at his tomb, then called him out alive after four days, a sign that pointed to Jesus’ own Resurrection.\n\nMany came to believe because of him, and the chief priests plotted to kill him too. Since 2021, the Church celebrates Martha, Mary, and Lazarus together as friends of the Lord.',
+    intercession:'St. Lazarus, raised by the voice of Christ, pray for us. Call us out of every darkness into new life, and help us to be true friends of Jesus. Amen.' },
+  { id:'s236', category:'saint', title:'St. Dismas', author:'1st century, feast day March 25', tags:['good thief','repentance','mercy'],
+    content:'Dismas is the name tradition gives to the "good thief" crucified beside Jesus. While the other criminal mocked, he admitted his own guilt, defended Jesus’ innocence, and asked to be remembered when Jesus came into his kingdom.\n\nJesus promised him paradise that very day. He is the only person in the Gospels assured of salvation by Jesus himself, and a sign that it is never too late to turn to God.',
+    intercession:'St. Dismas, pray for us. Help all prisoners and all who have done great wrong to turn to Jesus with trust, as you did. Amen.' },
+  { id:'s237', category:'saint', title:'St. Veronica', author:'1st century, feast day July 12', tags:['stations of the cross','compassion','holy face'],
+    content:'According to tradition, Veronica was a woman of Jerusalem who, moved with pity as Jesus carried his cross, stepped forward to wipe his face with her veil. The image of his face remained on the cloth.\n\nHer act of courage and compassion is remembered in the Sixth Station of the Cross. Her name is often explained as "true image."',
+    intercession:'St. Veronica, pray for us. Give us the courage to offer small acts of mercy to those who suffer, and let the face of Christ be imprinted on our hearts. Amen.' },
+  { id:'s238', category:'saint', title:'St. Elizabeth, Mother of John the Baptist', author:'1st century BC – 1st century AD, feast day November 5', tags:['mothers','visitation','family'],
+    content:'Elizabeth, a relative of Mary, and her husband Zechariah were righteous before God but childless into old age. The angel Gabriel announced that she would bear a son, John the Baptist.\n\nWhen Mary visited her, the baby leapt in her womb, and Elizabeth, filled with the Holy Spirit, greeted Mary as the mother of her Lord. Her words form part of the Hail Mary.',
+    intercession:'St. Elizabeth, pray for us. Comfort those who long for children, and help us to recognize Christ and welcome Him with joy. Amen.' },
+  { id:'s239', category:'saint', title:'Sts. Priscilla and Aquila', author:'1st century, feast day July 8', tags:['married couples','missionaries','tentmakers'],
+    content:'Priscilla and her husband Aquila were Jewish Christians and tentmakers who were expelled from Rome by the Emperor Claudius. In Corinth they took St. Paul into their home and worked alongside him.\n\nThey later taught the gifted preacher Apollos the way of God more accurately, and hosted a church in their house. Paul called them his fellow workers who had risked their necks for him.',
+    intercession:'Sts. Priscilla and Aquila, pray for us. Bless married couples who serve the Church together, and make our homes places of welcome. Amen.' },
+  { id:'s240', category:'saint', title:'Pope St. Fabian', author:'d. 250, feast day January 20', tags:['pope','martyr','rome'],
+    content:'According to the historian Eusebius, Fabian was a layman who came to Rome for a papal election when a dove landed on his head, and the people took it as a sign and chose him.\n\nHe organized the Church of Rome into districts, cared for the catacombs, and sent missionaries to Gaul. He was one of the first victims of the Emperor Decius’ persecution. He shares his feast with St. Sebastian.',
+    intercession:'Pope St. Fabian, pray for us. Help us to accept God’s call even when it surprises us, and to serve faithfully to the end. Amen.' },
+  { id:'s241', category:'saint', title:'Pope St. Cornelius', author:'d. 253, feast day September 16', tags:['pope','martyr','mercy'],
+    content:'Cornelius was elected pope during a time of persecution. He held that Christians who had denied the faith under torture could be readmitted after penance, against the rigorist priest Novatian, who set himself up as a rival pope.\n\nSupported by St. Cyprian of Carthage, Cornelius upheld the Church’s mercy toward repentant sinners. He died in exile and is honored as a martyr, sharing his feast with Cyprian.',
+    intercession:'Pope St. Cornelius, pray for us. Teach the Church to welcome back sinners with mercy, and keep us united in faith. Amen.' },
+  { id:'s242', category:'saint', title:'Pope St. Sixtus II', author:'d. 258, feast day August 7', tags:['pope','martyr','catacombs'],
+    content:'Sixtus II was pope for only about a year. During the persecution of the Emperor Valerian, soldiers found him celebrating the liturgy in the catacomb of St. Callixtus and beheaded him in his chair, along with four deacons.\n\nHis deacon St. Lawrence was martyred a few days later. Sixtus is named in the Roman Canon of the Mass.',
+    intercession:'Pope St. Sixtus, pray for us. Strengthen all who worship God in danger, and help us to love the Mass above all things. Amen.' },
+  { id:'s243', category:'saint', title:'St. Hippolytus', author:'c. 170–235, feast day August 13', tags:['martyr','reconciliation','theologian'],
+    content:'Hippolytus was a learned priest of Rome and one of the most important theologians of his day. Disagreeing with the popes over how to treat repentant sinners, he allowed himself to be set up as a rival pope.\n\nBoth he and Pope St. Pontian were exiled to the mines of Sardinia, where tradition says they were reconciled before their deaths. The Church honors both as martyrs on the same day.',
+    intercession:'St. Hippolytus, pray for us. Heal divisions in the Church, and help us to be reconciled with those from whom we are estranged. Amen.' },
+  { id:'s244', category:'saint', title:'St. Vincent of Saragossa', author:'d. 304, feast day January 22', tags:['deacon','martyr','spain'],
+    content:'Vincent was the deacon of Bishop Valerius of Saragossa in Spain, who had a speech impediment, so Vincent preached for him. During Diocletian’s persecution both were arrested.\n\nVincent endured the rack, iron hooks, and a red-hot gridiron with such calm that his jailer was converted. He died in prison. He is one of the most honored martyrs of Spain and a patron of Lisbon.',
+    intercession:'St. Vincent, pray for us. Make us bold to speak for the Gospel, and patient in every trial. Amen.' },
+  { id:'s245', category:'saint', title:'St. Alban', author:'d. c. 304, feast day June 22', tags:['martyr','britain','hospitality'],
+    content:'Alban was a pagan living in the Roman town of Verulamium in Britain when he sheltered a Christian priest fleeing persecution. Moved by the priest’s prayer, he became a Christian.\n\nWhen soldiers came, Alban put on the priest’s cloak and gave himself up in his place. He was beheaded on the hill where St Albans Cathedral now stands, the first recorded Christian martyr of Britain.',
+    intercession:'St. Alban, pray for us. Teach us to shelter those in danger and to give ourselves for others, as Christ gave Himself for us. Amen.' },
+  { id:'s246', category:'saint', title:'St. Vitus', author:'d. c. 303, feast day June 15', tags:['martyr','young people','dancers'],
+    content:'Vitus was a boy from Sicily, raised a Christian by his nurse Crescentia and her husband Modestus against his pagan father’s wishes. Tradition says he healed the emperor’s son but would not sacrifice to the gods.\n\nHe was martyred with Modestus and Crescentia as a young teenager. In the Middle Ages he was counted among the Fourteen Holy Helpers, and the nervous disorder once called "St. Vitus’ dance" is named for him.',
+    intercession:'St. Vitus, pray for us. Protect young people, and bring healing to those with nervous disorders and epilepsy. Amen.' },
+  { id:'s247', category:'saint', title:'St. Margaret of Antioch', author:'d. c. 304, feast day July 20', tags:['martyr','childbirth','holy helpers'],
+    content:'According to legend, Margaret was the daughter of a pagan priest in Antioch who became a Christian and refused to marry a Roman governor. In prison, the devil appeared to her as a dragon and swallowed her, but the cross she held burst it open.\n\nShe was beheaded for her faith. One of the Fourteen Holy Helpers and one of the voices heard by St. Joan of Arc, she is invoked by women in childbirth.',
+    intercession:'St. Margaret, pray for us. Protect mothers and children in childbirth, and help us overcome every temptation by the power of the Cross. Amen.' },
+  { id:'s248', category:'saint', title:'St. Erasmus', author:'d. c. 303, feast day June 2', tags:['martyr','bishop','sailors'],
+    content:'Erasmus, also called Elmo, was bishop of Formia in Italy and one of the Fourteen Holy Helpers. Legends tell of many tortures he survived during the persecution of Diocletian.\n\nSailors took him as their patron, and the blue electrical glow that sometimes appears on ships’ masts during storms became known as "St. Elmo’s fire," taken as a sign of his protection. He is also invoked against abdominal pain.',
+    intercession:'St. Erasmus, pray for us. Protect sailors and all who travel by sea, and bring relief to those in pain. Amen.' },
+  { id:'s249', category:'saint', title:'St. Anastasia', author:'d. c. 304, feast day December 25', tags:['martyr','prisoners','christmas'],
+    content:'Anastasia is said to have been a Roman noblewoman who visited and cared for Christians imprisoned during the persecution of Diocletian. She was arrested in Sirmium and burned alive.\n\nShe is named in the Roman Canon of the Mass, and in the traditional liturgy the second Mass of Christmas, the Mass at Dawn, includes a commemoration of her. She is invoked by weavers and the persecuted.',
+    intercession:'St. Anastasia, pray for us. Bless all who visit prisoners and comfort the persecuted. Amen.' },
+  { id:'s250', category:'saint', title:'St. Pachomius', author:'c. 292–348, feast day May 9', tags:['founder','monasticism','egypt'],
+    content:'Pachomius was a young Egyptian conscripted into the Roman army, where Christians brought food to him and his fellow soldiers. Moved by their kindness, he was baptized after his release.\n\nAfter years as a hermit, he founded a monastery at Tabennisi where monks lived together under a common rule rather than alone. By his death his communities held thousands of monks and nuns. He is called the father of community monastic life.',
+    intercession:'St. Pachomius, pray for us. Bless all who live in religious communities, and help us to love one another in common life. Amen.' },
+  { id:'s251', category:'saint', title:'St. Mary of Egypt', author:'c. 344–c. 421, feast day April 1', tags:['penitent','hermit','conversion'],
+    content:'Mary left home at twelve and lived for years in Alexandria as a prostitute. She joined a pilgrimage to Jerusalem out of curiosity, but an invisible force kept her from entering the church of the Holy Sepulchre.\n\nWeeping, she prayed before an icon of Our Lady and was then allowed in. She went into the desert beyond the Jordan and lived there as a penitent for forty-seven years. The monk Zosimas met her just before her death.',
+    intercession:'St. Mary of Egypt, pray for us. Help all who are trapped in sin to find their way to God’s mercy, and give us true repentance. Amen.' },
+  { id:'s252', category:'saint', title:'Pope St. Damasus I', author:'c. 305–384, feast day December 11', tags:['pope','scripture','catacombs'],
+    content:'Damasus was pope during the struggle against Arianism. He commissioned his secretary, St. Jerome, to revise the Latin Bible, work that grew into the Vulgate.\n\nHe restored the catacombs and composed verse inscriptions for the tombs of the martyrs, many of which survive. During his reign Christianity was declared the official religion of the Roman Empire.',
+    intercession:'Pope St. Damasus, pray for us. Help us to love the Scriptures and to honor the witness of the martyrs. Amen.' },
+  { id:'s253', category:'saint', title:'St. Paulinus of Nola', author:'c. 354–431, feast day June 22', tags:['bishop','poet','charity'],
+    content:'Paulinus was a wealthy Roman senator and governor. After the death of their only child, he and his wife Therasia gave away their fortune and moved to Nola near Naples to live a life of prayer and hospitality near the tomb of St. Felix.\n\nHe was chosen bishop of Nola and wrote fine Christian poetry and letters to friends such as St. Augustine and St. Jerome. He shares his feast with Sts. John Fisher and Thomas More.',
+    intercession:'St. Paulinus, pray for us. Help us to hold our possessions lightly and to use them for the glory of God and the good of others. Amen.' },
+  { id:'s254', category:'saint', title:'St. Melania the Younger', author:'383–439, feast day December 31', tags:['charity','monastic founder','widows'],
+    content:'Melania was one of the richest women in the Roman world. After the deaths of their two children, she and her husband Pinian freed thousands of slaves and gave away vast estates across the empire.\n\nThey fled to North Africa as the Goths sacked Rome, knew St. Augustine, and finally settled in Jerusalem, where Melania founded monasteries on the Mount of Olives.',
+    intercession:'St. Melania, pray for us. Free us from attachment to wealth, and help us to share generously with those in need. Amen.' },
+  { id:'s255', category:'saint', title:'St. Clotilde', author:'c. 474–545, feast day June 3', tags:['queen','france','mothers'],
+    content:'Clotilde was a Burgundian princess who married Clovis, king of the Franks. Through her patient prayers and example, and after a battle in which he called on her God, Clovis was baptized on Christmas Day around 496, along with thousands of his warriors.\n\nThis made France the "eldest daughter of the Church." Widowed and grieved by her sons’ violent quarrels, she spent her last years in prayer at Tours.',
+    intercession:'St. Clotilde, pray for us. Bless wives who pray for their husbands, and bring peace to divided families. Amen.' },
+  { id:'s256', category:'saint', title:'St. Radegund', author:'c. 520–587, feast day August 13', tags:['queen','nun','founder'],
+    content:'Radegund was a Thuringian princess captured as a child by the Frankish king Clothar I, who later forced her to marry him. After he had her brother murdered, she fled the court and became a nun.\n\nShe founded the Abbey of the Holy Cross at Poitiers, which received a relic of the True Cross. For the occasion the poet Venantius Fortunatus composed the hymn "Vexilla Regis," still sung in Holy Week.',
+    intercession:'St. Radegund, pray for us. Comfort all who suffer in unhappy marriages, and help us to find our refuge in the Cross. Amen.' },
+  { id:'s257', category:'saint', title:'St. Brendan the Navigator', author:'c. 484–c. 577, feast day May 16', tags:['ireland','voyager','monk'],
+    content:'Brendan was an Irish abbot who founded monasteries including Clonfert. The famous Voyage of St. Brendan tells how he set out with monks in a leather boat to search for the "Promised Land of the Saints" across the Atlantic.\n\nIn 1976–77 an explorer sailed a replica leather boat from Ireland to Newfoundland, showing that such a voyage was possible. He is a patron of sailors and travelers.',
+    intercession:'St. Brendan, pray for us. Protect sailors and travelers, and make our whole life a voyage toward the promised land of heaven. Amen.' },
+  { id:'s258', category:'saint', title:'St. Aidan of Lindisfarne', author:'d. 651, feast day August 31', tags:['missionary','bishop','england'],
+    content:'Aidan was an Irish monk of Iona sent at the request of King Oswald to bring the Gospel to Northumbria. He founded a monastery on the tidal island of Lindisfarne and walked the countryside to speak with everyone he met.\n\nHe gave away gifts from kings to the poor and ransomed slaves, some of whom became monks. St. Cuthbert saw a vision of angels carrying his soul to heaven on the night he died.',
+    intercession:'St. Aidan, pray for us. Make us gentle messengers of the Gospel to everyone we meet. Amen.' },
+  { id:'s259', category:'saint', title:'St. Kevin of Glendalough', author:'c. 498–618, feast day June 3', tags:['ireland','hermit','nature'],
+    content:'Kevin was an Irish hermit who withdrew to the remote valley of Glendalough in the Wicklow Mountains, where he lived in a cave above a lake. Disciples gathered around him, and the monastery he founded became a great center of learning.\n\nA famous legend says a blackbird laid her eggs in his outstretched hand while he prayed, and he held still until the chicks had hatched.',
+    intercession:'St. Kevin, pray for us. Teach us patience and gentleness toward all God’s creatures, and help us to find Him in silence. Amen.' },
+  { id:'s260', category:'saint', title:'St. Willibrord', author:'c. 658–739, feast day November 7', tags:['missionary','bishop','netherlands'],
+    content:'Willibrord was an English monk trained in Ireland who led a band of missionaries to Frisia, in today’s Netherlands. Consecrated archbishop by the pope, he made Utrecht his see.\n\nHe founded the abbey of Echternach in Luxembourg, where his shrine draws a famous dancing procession every Whit Tuesday. He is called the "Apostle of the Frisians."',
+    intercession:'St. Willibrord, pray for us. Bless the Church in the Netherlands and Luxembourg, and give us zeal to share the faith. Amen.' },
+  { id:'s261', category:'saint', title:'St. Walburga', author:'c. 710–779, feast day February 25', tags:['nun','missionary','germany'],
+    content:'Walburga was an English nun who went to Germany at the invitation of her relative St. Boniface to help in his missionary work. She became abbess of the double monastery of Heidenheim, ruling communities of men and women.\n\nShe was known for healing the sick. Oil that seeps from her tomb in Eichstätt has been collected by pilgrims for over a thousand years.',
+    intercession:'St. Walburga, pray for us. Bring healing to the sick, and help us to serve the Church wherever we are sent. Amen.' },
+  { id:'s262', category:'saint', title:'St. Hubert', author:'c. 656–727, feast day November 3', tags:['bishop','hunters','conversion'],
+    content:'Hubert was a nobleman who loved hunting. According to legend, while hunting on Good Friday he saw a stag with a crucifix between its antlers and heard a voice calling him to turn to God.\n\nHe gave up his worldly life, became a priest, and succeeded his teacher as bishop of Maastricht, later moving his see to Liège. He is the patron of hunters, foresters, and mathematicians.',
+    intercession:'St. Hubert, pray for us. Help us to see Christ in the world around us and to turn to Him with all our hearts. Amen.' },
+  { id:'s263', category:'saint', title:'St. Edmund the Martyr', author:'c. 841–869, feast day November 20', tags:['king','martyr','england'],
+    content:'Edmund was the young Christian king of East Anglia when a great Viking army invaded England. Captured, he refused to share his kingdom with the pagan invaders or to renounce his faith.\n\nHe was tied to a tree, shot with arrows, and beheaded. Bury St Edmunds grew up around his shrine, and he was honored as a patron of England for centuries.',
+    intercession:'St. Edmund, pray for us. Give leaders the courage to remain faithful to God whatever the cost. Amen.' },
+  { id:'s264', category:'saint', title:'St. Dunstan', author:'c. 909–988, feast day May 19', tags:['bishop','reform','craftsmen'],
+    content:'Dunstan was an English monk, a skilled metalworker, musician, and illuminator. As abbot of Glastonbury and later archbishop of Canterbury, he led a great revival of monastic life in England.\n\nHe was a trusted adviser to several kings and helped write the coronation rite still used for English monarchs. Legend says he once seized the devil’s nose with red-hot tongs.',
+    intercession:'St. Dunstan, pray for us. Bless all who work with their hands, and renew the life of the Church. Amen.' },
+  { id:'s265', category:'saint', title:'St. Ludmila', author:'c. 860–921, feast day September 16', tags:['martyr','grandmothers','czech'],
+    content:'Ludmila was a Bohemian duchess who was baptized with her husband, Duke Bořivoj, probably by St. Methodius. She raised her grandson, St. Wenceslaus, in the faith.\n\nHer daughter-in-law Drahomíra, jealous of her influence, had her strangled at Tetín castle. She is honored as the first Czech martyr and a patron of grandmothers.',
+    intercession:'St. Ludmila, pray for us. Bless grandparents who pass on the faith to their grandchildren. Amen.' },
+  { id:'s266', category:'saint', title:'St. Olga of Kiev', author:'c. 890–969, feast day July 11', tags:['queen','convert','ukraine'],
+    content:'Olga ruled the Kievan Rus’ as regent after her husband was murdered, and at first took fierce revenge on his killers. Later she traveled to Constantinople and was baptized there.\n\nShe tried to bring Christianity to her people, but her son refused. Her grandson, St. Vladimir, would complete her work. She is honored in both the Catholic and Orthodox Churches.',
+    intercession:'St. Olga, pray for us. Help those who govern to turn from vengeance to mercy, and bless the peoples of Ukraine and Russia. Amen.' },
+  { id:'s267', category:'saint', title:'St. Adalbert of Prague', author:'c. 956–997, feast day April 23', tags:['bishop','martyr','missionary'],
+    content:'Adalbert, a Czech nobleman, became bishop of Prague but struggled against the paganism and violence of his flock, twice leaving the city. He became a monk in Rome.\n\nHe then set out as a missionary to the pagan Prussians on the Baltic coast, where he was killed. He is a patron of Bohemia, Poland, and Hungary, and his shrine is in Gniezno.',
+    intercession:'St. Adalbert, pray for us. Bless missionaries who go where the Gospel is unknown, and give us courage when we fail. Amen.' },
+  { id:'s268', category:'saint', title:'St. Vladimir the Great', author:'c. 958–1015, feast day July 15', tags:['king','convert','baptism of rus'],
+    content:'Vladimir was a violent pagan prince of Kiev who, according to the Russian Primary Chronicle, sent envoys to study the religions of his neighbors. Those who visited the great church of Hagia Sophia in Constantinople said they did not know whether they were in heaven or on earth.\n\nVladimir was baptized around 988 and had his people baptized in the Dnieper River. He became known for his care for the poor.',
+    intercession:'St. Vladimir, pray for us. Help us to be transformed by the beauty of God, and bless the peoples of Ukraine and Russia with peace. Amen.' },
+  { id:'s269', category:'saint', title:'St. Olaf', author:'995–1030, feast day July 29', tags:['king','martyr','norway'],
+    content:'Olaf Haraldsson was a Viking warrior who was baptized in Normandy and returned to Norway to become king. He worked to make his country Christian, building churches and bringing in clergy from England.\n\nDriven into exile, he returned with an army and was killed at the Battle of Stiklestad. Miracles at his tomb in Trondheim made him Norway’s national saint, "Norway’s Eternal King."',
+    intercession:'St. Olaf, pray for us. Bless the people of Norway, and help us to give our strength to the service of Christ. Amen.' },
+  { id:'s270', category:'saint', title:'St. Henry II', author:'973–1024, feast day July 13', tags:['emperor','benedictine','childless'],
+    content:'Henry was Holy Roman Emperor and a devout ruler who supported Church reform, founded the diocese of Bamberg, and built its cathedral.\n\nHe and his wife, St. Cunigunde, had no children. He is said to have wished to become a monk, but the abbot of Saint-Vanne ordered him under obedience to continue ruling. He is a patron of Benedictine oblates and of the childless.',
+    intercession:'St. Henry, pray for us. Help those in power to rule as servants of God, and comfort couples who long for children. Amen.' },
+  { id:'s271', category:'saint', title:'Pope St. Gregory VII', author:'c. 1015–1085, feast day May 25', tags:['pope','reform','freedom of the church'],
+    content:'Hildebrand was a Benedictine monk who served several popes before being elected himself. He led the "Gregorian Reform" against simony and clerical marriage, and insisted that the Church, not kings, should appoint bishops.\n\nIn 1077 Emperor Henry IV stood barefoot in the snow at Canossa for three days to seek his pardon. Later driven from Rome, Gregory died in exile, saying: "I have loved justice and hated iniquity; therefore I die in exile."',
+    intercession:'Pope St. Gregory VII, pray for us. Keep the Church free and holy, and give us courage to love justice. Amen.' },
+  { id:'s272', category:'saint', title:'St. Hugh of Lincoln', author:'c. 1140–1200, feast day November 17', tags:['bishop','carthusian','england'],
+    content:'Hugh was a French Carthusian monk brought to England by King Henry II to lead the first Carthusian house there. As bishop of Lincoln he rebuilt the cathedral, cared for lepers, and defended Jews from mob violence.\n\nHe fearlessly stood up to three kings. A wild swan befriended him and followed him about, so he is often pictured with it.',
+    intercession:'St. Hugh, pray for us. Give us courage to defend the vulnerable and to speak the truth to the powerful. Amen.' },
+  { id:'s273', category:'saint', title:'St. Homobonus', author:'d. 1197, feast day November 13', tags:['laity','business','charity'],
+    content:'Homobonus, whose name means "good man," was a married cloth merchant of Cremona in Italy. He saw his business as a gift from God, dealt honestly, and gave a large part of his profits to the poor.\n\nHe died while attending Mass, during the Gloria. He was canonized just two years later, one of the first laymen canonized who was neither a king nor a martyr. He is a patron of business people.',
+    intercession:'St. Homobonus, pray for us. Help business people to work honestly and to use their wealth for the poor. Amen.' },
+  { id:'s274', category:'saint', title:'St. Hyacinth', author:'1185–1257, feast day August 17', tags:['dominican','missionary','poland'],
+    content:'Hyacinth was a Polish priest who met St. Dominic in Rome and became one of his first friars. He carried the Dominican order back to Poland and preached across Scandinavia, Prussia, Lithuania, and Ruthenia.\n\nA famous legend says that while fleeing a Tatar raid on Kyiv he carried the Blessed Sacrament and a heavy statue of Mary, which became miraculously light. He is called the "Apostle of the North."',
+    intercession:'St. Hyacinth, pray for us. Make us tireless in carrying Christ and His Mother to others. Amen.' },
+  { id:'s275', category:'saint', title:'St. Agnes of Prague', author:'1211–1282, feast day March 2', tags:['princess','franciscan','czech'],
+    content:'Agnes was a Bohemian princess betrothed to the Emperor Frederick II, but she refused all marriages to give herself to Christ. With the support of her brother, the king, she founded a hospital and a monastery of Poor Clares in Prague, where she became abbess.\n\nShe corresponded with St. Clare of Assisi. Her canonization in November 1989, days before the Velvet Revolution, was seen by Czechs as a sign of hope.',
+    intercession:'St. Agnes of Prague, pray for us. Teach us to prefer Christ to every earthly honor. Amen.' },
+  { id:'s276', category:'saint', title:'St. Rose of Viterbo', author:'c. 1233–1251, feast day September 4', tags:['young people','preacher','franciscan'],
+    content:'Rose was a girl of Viterbo in Italy who, after a serious illness, began preaching in the streets against the Emperor Frederick II, who was at war with the pope. She and her family were exiled.\n\nShe tried to enter a convent of Poor Clares but was refused because she had no dowry. She died at about eighteen. Each year the people of Viterbo honor her by carrying a towering illuminated shrine through the streets.',
+    intercession:'St. Rose of Viterbo, pray for us. Help young people to speak boldly for Christ, and comfort those who are turned away. Amen.' },
+  { id:'s277', category:'saint', title:'St. Margaret of Cortona', author:'1247–1297, feast day February 22', tags:['penitent','mothers','franciscan'],
+    content:'Margaret lived for nine years as the mistress of a nobleman and bore him a son. When he was murdered, she was led by his dog to his body, and the shock brought about her conversion.\n\nShe made public penance in Cortona, became a Franciscan tertiary, and founded a hospital for the poor. Her mystical experiences of Christ were recorded by her confessor. She is a patron of single mothers and the homeless.',
+    intercession:'St. Margaret of Cortona, pray for us. Help single mothers and all who are trying to begin again, and give us true sorrow for our sins. Amen.' },
+  { id:'s278', category:'saint', title:'St. Roch', author:'c. 1348–c. 1379, feast day August 16', tags:['plague','dogs','pilgrims'],
+    content:'Roch was a young Frenchman who gave away his inheritance and set out as a pilgrim to Rome. Finding Italy ravaged by plague, he cared for the sick and healed many with the sign of the cross.\n\nWhen he caught the plague himself, he withdrew to a forest, where a dog brought him bread each day. He is invoked against plagues and contagious diseases, and is the patron of dogs.',
+    intercession:'St. Roch, pray for us. Protect us from contagious disease, and bless all who care for the sick at risk to themselves. Amen.' },
+  { id:'s279', category:'saint', title:'St. Elizabeth of Portugal', author:'1271–1336, feast day July 4', tags:['queen','peacemaker','franciscan'],
+    content:'Elizabeth was a princess of Aragon married at twelve to King Denis of Portugal, an unfaithful husband. She bore his neglect with patience, cared for his illegitimate children, and spent her days in prayer and works of mercy.\n\nShe repeatedly made peace between her husband and their rebellious son, once riding between their armies on the battlefield. As a widow she became a Poor Clare tertiary. She is a patron of peace.',
+    intercession:'St. Elizabeth of Portugal, peacemaker, pray for us. Bring peace to families and nations torn by conflict. Amen.' },
+  { id:'s280', category:'saint', title:'St. John Nepomucene', author:'c. 1345–1393, feast day May 16', tags:['martyr','confessors','czech'],
+    content:'John was vicar general of the archdiocese of Prague. He opposed King Wenceslaus IV’s attempts to control the Church, and by a long tradition the king also demanded that he reveal the confession of the queen.\n\nThe king had him tortured and thrown from the Charles Bridge into the Vltava River. His statue stands on that bridge today. He is the patron of confessors, bridges, and the seal of confession.',
+    intercession:'St. John Nepomucene, pray for us. Protect the seal of confession, and give priests the courage to keep it faithfully. Amen.' },
+  { id:'s281', category:'saint', title:'St. Jadwiga of Poland', author:'1374–1399, feast day June 8', tags:['queen','poland','education'],
+    content:'Jadwiga was crowned "King" of Poland at about ten. For her country’s sake she married Jogaila, Grand Duke of Lithuania, who was baptized and became King Władysław II, beginning the conversion of Lithuania.\n\nShe founded hospitals, supported the poor, and left her jewels to restore the University of Kraków. She died at twenty-five after childbirth. Pope St. John Paul II canonized her in 1997.',
+    intercession:'St. Jadwiga, pray for us. Help leaders to sacrifice for the common good, and bless the peoples of Poland and Lithuania. Amen.' },
+  { id:'s282', category:'saint', title:'St. Lidwina', author:'1380–1433, feast day April 14', tags:['chronic illness','ice skaters','netherlands'],
+    content:'Lidwina was a Dutch girl from Schiedam who broke a rib in a fall while ice skating at fifteen. The injury led to an illness that left her bedridden and in pain for thirty-eight years.\n\nAt first she despaired, but a priest taught her to unite her sufferings with Christ’s Passion. She became known for her prayer, mystical gifts, and wise counsel to many visitors. She is the patron of ice skaters and the chronically ill.',
+    intercession:'St. Lidwina, pray for us. Give patience and peace to all who suffer long illness, and help them to unite their pain with Christ. Amen.' },
+  { id:'s283', category:'saint', title:'St. Colette', author:'1381–1447, feast day March 6', tags:['poor clares','reform','mothers'],
+    content:'Colette was a French carpenter’s daughter who lived as an anchoress walled into a cell beside a church until a vision called her to reform the Poor Clares.\n\nWith papal approval, she restored St. Clare’s rule of strict poverty and founded or reformed seventeen convents, despite fierce opposition. Her nuns are still called Colettines. She is invoked by women hoping to conceive and by expectant mothers.',
+    intercession:'St. Colette, pray for us. Bless mothers and those who long to be mothers, and renew our love of poverty and prayer. Amen.' },
+  { id:'s284', category:'saint', title:'St. Francis of Paola', author:'1416–1507, feast day April 2', tags:['hermit','founder','sailors'],
+    content:'Francis became a hermit in Calabria at fifteen. Followers gathered around him, and he founded the Order of Minims, whose members kept a perpetual Lenten fast as a sign of humility.\n\nA famous miracle tells that, refused passage across the Strait of Messina, he spread his cloak on the water and sailed across. The dying King Louis XI of France called him to his side. He is a patron of sailors.',
+    intercession:'St. Francis of Paola, pray for us. Teach us humility and penance, and protect all who travel by sea. Amen.' },
+  { id:'s285', category:'saint', title:'St. John Cantius', author:'1390–1473, feast day December 23', tags:['priest','professor','poland'],
+    content:'John was a Polish priest and professor of theology at the University of Kraków for many years. He was famous for his generosity: he gave away his clothes and food to the poor and often slept on the floor.\n\nHe made four pilgrimages to Rome on foot. A saying attributed to him runs: "Fight all error, but do it with good humor, patience, kindness, and love."',
+    intercession:'St. John Cantius, pray for us. Bless teachers and students, and help us to combine love of truth with kindness. Amen.' },
+  { id:'s286', category:'saint', title:'St. Cajetan', author:'1480–1547, feast day August 7', tags:['founder','reform','providence'],
+    content:'Cajetan was a lawyer and papal official in Rome who became a priest. Distressed by the worldliness of the clergy, he co-founded the Theatines, priests who lived in poverty and relied wholly on God’s providence, not even begging.\n\nHe also founded hospitals and charitable pawnshops that lent to the poor at little or no interest. In Argentina and elsewhere he is invoked by those seeking work.',
+    intercession:'St. Cajetan, pray for us. Help all who are looking for work, and teach us to trust in God’s providence. Amen.' },
+  { id:'s287', category:'saint', title:'St. Jerome Emiliani', author:'1486–1537, feast day February 8', tags:['founder','orphans','soldier'],
+    content:'Jerome was a Venetian soldier who was captured and chained in a dungeon. He prayed to Our Lady, and after his escape he gave his life to God.\n\nDuring a time of plague and famine he took in orphans, then founded the Somascan Fathers to care for orphans and the poor. He died of plague caught while nursing the sick. He is the patron of orphans and abandoned children.',
+    intercession:'St. Jerome Emiliani, pray for us. Protect orphans and abandoned children, and give them loving homes. Amen.' },
+  { id:'s288', category:'saint', title:'St. Francis Borgia', author:'1510–1572, feast day October 10', tags:['jesuit','duke','conversion'],
+    content:'Francis was the Duke of Gandía, a great-grandson of Pope Alexander VI, and a favorite of Emperor Charles V. When he saw the decaying body of the beautiful Empress Isabella, he resolved never again to serve a mortal master.\n\nAfter his wife’s death he became a Jesuit and later the order’s third superior general, founding colleges and sending missionaries around the world. He is invoked against earthquakes.',
+    intercession:'St. Francis Borgia, pray for us. Help us to seek what lasts forever, and to serve the King who never dies. Amen.' },
+  { id:'s289', category:'saint', title:'St. Peter of Alcantara', author:'1499–1562, feast day October 19', tags:['franciscan','penance','mystic'],
+    content:'Peter was a Spanish Franciscan known for extraordinary penance: he slept only an hour and a half a night, sitting up, and ate once every three days.\n\nHe led a reform of the Franciscans and was a spiritual adviser to St. Teresa of Ávila, encouraging her reform of the Carmelites. His little Treatise on Prayer and Meditation was widely read. He is a patron of Brazil.',
+    intercession:'St. Peter of Alcantara, pray for us. Teach us self-denial and perseverance in prayer. Amen.' },
+  { id:'s290', category:'saint', title:'St. Nicholas Owen', author:'c. 1562–1606, feast day March 22', tags:['martyr','jesuit','carpenter'],
+    content:'Nicholas was an English carpenter and Jesuit lay brother who spent nearly twenty years building ingenious hiding places for priests in Catholic houses during the persecution. Many of his "priest holes" were never found, and some still exist.\n\nArrested in 1606, he was tortured on the rack until he died, without betraying anyone. He is a patron of illusionists and escape artists.',
+    intercession:'St. Nicholas Owen, pray for us. Bless craftsmen, and help us to protect those in danger for the faith. Amen.' },
+  { id:'s291', category:'saint', title:'St. Fidelis of Sigmaringen', author:'1577–1622, feast day April 24', tags:['martyr','capuchin','lawyers'],
+    content:'Fidelis was a German lawyer known as "the poor man’s lawyer" because he took the cases of those who could not pay. Disgusted by corruption in the courts, he became a Capuchin friar.\n\nHe was sent to preach to Calvinists in the Swiss region of Graubünden, where many returned to the Church. He was killed by an armed mob after preaching. He is a patron of lawyers.',
+    intercession:'St. Fidelis, pray for us. Help lawyers to serve justice and the poor, and give us courage to preach the truth with charity. Amen.' },
+  { id:'s292', category:'saint', title:'St. Josaphat', author:'c. 1580–1623, feast day November 12', tags:['martyr','bishop','unity'],
+    content:'Josaphat Kuntsevych was a Ruthenian monk and archbishop of Polotsk, in today’s Belarus. He worked tirelessly for the union of the Eastern Churches of the region with Rome, achieved at the Union of Brest in 1596, while preserving their own Byzantine liturgy.\n\nHis opponents saw the union as a betrayal, and a mob killed him in Vitebsk. He was the first Eastern Catholic saint to be formally canonized.',
+    intercession:'St. Josaphat, pray for us. Heal the wounds between Christians of East and West, and make us one in Christ. Amen.' },
+  { id:'s293', category:'saint', title:'St. Lawrence of Brindisi', author:'1559–1619, feast day July 21', tags:['doctor of the church','capuchin','preacher'],
+    content:'Lawrence was an Italian Capuchin friar with a remarkable gift for languages, including Hebrew, Greek, and German, and a deep knowledge of Scripture. He preached across Europe and served as a diplomat for the pope.\n\nIn 1601 he led the Christian army at the Battle of Székesfehérvár in Hungary, riding in front carrying only a crucifix. He was named a Doctor of the Church in 1959.',
+    intercession:'St. Lawrence of Brindisi, pray for us. Give us a deep love of Scripture and the courage to follow Christ into every battle. Amen.' },
+  { id:'s294', category:'saint', title:'St. Joseph Calasanz', author:'1557–1648, feast day August 25', tags:['founder','schools','teachers'],
+    content:'Joseph was a Spanish priest who came to Rome and was shocked by the number of poor children roaming the streets without schooling. In 1597 he opened the first free public school in Europe.\n\nHis Piarist Fathers spread across Europe. He was a friend of Galileo and allowed his teachers to study science. In old age he endured betrayal and the suppression of his order, which was later restored. He is the patron of Christian schools.',
+    intercession:'St. Joseph Calasanz, pray for us. Bless schools and teachers, and give every child the chance to learn. Amen.' },
+  { id:'s295', category:'saint', title:'St. Mariana of Jesus de Paredes', author:'1618–1645, feast day May 26', tags:['ecuador','penance','young people'],
+    content:'Mariana was an orphan from a noble family in Quito who lived as a hermit in her sister’s house, devoting herself to prayer, penance, and care for the poor and indigenous people.\n\nDuring a devastating earthquake and epidemic in 1645, she publicly offered her life to God for the people of Quito. She died soon after, and the disasters ceased. She is called the "Lily of Quito" and is a national heroine of Ecuador.',
+    intercession:'St. Mariana, Lily of Quito, pray for us. Bless the people of Ecuador, and teach us to offer our lives for others. Amen.' },
+  { id:'s296', category:'saint', title:'St. Claude de la Colombière', author:'1641–1682, feast day February 15', tags:['jesuit','sacred heart','trust'],
+    content:'Claude was a French Jesuit sent as superior to the small community at Paray-le-Monial, where he became the spiritual director of St. Margaret Mary Alacoque and confirmed her visions of the Sacred Heart.\n\nHe later served as chaplain to the Duchess of York in London, was imprisoned during the anti-Catholic panic of the "Popish Plot," and was expelled, dying soon after. His Act of Confidence in God is still widely prayed.',
+    intercession:'St. Claude, pray for us. Teach us perfect confidence in the Heart of Jesus. Amen.' },
+  { id:'s297', category:'saint', title:'St. Oliver Plunkett', author:'1625–1681, feast day July 1', tags:['martyr','bishop','ireland'],
+    content:'Oliver was archbishop of Armagh and primate of all Ireland during the persecution of Catholics. He worked to restore the Church, confirmed thousands, and founded schools, often in hiding.\n\nFalsely accused of plotting a French invasion during the "Popish Plot," he was tried in London and hanged, drawn, and quartered at Tyburn, forgiving his enemies. He was the last Catholic martyr executed at Tyburn.',
+    intercession:'St. Oliver Plunkett, pray for us. Bring peace and reconciliation to Ireland, and help us to forgive those who wrong us. Amen.' },
+  { id:'s298', category:'saint', title:'St. Leonard of Port Maurice', author:'1676–1751, feast day November 26', tags:['franciscan','preacher','stations of the cross'],
+    content:'Leonard was an Italian Franciscan who preached hundreds of parish missions across Italy over more than forty years, sometimes to crowds of tens of thousands.\n\nHe was the great promoter of the Stations of the Cross, setting them up in over five hundred places, including the Colosseum in Rome. He also promoted devotion to the Sacred Heart, the Blessed Sacrament, and the Immaculate Conception.',
+    intercession:'St. Leonard, pray for us. Help us to walk the Way of the Cross with Jesus each day. Amen.' },
+  { id:'s299', category:'saint', title:'St. Clement Mary Hofbauer', author:'1751–1820, feast day March 15', tags:['redemptorist','missionary','vienna'],
+    content:'Clement was a baker’s apprentice and hermit before becoming the first Redemptorist priest from north of the Alps. In Warsaw he and his companions kept their church busy from dawn to night with Masses, sermons, and works of charity for twenty years.\n\nExpelled by Napoleon, he went to Vienna, where his preaching, confessions, and friendship with students and artists renewed Catholic life. He is called the "Apostle of Vienna."',
+    intercession:'St. Clement Mary Hofbauer, pray for us. Make us tireless in proclaiming the Gospel, whatever obstacles arise. Amen.' },
+  { id:'s300', category:'saint', title:'St. Madeleine Sophie Barat', author:'1779–1865, feast day May 25', tags:['founder','education','sacred heart'],
+    content:'Madeleine Sophie was the daughter of a French barrel maker, educated rigorously by her older brother. In 1800, after the turmoil of the French Revolution, she founded the Society of the Sacred Heart to educate girls.\n\nShe led the society for sixty-three years, and at her death it had schools in many countries, including the one St. Rose Philippine Duchesne founded in America.',
+    intercession:'St. Madeleine Sophie, pray for us. Bless all who educate young people, and make their schools places where the Heart of Jesus is known. Amen.' },
+  { id:'s301', category:'saint', title:'St. Vincent Pallotti', author:'1795–1850, feast day January 22', tags:['founder','laity','rome'],
+    content:'Vincent was a Roman priest who believed that every baptized Christian is called to be an apostle. He founded the Union of Catholic Apostolate, joining priests, religious, and laypeople in a common mission.\n\nHe heard confessions day and night, cared for the sick during a cholera epidemic, and started schools for workers. His vision anticipated the Second Vatican Council’s teaching on the lay apostolate.',
+    intercession:'St. Vincent Pallotti, pray for us. Help every Christian to recognize their call to be an apostle of Jesus. Amen.' },
+  { id:'s302', category:'saint', title:'St. Joseph Cafasso', author:'1811–1860, feast day June 23', tags:['priest','prisoners','formation'],
+    content:'Joseph was a small priest with a twisted spine who taught moral theology to young priests in Turin and was spiritual director of St. John Bosco.\n\nHe visited prisoners constantly and accompanied about sixty condemned men to the gallows, all of whom died reconciled with God. He called them his "hanged saints." He is a patron of prisoners and prison chaplains.',
+    intercession:'St. Joseph Cafasso, pray for us. Bless prisoners and those condemned to death, and give them hope in God’s mercy. Amen.' },
+  { id:'s303', category:'saint', title:'St. Peter Julian Eymard', author:'1811–1868, feast day August 2', tags:['founder','eucharist','adoration'],
+    content:'Peter Julian was a French priest who joined the Marists and grew so devoted to the Eucharist that he founded the Congregation of the Blessed Sacrament, dedicated to perpetual adoration.\n\nHe also founded a women’s congregation and worked to prepare poor adults for First Communion. He is called the "Apostle of the Eucharist."',
+    intercession:'St. Peter Julian Eymard, pray for us. Draw us to adore Jesus in the Blessed Sacrament. Amen.' },
+  { id:'s304', category:'saint', title:'St. Mary Mazzarello', author:'1837–1881, feast day May 14', tags:['founder','salesian','young women'],
+    content:'Maria Domenica Mazzarello was a farm girl from Mornese in northern Italy who, after nearly dying of typhoid, devoted herself to teaching poor girls a trade and the faith.\n\nSt. John Bosco chose her to help found the Daughters of Mary Help of Christians, the Salesian Sisters, in 1872. She led them with joy and simplicity, and they now serve young people worldwide.',
+    intercession:'St. Mary Mazzarello, pray for us. Bless young women, and help us to serve with joy. Amen.' },
+  { id:'s305', category:'saint', title:'St. Conrad of Parzham', author:'1818–1894, feast day April 21', tags:['capuchin','porter','hospitality'],
+    content:'Conrad was a Bavarian farmer’s son who became a Capuchin brother and served for forty-one years as porter of the friary at the great Marian shrine of Altötting.\n\nHe greeted thousands of pilgrims, beggars, and children with kindness, often giving away food. In spare moments he prayed in a small room facing the tabernacle. He is a patron of porters and receptionists.',
+    intercession:'St. Conrad, pray for us. Help us to welcome everyone who comes to our door as Christ. Amen.' },
+  { id:'s306', category:'saint', title:'St. Joseph Benedict Cottolengo', author:'1786–1842, feast day April 30', tags:['founder','the sick','providence'],
+    content:'Joseph was a priest of Turin who was deeply shaken when a poor pregnant woman died after being refused care by every hospital. He opened a small refuge for the sick poor.\n\nIt grew into the "Little House of Divine Providence," caring for thousands of sick, disabled, and abandoned people, sustained entirely by donations and prayer. It still serves in Turin today.',
+    intercession:'St. Joseph Cottolengo, pray for us. Teach us to trust in Providence and to care for those no one else will help. Amen.' },
+  { id:'s307', category:'saint', title:'St. Marcellin Champagnat', author:'1789–1840, feast day June 6', tags:['founder','education','marist'],
+    content:'Marcellin was a French priest who, after sitting with a dying teenage boy who knew nothing of God, resolved to found a congregation of brothers to teach the young.\n\nHe founded the Marist Brothers in 1817 and built their first house with his own hands. Today they run schools across the world.',
+    intercession:'St. Marcellin, pray for us. Bless teachers, and help every young person to know and love Jesus and Mary. Amen.' },
+  { id:'s308', category:'saint', title:'St. Arnold Janssen', author:'1837–1909, feast day January 15', tags:['founder','missionary','divine word'],
+    content:'Arnold was a German priest and science teacher who, during the anti-Catholic Kulturkampf, founded a missionary seminary just across the border in Steyl, in the Netherlands, in 1875.\n\nHe founded the Society of the Divine Word and two congregations of sisters, and started a printing press to spread the faith. His missionaries, including St. Joseph Freinademetz, went to China, Africa, the Americas, and the Pacific.',
+    intercession:'St. Arnold Janssen, pray for us. Bless missionaries, and help the Word of God reach every people. Amen.' },
+  { id:'s309', category:'saint', title:'St. Luigi Orione', author:'1872–1940, feast day March 12', tags:['founder','charity','providence'],
+    content:'Luigi was a poor boy from Piedmont who studied under St. John Bosco. As a young priest he founded the Little Work of Divine Providence to serve the poorest and most abandoned.\n\nHe rushed to help after the earthquakes of Messina in 1908 and Marsica in 1915, opening orphanages and homes. His congregations now serve in many countries. He was canonized in 2004.',
+    intercession:'St. Luigi Orione, pray for us. Make us generous to the poor and quick to help in times of disaster. Amen.' },
+  { id:'s310', category:'saint', title:'St. Rafael Guízar y Valencia', author:'1878–1938, feast day October 24', tags:['bishop','mexico','persecution'],
+    content:'Rafael was a Mexican priest who, during the revolution and the persecution of the Church, disguised himself as a junk dealer, a musician, and a doctor to bring the sacraments to the dying.\n\nAs bishop of Veracruz he spent most of his time in hiding or exile, yet kept his seminary running in secret. He gave away everything to the poor. He was canonized in 2006, the first Latin American bishop declared a saint.',
+    intercession:'St. Rafael Guízar, pray for us. Strengthen bishops and priests who serve under persecution, and bless seminarians. Amen.' },
+  { id:'s311', category:'saint', title:'St. Ursula Ledóchowska', author:'1865–1939, feast day May 29', tags:['founder','poland','education'],
+    content:'Ursula was an Austrian-born Polish Ursuline nun who went to St. Petersburg to run a boarding school for girls. Expelled from Russia during the First World War, she worked in Scandinavia, where she won respect among Lutherans and helped Polish refugees.\n\nShe founded the Grey Ursulines, devoted to education and service to the poor. Her sister, Bl. Maria Teresa Ledóchowska, was also beatified.',
+    intercession:'St. Ursula Ledóchowska, pray for us. Bless refugees and teachers, and make us cheerful in serving others. Amen.' },
+  { id:'s312', category:'saint', title:'St. Rafael Arnáiz Barón', author:'1911–1938, feast day April 26', tags:['trappist','young people','suffering'],
+    content:'Rafael was a cheerful Spanish architecture student and artist who entered the Trappist monastery of San Isidoro de Dueñas at twenty-two. Severe diabetes forced him to leave three times, and he returned each time as a lay oblate.\n\nHis writings on "God alone" and on accepting God’s will in suffering have touched many. He died at twenty-seven and was canonized in 2009.',
+    intercession:'St. Rafael Arnáiz, pray for us. Help the sick and young people who struggle to find God’s will to say, "God alone." Amen.' },
+  { id:'s313', category:'saint', title:'St. Alberto Hurtado', author:'1901–1952, feast day August 18', tags:['jesuit','chile','the poor'],
+    content:'Alberto was a Chilean Jesuit who taught that the poor are Christ. In 1944 he founded the Hogar de Cristo, homes for homeless children and adults, often driving his green pickup truck through Santiago at night to find them.\n\nHe also founded a labor union movement and a magazine on social questions. Dying of cancer, he kept repeating "Content, Lord, content." He was canonized in 2005.',
+    intercession:'St. Alberto Hurtado, pray for us. Help us to see Christ in the poor and to serve Him with joy. Amen.' },
+  { id:'s314', category:'saint', title:'St. José Gregorio Hernández', author:'1864–1919, feast day October 26', tags:['physicians','venezuela','laity'],
+    content:'José Gregorio was a Venezuelan physician and scientist who brought modern medicine and microscope research to Venezuela. He treated the poor for free, often paying for their medicine himself.\n\nTwice he tried to enter religious life but was turned away by ill health. He died after being struck by a car while carrying medicine to a patient. Beloved as "the doctor of the poor," he was canonized in 2025.',
+    intercession:'St. José Gregorio Hernández, pray for us. Bless physicians and the sick, and help us to serve the poor generously. Amen.' },
+  { id:'s315', category:'saint', title:'St. Bartolo Longo', author:'1841–1926, feast day October 5', tags:['convert','rosary','pompeii'],
+    content:'Bartolo was an Italian lawyer who, as a student, became involved in spiritualism and the occult and despaired of salvation. With the help of a Dominican priest he returned to the faith.\n\nIn the ruins of ancient Pompeii he built a shrine to Our Lady of the Rosary, along with orphanages for the children of prisoners. The Shrine of Pompeii became a great pilgrimage site. He was canonized in 2025.',
+    intercession:'St. Bartolo Longo, pray for us. Free all who are caught in the occult, and help us to pray the Rosary faithfully. Amen.' },
+  { id:'s316', category:'saint', title:'St. Peter To Rot', author:'1912–1945, feast day July 7', tags:['martyr','catechists','papua new guinea'],
+    content:'Peter was a married lay catechist in Papua New Guinea. When Japanese forces occupied the island during the Second World War and imprisoned the missionaries, he kept the Church alive, leading prayer, baptizing, and preparing couples for marriage.\n\nWhen the occupiers legalized polygamy, he openly defended Christian marriage. He was arrested and killed in prison by lethal injection. He was canonized in 2025.',
+    intercession:'St. Peter To Rot, pray for us. Bless catechists and married couples, and give us courage to defend the dignity of marriage. Amen.' },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'325', year:325, era:'early', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -3949,24 +4218,15 @@ function buildTodayPanel(){
 }
 
 const PATRON_FILTERS = [
-  { label:'Travelers', term:'travelers' },
-  { label:'Musicians', term:'musicians' },
-  { label:'Mothers', term:'mothers' },
-  { label:'Students', term:'students' },
-  { label:'The Sick', term:'sick' },
-  { label:'Difficult Marriages', term:'difficult marriages' },
-  { label:'Impossible Causes', term:'impossible' },
-  { label:'Immigrants', term:'immigrants' },
-  { label:'Farmers', term:'farmers' },
-  { label:'Priests', term:'priests' },
-  { label:'Soldiers', term:'soldiers' },
-  { label:'Young People', term:'young people' },
-  { label:'Doctors & Nurses', term:'physicians' },
-  { label:'Mental Illness', term:'mental illness' },
-  { label:'Cancer', term:'cancer' },
-  { label:'Expectant Mothers', term:'expectant mothers' },
-  { label:'Writers', term:'writers' },
-  { label:'Martyrs', term:'martyr' }
+  { label:'The sick', term:'sick' }, { label:'Students', term:'student' }, { label:'Mothers', term:'mother' }, { label:'Fathers', term:'father' },
+  { label:'Children', term:'child' }, { label:'Young people', term:'young' }, { label:'Travelers', term:'travel' }, { label:'Workers', term:'worker' },
+  { label:'Difficult marriages', term:'difficult marriage' }, { label:'Impossible causes', term:'impossible' }, { label:'Immigrants', term:'immigrant' },
+  { label:'Physicians & nurses', term:'physician|nurse' }, { label:'Teachers', term:'teacher|education|school' }, { label:'Soldiers', term:'soldier' },
+  { label:'Farmers', term:'farmer' }, { label:'Musicians', term:'music|singer' }, { label:'Writers', term:'writer|journalist|author' },
+  { label:'Lawyers', term:'lawyer' }, { label:'Priests', term:'priest' }, { label:'Prisoners', term:'prisoner' }, { label:'Sailors', term:'sailor|mariner' },
+  { label:'Firefighters', term:'firefighter' }, { label:'Animals', term:'animal|dog' }, { label:'Lost items', term:'lost' },
+  { label:'Cancer', term:'cancer' }, { label:'Mental illness', term:'mental illness|anxiety|depression' }, { label:'Expectant mothers', term:'expectant|childbirth' },
+  { label:'The poor', term:'the poor' }, { label:'Widows', term:'widow' }, { label:'Converts', term:'convert' }
 ];
 
 /* ---------- Saint finder: browse by era, walk of life, or patronage ---------- */
@@ -4010,8 +4270,116 @@ const SAINT_META = {
   s211:'revolution 1841 pr mi ma', s212:'revolution 1857 yo la', s213:'revolution 1862 yo mo', s214:'revolution 1870 bi fo mi sc', s215:'revolution 1881 bi mi fo', s216:'revolution 1878 nu my',
   s217:'modern 1908 pr mi', s218:'modern 1906 nu my sc', s219:'modern 1916 pr mo so mi', s220:'modern 1920 nu yo my', s221:'modern 1928 ma yo la', s222:'modern 1942 pr mo',
   s223:'modern 1942 pr mo ma sc te', s224:'modern 1992 nu fo me', s225:'revolution 1815 ma pr mi', s226:'revolution 1839 ma pr', s227:'fathers 459 mo', s228:'revolution 1771 fo pa nu',
-  s229:'reform 1672 nu mi te pa', s230:'revolution 1879 fo nu wo', s231:'modern 1914 nu', s232:'revolution 1711 pr mi'
+  s229:'reform 1672 nu mi te pa', s230:'revolution 1879 fo nu wo', s231:'modern 1914 nu', s232:'revolution 1711 pr mi',
+  s233:'apostolic 96 bi mi', s234:'apostolic 50 la', s235:'apostolic 60 la', s236:'apostolic 30 la', s237:'apostolic 50 la', s238:'apostolic 10 pa la',
+  s239:'apostolic 70 la mi pa', s240:'martyrs 250 po ma', s241:'martyrs 253 po ma', s242:'martyrs 258 po ma', s243:'martyrs 235 pr ma sc', s244:'martyrs 304 pr ma',
+  s245:'martyrs 304 ma la', s246:'martyrs 303 ma yo', s247:'martyrs 304 ma yo', s248:'martyrs 303 bi ma', s249:'martyrs 304 ma', s250:'fathers 348 mo fo',
+  s251:'fathers 421 mo', s252:'fathers 384 po sc', s253:'fathers 431 bi sc', s254:'fathers 439 nu fo pa', s255:'fathers 545 ro pa', s256:'fathers 587 ro nu fo',
+  s257:'fathers 577 mo mi', s258:'early 651 bi mo mi', s259:'early 618 mo fo', s260:'early 739 bi mo mi', s261:'early 779 nu mi', s262:'early 727 bi',
+  s263:'early 869 ro ma', s264:'early 988 bi mo', s265:'early 921 ro ma pa', s266:'early 969 ro pa', s267:'early 997 bi ma mi', s268:'medieval 1015 ro',
+  s269:'medieval 1030 ro ma so', s270:'medieval 1024 ro', s271:'medieval 1085 po mo', s272:'medieval 1200 bi mo', s273:'medieval 1197 wo la pa', s274:'medieval 1257 pr mo mi',
+  s275:'medieval 1282 ro nu fo', s276:'medieval 1251 yo la', s277:'medieval 1297 pa la my', s278:'renaissance 1379 la', s279:'renaissance 1336 ro pa', s280:'renaissance 1393 pr ma',
+  s281:'renaissance 1399 ro', s282:'renaissance 1433 my la', s283:'renaissance 1447 nu fo', s284:'renaissance 1507 mo fo', s285:'renaissance 1473 pr te sc', s286:'reform 1547 pr fo',
+  s287:'reform 1537 la so fo', s288:'reform 1572 pr pa ro', s289:'reform 1562 pr mo my', s290:'reform 1606 ma wo mo', s291:'reform 1622 pr mo ma', s292:'reform 1623 bi ma mo',
+  s293:'reform 1619 pr mo dr', s294:'reform 1648 pr fo te', s295:'reform 1645 my yo la', s296:'reform 1682 pr my', s297:'reform 1681 bi ma', s298:'revolution 1751 pr mo',
+  s299:'revolution 1820 pr mi', s300:'revolution 1865 nu fo te', s301:'revolution 1850 pr fo', s302:'revolution 1860 pr te', s303:'revolution 1868 pr fo', s304:'revolution 1881 nu fo te',
+  s305:'revolution 1894 mo wo', s306:'revolution 1842 pr fo me', s307:'revolution 1840 pr fo te', s308:'modern 1909 pr fo mi', s309:'modern 1940 pr fo', s310:'modern 1938 bi',
+  s311:'modern 1939 nu fo', s312:'modern 1938 mo yo', s313:'modern 1952 pr', s314:'modern 1919 me la', s315:'modern 1926 la fo pa', s316:'modern 1945 ma la pa te'
 };
+// What each saint is a patron of (traditional and official patronages; not every saint has one)
+const SAINT_PATRONS = {
+  s1:'animals, ecology, merchants, Italy', s2:'missions, missionaries, florists, the sick, France', s3:'theologians, printers, brewers',
+  s4:'students, schools, universities, theologians, philosophers', s5:'headache sufferers, the sick, people ridiculed for their piety, Spain',
+  s6:'France, soldiers, prisoners', s7:'popes, fishermen, the universal Church, Rome', s8:'missionaries, evangelists, writers, Rome',
+  s9:'friendship, authors, theologians, Asia Minor', s10:'converts, penitents, women, perfumers, hairdressers',
+  s11:'the universal Church, fathers, workers, carpenters, immigrants, a happy death', s12:'grandmothers, mothers, women in labor, Quebec',
+  s13:'Europe, monks, students, farmers, protection from poison', s14:'Ireland, engineers, protection from snakes',
+  s15:'lost items, the poor, travelers, Portugal', s16:'desperate causes, lost causes, hospitals', s17:'children, sailors, the falsely accused, Russia',
+  s18:'England, soldiers, scouts', s19:'athletes, soldiers, protection from plague', s20:'mothers, wives, difficult marriages, conversion of children',
+  s21:'librarians, translators, Scripture scholars', s22:'beekeepers, learning, Milan', s23:'soldiers, retreats, the Society of Jesus',
+  s24:'missions, missionaries, India, Japan', s25:'parish priests, confessors', s26:'civil defense volunteers, adolescents, stress relief',
+  s27:'prisoners, families, journalists, drug addicts, the pro-life movement', s28:'devotion to Divine Mercy', s29:'World Youth Day, families, young Catholics',
+  s30:'the poor, missionaries, Kolkata', s31:'impossible causes, difficult marriages, abuse victims, widows', s32:'the sick, Lourdes, people ridiculed for their faith',
+  s33:'Italy, Europe, nurses, firefighters, the sick', s34:'Catholic schools, widows', s35:'astronomers, the Dominican Republic',
+  s36:'charitable societies, the poor, volunteers', s37:'Latin America, Peru, gardeners, florists', s38:'mixed-race people, barbers, public health workers, social justice',
+  s39:'ecology, the environment, Native Americans', s40:'police officers, soldiers, paramedics, the sick, a holy death', s41:'the blind, eye trouble, Syracuse',
+  s42:'young girls, chastity, gardeners, engaged couples', s43:'musicians, singers, poets', s44:'travelers, drivers, children',
+  s45:'love, engaged couples, happy marriages, beekeepers', s46:'throat ailments, wool combers, animals', s47:'miners, artillerymen, firefighters, protection from sudden death',
+  s48:'animals, gravediggers, skin diseases, basket makers', s49:'mothers, physicians, unborn children', s50:'the sick',
+  s51:'people with leprosy, outcasts, people with HIV/AIDS, Hawaii', s52:'Sudan, survivors of human trafficking', s53:'immigrants, hospital administrators',
+  s54:'young people, students, editors, apprentices, magicians', s55:'Europe, Sweden, widows', s56:'musicians, writers, linguists',
+  s57:'Rome, joy, comedians', s58:'catechists, seminarians, bishops', s59:'enslaved people, Colombia, African Americans, interracial justice',
+  s60:'confessors, moral theologians, vocations', s61:'farmers, rural communities, day laborers, Madrid', s62:'domestic workers, maids, waiters, lost keys',
+  s63:'baptism, converts, monks, Quebec', s64:'grandfathers, fathers', s65:'deacons, stonemasons, bricklayers',
+  s66:'Scotland, Russia, Greece, fishermen, singers', s67:'Spain, pilgrims, veterinarians, laborers', s68:'India, architects, builders, people who doubt',
+  s69:'Armenia, tanners, plasterers', s70:'accountants, bankers, tax collectors', s71:'Venice, Egypt, lawyers, notaries',
+  s72:'physicians, artists, surgeons', s73:'Cyprus, peacemakers', s74:'the Church in the eastern Mediterranean, throat diseases',
+  s75:'earache sufferers, Smyrna', s76:'philosophers, apologists', s77:'Lyon, catechists', s78:'mothers, expectant mothers, prisoners',
+  s79:'breast cancer patients, nurses, bell founders, Sicily, protection from fire', s80:'cooks, the poor, librarians, comedians, deacons',
+  s81:'North Africa, Algeria', s82:'archaeologists, converts, difficult marriages, empresses', s83:'theologians, Alexandria',
+  s84:'spiritual directors, hymn writers, poets', s85:'soldiers, the poor, beggars, winemakers, France', s86:'hospital administrators, monks, reformers',
+  s87:'poets, theologians', s88:'preachers, orators, Constantinople', s89:'Alexandria, theologians', s91:'Paris, France',
+  s92:'Ireland, dairy workers, babies, midwives, poets', s93:'nuns, education, protection from storms', s94:'Ireland, Scotland, poets, bookbinders',
+  s95:'musicians, singers, teachers, popes', s96:'the internet, computer users, students', s97:'mental illness, anxiety, depression, runaways',
+  s98:'historians, scholars, English writers', s99:'Germany, brewers, tailors', s100:'Europe, Slavic peoples, ecumenism',
+  s101:'the Czech Republic, Bohemia, brewers', s102:'Calabria, the Carthusians', s103:'Scotland, queens, mothers, large families, widows',
+  s105:'safe childbirth, Magdeburg', s106:'beekeepers, candle makers, Gibraltar, the Cistercians', s107:'secular clergy, Portsmouth',
+  s108:'television, eye disease, goldsmiths, embroiderers', s109:'bakers, nurses, the homeless, widows, Franciscan tertiaries',
+  s110:'France, kings, Franciscan tertiaries', s111:'theologians, bowel disorders', s112:'scientists, natural sciences, students, philosophers',
+  s113:'cancer patients, the sick', s114:'drivers, widows, Benedictine oblates', s115:'indigenous peoples',
+  s116:'lawyers, statesmen, politicians, adopted children', s118:'mystics, contemplatives, Spanish poets', s119:'catechists, canon lawyers',
+  s120:'hospitals, nurses, the sick, physicians', s121:'young students, Christian youth, people with AIDS, caregivers',
+  s122:'writers, journalists, the deaf, educators', s123:'widows, parents separated from their children', s124:'Japan',
+  s125:'the Philippines, Filipino youth, overseas Filipino workers, altar servers', s126:'students, test takers, aviators, astronauts',
+  s127:'Canada, North America', s128:'devotion to the Sacred Heart, polio patients, the loss of parents',
+  s130:'expectant mothers, childbirth, unborn children, the falsely accused', s131:'California, vocations', s132:'the homeless, beggars, pilgrims, the mentally ill',
+  s133:'Catholic education, immigrants', s135:'Korea, Korean clergy', s136:'African Catholic youth, converts, Uganda', s138:'married couples, parents',
+  s139:'Lebanon, the sick', s140:'people with leprosy, outcasts, Hawaii', s141:'first communicants, pilgrims', s142:'racial justice, philanthropists',
+  s143:'young girls, teenagers, rape victims, purity, forgiveness', s144:'pharmacists, students, those struggling with temptation', s145:'Australia',
+  s146:'physicians', s147:'children, the sick', s148:'Europe, converts from Judaism, those who have lost parents',
+  s149:'young people, students, mountaineers', s150:'the Italian Army, Christian unity', s151:'ordinary work, people with diabetes',
+  s153:'El Salvador, persecuted Christians', s154:'the internet, computer programmers, young people',
+  s155:'messengers, communications workers, broadcasters, postal workers', s156:'travelers, the sick, physicians, the blind, happy meetings',
+  s157:'alcoholics, carpenters, tailors', s158:'Uruguay, pastry chefs, hatters', s159:'pharmacists, fullers, Uruguay',
+  s160:'tanners, sawyers, lumberjacks', s161:'those with stomach ailments', s162:'cooks, servers, homemakers, hospitality',
+  s163:'mariners, stonecutters, marble workers', s164:'physicians, surgeons, pharmacists, dentists',
+  s165:'philosophers, students, librarians, unmarried women, wheelwrights', s166:'children, keeping promises', s167:'firefighters, chimney sweeps, Upper Austria',
+  s168:'soldiers, infantrymen, swordsmiths', s169:'Naples, blood banks, protection from volcanic eruptions', s170:'dentists, toothache sufferers',
+  s171:'France, Paris, headache sufferers', s172:'Poitiers, protection from snakes', s176:'nonviolence', s177:'widows', s178:'protection from fever',
+  s179:'Wales, poets', s180:'England', s181:'motorcyclists, Ireland', s182:'learning, culture, poetry', s183:'Northumbria',
+  s184:'pharmacists, icon painters, theology students', s185:'Hungary, kings, masons', s186:'kings, difficult marriages, separated spouses',
+  s188:'Silesia, brides, orphans', s189:'Seville, engineers, rulers, the poor', s190:'canon lawyers, lawyers',
+  s191:'the West Indies, nuns, the souls in purgatory', s192:'builders, plumbers, Valencia', s193:'advertisers, public relations, gambling addicts, chest problems',
+  s194:'military chaplains, jurists', s195:'Lithuania, Poland, princes, young people', s196:'Switzerland, peace',
+  s197:'the sick, disabled people, the loss of parents', s198:'hospitals, nurses, firefighters, the sick, heart patients, booksellers, printers',
+  s200:'students, novices, young people, broken bones', s202:'converts, businesswomen', s203:'catechists, the Catholic press, Germany',
+  s204:'native rights, Latin American bishops, Peru', s205:'social workers, widows, the sick, orphans', s206:'Filipino youth, catechists, overseas Filipino workers',
+  s207:'teachers, educators', s211:'Oceania', s212:'choirboys, juvenile delinquents, the falsely accused, expectant mothers',
+  s213:'students, young people, seminarians, Abruzzo', s214:'weavers, savings, the Catholic press', s218:'the sick, the loss of parents',
+  s220:'Chile, young people, the sick', s221:'Mexican youth, persecuted Christians', s222:'cancer patients, confessors', s223:'journalists, Frisia',
+  s224:'Bahia, the sick', s225:'China', s226:'Vietnam', s228:'difficult marriages, widows', s230:'the elderly, the destitute', s231:'the sick, bodily ills',
+  s232:'Sri Lanka', s233:'Crete', s234:'funeral directors, undertakers, pallbearers', s236:'prisoners, death-row inmates, repentant thieves',
+  s237:'photographers, laundry workers', s238:'expectant mothers, those hoping for children', s243:'horses, prison guards',
+  s244:'winemakers, vinegar makers, Lisbon', s245:'refugees, converts, torture victims', s246:'dancers, actors, comedians, those with epilepsy, Prague',
+  s247:'childbirth, expectant mothers, nurses', s248:'sailors, those with abdominal pain', s249:'weavers, martyrs',
+  s251:'penitent women, those struggling with chastity', s255:'queens, brides, widows, adopted children, parents of difficult children',
+  s257:'sailors, mariners, travelers', s258:'Northumbria, firefighters', s259:'Dublin, blackbirds', s260:'the Netherlands, Luxembourg, those with epilepsy',
+  s261:'sailors, farmers, those caught in storms', s262:'hunters, foresters, mathematicians, opticians, metalworkers', s263:'kings, East Anglia',
+  s264:'goldsmiths, blacksmiths, locksmiths, musicians', s265:'Bohemia, grandmothers, converts', s266:'widows, converts',
+  s267:'Bohemia, Poland, Hungary, Prussia', s268:'converts, kings, Ukraine', s269:'Norway, kings, carvers', s270:'Benedictine oblates, the childless, the disabled, kings',
+  s272:'sick children, swans, shoemakers', s273:'business people, tailors, clothworkers', s274:'Poland, those in danger of drowning', s275:'Bohemia',
+  s276:'exiles, people rejected by religious orders, florists, Viterbo', s277:'single mothers, the homeless, reformed sinners, midwives',
+  s278:'dogs, plague victims, surgeons, invalids, the falsely accused', s279:'peace, difficult marriages, Franciscan tertiaries',
+  s280:'Bohemia, confessors, bridges, the seal of confession, protection from floods', s281:'queens, united Europe, Poland',
+  s282:'ice skaters, the chronically ill', s283:'expectant mothers, women hoping to conceive, sick children', s284:'sailors, navigators, Calabria',
+  s285:'Poland, Lithuania, students, professors', s286:'job seekers, the unemployed, Argentina', s287:'orphans, abandoned children',
+  s288:'protection from earthquakes', s289:'Brazil, night watchmen', s290:'illusionists, escape artists, carpenters', s291:'lawyers',
+  s292:'Ukraine, Christian unity', s293:'Brindisi', s294:'Christian schools, schoolchildren, teachers', s295:'Ecuador, Quito',
+  s297:'peace and reconciliation in Ireland', s298:'parish missions', s299:'Vienna, bakers', s302:'prisoners, prison chaplains, those condemned to death',
+  s305:'porters, receptionists', s312:'young people, people with diabetes', s313:'Chile, the poor, social workers',
+  s314:'physicians, the sick, Venezuela', s316:'Papua New Guinea, catechists, married couples'
+};
+SEED_DATA.forEach(e => { if(SAINT_PATRONS[e.id]) e.patron = SAINT_PATRONS[e.id]; });
 const SAINT_ERAS = [
   { key:'apostolic',   name:'The Apostolic Age',        years:'to AD 100' },
   { key:'martyrs',     name:'Age of the Martyrs',       years:'100–313' },
@@ -4039,11 +4407,19 @@ Object.entries(SAINT_META).forEach(([id, value]) => {
 });
 let saintEra = 'all';
 let saintRole = 'all';
+let saintPatron = '';     // text or a quick pick such as 'physician|nurse'
 
 function saintInfo(id){ return SAINT_INFO[id] || { era:'modern', year:2000, roles:[] }; }
 function saintSortName(e){ return e.title.replace(/^(Pope\s+)?Sts?\.\s+/, ''); }
 
-function renderSaintFinder(all){
+function patronMatches(e, term){
+  if(!term) return true;
+  const hay = ((e.patron || '') + ' ' + (e.tags || []).join(' ')).toLowerCase();
+  return term.toLowerCase().split('|').some(t => t.trim() && hay.includes(t.trim()));
+}
+
+function renderSaintFinder(everyone){
+  const all = everyone.filter(e => patronMatches(e, saintPatron));
   const inEra = all.filter(e => saintEra === 'all' || saintInfo(e.id).era === saintEra);
   const shown = inEra.filter(e => saintRole === 'all' || saintInfo(e.id).roles.includes(saintRole));
   const order = store.get('saintOrder', 'timeline');
@@ -4080,14 +4456,23 @@ function renderSaintFinder(all){
         </div>`).join('')}
     </div>
     <div class="sf-section">
-      <div class="sf-label">Patron saints for</div>
-      <div class="sf-chips">${PATRON_FILTERS.map(f => `<button class="patron-chip" data-term="${escapeHtml(f.term)}">${escapeHtml(f.label)}</button>`).join('')}</div>
+      <div class="sf-label">Patron saint of</div>
+      <div class="sf-patron-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="sfPatron" type="search" autocomplete="off" placeholder="Type a need, a job, or a place: nurses, exams, Ireland…" aria-label="Find a patron saint" value="${PATRON_FILTERS.some(f => f.term === saintPatron) ? '' : escapeHtml(saintPatron)}">
+      </div>
+      <div class="sf-chips">${PATRON_FILTERS.map(f => {
+        const n = everyone.filter(e => patronMatches(e, f.term) && (saintEra === 'all' || saintInfo(e.id).era === saintEra) && (saintRole === 'all' || saintInfo(e.id).roles.includes(saintRole))).length;
+        return `<button class="patron-chip sf-chip${saintPatron === f.term ? ' active' : ''}" data-term="${escapeHtml(f.term)}" aria-pressed="${saintPatron === f.term}"${n || saintPatron === f.term ? '' : ' disabled'}>${escapeHtml(f.label)}<span class="sf-n">${n}</span></button>`;
+      }).join('')}</div>
     </div>`;
   entryListEl.appendChild(panel);
   entryListEl.appendChild(buildFeastFinder());
 
-  const filtered = saintEra !== 'all' || saintRole !== 'all';
-  const describe = [saintEra !== 'all' ? SAINT_ERAS.find(x => x.key === saintEra).name : '', saintRole !== 'all' ? SAINT_ROLE_NAME[saintRole] : ''].filter(Boolean);
+  const filtered = saintEra !== 'all' || saintRole !== 'all' || !!saintPatron;
+  const pick = PATRON_FILTERS.find(f => f.term === saintPatron);
+  const describe = [saintEra !== 'all' ? SAINT_ERAS.find(x => x.key === saintEra).name : '', saintRole !== 'all' ? SAINT_ROLE_NAME[saintRole] : '',
+    saintPatron ? 'Patron of ' + (pick ? pick.label.toLowerCase() : '“' + saintPatron + '”') : ''].filter(Boolean);
   const bar = document.createElement('div');
   bar.className = 'view-toolbar sf-toolbar';
   bar.innerHTML = `
@@ -4113,20 +4498,26 @@ function renderSaintFinder(all){
   };
   panel.querySelectorAll('[data-era]').forEach(b => b.addEventListener('click', () => { saintEra = b.dataset.era; redraw(); }));
   panel.querySelectorAll('[data-role]').forEach(b => b.addEventListener('click', () => { saintRole = saintRole === b.dataset.role ? 'all' : b.dataset.role; redraw(); }));
-  panel.querySelectorAll('[data-term]').forEach(b => b.addEventListener('click', () => {
-    searchTerm = b.dataset.term;
-    searchInput.value = searchTerm;
-    syncSearchUI();
-    render();
-  }));
+  panel.querySelectorAll('[data-term]').forEach(b => b.addEventListener('click', () => { saintPatron = saintPatron === b.dataset.term ? '' : b.dataset.term; redraw(); }));
+  let typing = null;
+  panel.querySelector('#sfPatron').addEventListener('input', ev => {
+    clearTimeout(typing);
+    const value = ev.target.value;
+    typing = setTimeout(() => {
+      saintPatron = value.trim();
+      redraw();
+      const box = entryListEl.querySelector('#sfPatron');
+      if(box){ box.focus({ preventScroll:true }); box.setSelectionRange(box.value.length, box.value.length); }
+    }, 250);
+  });
   bar.querySelectorAll('[data-order]').forEach(b => b.addEventListener('click', () => { store.set('saintOrder', b.dataset.order); redraw(); }));
   bar.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => { store.set('view.saint', b.dataset.view); redraw(); }));
   const clear = bar.querySelector('[data-act="clear"]');
-  if(clear) clear.addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; redraw(); });
+  if(clear) clear.addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; saintPatron = ''; redraw(); });
 
   if(!shown.length){
     entryListEl.insertAdjacentHTML('beforeend', '<div class="empty-state">No saints match these filters.<br><button class="btn" data-act="clear-empty">Clear filters</button></div>');
-    entryListEl.querySelector('[data-act="clear-empty"]').addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; redraw(); });
+    entryListEl.querySelector('[data-act="clear-empty"]').addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; saintPatron = ''; redraw(); });
     return;
   }
   const draw = (list, container) => view === 'grid' ? renderGallery(list, 'saint', container) : renderRows(list, container);
@@ -4176,6 +4567,7 @@ function currentEntries(){
       (e.author||'').toLowerCase().includes(t) ||
       (e.content||'').toLowerCase().includes(t) ||
       (e.intercession||'').toLowerCase().includes(t) ||
+      (e.patron||'').toLowerCase().includes(t) ||
       (e.points||[]).some(p => p.toLowerCase().includes(t)) ||
       (e.objections||[]).some(o => (o.q + ' ' + o.a).toLowerCase().includes(t)) ||
       (e.tags||[]).some(tag => tag.toLowerCase().includes(t))
@@ -4278,6 +4670,7 @@ function renderRows(entries, container){
         <span class="cat-badge">${CAT_LABEL[entry.category] || entry.category}</span>
       </div>
       ${entry.author ? `<div class="byline">${escapeHtml(entry.author)}</div>` : ''}
+      ${entry.patron ? `<div class="row-patron">Patron of ${escapeHtml(entry.patron)}</div>` : ''}
       <div class="excerpt">${escapeHtml(excerptOf(entry.content, 190))}</div>
       ${(entry.tags && entry.tags.length) ? `<div class="tags">${entry.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
     `;
@@ -4343,7 +4736,8 @@ function renderGallery(entries, cat, container){
       card.innerHTML = `
         <div class="saint-portrait g-portrait" data-sid="${e.id}">${portraitPlaceholder(e.title)}</div>
         <span class="g-title">${escapeHtml(e.title)}</span>
-        <span class="g-meta">${escapeHtml(feastLabel(e))}</span>`;
+        <span class="g-meta">${escapeHtml(feastLabel(e))}</span>
+        ${e.patron ? `<span class="g-patron" title="Patron of ${escapeHtml(e.patron)}">Patron of ${escapeHtml(e.patron)}</span>` : ''}`;
     }
     card.addEventListener('click', () => openReadModal(e.id));
     grid.appendChild(card);
@@ -5292,7 +5686,25 @@ const SAINT_WIKI = {
   'St. Turibius of Mogrovejo':'Toribio Alfonso de Mogrovejo',
   'St. Marie of the Incarnation':'Marie of the Incarnation (Ursuline)',
   'St. Dulce of the Poor':'Dulce de Souza Lopes Pontes',
-  'St. Rafqa':'Rafqa Pietra Choboq Ar-Rayès'
+  'St. Rafqa':'Rafqa Pietra Choboq Ar-Rayès',
+  'St. Elizabeth, Mother of John the Baptist':'Elizabeth (biblical figure)',
+  'St. Lazarus':'Lazarus of Bethany',
+  'St. Veronica':'Saint Veronica',
+  'St. Anastasia':'Anastasia of Sirmium',
+  'St. Hippolytus':'Hippolytus of Rome',
+  'St. Kevin of Glendalough':'Saint Kevin',
+  'St. Henry II':'Henry II, Holy Roman Emperor',
+  'St. Olaf':'Olaf II of Norway',
+  'St. Vladimir the Great':'Vladimir the Great',
+  'St. Jadwiga of Poland':'Jadwiga of Poland',
+  'St. Agnes of Prague':'Agnes of Bohemia',
+  'St. Josaphat':'Josaphat Kuntsevych',
+  'St. Mariana of Jesus de Paredes':'Mariana de Jesús de Paredes',
+  'St. Mary Mazzarello':'Maria Domenica Mazzarello',
+  'St. Alban':'Saint Alban',
+  'St. Vitus':'Saint Vitus',
+  'St. Dismas':'Penitent thief',
+  'Sts. Priscilla and Aquila':'Priscilla and Aquila'
 };
 // Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
 const ENTRY_WIKI = {
@@ -6715,7 +7127,9 @@ const RESOURCE_GROUPS = [
   { key:'study',       name:'Courses & lectures',                icon:'<path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11M21.5 9v5"/>' },
   { key:'apologetics', name:'Explaining & defending the faith',  icon:'<path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M12 8v8M8.5 11h7"/>' },
   { key:'news',        name:'Catholic news',                     icon:'<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2M7.5 8.5h6M7.5 12h6M7.5 15.5h4"/>' },
-  { key:'families',    name:'Families & children',               icon:'<circle cx="8" cy="7" r="2.6"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20c.4-3.6 2.2-5.6 4.5-5.6s4.1 2 4.5 5.6M13 20c.3-2.7 1.6-4.2 3.5-4.2s3.2 1.5 3.5 4.2"/>' },
+  { key:'families',    name:'Families & young people',               icon:'<circle cx="8" cy="7" r="2.6"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20c.4-3.6 2.2-5.6 4.5-5.6s4.1 2 4.5 5.6M13 20c.3-2.7 1.6-4.2 3.5-4.2s3.2 1.5 3.5 4.2"/>' },
+  { key:'saints',      name:'Saints',                            icon:'<ellipse cx="12" cy="4.5" rx="4.5" ry="1.6"/><circle cx="12" cy="10.5" r="3.2"/><path d="M5 21c.8-4 3.6-6.4 7-6.4s6.2 2.4 7 6.4"/>' },
+  { key:'art',         name:'Sacred art & music',                icon:'<path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>' },
   { key:'science',     name:'Faith & science',                   icon:'<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/>' }
 ];
 
@@ -6807,7 +7221,58 @@ const RESOURCES = [
   { group:'science', name:'Vatican Observatory', url:'https://www.vaticanobservatory.va/en', cost:'free',
     desc:'One of the oldest astronomical research institutions in the world, run by Jesuit astronomers, with articles on faith and science.' },
   { group:'science', name:'Society of Catholic Scientists', url:'https://www.catholicscientists.org/', cost:'free',
-    desc:'An international society showing the harmony of faith and science, with lectures and the stories of Catholic scientists past and present.' }
+    desc:'An international society showing the harmony of faith and science, with lectures and the stories of Catholic scientists past and present.' },
+  { group:'science', name:'Magis Center', url:'https://www.magiscenter.com/', cost:'free',
+    desc:'Fr. Robert Spitzer’s center for faith and reason, with free courses, videos, and articles on how science and philosophy point to God.' },
+
+  { group:'reference', name:'Internet Medieval Sourcebook', url:'https://sourcebooks.fordham.edu/', cost:'free',
+    desc:'Fordham University’s collection of primary sources from Church history, including council decrees, saints’ lives, and medieval documents.' },
+
+  { group:'saints', name:'Saint of the Day', url:'https://www.franciscanmedia.org/saint-of-the-day/', cost:'free',
+    desc:'A short daily life of a saint with a reflection, from the Franciscan friars who publish St. Anthony Messenger.' },
+  { group:'saints', name:'Dicastery for the Causes of Saints', url:'https://www.causesanti.va/', cost:'free',
+    desc:'The Vatican office that studies and prepares beatifications and canonizations, with news of new Blesseds and saints.' },
+
+  { group:'scripture', name:'Pray As You Go', url:'https://prayasyougo.org/', cost:'free',
+    desc:'A daily audio prayer of about twelve minutes, with music, a Scripture reading, and questions for reflection, from the Jesuits in Britain.' },
+  { group:'scripture', name:'Sacred Space', url:'https://sacredspace.com/', cost:'free',
+    desc:'Daily prayer online, guided step by step through a short Scripture passage, from the Irish Jesuits.' },
+  { group:'scripture', name:'Magnificat', url:'https://us.magnificat.net/', cost:'paid',
+    desc:'A monthly prayer booklet and app with morning and evening prayer, the Mass readings for each day, and short meditations.' },
+  { group:'scripture', name:'The Liturgical Year at Catholic Culture', url:'https://www.catholicculture.org/culture/liturgicalyear/', cost:'free',
+    desc:'A day-by-day guide to the Church’s calendar, with the saint or feast of each day, prayers, recipes, and family activities for every season.' },
+
+  { group:'listen', name:'Abiding Together', url:'https://www.abidingtogetherpodcast.com/', cost:'free',
+    desc:'A weekly podcast in which a religious sister and two laywomen talk honestly about prayer, healing, friendship, and the spiritual life.' },
+  { group:'listen', name:'Catholic Stuff You Should Know', url:'https://catholicstuffpodcast.com/', cost:'free',
+    desc:'A long-running, good-humored podcast in which a group of priests discuss doctrine, history, saints, and Catholic customs.' },
+
+  { group:'apologetics', name:'The Counsel of Trent', url:'https://www.youtube.com/@CounselofTrent', cost:'free',
+    desc:'Trent Horn of Catholic Answers responds to common objections to the faith in videos and a podcast.' },
+
+  { group:'study', name:'St. Paul Center for Biblical Theology', url:'https://stpaulcenter.com/', cost:'mixed',
+    desc:'Scott Hahn’s institute, with free Bible studies and articles, and online courses on Scripture and the sacraments.' },
+  { group:'study', name:'Catholic Productions', url:'https://catholicproductions.com/', cost:'mixed',
+    desc:'Brant Pitre’s Bible studies, video courses, and talks on Scripture and its Jewish roots, with a free podcast.' },
+  { group:'study', name:'Augustine Institute', url:'https://www.augustineinstitute.org/', cost:'mixed',
+    desc:'A Catholic graduate school in Denver offering degrees in theology, along with free articles and the FORMED streaming service.' },
+
+  { group:'news', name:'Crux', url:'https://cruxnow.com/', cost:'free',
+    desc:'An independent Catholic news site covering the Vatican and the Church around the world.' },
+
+  { group:'families', name:'Life Teen', url:'https://lifeteen.com/', cost:'mixed',
+    desc:'Youth ministry resources, articles, and events for Catholic teenagers, their parents, and youth ministers.' },
+  { group:'families', name:'Busted Halo', url:'https://bustedhalo.com/', cost:'free',
+    desc:'An online ministry of the Paulist Fathers for young adults and spiritual seekers, with short videos and plain-language explainers.' },
+
+  { group:'art', name:'Vatican Museums', url:'https://www.museivaticani.va/', cost:'free',
+    desc:'Explore the papal art collections online, including virtual tours of the Sistine Chapel and the Raphael Rooms.' },
+  { group:'art', name:'Christian Iconography', url:'https://www.christianiconography.info/', cost:'free',
+    desc:'A reference guide to how saints and biblical scenes are depicted in art, with images and the sources behind each tradition.' },
+  { group:'art', name:'Church Music Association of America', url:'https://churchmusicassociation.org/', cost:'mixed',
+    desc:'Resources for Gregorian chant and sacred polyphony, including many free scores and the journal Sacred Music.' },
+  { group:'art', name:'Corpus Christi Watershed', url:'https://www.ccwatershed.org/', cost:'free',
+    desc:'Free sacred music, chant recordings, and hymnals for parish choirs and cantors.' }
 ];
 const COST_LABEL = { free:'Free', mixed:'Free & paid', paid:'Paid' };
 let resourceGroup = 'all';
@@ -6985,7 +7450,7 @@ const HUBS = {
         links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions']], meta:`${countOf('history')} events` },
       { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
       { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
-      { route:'learn/resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
+      { route:'resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
       { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
       (() => {
         const t = dailyPick(library.filter(e => e.category === 'theology'), 79, startOfToday());
@@ -7298,7 +7763,8 @@ const ROUTES = {
                                    desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
   'learn/plans':                 { cat:'plan', parent:'learn' },
   'learn/quiz':                  { cat:'quiz', parent:'learn' },
-  'learn/resources':             { cat:'resources', parent:'learn' }
+  'learn/resources':             { cat:'resources', parent:'learn' },
+  'resources':                   { cat:'resources' }
 };
 const CAT_ROUTE = {};
 Object.entries(ROUTES).forEach(([route, r]) => { if(!(r.cat in CAT_ROUTE)) CAT_ROUTE[r.cat] = route; });
@@ -7388,6 +7854,15 @@ function openReadModal(id){
   document.getElementById('readTitle').textContent = e.title;
   document.getElementById('readByline').textContent = e.author || '';
   document.getElementById('readByline').style.display = e.author ? 'block' : 'none';
+  const stalePatron = document.getElementById('readPatron');
+  if(stalePatron) stalePatron.remove();
+  if(e.patron){
+    const patronEl = document.createElement('div');
+    patronEl.id = 'readPatron';
+    patronEl.className = 'patron-line';
+    patronEl.innerHTML = `<span class="patron-label">Patron saint of</span>${e.patron.split(', ').map(p => `<span class="patron-tag">${escapeHtml(p)}</span>`).join('')}`;
+    document.getElementById('readByline').insertAdjacentElement('afterend', patronEl);
+  }
 
   const paragraphs = (e.content || '').split(/\n\s*\n/).filter(Boolean);
   const bodyEl = document.getElementById('readBody');
