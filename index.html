@@ -677,6 +677,38 @@
     .howto-grid .rosary-svg{max-width:170px; margin:0 auto;}
   }
 
+  /* ---------- Learning resources ---------- */
+  .res-page{max-width:1100px;}
+  .res-featured{
+    padding:20px 20px 22px; margin-bottom:22px; border-radius:20px;
+    border:1px solid color-mix(in srgb, var(--teal) 40%, var(--line));
+    background:linear-gradient(180deg, color-mix(in srgb, var(--teal) 10%, var(--parchment-light)), var(--parchment-light) 80%);
+  }
+  .res-featured-title{font-size:1.35rem; margin:0 0 12px;}
+  .res-section{margin-top:28px;}
+  .res-heading{display:flex; align-items:center; gap:10px; font-size:1.35rem; margin:0 0 12px;}
+  .res-icon{flex:0 0 auto; width:36px; height:36px; padding:7px; border-radius:11px; color:var(--teal); background:color-mix(in srgb, var(--teal) 13%, transparent);}
+  .res-icon svg{width:100%; height:100%; display:block;}
+  .res-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:12px;}
+  .res-card{
+    display:flex; flex-direction:column; gap:6px; padding:16px 18px; border-radius:16px; text-decoration:none;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink); transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .res-card:hover{border-color:var(--teal); transform:translateY(-2px);}
+  .res-top{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .res-host{font-size:0.75rem; color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .res-cost{flex:0 0 auto; font-size:0.64rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; padding:2px 8px; border-radius:8px;}
+  .res-free{color:var(--green); background:color-mix(in srgb, var(--green) 14%, transparent);}
+  .res-mixed{color:var(--amber); background:color-mix(in srgb, var(--amber) 15%, transparent);}
+  .res-paid{color:var(--wine); background:color-mix(in srgb, var(--wine) 12%, transparent);}
+  .res-name{font-family:'Cormorant Garamond', serif; font-size:1.32rem; font-weight:600; line-height:1.15;}
+  .res-desc{flex:1; font-size:0.9rem; line-height:1.5; color:var(--ink-soft);}
+  .res-visit{margin-top:4px; font-size:0.82rem; font-weight:600; color:var(--teal);}
+  @media (max-width:640px){
+    .res-chips{flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; scrollbar-width:none;}
+    .res-chips .patron-chip{flex:0 0 auto;}
+  }
+
   /* ---------- Saint finder ---------- */
   .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
   .sf-section{padding-bottom:14px;}
@@ -1797,6 +1829,7 @@
         <li><button class="navlink" data-route="learn/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
         <li><button class="navlink" data-route="learn/plans" data-cat="plan">Bible Reading Plans</button></li>
         <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
+        <li><button class="navlink" data-route="learn/resources" data-cat="resources">Learning Resources</button></li>
       </ul>
     </div>
     <div class="nav-group">
@@ -1834,7 +1867,7 @@
         <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
       <div><h4>Learn</h4>
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
-        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button></div>
+        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/resources">Learning Resources</button></div>
       <div><h4>Sanctify</h4>
         <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button></div>
     </div>
@@ -1876,6 +1909,7 @@ const CAT_DESC = {
   timer: 'Set aside time for silent prayer, meditation, or a Holy Hour, with a gentle bell to begin and end.',
   quiz: 'Test what you know about the saints, Scripture, Church history, and great Catholic books.',
   prayer: 'Every prayer as an illustrated prayer card. Choose a topic, then open a card to pray it, save it, or print it.',
+  resources: 'Trusted places to keep learning about the faith: Church documents, Scripture and prayer, podcasts, video, courses, and more.',
   community: 'Share prayer requests, ask questions about the faith, and talk about the saints and good books with other Sanctify members.',
   'forum-new': 'Start a new conversation in the Community.',
   saint: 'Lives, patronages, and prayers of intercession for the saints.',
@@ -2467,6 +2501,234 @@ const SEED_DATA = [
   { id:'s156', category:'saint', title:'St. Raphael the Archangel', author:'feast day September 29 (with Sts. Michael and Gabriel)', tags:['angels','healing','travelers'],
     content:'Raphael, whose name means "God heals," appears in the Book of Tobit, where he guides young Tobias on a journey, helps him find a wife, and heals his father’s blindness. Only at the end does he reveal himself as "one of the seven holy angels who present the prayers of the saints and enter into the presence of the glory of the Holy One."\n\nHe is a patron of travelers, of the sick, of doctors and nurses, and of those seeking a spouse.',
     intercession:'St. Raphael the Archangel, pray for us. Guide us on our journeys, bring healing to the sick, and lead those seeking a spouse to one who will help them to God. Amen.' },
+  { id:'s157', category:'saint', title:'St. Matthias', author:'d. c. 80, feast day May 14', tags:['apostle','martyr','alcoholics'],
+    content:'After the death of Judas, the eleven apostles prayed and cast lots to choose a replacement from among those who had followed Jesus from his baptism to his Ascension. The lot fell to Matthias, who was numbered with the Twelve (Acts 1).\n\nTradition says he preached in Judea and later in Cappadocia or Ethiopia, where he died a martyr. He reminds us that God calls quietly faithful disciples to great responsibility.',
+    intercession:'St. Matthias, chosen to take the place of one who fell away, pray for us. Help us to remain faithful disciples and to answer God’s call whenever it comes. Amen.' },
+  { id:'s158', category:'saint', title:'St. Philip the Apostle', author:'d. c. 80, feast day May 3', tags:['apostle','martyr','evangelization'],
+    content:'Philip of Bethsaida was among the first called by Jesus, and he immediately brought his friend Nathanael with the words "Come and see." At the feeding of the five thousand and at the Last Supper, his honest questions drew some of Jesus’ most important teaching.\n\nTradition holds that he preached in Greece and Asia Minor and was martyred at Hierapolis. He shares his feast with St. James the Less.',
+    intercession:'St. Philip, who brought your friend to Jesus, pray for us. Give us the courage to invite others to come and see the Lord, and to ask Him our honest questions. Amen.' },
+  { id:'s159', category:'saint', title:'St. James the Less', author:'d. c. 62, feast day May 3', tags:['apostle','martyr','jerusalem'],
+    content:'James, son of Alphaeus, was one of the Twelve. Tradition long identified him with "James, the brother of the Lord," who led the church in Jerusalem, spoke at the Council of Jerusalem, and is honored as the author of the Letter of James.\n\nAccording to the historian Josephus, James of Jerusalem was stoned to death around the year 62. He is remembered for his prayer, his justice, and his insistence that faith must show itself in works.',
+    intercession:'St. James, pray for us. Help us to be doers of the word and not hearers only, so that our faith may bear fruit in love. Amen.' },
+  { id:'s160', category:'saint', title:'St. Simon the Zealot', author:'1st century, feast day October 28', tags:['apostle','martyr'],
+    content:'Simon is named in every list of the Twelve, called "the Zealot" perhaps for his zeal for the Law or for his former ties to a movement that resisted Roman rule. Nothing else about him is recorded in the Gospels.\n\nTradition says he preached in Egypt and Persia alongside St. Jude, with whom he shares a feast day, and that both were martyred there. He shows how Christ gathers people of every background into one family.',
+    intercession:'St. Simon, whose zeal was turned to the service of Christ, pray for us. Direct our passions toward the Kingdom of God. Amen.' },
+  { id:'s161', category:'saint', title:'St. Timothy', author:'d. c. 97, feast day January 26', tags:['bishop','martyr','disciple of paul'],
+    content:'Timothy, the son of a Greek father and a Jewish mother, learned the faith from his mother Eunice and grandmother Lois. He became St. Paul’s closest companion, traveled with him on his missions, and was trusted with difficult assignments in Corinth and Thessalonica.\n\nTwo of Paul’s letters are addressed to him as the leader of the church in Ephesus. Tradition says he was martyred there for opposing a pagan festival. He shares his feast with St. Titus.',
+    intercession:'St. Timothy, faithful companion of St. Paul, pray for us. Strengthen young leaders in the Church, and help us to guard the faith we have received. Amen.' },
+  { id:'s162', category:'saint', title:'St. Martha', author:'1st century, feast day July 29', tags:['hospitality','cooks','friend of jesus'],
+    content:'Martha of Bethany, sister of Mary and Lazarus, welcomed Jesus into her home as a dear friend. When she complained that her sister left her to serve alone, Jesus gently reminded her of the "one thing" needful.\n\nYet it was Martha who, at her brother’s tomb, made one of the great professions of faith in the Gospels: that Jesus is the Christ, the Son of God. She is the patron of cooks, servers, and all who offer hospitality.',
+    intercession:'St. Martha, who served the Lord in your home, pray for us. Help us to work without anxiety, to welcome others generously, and to never forget the one thing needful. Amen.' },
+  { id:'s163', category:'saint', title:'Pope St. Clement I', author:'d. c. 99, feast day November 23', tags:['pope','martyr','apostolic fathers'],
+    content:'Clement was one of the earliest bishops of Rome, counted by St. Irenaeus as the third successor of St. Peter. Around the year 96 he wrote a letter to the church in Corinth, urging an end to a rebellion against its presbyters.\n\nHis letter is one of the oldest Christian writings outside the New Testament and an early witness to the authority of the Roman church. Tradition says he was exiled and martyred by drowning with an anchor tied to his neck.',
+    intercession:'Pope St. Clement, pray for us. Help us to keep peace and good order in the Church, and to love the unity that Christ desires. Amen.' },
+  { id:'s164', category:'saint', title:'Sts. Cosmas and Damian', author:'d. c. 287, feast day September 26', tags:['martyr','physicians','twins'],
+    content:'By tradition, Cosmas and Damian were twin brothers from Arabia who practiced medicine in Syria without ever charging their patients, winning many to Christ through their generosity. They became known in the East as the "Unmercenaries."\n\nThey were arrested during the persecution of Diocletian and beheaded. Their names are recalled in the Roman Canon of the Mass, and they are patrons of physicians, surgeons, and pharmacists.',
+    intercession:'Sts. Cosmas and Damian, who healed freely for love of Christ, pray for us. Bless all who care for the sick, and grant healing to those who suffer. Amen.' },
+  { id:'s165', category:'saint', title:'St. Catherine of Alexandria', author:'c. 287–c. 305, feast day November 25', tags:['martyr','philosophers','students'],
+    content:'According to tradition, Catherine was a brilliant young noblewoman of Alexandria who rebuked the emperor for persecuting Christians. He summoned fifty philosophers to debate her, and she won them all to the faith.\n\nCondemned to be broken on a spiked wheel, she was saved when the wheel shattered at her touch, and was then beheaded. One of the voices St. Joan of Arc heard, she is the patron of philosophers, students, and young women.',
+    intercession:'St. Catherine of Alexandria, wise and courageous witness, pray for us. Help students and scholars to seek the truth and to defend it with grace. Amen.' },
+  { id:'s166', category:'saint', title:'St. Pancras', author:'c. 289–304, feast day May 12', tags:['martyr','young people','children'],
+    content:'Pancras was an orphan from Phrygia who came to Rome with his uncle and was baptized there. When the persecution of Diocletian began, he refused to sacrifice to the gods and was beheaded at about fourteen years old.\n\nHis tomb on the Via Aurelia became a place of pilgrimage, and St. Augustine of Canterbury dedicated one of England’s first churches to him. He is a patron of children and of those who keep their promises.',
+    intercession:'St. Pancras, young and fearless martyr, pray for us. Give children and young people the courage to stand firm in their faith. Amen.' },
+  { id:'s167', category:'saint', title:'St. Florian', author:'d. 304, feast day May 4', tags:['martyr','soldiers','firefighters'],
+    content:'Florian was a Roman army officer in the province of Noricum, in present-day Austria. When ordered to round up Christians during the persecution of Diocletian, he declared his own faith instead.\n\nHe was scourged and drowned in the river Enns with a stone around his neck. A legend that he saved a burning town with a single bucket of water made him the patron of firefighters, chimney sweeps, and all in danger from fire.',
+    intercession:'St. Florian, pray for us. Protect firefighters and all who rush into danger to save others, and keep our homes safe from fire. Amen.' },
+  { id:'s168', category:'saint', title:'St. Maurice', author:'d. c. 287, feast day September 22', tags:['martyr','soldiers','africa'],
+    content:'By tradition, Maurice was an Egyptian Christian who commanded the Theban Legion, a Roman unit raised in Upper Egypt. Stationed in the Alps, the legion refused to kill innocent Christians or to sacrifice to the gods.\n\nThe emperor had the legion executed for their refusal. The abbey of Saint-Maurice in Switzerland has honored him since the 6th century, and he is a patron of soldiers, swordsmiths, and infantrymen.',
+    intercession:'St. Maurice, soldier of Christ, pray for us. Help all who serve in the armed forces to remain faithful to God and to refuse every unjust command. Amen.' },
+  { id:'s169', category:'saint', title:'St. Januarius', author:'d. c. 305, feast day September 19', tags:['martyr','bishop','naples'],
+    content:'Januarius (San Gennaro) was bishop of Benevento in southern Italy. During the persecution of Diocletian he visited imprisoned Christians, was arrested himself, and was beheaded near Pozzuoli.\n\nHe is the patron of Naples, where a vial said to contain his dried blood is kept in the cathedral. On his feast and a few other days each year, the people gather to pray for the blood to liquefy, a phenomenon recorded since 1389.',
+    intercession:'St. Januarius, faithful bishop and martyr, pray for us. Protect the people of Naples and all who call on you, and strengthen the shepherds of the Church. Amen.' },
+  { id:'s170', category:'saint', title:'St. Apollonia', author:'d. 249, feast day February 9', tags:['martyr','dentists','virgin'],
+    content:'Apollonia was an elderly consecrated virgin of Alexandria, killed during a riot against Christians in 249. Her story is told in a letter by the local bishop, St. Dionysius, quoted by the historian Eusebius.\n\nThe mob broke out her teeth and threatened to burn her alive unless she denied Christ. Rather than give them the chance, she walked into the fire herself. She is the patron of dentists and those with toothache.',
+    intercession:'St. Apollonia, who held fast to Christ through great suffering, pray for us. Bring relief to all in pain, and bless those who care for them. Amen.' },
+  { id:'s171', category:'saint', title:'St. Denis of Paris', author:'d. c. 258, feast day October 9', tags:['martyr','bishop','france'],
+    content:'Denis was sent from Rome to evangelize Gaul and became the first bishop of Paris. His preaching won so many converts that he was arrested with two companions, Rusticus and Eleutherius, and beheaded on the hill now called Montmartre, "the mountain of the martyr."\n\nA legend tells that he carried his own head to the place of his burial. The abbey of Saint-Denis grew over his tomb, and he is a patron of France and of Paris.',
+    intercession:'St. Denis, first bishop of Paris, pray for us. Help us to carry the Gospel boldly, even at great cost. Amen.' },
+  { id:'s172', category:'saint', title:'St. Hilary of Poitiers', author:'c. 310–367, feast day January 13', tags:['doctor of the church','bishop','trinity'],
+    content:'Hilary was a married pagan scholar who found his way to Christianity through reading Scripture, and was later chosen bishop of Poitiers in Gaul. He became the leading Western defender of Christ’s divinity against Arianism, earning the name "the Athanasius of the West."\n\nExiled to Asia Minor for his stand, he used the time to study Greek theology and write his great work On the Trinity. He was declared a Doctor of the Church in 1851.',
+    intercession:'St. Hilary, steadfast defender of the faith, pray for us. Help us to know and love the Father, the Son, and the Holy Spirit, and to profess the truth with courage. Amen.' },
+  { id:'s173', category:'saint', title:'St. Cyril of Jerusalem', author:'c. 313–386, feast day March 18', tags:['doctor of the church','bishop','catechesis'],
+    content:'Cyril was bishop of Jerusalem during the fierce controversies over Arianism and was driven into exile three times. He is best remembered for his Catechetical Lectures, delivered to those preparing for Baptism at Easter.\n\nThe lectures explain the Creed and the sacraments with remarkable clarity, and offer a vivid picture of the liturgy in 4th-century Jerusalem, including the Real Presence of Christ in the Eucharist. He was named a Doctor of the Church in 1882.',
+    intercession:'St. Cyril of Jerusalem, pray for us. Bless all who teach the faith and all who are preparing to enter the Church. Amen.' },
+  { id:'s174', category:'saint', title:'St. Gregory of Nyssa', author:'c. 335–c. 395, feast day January 10', tags:['church father','bishop','mysticism'],
+    content:'The younger brother of St. Basil the Great and St. Macrina, Gregory was a married teacher of rhetoric before becoming bishop of Nyssa. He was one of the three "Cappadocian Fathers" who shaped the Church’s language about the Trinity at the Council of Constantinople in 381.\n\nHis Life of Moses describes the spiritual life as an endless ascent into God, always growing, never finished. He is honored as one of the great mystical theologians of the East.',
+    intercession:'St. Gregory of Nyssa, pray for us. Draw us ever deeper into the mystery of God, that we may never stop growing in love. Amen.' },
+  { id:'s175', category:'saint', title:'St. Macrina the Younger', author:'c. 327–379, feast day July 19', tags:['nuns','founder','cappadocia'],
+    content:'Macrina was the eldest of ten children in a remarkable family of saints that included St. Basil the Great and St. Gregory of Nyssa. After her fiancé died, she turned the family estate into a community of prayer where former servants and noblewomen lived as equals.\n\nGregory called her "the Teacher," and his Life of Macrina records her deathbed conversation on the soul and the resurrection. Her example helped shape Eastern monasticism.',
+    intercession:'St. Macrina, wise teacher of your family, pray for us. Make our homes into places of prayer, and help us to lead our loved ones to God. Amen.' },
+  { id:'s176', category:'saint', title:'St. Moses the Black', author:'c. 330–405, feast day August 28', tags:['desert fathers','conversion','africa'],
+    content:'Moses was an Ethiopian slave in Egypt who became the violent leader of a band of robbers. While hiding from the law among the monks of the desert of Scetis, he was moved by their peace and humility, and asked to become one of them.\n\nHe became a much-loved abbot known for his gentleness. Asked to judge a brother, he came carrying a leaking basket of sand: "My sins run out behind me, and I do not see them." He was killed by raiders at about seventy-five.',
+    intercession:'St. Moses the Black, transformed by God’s mercy, pray for us. Help all who struggle with violence and addiction to find peace in Christ. Amen.' },
+  { id:'s177', category:'saint', title:'St. Paula', author:'347–404, feast day January 26', tags:['widows','scripture','founder'],
+    content:'Paula was a wealthy Roman noblewoman and mother of five. After the death of her husband she devoted herself to prayer and the study of Scripture under St. Jerome, learning Hebrew so well that she could chant the psalms in the original.\n\nShe followed Jerome to Bethlehem, where she founded monasteries for men and women and a hostel for pilgrims, spending her entire fortune on the poor. She helped Jerome with his translation of the Bible.',
+    intercession:'St. Paula, pray for us. Give widows comfort and strength, and help us to love the Scriptures and to share our goods with the poor. Amen.' },
+  { id:'s178', category:'saint', title:'St. Peter Chrysologus', author:'c. 380–c. 450, feast day July 30', tags:['doctor of the church','bishop','preachers'],
+    content:'Peter was archbishop of Ravenna, then the capital of the Western Roman Empire. His sermons, short, warm, and full of images, earned him the name "Chrysologus," meaning "golden word."\n\nAbout 180 of his sermons survive, many on the Incarnation, the Creed, and the Lord’s Prayer. He urged frequent reception of the Eucharist and loyalty to the bishop of Rome. Pope Benedict XIII declared him a Doctor of the Church in 1729.',
+    intercession:'St. Peter Chrysologus, pray for us. Bless preachers with golden words, and open our hearts to receive the word of God. Amen.' },
+  { id:'s179', category:'saint', title:'St. David of Wales', author:'c. 500–589, feast day March 1', tags:['bishop','wales','monasticism'],
+    content:'Dewi Sant, the patron saint of Wales, founded a monastery at Mynyw (now St Davids) where his monks lived a strict life of manual labor, drinking only water and keeping long hours of prayer.\n\nHe traveled widely as a preacher and bishop. His last sermon is remembered in the words, "Be joyful, keep the faith, and do the little things." Welsh people wear daffodils or leeks on his feast day.',
+    intercession:'St. David, pray for us. Teach us to be joyful, to keep the faith, and to do the little things well for the love of God. Amen.' },
+  { id:'s180', category:'saint', title:'St. Augustine of Canterbury', author:'d. 604, feast day May 27', tags:['missionary','bishop','england'],
+    content:'Augustine was prior of a monastery in Rome when Pope St. Gregory the Great sent him with about forty monks to bring the Gospel to the Anglo-Saxons. They landed in Kent in 597, where Queen Bertha, already a Christian, helped them win a hearing.\n\nKing Æthelberht was baptized, along with thousands of his people, and Augustine became the first archbishop of Canterbury. He is called the "Apostle to the English."',
+    intercession:'St. Augustine of Canterbury, pray for us. Bless all missionaries, and help us to bring the faith to those who have not yet heard it. Amen.' },
+  { id:'s181', category:'saint', title:'St. Columbanus', author:'543–615, feast day November 23', tags:['missionary','ireland','monasticism'],
+    content:'Columbanus was an Irish monk who left his homeland at about forty-five to become a "pilgrim for Christ" on the Continent. He founded monasteries at Annegray, Luxeuil, and Bobbio, which became centers of learning and holiness for centuries.\n\nHis strict rule and fearless rebukes of corrupt nobles made him powerful enemies, and he was exiled from Burgundy. He is often credited with helping to renew Christian life across early medieval Europe.',
+    intercession:'St. Columbanus, pilgrim for Christ, pray for us. Give us courage to leave our comfort for the sake of the Gospel. Amen.' },
+  { id:'s182', category:'saint', title:'St. Hilda of Whitby', author:'614–680, feast day November 17', tags:['abbess','england','education'],
+    content:'Hilda was a Northumbrian princess baptized at thirteen. She later became abbess of the double monastery of Whitby, where monks and nuns lived side by side, and where five future bishops were trained.\n\nKings and commoners came to her for advice. She hosted the Synod of Whitby in 664, and encouraged the cowherd Cædmon, the first known English poet, to set Scripture to verse. Her wisdom and kindness made her beloved throughout England.',
+    intercession:'St. Hilda, wise abbess and teacher, pray for us. Bless all who educate the young, and help leaders to seek good counsel. Amen.' },
+  { id:'s183', category:'saint', title:'St. Cuthbert', author:'c. 634–687, feast day March 20', tags:['bishop','hermit','england'],
+    content:'Cuthbert was a shepherd boy who saw a vision of angels and entered the monastery of Melrose. He became a tireless missionary to the remote villages of Northumbria, then prior of Lindisfarne.\n\nHe longed for solitude and lived for years as a hermit on the tiny island of Inner Farne, praying among the seabirds. Called reluctantly to be a bishop, he served two years before returning to die in his hermitage. His shrine is in Durham Cathedral.',
+    intercession:'St. Cuthbert, lover of prayer and of God’s creatures, pray for us. Help us to find God in silence and to serve His people gladly. Amen.' },
+  { id:'s184', category:'saint', title:'St. John Damascene', author:'c. 675–749, feast day December 4', tags:['doctor of the church','icons','monk'],
+    content:'John was born in Damascus under Muslim rule and served as a high official at the caliph’s court before becoming a monk at the monastery of Mar Saba near Jerusalem.\n\nWhen the Byzantine emperor ordered the destruction of sacred images, John wrote powerful defenses of icons: since God became visible in Christ, He can be depicted. His Fountain of Knowledge summarized the theology of the Greek Fathers. He was named a Doctor of the Church in 1890.',
+    intercession:'St. John Damascene, defender of holy images, pray for us. Help us to see in all beauty a reflection of the God who became man. Amen.' },
+  { id:'s185', category:'saint', title:'St. Stephen of Hungary', author:'c. 975–1038, feast day August 16', tags:['king','hungary','founder'],
+    content:'Stephen was the first king of Hungary, crowned in the year 1000 with a crown sent by the pope. He worked to convert his people, founded dioceses and monasteries, and built a Christian kingdom out of a nation of nomadic tribes.\n\nHe was known for his care for the poor, often distributing alms in disguise. His Admonitions to his son Emeric urged humility, mercy, and prayer. He and Emeric were canonized together in 1083.',
+    intercession:'St. Stephen of Hungary, pray for us. Guide those who govern nations, that they may rule with justice, humility, and mercy. Amen.' },
+  { id:'s186', category:'saint', title:'St. Edward the Confessor', author:'c. 1003–1066, feast day October 13', tags:['king','england','peace'],
+    content:'Edward was the last king of the House of Wessex. After years of exile in Normandy, he ruled England for twenty-four years, during which he kept the kingdom largely at peace and became known for his piety and generosity to the poor.\n\nHe rebuilt Westminster Abbey, where he was buried shortly after its consecration. He was canonized in 1161 and was for centuries honored as a patron of England.',
+    intercession:'St. Edward the Confessor, pray for us. Help leaders to seek peace, and help us to use our gifts for the glory of God and the good of the poor. Amen.' },
+  { id:'s187', category:'saint', title:'St. Peter Damian', author:'1007–1072, feast day February 21', tags:['doctor of the church','reform','hermit'],
+    content:'Orphaned and mistreated as a child, Peter was rescued by an older brother who saw to his education. He became a famous teacher, then left it all to become a hermit-monk at Fonte Avellana.\n\nPopes repeatedly called him out of his cell to fight corruption in the Church, especially simony and clerical immorality, and he was made a cardinal against his wishes. His letters and sermons fueled the great reform of the 11th century. He was named a Doctor of the Church in 1828.',
+    intercession:'St. Peter Damian, pray for us. Renew the Church in holiness, and give her leaders the courage to root out every corruption. Amen.' },
+  { id:'s188', category:'saint', title:'St. Hedwig of Silesia', author:'1174–1243, feast day October 16', tags:['duchess','mothers','charity'],
+    content:'Hedwig was a Bavarian noblewoman married at twelve to Duke Henry of Silesia, with whom she had seven children. Together they founded hospitals and monasteries, including a Cistercian convent at Trebnitz.\n\nShe lived simply, walked barefoot even in winter, and cared personally for the poor and for lepers. After many family sorrows, including the death of her son in battle against the Mongols, she retired to Trebnitz as a widow. She is a patron of Silesia.',
+    intercession:'St. Hedwig, pray for us. Comfort families in sorrow, and help us to use whatever we have in the service of the poor. Amen.' },
+  { id:'s189', category:'saint', title:'St. Ferdinand III of Castile', author:'1199–1252, feast day May 30', tags:['king','spain','justice'],
+    content:'Ferdinand united the kingdoms of Castile and León and was known as a just ruler who cared for his people and was reluctant to burden them with taxes. A devoted husband and father of thirteen children, he was also a Franciscan tertiary.\n\nHe supported the young University of Salamanca, began the great cathedral of Burgos, and was buried in Seville Cathedral. He is a patron of engineers, rulers, and the poor.',
+    intercession:'St. Ferdinand, pray for us. Grant to all who govern a love of justice and a care for the poor. Amen.' },
+  { id:'s190', category:'saint', title:'St. Raymond of Penyafort', author:'c. 1175–1275, feast day January 7', tags:['dominican','canon law','lawyers'],
+    content:'Raymond was a Catalan priest and brilliant scholar of law who joined the Dominicans in middle age. At the pope’s request he compiled the Decretals, the official collection of Church law that was used for nearly seven centuries.\n\nHe served as master general of the Dominicans, encouraged St. Thomas Aquinas to write the Summa contra Gentiles, and helped found the Mercedarian order to ransom captives. He lived to about one hundred. He is a patron of lawyers.',
+    intercession:'St. Raymond, pray for us. Bless lawyers and judges with wisdom and honesty, and help all of us to love God’s law. Amen.' },
+  { id:'s191', category:'saint', title:'St. Gertrude the Great', author:'1256–1302, feast day November 16', tags:['mystic','benedictine','sacred heart'],
+    content:'Gertrude was placed in the convent of Helfta in Saxony at five years old and grew into a gifted scholar. At twenty-five she experienced a profound conversion, turning from secular learning to Scripture and the love of Christ.\n\nHer visions, recorded in The Herald of Divine Love, are among the earliest to describe devotion to the Sacred Heart of Jesus. She is the only woman saint called "the Great," and is a patron of the West Indies.',
+    intercession:'St. Gertrude, pray for us. Draw us into the Heart of Jesus, and help us to trust in His tender love. Amen.' },
+  { id:'s192', category:'saint', title:'St. Vincent Ferrer', author:'1350–1419, feast day April 5', tags:['dominican','preacher','missionary'],
+    content:'Vincent was a Spanish Dominican and one of the most famous preachers of the Middle Ages. For twenty years he traveled across Spain, France, Switzerland, and Italy, often preaching to thousands in the open air on repentance and the Last Judgment.\n\nHe worked to end the Great Western Schism, when rival claimants divided the papacy. Many miracles and conversions were attributed to him. He died in Brittany, where his tomb remains in Vannes Cathedral.',
+    intercession:'St. Vincent Ferrer, pray for us. Stir our hearts to conversion, and help us to work for the unity of the Church. Amen.' },
+  { id:'s193', category:'saint', title:'St. Bernardine of Siena', author:'1380–1444, feast day May 20', tags:['franciscan','preacher','holy name'],
+    content:'As a young man, Bernardine nursed plague victims in Siena. He became a Franciscan friar and the greatest preacher in 15th-century Italy, drawing enormous crowds that filled the city squares for hours.\n\nHe spread devotion to the Holy Name of Jesus, holding up a tablet bearing the monogram IHS for the people to venerate. He reformed his order and refused three bishoprics. He is a patron of advertisers and public speakers.',
+    intercession:'St. Bernardine, pray for us. Teach us to love and reverence the holy Name of Jesus, and bless all who speak in His name. Amen.' },
+  { id:'s194', category:'saint', title:'St. John of Capistrano', author:'1386–1456, feast day October 23', tags:['franciscan','preacher','military chaplains'],
+    content:'John was a lawyer and governor of Perugia who, after being imprisoned in a war, experienced a conversion and joined the Franciscans under St. Bernardine of Siena. He became a renowned preacher and papal envoy across Central Europe.\n\nIn 1456, at about seventy, he helped rally the Christian army that broke the Ottoman siege of Belgrade, leading troops himself. He died of plague weeks later. He is a patron of military chaplains and jurists.',
+    intercession:'St. John of Capistrano, pray for us. Give courage to all who defend the innocent, and bless military chaplains in their ministry. Amen.' },
+  { id:'s195', category:'saint', title:'St. Casimir', author:'1458–1484, feast day March 4', tags:['prince','poland','young people'],
+    content:'Casimir was a prince of Poland and Lithuania, the son of King Casimir IV. At thirteen he was sent to claim the throne of Hungary but soon withdrew, refusing to fight a war he considered unjust.\n\nHe lived a life of prayer and penance at court, wore simple clothing, and gave generously to the poor. He had a great devotion to Our Lady. He died of tuberculosis at twenty-five and is the patron saint of Lithuania.',
+    intercession:'St. Casimir, pray for us. Help young people to choose holiness over power, and keep us faithful to Christ in every place. Amen.' },
+  { id:'s196', category:'saint', title:'St. Nicholas of Flüe', author:'1417–1487, feast day March 21', tags:['hermit','fathers','switzerland'],
+    content:'Nicholas was a Swiss farmer, soldier, judge, and father of ten children. At fifty, with the consent of his wife Dorothea, he left home to live as a hermit in a nearby ravine, where he is said to have lived for nearly twenty years on the Eucharist alone.\n\nPeople came from all over Europe for his counsel. In 1481 his advice prevented a civil war between the Swiss cantons. "Brother Klaus" is the patron saint of Switzerland.',
+    intercession:'St. Nicholas of Flüe, peacemaker, pray for us. Bring peace to divided communities, and help families to support one another in following God’s call. Amen.' },
+  { id:'s197', category:'saint', title:'St. Angela Merici', author:'1474–1540, feast day January 27', tags:['founder','ursulines','education'],
+    content:'Angela was orphaned young in northern Italy and became a Franciscan tertiary. Seeing how many girls grew up without any instruction in the faith, she gathered women to teach them in their own homes.\n\nIn 1535 she founded the Company of St. Ursula, the first order of women dedicated to teaching. Its members at first lived consecrated lives in their own families. The Ursulines went on to found schools across Europe and the Americas.',
+    intercession:'St. Angela Merici, pray for us. Bless all teachers, especially those who form young women in faith and knowledge. Amen.' },
+  { id:'s198', category:'saint', title:'St. John of God', author:'1495–1550, feast day March 8', tags:['founder','hospitals','nurses'],
+    content:'John was a Portuguese shepherd, soldier, and bookseller who underwent a dramatic conversion after hearing St. John of Avila preach in Granada. His public penance was so extreme that he was locked in an asylum, where he saw how cruelly the mentally ill were treated.\n\nOn his release he opened a hospital for the poor and sick and served them himself. His followers became the Brothers Hospitallers. He is a patron of hospitals, nurses, and the sick.',
+    intercession:'St. John of God, pray for us. Bless all who care for the sick and the mentally ill, and give us compassion for every person who suffers. Amen.' },
+  { id:'s199', category:'saint', title:'Pope St. Pius V', author:'1504–1572, feast day April 30', tags:['pope','dominican','rosary'],
+    content:'Michele Ghislieri was a Dominican friar who became pope in 1566. He put the reforms of the Council of Trent into practice, issuing the Roman Catechism, a reformed Breviary, and the Roman Missal that would be used for four centuries.\n\nHe lived austerely, wore his white Dominican habit (the origin of the pope’s white cassock), and called all of Christendom to pray the Rosary before the naval Battle of Lepanto in 1571.',
+    intercession:'Pope St. Pius V, pray for us. Strengthen the Church in faithful reform, and help us to turn to Our Lady’s Rosary in every trial. Amen.' },
+  { id:'s200', category:'saint', title:'St. Stanislaus Kostka', author:'1550–1568, feast day November 13', tags:['jesuit','young people','students'],
+    content:'Stanislaus was a Polish nobleman’s son studying in Vienna, where his brother bullied him for his piety. When his father forbade him to become a Jesuit, he set out on foot, walking hundreds of miles to St. Peter Canisius in Germany and then on to Rome, where St. Francis Borgia accepted him.\n\nHe entered the novitiate at seventeen and died of a fever nine months later, on the Feast of the Assumption. He is a patron of students, novices, and young people.',
+    intercession:'St. Stanislaus, pray for us. Help young people to follow God’s call with determination, even when others do not understand. Amen.' },
+  { id:'s201', category:'saint', title:'St. Edmund Campion', author:'1540–1581, feast day December 1', tags:['martyr','jesuit','england'],
+    content:'Campion was a brilliant Oxford scholar admired by Queen Elizabeth I. Troubled in conscience, he left England, was reconciled to the Catholic Church, and became a Jesuit priest.\n\nHe returned secretly in 1580 to minister to persecuted Catholics, and his open letter "Campion’s Brag" challenged the government to debate. Betrayed and captured, he was tortured on the rack and hanged, drawn, and quartered at Tyburn. He is one of the Forty Martyrs of England and Wales.',
+    intercession:'St. Edmund Campion, pray for us. Give us the courage to bear witness to the truth with charity and joy. Amen.' },
+  { id:'s202', category:'saint', title:'St. Margaret Clitherow', author:'1556–1586, feast day August 30 (in England and Wales)', tags:['martyr','mothers','england'],
+    content:'Margaret was the wife of a butcher in York and mother of three. She converted to Catholicism when it was illegal and hid priests in a secret room in her house so that Mass could be celebrated.\n\nArrested in 1586, she refused to plead so that her children and servants would not be forced to testify. She was pressed to death under a heavy door loaded with stones. She is called "the Pearl of York."',
+    intercession:'St. Margaret Clitherow, pray for us. Strengthen mothers and families who suffer for their faith, and help us to treasure the Mass. Amen.' },
+  { id:'s203', category:'saint', title:'St. Peter Canisius', author:'1521–1597, feast day December 21', tags:['doctor of the church','jesuit','catechists'],
+    content:'Peter was a Dutch Jesuit who did more than anyone to restore the Catholic faith in Germany and Central Europe after the Reformation. He preached tirelessly, founded colleges, and attended the Council of Trent.\n\nHis catechisms, written in clear question-and-answer form, went through hundreds of editions and taught the faith to generations. He is called the "Second Apostle of Germany" and was named a Doctor of the Church in 1925.',
+    intercession:'St. Peter Canisius, pray for us. Bless all who teach the faith, and help us to know our faith well and to explain it with patience. Amen.' },
+  { id:'s204', category:'saint', title:'St. Turibius of Mogrovejo', author:'1538–1606, feast day March 23', tags:['bishop','peru','indigenous'],
+    content:'Turibius was a Spanish lawyer and judge appointed archbishop of Lima while still a layman. He traveled thousands of miles across the Andes on foot and by mule, visiting remote villages, learning the native languages, and confirming perhaps half a million people, including St. Rose of Lima.\n\nHe defended the indigenous peoples against abuse by Spanish officials, founded the first seminary in the Americas, and held councils to reform the Church in Peru.',
+    intercession:'St. Turibius, pray for us. Bless bishops with a shepherd’s heart, and help us to defend the dignity of every people. Amen.' },
+  { id:'s205', category:'saint', title:'St. Louise de Marillac', author:'1591–1660, feast day May 9', tags:['founder','charity','social workers'],
+    content:'Louise was a Parisian widow and mother who, after years of anxiety and spiritual struggle, found her calling under the guidance of St. Vincent de Paul. Together they founded the Daughters of Charity in 1633.\n\nUnlike enclosed nuns, the Daughters went into the streets, homes, and hospitals to serve the sick, orphans, and prisoners. Louise trained them with great practical wisdom. She is a patron of social workers.',
+    intercession:'St. Louise de Marillac, pray for us. Help us to see Christ in the poor and to serve them with competence and tenderness. Amen.' },
+  { id:'s206', category:'saint', title:'St. Pedro Calungsod', author:'c. 1654–1672, feast day April 2', tags:['martyr','philippines','catechists'],
+    content:'Pedro was a teenage catechist from the Visayas in the Philippines who traveled with Spanish Jesuit missionaries to the Mariana Islands. There he taught the faith and assisted Fr. Diego Luis de San Vitores, now Blessed.\n\nIn 1672, when they baptized an infant against the father’s wishes, a mob attacked them. Pedro could have escaped but stayed to defend the priest, and both were killed. He was canonized in 2012.',
+    intercession:'St. Pedro Calungsod, young catechist and martyr, pray for us. Inspire young people to share their faith and to stand by those who serve the Church. Amen.' },
+  { id:'s207', category:'saint', title:'St. John Baptist de La Salle', author:'1651–1719, feast day April 7', tags:['founder','teachers','education'],
+    content:'John was a wealthy canon of Reims who became involved, almost by accident, in opening free schools for poor boys. He gave away his fortune, lived with the teachers he trained, and founded the Brothers of the Christian Schools.\n\nHe pioneered teaching in the students’ own language rather than Latin, grouping children into classes, and training teachers in colleges. Pope Pius XII named him patron of all teachers.',
+    intercession:'St. John Baptist de La Salle, pray for us. Bless all teachers with patience and love, and help every child to be well taught. Amen.' },
+  { id:'s208', category:'saint', title:'St. Paul of the Cross', author:'1694–1775, feast day October 19', tags:['founder','passionists','preacher'],
+    content:'Paolo Danei was an Italian merchant’s son who, after a vision, became convinced that the Passion of Christ is the greatest proof of God’s love. He founded the Congregation of the Passion, the Passionists, to preach the crucified Christ.\n\nHe was a renowned missionary preacher and spiritual director, though he himself endured decades of spiritual darkness. His letters remain treasured guides to prayer.',
+    intercession:'St. Paul of the Cross, pray for us. Help us to see in Christ’s Passion the depth of God’s love, and to bear our own crosses with faith. Amen.' },
+  { id:'s209', category:'saint', title:'St. Rose Philippine Duchesne', author:'1769–1852, feast day November 18', tags:['missionary','education','united states'],
+    content:'Philippine was a French Religious of the Sacred Heart who dreamed for years of serving the Native Americans. At forty-nine she sailed to America and opened the first free school west of the Mississippi, near St. Louis.\n\nAt seventy-one she finally went to live among the Potawatomi in Kansas. Unable to learn their language, she prayed for hours each day, and they called her "Woman Who Prays Always." She was canonized in 1988.',
+    intercession:'St. Rose Philippine Duchesne, pray for us. Teach us perseverance in our callings and faithfulness in prayer. Amen.' },
+  { id:'s210', category:'saint', title:'St. Théodore Guérin', author:'1798–1856, feast day October 3', tags:['founder','education','united states'],
+    content:'Anne-Thérèse Guérin was a French Sister of Providence sent in 1840 to the wilderness of Indiana. With five companions she founded the Sisters of Providence of Saint Mary-of-the-Woods and opened schools, orphanages, and pharmacies.\n\nShe faced fires, crop failures, illness, and conflict with her bishop, always trusting in Providence. "Put yourself gently into the hands of Providence," she wrote. She was canonized in 2006.',
+    intercession:'St. Théodore Guérin, pray for us. Help us to trust in God’s Providence through every hardship. Amen.' },
+  { id:'s211', category:'saint', title:'St. Peter Chanel', author:'1803–1841, feast day April 28', tags:['martyr','missionary','oceania'],
+    content:'Peter was a French Marist priest who volunteered for the missions of the South Pacific. He landed on the island of Futuna in 1837, where he learned the language, cared for the sick, and slowly won the people’s trust.\n\nWhen the king’s son asked to be baptized, the king ordered Peter killed, and he was clubbed to death. Within a few years almost the entire island had become Catholic. He is the first martyr of Oceania.',
+    intercession:'St. Peter Chanel, pray for us. Bless missionaries in distant lands, and help us to sow the Gospel with patience and love. Amen.' },
+  { id:'s212', category:'saint', title:'St. Dominic Savio', author:'1842–1857, feast day March 9', tags:['young people','students','choirboys'],
+    content:'Dominic was a peasant boy who entered St. John Bosco’s school in Turin at twelve. On the day of his First Communion he wrote: "Death rather than sin." Don Bosco saw in him a soul of rare goodness.\n\nHe was known for his cheerfulness, his kindness to other boys, and his skill at making peace. He founded the Company of the Immaculate Conception to help classmates. He died at fourteen and is the patron of choirboys and young people.',
+    intercession:'St. Dominic Savio, pray for us. Help young people to choose goodness with joy, and to be peacemakers among their friends. Amen.' },
+  { id:'s213', category:'saint', title:'St. Gabriel of Our Lady of Sorrows', author:'1838–1862, feast day February 27', tags:['passionist','young people','students'],
+    content:'Francesco Possenti was a popular, fashionable young man in Spoleto who loved dancing and the theater. During a procession with an image of Our Lady, he felt her call him personally and soon entered the Passionists.\n\nThere he took the name Gabriel of Our Lady of Sorrows and became known for his joy and his devotion to Mary’s sorrows. He died of tuberculosis at twenty-three, before ordination. He is a patron of students and youth.',
+    intercession:'St. Gabriel, pray for us. Help young people to leave behind every vanity and to give their hearts wholly to Christ through Mary. Amen.' },
+  { id:'s214', category:'saint', title:'St. Anthony Mary Claret', author:'1807–1870, feast day October 24', tags:['founder','missionary','archbishop'],
+    content:'Anthony was a Catalan weaver who became a priest and a tireless missionary preacher. He founded the Claretian Missionaries and, as archbishop of Santiago de Cuba, survived an assassination attempt while working to end slavery and corruption.\n\nLater he served as confessor to Queen Isabella II of Spain. He founded a religious publishing house and wrote over a hundred books and pamphlets. He is a patron of weavers and Catholic publishers.',
+    intercession:'St. Anthony Mary Claret, pray for us. Bless all who spread the Gospel through the written word, and make us zealous for souls. Amen.' },
+  { id:'s215', category:'saint', title:'St. Daniel Comboni', author:'1831–1881, feast day October 10', tags:['missionary','africa','sudan'],
+    content:'Daniel was an Italian priest who devoted his life to Central Africa. His motto was "Save Africa with Africa," and he insisted on training African priests and catechists at a time when few Europeans believed in their abilities.\n\nHe founded missionary institutes for men and women, fought the slave trade, and became the first Catholic bishop of Central Africa. He died in Khartoum at fifty and was canonized in 2003.',
+    intercession:'St. Daniel Comboni, pray for us. Bless the Church in Africa, and help us to respect and draw out the gifts of every people. Amen.' },
+  { id:'s216', category:'saint', title:'St. Mariam Baouardy', author:'1846–1878, feast day August 26', tags:['carmelite','mystic','holy land'],
+    content:'Mariam was born in Galilee to a poor Melkite Greek Catholic family and orphaned at three. As a young servant she refused to convert to Islam and was attacked and left for dead, an ordeal she believed Our Lady helped her survive.\n\nAs a Carmelite nun called Mary of Jesus Crucified, she experienced ecstasies and the stigmata, and helped found Carmels in India and Bethlehem. Her prayer to the Holy Spirit is still widely loved.',
+    intercession:'St. Mariam of Jesus Crucified, pray for us. Ask the Holy Spirit to enlighten us, and bring peace to the Holy Land. Amen.' },
+  { id:'s217', category:'saint', title:'St. Joseph Freinademetz', author:'1852–1908, feast day January 29', tags:['missionary','china','divine word'],
+    content:'Joseph was a priest from the Dolomites who joined the Society of the Divine Word and in 1879 was sent to southern Shandong in China. He adopted Chinese dress and customs and resolved to become "Chinese among the Chinese."\n\nHe trained Chinese catechists and priests and endured beatings and hardship. He died of typhus caught while nursing the sick. "The language of love," he said, "is the only language every person understands."',
+    intercession:'St. Joseph Freinademetz, pray for us. Help us to speak the language of love that every person understands. Amen.' },
+  { id:'s218', category:'saint', title:'St. Elizabeth of the Trinity', author:'1880–1906, feast day November 8', tags:['carmelite','mystic','trinity'],
+    content:'Élisabeth Catez was a lively, strong-willed girl from Dijon and a gifted pianist. She entered the Carmel there at twenty-one and discovered her calling to be a "praise of glory" to the Holy Trinity dwelling within her soul.\n\nShe died of Addison’s disease at twenty-six. Her letters and her prayer "O my God, Trinity whom I adore" have helped countless people discover God’s presence within. She was canonized in 2016.',
+    intercession:'St. Elizabeth of the Trinity, pray for us. Help us to find the Father, Son, and Holy Spirit dwelling in our hearts. Amen.' },
+  { id:'s219', category:'saint', title:'St. Charles de Foucauld', author:'1858–1916, feast day December 1', tags:['hermit','sahara','conversion'],
+    content:'Charles was a wealthy French cavalry officer and explorer who lost his faith in youth. Moved by the prayer of Muslims in Morocco, he began searching for God and returned to the Church in 1886.\n\nHe became a priest and lived as a hermit among the Tuareg people of the Sahara, seeking to be a "universal brother" through friendship, hospitality, and adoration of the Eucharist. He was killed by raiders in 1916 and canonized in 2022.',
+    intercession:'St. Charles de Foucauld, pray for us. Teach us to abandon ourselves to the Father and to be brothers and sisters to all. Amen.' },
+  { id:'s220', category:'saint', title:'St. Teresa of the Andes', author:'1900–1920, feast day July 13', tags:['carmelite','young people','chile'],
+    content:'Juana Fernández Solar was a cheerful, athletic Chilean girl who loved horseback riding and swimming. From an early age she felt drawn to the Carmelites and wrote letters and a diary full of love for Christ.\n\nShe entered the Carmel of Los Andes at nineteen and died of typhus less than a year later. Her joyful spirituality made her the first saint of Chile, canonized in 1993.',
+    intercession:'St. Teresa of the Andes, pray for us. Help young people to find their joy in loving Jesus. Amen.' },
+  { id:'s221', category:'saint', title:'St. José Sánchez del Río', author:'1913–1928, feast day February 10', tags:['martyr','young people','mexico'],
+    content:'José was a Mexican boy who joined the Cristero rebellion at thirteen, during the government’s persecution of the Church, serving as a flag bearer. Captured by federal troops, he was told he could go free if he renounced his faith.\n\nHe refused. Soldiers cut the soles of his feet and forced him to walk to the cemetery, where he was killed. At each step he cried "¡Viva Cristo Rey!" He was canonized in 2016.',
+    intercession:'St. José, pray for us. Give children and young people the courage to proclaim that Christ is King. Amen.' },
+  { id:'s222', category:'saint', title:'St. Leopold Mandić', author:'1866–1942, feast day May 12', tags:['capuchin','confession','unity'],
+    content:'Leopold was a Croatian Capuchin friar, barely four and a half feet tall, with a speech impediment and poor health. He longed to work for the reunion of the Eastern Orthodox with the Catholic Church.\n\nInstead his superiors kept him in Padua, where he spent over thirty years hearing confessions for up to fifteen hours a day, known for his gentleness and mercy. He was canonized in 1983 and is a patron of confessors.',
+    intercession:'St. Leopold, pray for us. Bless all confessors, and help us to come to the sacrament of mercy with trust. Amen.' },
+  { id:'s223', category:'saint', title:'St. Titus Brandsma', author:'1881–1942, feast day July 27', tags:['martyr','carmelite','journalists'],
+    content:'Titus was a Dutch Carmelite priest, professor of philosophy, and journalist. When the Nazis occupied the Netherlands, he carried a letter from the bishops to Catholic newspapers instructing them to refuse Nazi propaganda.\n\nArrested and sent to Dachau, he comforted fellow prisoners and prayed for his guards. He was killed by lethal injection in 1942, after giving his rosary to the nurse who administered it. He was canonized in 2022.',
+    intercession:'St. Titus Brandsma, pray for us. Give journalists courage to tell the truth, and help us to love even those who persecute us. Amen.' },
+  { id:'s224', category:'saint', title:'St. Dulce of the Poor', author:'1914–1992, feast day August 13', tags:['nuns','brazil','hospitals'],
+    content:'Maria Rita Lopes Pontes was a Brazilian Franciscan sister in Salvador, Bahia, who began by sheltering sick people in abandoned houses and then in a chicken coop beside her convent. That coop grew into one of the largest hospitals in Brazil.\n\nSister Dulce slept sitting in a chair for decades as penance, and was called "the Good Angel of Bahia." She was canonized in 2019 as the first Brazilian-born woman saint.',
+    intercession:'St. Dulce, pray for us. Open our eyes to the poor and the sick around us, and help us to begin serving them today. Amen.' },
+  { id:'s225', category:'saint', title:'St. Augustine Zhao Rong and Companions', author:'d. 1648–1930, feast day July 9', tags:['martyr','china','priests'],
+    content:'These 120 martyrs of China include priests, catechists, laypeople, and children, killed for the faith between 1648 and 1930, many during the Boxer Rebellion of 1900.\n\nAugustine Zhao Rong was a soldier who escorted a condemned bishop to his execution, was moved by his witness, and became a priest himself. He died in prison in 1815. The martyrs were canonized together by Pope St. John Paul II in 2000.',
+    intercession:'Holy martyrs of China, pray for us. Strengthen the Church in China and all Christians who suffer for their faith. Amen.' },
+  { id:'s226', category:'saint', title:'St. Andrew Dũng-Lạc and Companions', author:'d. 1745–1862, feast day November 24', tags:['martyr','vietnam','priests'],
+    content:'These 117 martyrs of Vietnam include bishops, priests, catechists, and laypeople, killed during waves of persecution in the 18th and 19th centuries. Many were tortured and beheaded; some were strangled or burned.\n\nAndrew Dũng-Lạc was a Vietnamese parish priest who was arrested several times and once ransomed by his parishioners before his execution in 1839. The martyrs were canonized together in 1988.',
+    intercession:'Holy martyrs of Vietnam, pray for us. Give us courage to bear witness to Christ, and bless the Church in Vietnam. Amen.' },
+  { id:'s227', category:'saint', title:'St. Simeon Stylites', author:'c. 390–459, feast day January 5', tags:['hermit','asceticism','syria'],
+    content:'Simeon was a Syrian shepherd boy whose hunger for prayer drove him to ever more severe forms of solitude. When crowds of pilgrims would not leave him in peace, he climbed onto a pillar near Aleppo.\n\nHe lived on top of pillars for over thirty-five years, praying, fasting, and preaching to the crowds below, and settling disputes among them. The ruins of the great church built around his pillar still stand in Syria.',
+    intercession:'St. Simeon, pray for us. Help us to lift our hearts above the noise of the world and to persevere in prayer. Amen.' },
+  { id:'s228', category:'saint', title:'St. Marguerite d’Youville', author:'1701–1771, feast day October 16', tags:['founder','widows','canada'],
+    content:'Marguerite was a Canadian widow whose husband, a bootlegger, left her with debts and two surviving sons. She supported her family with a small shop while caring for the poor of Montreal.\n\nIn 1737 she and three companions founded the Sisters of Charity, known as the Grey Nuns, and later took over the city’s failing General Hospital. She was the first saint born in Canada, canonized in 1990.',
+    intercession:'St. Marguerite d’Youville, pray for us. Comfort those in difficult marriages and widowhood, and teach us to welcome the poor. Amen.' },
+  { id:'s229', category:'saint', title:'St. Marie of the Incarnation', author:'1599–1672, feast day April 30', tags:['ursuline','missionary','canada'],
+    content:'Marie Guyart was a widow from Tours who ran her brother-in-law’s shipping business before entering the Ursulines, leaving her twelve-year-old son in the care of family. In 1639 she sailed to New France.\n\nIn Quebec she founded the first school for girls in North America, learned the Algonquin and Huron languages, and wrote dictionaries and catechisms in them. Her letters are a treasure of mystical and historical writing.',
+    intercession:'St. Marie of the Incarnation, pray for us. Bless mothers, teachers, and missionaries, and help us to find God in the midst of busy lives. Amen.' },
+  { id:'s230', category:'saint', title:'St. Jeanne Jugan', author:'1792–1879, feast day August 30', tags:['founder','elderly','poor'],
+    content:'Jeanne was a French domestic servant who one winter night in 1839 carried a blind, paralyzed old woman home and gave her own bed. More elderly poor followed, and the Little Sisters of the Poor were born.\n\nJeanne begged door to door for her old people. Later, pushed aside from leadership, she spent her last twenty-seven years in humble obscurity, teaching the novices. Her sisters now serve the elderly worldwide.',
+    intercession:'St. Jeanne Jugan, pray for us. Help us to honor and care for the elderly, and to accept humbly whatever God asks. Amen.' },
+  { id:'s231', category:'saint', title:'St. Rafqa', author:'1832–1914, feast day March 23', tags:['maronite','suffering','lebanon'],
+    content:'Rafqa (Rebecca) was a Maronite nun from Lebanon. In 1885 she asked God to let her share in the sufferings of Christ, and soon began to lose her sight to an agonizing illness.\n\nShe spent her remaining twenty-nine years in pain, eventually blind and paralyzed, yet always grateful and at peace, weaving and praying in the convent of St. Joseph in Jrabta. She was canonized in 2001.',
+    intercession:'St. Rafqa, pray for us. Help the sick to unite their sufferings with Christ, and give them patience and peace. Amen.' },
+  { id:'s232', category:'saint', title:'St. Joseph Vaz', author:'1651–1711, feast day January 16', tags:['missionary','sri lanka','india'],
+    content:'Joseph was a priest from Goa in India who learned that Catholics in Sri Lanka had been left without priests under persecution by the Dutch. He traveled there disguised as a beggar and ministered secretly for more than twenty years.\n\nHe translated prayers into Tamil and Sinhala, cared for smallpox victims when no one else would, and rebuilt the Church on the island. He is called the "Apostle of Sri Lanka" and was canonized in 2015.',
+    intercession:'St. Joseph Vaz, pray for us. Bless the Church in Sri Lanka and India, and help us to serve Christ in the forgotten. Amen.' },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'325', year:325, era:'early', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -2811,6 +3073,179 @@ const SEED_DATA = [
     content:'A collection of Mother Teresa’s private letters, published after her death. It revealed that for nearly fifty years she experienced a painful sense of God’s absence, even while serving the poorest of the poor with joy.\n\nIt offers a profound witness to faith persevering through spiritual darkness.' },
   { id:'b93', category:'book', title:'Dilexit Nos', author:'Pope Francis, 2024', tags:['encyclical','sacred heart','love'],
     content:'Pope Francis’s fourth and final encyclical, on the human and divine love of the Heart of Jesus Christ. It was published during the 350th anniversary of the Sacred Heart apparitions to St. Margaret Mary Alacoque.\n\nIt calls a world grown cold and fragmented to rediscover the heart as the center of the person, and Christ’s love as the source of the Church’s mission.' },
+  { id:'b94', category:'book', title:'Against Heresies', author:'St. Irenaeus of Lyon, c. 180', tags:['church father','apologetics','tradition'],
+    content:'Irenaeus, who as a boy heard St. Polycarp, a disciple of St. John, wrote this five-book work to refute the Gnostic sects that claimed a secret knowledge hidden from ordinary Christians.\n\nAgainst them he set the public teaching handed down from the apostles through the succession of bishops, especially in the church of Rome. It is one of the earliest witnesses to the canon of the four Gospels and to the idea of apostolic tradition.',
+    link:'https://www.newadvent.org/fathers/0103.htm', notable:'"For the glory of God is a living man; and the life of man consists in beholding God."' },
+  { id:'b95', category:'book', title:'First Apology', author:'St. Justin Martyr, c. 155', tags:['church father','apologetics','eucharist'],
+    content:'Addressed to the Emperor Antoninus Pius, Justin’s Apology defends Christians against the charges of atheism and immorality and presents the faith as the fulfillment of both philosophy and the Hebrew prophets.\n\nIts closing chapters give the oldest detailed description of Christian worship: the Sunday gathering, the readings from the apostles and prophets, the homily, and the Eucharist, which Justin says is the flesh and blood of the incarnate Jesus.',
+    link:'https://www.newadvent.org/fathers/0126.htm' },
+  { id:'b96', category:'book', title:'The Letter of Clement to the Corinthians', author:'Pope St. Clement I, c. 96', tags:['apostolic fathers','unity','early church'],
+    content:'When the church of Corinth deposed its presbyters, the church of Rome wrote to restore peace. Tradition attributes the letter to Clement, an early bishop of Rome.\n\nIt urges humility, repentance, and good order, drawing examples from the Old Testament and from the martyrdoms of Peter and Paul. It was read aloud in some churches alongside Scripture and is one of the oldest Christian writings outside the New Testament.',
+    link:'https://www.newadvent.org/fathers/1010.htm' },
+  { id:'b97', category:'book', title:'On the Holy Spirit', author:'St. Basil the Great, c. 375', tags:['church father','trinity','holy spirit'],
+    content:'Basil wrote this treatise to defend the full divinity of the Holy Spirit against those who denied that the Spirit should be worshiped with the Father and the Son.\n\nHe argues from Scripture, from the Church’s baptismal formula, and from the unwritten traditions of the liturgy. The work prepared the way for the Council of Constantinople in 381, which added to the Creed that the Spirit is "worshiped and glorified" with the Father and the Son.',
+    link:'https://www.newadvent.org/fathers/3203.htm' },
+  { id:'b98', category:'book', title:'On the Priesthood', author:'St. John Chrysostom, c. 390', tags:['church father','priesthood','dialogue'],
+    content:'Written as a dialogue between John and his friend Basil, whom he had tricked into accepting ordination while avoiding it himself, this treatise explains why John felt unworthy of so great an office.\n\nIt describes the dignity and dangers of the priesthood, the virtues a pastor needs, and the power of preaching, and has been read by priests and seminarians for sixteen centuries.',
+    link:'https://www.newadvent.org/fathers/1922.htm' },
+  { id:'b99', category:'book', title:'On Christian Teaching', author:'St. Augustine of Hippo, 397–426', tags:['church father','scripture','interpretation'],
+    content:'Also known by its Latin title De Doctrina Christiana, this handbook teaches how to understand and explain the Scriptures. Augustine discusses signs and things, the rule of love as the key to interpretation, and how to read difficult passages.\n\nThe final book, on Christian preaching, adapted classical rhetoric for the service of the Gospel. The work shaped Christian education throughout the Middle Ages.',
+    link:'https://www.newadvent.org/fathers/1202.htm' },
+  { id:'b100', category:'book', title:'The Book of Pastoral Rule', author:'Pope St. Gregory the Great, c. 590', tags:['church father','leadership','pastors'],
+    content:'Written soon after Gregory became pope, this guide for bishops and pastors explains who should take up the care of souls, how they should live, and how to teach different kinds of people, from the rich and poor to the proud and the timid.\n\nIt became the standard handbook for bishops in the medieval West and was translated into Old English by King Alfred the Great.',
+    link:'https://www.newadvent.org/fathers/3601.htm' },
+  { id:'b101', category:'book', title:'Dialogues', author:'Pope St. Gregory the Great, c. 593', tags:['saints','miracles','benedict'],
+    content:'In conversation with his deacon Peter, Gregory tells the stories of the holy men and women of Italy, their miracles and their deaths. The second of its four books is the only early life of St. Benedict of Nursia.\n\nThe Dialogues were among the most widely read books of the Middle Ages and shaped how Christians imagined holiness, miracles, and the life to come.' },
+  { id:'b102', category:'book', title:'Why God Became Man (Cur Deus Homo)', author:'St. Anselm of Canterbury, 1098', tags:['theology','incarnation','redemption'],
+    content:'In this dialogue with his pupil Boso, Anselm asks why God had to become man to save the world. His answer, that only one who is both God and man could make satisfaction for humanity’s sin against the infinite honor of God, became one of the most influential theories of the Atonement.\n\nThe book is a model of "faith seeking understanding," showing reason at work on the mysteries of faith.',
+    link:'https://sourcebooks.fordham.edu/basis/anselm-curdeus.asp' },
+  { id:'b103', category:'book', title:'Scivias', author:'St. Hildegard of Bingen, 1141–1151', tags:['mysticism','visions','benedictine'],
+    content:'Scivias, short for "Know the Ways of the Lord," records twenty-six visions Hildegard received and the explanations given to her, covering creation, the Fall, redemption, the Church, and the end of time.\n\nThe manuscript was illuminated with striking images of her visions. Pope Eugene III read portions of it and encouraged her to continue writing.' },
+  { id:'b104', category:'book', title:'Summa contra Gentiles', author:'St. Thomas Aquinas, c. 1259–1265', tags:['philosophy','apologetics','dominican'],
+    content:'Aquinas wrote this work, traditionally at the request of St. Raymond of Penyafort, to present the Christian faith to those who do not accept the authority of Scripture, such as Muslim and Jewish thinkers.\n\nThe first three books use reason alone to show God’s existence, nature, and providence; the fourth turns to truths known only by revelation, such as the Trinity, the Incarnation, and the sacraments.',
+    link:'https://isidore.co/aquinas/ContraGentiles.htm' },
+  { id:'b105', category:'book', title:'The Major Legend of St. Francis', author:'St. Bonaventure, 1263', tags:['franciscan','biography','saints'],
+    content:'Commissioned by the Franciscan order, Bonaventure’s life of St. Francis became the official biography for centuries. It traces Francis’s conversion, his love of poverty, the founding of the order, and the stigmata at La Verna.\n\nBonaventure presents Francis as a mirror of Christ and as a guide in the soul’s ascent to God. Giotto’s famous frescoes in Assisi follow its account.' },
+  { id:'b106', category:'book', title:'Treatise on Purgatory', author:'St. Catherine of Genoa, published 1551', tags:['purgatory','mysticism','love'],
+    content:'Catherine was a married laywoman in Genoa who worked for decades in the city’s hospital. Her short treatise describes purgatory from within, as a fire of God’s love that purifies the soul.\n\nThe souls there, she writes, suffer greatly, yet are filled with a joy surpassed only by that of heaven, because they desire nothing but to be made fit for God.' },
+  { id:'b107', category:'book', title:'The Sinner’s Guide', author:'Ven. Louis of Granada, 1556', tags:['virtue','conversion','classic'],
+    content:'Louis of Granada was a Spanish Dominican and one of the great spiritual writers of the 16th century. The Sinner’s Guide offers the reasons why we should love and serve God, and a practical path out of sin into a life of virtue.\n\nSt. Teresa of Ávila, St. Francis de Sales, and St. Charles Borromeo all recommended it.' },
+  { id:'b108', category:'book', title:'The Spiritual Canticle', author:'St. John of the Cross, c. 1578–1584', tags:['carmelite','mysticism','poetry'],
+    content:'John began this poem while imprisoned in a tiny cell in Toledo. Inspired by the Song of Songs, it tells of a bride searching for her Beloved through the mountains and meadows until she is united with him.\n\nJohn later wrote a long commentary explaining each stanza as a stage in the soul’s journey to spiritual marriage with Christ. It is among the greatest poems in the Spanish language.',
+    link:'https://www.ccel.org/ccel/john_cross/canticle.html' },
+  { id:'b109', category:'book', title:'The Living Flame of Love', author:'St. John of the Cross, c. 1585', tags:['carmelite','mysticism','holy spirit'],
+    content:'In four short stanzas and a commentary, John describes the highest state of union with God possible in this life, in which the Holy Spirit burns in the soul like a gentle, living flame.\n\nWritten for a laywoman, Doña Ana de Peñalosa, it is the most joyful of John’s works, describing not the dark night but the dawn of love that follows it.' },
+  { id:'b110', category:'book', title:'The Mind’s Ascent to God by the Ladder of Created Things', author:'St. Robert Bellarmine, 1615', tags:['jesuit','creation','meditation'],
+    content:'Written during a retreat late in Bellarmine’s life, this little book climbs fifteen "steps" from the visible world to its Creator, considering the earth, the waters, the heavens, the human soul, and the angels.\n\nEach step leads the reader from the beauty and order of creation to the perfections of God and to the love He deserves.' },
+  { id:'b111', category:'book', title:'The Catholic Controversy', author:'St. Francis de Sales, 1595–1596', tags:['apologetics','reformation','tracts'],
+    content:'As a young priest in the Chablais region of Savoy, which had become Calvinist, Francis wrote leaflets explaining the Catholic faith and slipped them under doors when people refused to hear him preach.\n\nCollected and published after his death, they patiently defend the authority of the Church, Scripture and Tradition, and the sacraments. His gentleness helped win back much of the region to the Church.' },
+  { id:'b112', category:'book', title:'Visits to the Most Blessed Sacrament', author:'St. Alphonsus Liguori, 1745', tags:['eucharist','adoration','prayer'],
+    content:'This small book offers thirty-one short meditations, one for each day of the month, to accompany a visit to Jesus in the Blessed Sacrament, along with prayers of spiritual communion and visits to Our Lady.\n\nIt was one of the most popular devotional books of the 18th and 19th centuries and helped spread the practice of Eucharistic adoration.' },
+  { id:'b113', category:'book', title:'The Practice of the Love of Jesus Christ', author:'St. Alphonsus Liguori, 1768', tags:['love','virtue','charity'],
+    content:'Alphonsus considered this his most useful work. Built around St. Paul’s hymn to love in 1 Corinthians 13, it shows how each quality of charity, from patience and kindness to humility and perseverance, is practiced in daily life.\n\nIts message is simple: all holiness consists in loving Jesus Christ.' },
+  { id:'b114', category:'book', title:'An Essay in Aid of a Grammar of Assent', author:'St. John Henry Newman, 1870', tags:['philosophy','faith','reason'],
+    content:'Newman’s most philosophical work asks how ordinary people can rightly be certain of things they cannot strictly prove, including the truths of religion.\n\nHe distinguishes notional from real assent and describes the "illative sense," the mind’s ability to weigh many converging probabilities and reach a firm conclusion. It remains a classic of the philosophy of religious belief.',
+    link:'https://www.gutenberg.org/ebooks/34022' },
+  { id:'b115', category:'book', title:'The Baltimore Catechism', author:'Third Plenary Council of Baltimore, 1885', tags:['catechism','united states','basics'],
+    content:'Commissioned by the bishops of the United States, the Baltimore Catechism taught the faith to generations of American Catholics in short questions and answers to be memorized, such as "Who made us? God made us."\n\nIt was the standard Catholic school textbook in the United States from the 1880s until the 1960s and is still used by many families today.',
+    link:'https://www.gutenberg.org/ebooks/14552' },
+  { id:'b116', category:'book', title:'Aeterni Patris', author:'Pope Leo XIII, 1879', tags:['encyclical','philosophy','aquinas'],
+    content:'Leo XIII’s encyclical on Christian philosophy called for the restoration of the philosophy of St. Thomas Aquinas in Catholic schools and seminaries.\n\nIt argues that faith and reason, rightly understood, never contradict each other, and that sound philosophy prepares the way for faith. It sparked a great revival of Thomistic thought in the late 19th and 20th centuries.',
+    link:'https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_04081879_aeterni-patris.html' },
+  { id:'b117', category:'book', title:'Quadragesimo Anno', author:'Pope Pius XI, 1931', tags:['encyclical','social teaching','work'],
+    content:'Written forty years after Rerum Novarum, in the depths of the Great Depression, this encyclical on the reconstruction of the social order criticizes both unrestrained capitalism and communism.\n\nIt is famous for formulating the principle of subsidiarity: that larger bodies should not take over what smaller communities, such as families and local associations, can do for themselves.',
+    link:'https://www.vatican.va/content/pius-xi/en/encyclicals/documents/hf_p-xi_enc_19310515_quadragesimo-anno.html' },
+  { id:'b118', category:'book', title:'Mystici Corporis Christi', author:'Pope Pius XII, 1943', tags:['encyclical','church','body of christ'],
+    content:'Issued in the middle of the Second World War, this encyclical teaches that the Church is the Mystical Body of Christ, with Christ as its Head and the Holy Spirit as its soul.\n\nIt explains how the members of the Church are united to Christ and to one another, and calls the faithful to love the Church as Christ’s own Body. Its themes were taken up by the Second Vatican Council.',
+    link:'https://www.vatican.va/content/pius-xii/en/encyclicals/documents/hf_p-xii_enc_29061943_mystici-corporis-christi.html' },
+  { id:'b119', category:'book', title:'Evangelii Nuntiandi', author:'Pope St. Paul VI, 1975', tags:['exhortation','evangelization','mission'],
+    content:'In this apostolic exhortation on evangelization in the modern world, Paul VI declares that the Church "exists in order to evangelize."\n\nHe emphasizes the witness of life, the explicit proclamation of Jesus, and the evangelization of cultures, and observes that people today listen more willingly to witnesses than to teachers. It inspired the "New Evangelization" of later popes.',
+    link:'https://www.vatican.va/content/paul-vi/en/apost_exhortations/documents/hf_p-vi_exh_19751208_evangelii-nuntiandi.html' },
+  { id:'b120', category:'book', title:'Redemptor Hominis', author:'Pope St. John Paul II, 1979', tags:['encyclical','christ','human dignity'],
+    content:'John Paul II’s first encyclical, "The Redeemer of Man," sets out the vision of his whole pontificate: that Christ reveals man to himself and that the human person is the way of the Church.\n\nIt defends human dignity and freedom against the threats of a technological age, and was read in Communist Poland and beyond as a charter of human rights rooted in the Gospel.',
+    link:'https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html' },
+  { id:'b121', category:'book', title:'Salvifici Doloris', author:'Pope St. John Paul II, 1984', tags:['apostolic letter','suffering','the sick'],
+    content:'In this apostolic letter on the Christian meaning of human suffering, John Paul II asks why we suffer, and finds the answer in the Cross of Christ, who gives suffering a redemptive value.\n\nIt honors those who suffer and those who care for them, taking the Good Samaritan as a model. Its insights took on new depth during the Pope’s own long illness.',
+    link:'https://www.vatican.va/content/john-paul-ii/en/apost_letters/1984/documents/hf_jp-ii_apl_11021984_salvifici-doloris.html' },
+  { id:'b122', category:'book', title:'Veritatis Splendor', author:'Pope St. John Paul II, 1993', tags:['encyclical','morality','conscience'],
+    content:'"The Splendor of Truth" begins with the rich young man asking Jesus what good he must do, and from there sets out the foundations of Catholic moral teaching.\n\nIt teaches that freedom is fulfilled in truth, that conscience must be formed by God’s law, and that some acts are always wrong in themselves, regardless of intention or circumstances.',
+    link:'https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_06081993_veritatis-splendor.html' },
+  { id:'b123', category:'book', title:'Evangelium Vitae', author:'Pope St. John Paul II, 1995', tags:['encyclical','life','dignity'],
+    content:'"The Gospel of Life" defends the value and inviolability of every human life, from conception to natural death, against abortion, euthanasia, and a widespread "culture of death."\n\nIt calls for a new culture of life built through prayer, care for mothers and families, service to the sick and elderly, and laws that protect the weakest.',
+    link:'https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_25031995_evangelium-vitae.html' },
+  { id:'b124', category:'book', title:'Caritas in Veritate', author:'Pope Benedict XVI, 2009', tags:['encyclical','social teaching','economics'],
+    content:'Published after the 2008 financial crisis, "Charity in Truth" applies Catholic social teaching to globalization, the economy, technology, and the environment.\n\nBenedict argues that authentic development must serve the whole person and that love, gift, and gratuitousness have a place even in the marketplace.',
+    link:'https://www.vatican.va/content/benedict-xvi/en/encyclicals/documents/hf_ben-xvi_enc_20090629_caritas-in-veritate.html' },
+  { id:'b125', category:'book', title:'Lumen Fidei', author:'Pope Francis, 2013', tags:['encyclical','faith','light'],
+    content:'"The Light of Faith" was begun by Pope Benedict XVI and completed by Pope Francis, completing a trilogy with Benedict’s encyclicals on love and hope.\n\nIt presents faith as a light that illuminates all of human existence, received through the Church and handed on in the sacraments, and as a foundation for the common good.',
+    link:'https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20130629_enciclica-lumen-fidei.html' },
+  { id:'b126', category:'book', title:'Gaudete et Exsultate', author:'Pope Francis, 2018', tags:['exhortation','holiness','beatitudes'],
+    content:'In this apostolic exhortation on the call to holiness in today’s world, Francis insists that holiness is for everyone, not only for clergy and religious. He speaks of the "saints next door" who live faithfully in ordinary life.\n\nIt offers the Beatitudes and Matthew 25 as a portrait of holiness, and warns against subtle dangers such as spiritual pride and a cold, merely intellectual faith.',
+    link:'https://www.vatican.va/content/francesco/en/apost_exhortations/documents/papa-francesco_esortazione-ap_20180319_gaudete-et-exsultate.html' },
+  { id:'b127', category:'book', title:'Fratelli Tutti', author:'Pope Francis, 2020', tags:['encyclical','fraternity','social teaching'],
+    content:'Taking its title from St. Francis of Assisi, this encyclical on fraternity and social friendship was released during the COVID-19 pandemic.\n\nUsing the parable of the Good Samaritan, it calls for a love that crosses every border, and addresses migration, polarization, war, the death penalty, and the need for dialogue in public life.',
+    link:'https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20201003_enciclica-fratelli-tutti.html' },
+  { id:'b128', category:'book', title:'Compendium of the Catechism of the Catholic Church', author:'Pope Benedict XVI, 2005', tags:['catechism','reference','basics'],
+    content:'A concise summary of the Catechism of the Catholic Church in 598 questions and answers, prepared under Cardinal Ratzinger and published shortly after he became Pope Benedict XVI.\n\nIt follows the four parts of the full Catechism, on the Creed, the sacraments, the moral life, and prayer, and includes an appendix of common prayers.',
+    link:'https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_en.html' },
+  { id:'b129', category:'book', title:'YOUCAT', author:'edited under Cardinal Christoph Schönborn, 2011', tags:['catechism','young people','basics'],
+    content:'The Youth Catechism of the Catholic Church was written for young people and launched at World Youth Day in Madrid in 2011, with a foreword by Pope Benedict XVI.\n\nIn 527 questions and answers, with photos, quotations, and margin notes, it presents the whole faith in fresh, accessible language. It has been translated into dozens of languages and inspired related books on prayer, confession, and social teaching.' },
+  { id:'b130', category:'book', title:'Christ, the Life of the Soul', author:'Bl. Columba Marmion, 1917', tags:['benedictine','grace','spirituality'],
+    content:'Dom Columba Marmion was an Irish-born Benedictine abbot of Maredsous in Belgium. His conferences, gathered in this book, present the Christian life as sharing in the life of Christ through grace, faith, and the sacraments.\n\nPope Benedict XV kept it on his desk, and it became one of the most influential spiritual books of the early 20th century.' },
+  { id:'b131', category:'book', title:'The Intellectual Life', author:'A.-D. Sertillanges, OP, 1921', tags:['study','vocation','dominican'],
+    content:'Antonin-Dalmace Sertillanges, a French Dominican, wrote this practical guide for anyone called to a life of study. Drawing on St. Thomas Aquinas, he treats intellectual work as a vocation and a path to holiness.\n\nHe offers advice on organizing time, reading, taking notes, solitude, and the virtues a thinker needs. It is still read by students and writers today.' },
+  { id:'b132', category:'book', title:'The Spirit of Catholicism', author:'Karl Adam, 1924', tags:['church','theology','classic'],
+    content:'The German theologian Karl Adam wrote this portrait of the Catholic Church as the living Body of Christ, a community of faith, worship, and love, rather than merely an institution.\n\nIt was widely read in the decades before the Second Vatican Council and helped many people understand the Church from the inside.' },
+  { id:'b133', category:'book', title:'Europe and the Faith', author:'Hilaire Belloc, 1920', tags:['history','europe','civilization'],
+    content:'The Anglo-French writer Hilaire Belloc argues in this provocative history that the Catholic faith created European civilization and that the Roman Empire passed into the Church rather than being destroyed.\n\nHis most famous line, "Europe is the Faith," summarizes his thesis. The book is opinionated and vigorous, and it shaped Catholic historical thinking for decades.',
+    link:'https://www.gutenberg.org/ebooks/8442' },
+  { id:'b134', category:'book', title:'The Great Heresies', author:'Hilaire Belloc, 1938', tags:['history','heresy','apologetics'],
+    content:'Belloc surveys five great challenges to the Church: Arianism, Islam, the Albigensians, the Reformation, and what he called the "modern attack," a materialism that rejects all religion.\n\nWritten with characteristic boldness, the book explains how each movement arose, why it appealed to people, and how the Church responded.' },
+  { id:'b135', category:'book', title:'The Three Ages of the Interior Life', author:'Réginald Garrigou-Lagrange, OP, 1938', tags:['spirituality','mysticism','dominican'],
+    content:'This large work by a leading Dominican theologian in Rome (one of whose students was the future Pope John Paul II) maps the spiritual life in three stages: the purgative way of beginners, the illuminative way of proficients, and the unitive way of the perfect.\n\nDrawing on St. Thomas Aquinas, St. Teresa of Ávila, and St. John of the Cross, it argues that all Christians are called to the heights of contemplation.' },
+  { id:'b136', category:'book', title:'Catholicism: Christ and the Common Destiny of Man', author:'Henri de Lubac, SJ, 1938', tags:['church','theology','fathers'],
+    content:'The French Jesuit Henri de Lubac drew on the Church Fathers to show that the Catholic faith is social by its very nature: salvation is not merely individual, but the gathering of all humanity into the one Body of Christ.\n\nThe book helped launch the return to the sources that shaped the Second Vatican Council. De Lubac was later made a cardinal.' },
+  { id:'b137', category:'book', title:'Transformation in Christ', author:'Dietrich von Hildebrand, 1940', tags:['virtue','conversion','philosophy'],
+    content:'The German philosopher Dietrich von Hildebrand, an outspoken opponent of the Nazis who fled Europe for the United States, describes the inner attitudes that allow a person to be transformed by Christ.\n\nChapters on contrition, recollection, humility, patience, and peace show how the soul becomes open to grace. Pope Pius XII is said to have called him a "twentieth-century Doctor of the Church."' },
+  { id:'b138', category:'book', title:'The Reed of God', author:'Caryll Houselander, 1944', tags:['mary','spirituality','ordinary life'],
+    content:'Caryll Houselander, an English lay mystic and artist, meditates on the Blessed Virgin Mary as an empty reed through which God’s music is played.\n\nShe shows how Mary’s emptiness, waiting, and hidden life in Nazareth reveal the holiness of ordinary days, and how every Christian is called to bear Christ into the world.' },
+  { id:'b139', category:'book', title:'Peace of Soul', author:'Archbishop Fulton J. Sheen, 1949', tags:['psychology','peace','conversion'],
+    content:'In one of his best-selling books, Fulton Sheen addresses the anxiety and frustration of modern people, comparing the insights of psychology with the Christian understanding of sin, guilt, and grace.\n\nHe argues that true peace comes only through confession, conversion, and surrender to God. Its frankness and warmth made it a favorite in post-war America.' },
+  { id:'b140', category:'book', title:'Three to Get Married', author:'Archbishop Fulton J. Sheen, 1951', tags:['marriage','love','family'],
+    content:'Sheen’s classic on marriage argues that it takes three to make a lasting marriage: a husband, a wife, and God. With his characteristic wit, he explores the difference between love and mere attraction, the purpose of sex, children, and suffering in married life.\n\nIt remains a popular gift for engaged couples.' },
+  { id:'b141', category:'book', title:'New Seeds of Contemplation', author:'Thomas Merton, 1961', tags:['contemplation','prayer','trappist'],
+    content:'The Trappist monk Thomas Merton offers short reflections on contemplative prayer, the true self and the false self, and finding God in silence.\n\nA revised and expanded version of his 1949 Seeds of Contemplation, it has introduced many readers to the inner life of prayer.' },
+  { id:'b142', category:'book', title:'Love and Responsibility', author:'Karol Wojtyła (Pope St. John Paul II), 1960', tags:['marriage','ethics','philosophy'],
+    content:'Written while he was a young bishop in Kraków, drawing on years of conversations with young couples, Wojtyła’s philosophical study of love and sexuality rests on the "personalistic norm": a person must never be treated merely as a means, but only loved.\n\nThe book laid the foundation for his later Theology of the Body.' },
+  { id:'b143', category:'book', title:'Love Alone Is Credible', author:'Hans Urs von Balthasar, 1963', tags:['theology','love','revelation'],
+    content:'In this short but demanding book, the Swiss theologian Hans Urs von Balthasar argues that the Christian faith is believable not mainly because of historical proofs or philosophical arguments, but because of the glory of God’s self-giving love revealed in Christ.\n\nIt is an accessible entry point into one of the most important theologians of the 20th century.' },
+  { id:'b144', category:'book', title:'The Science of the Cross', author:'St. Teresa Benedicta of the Cross (Edith Stein), 1942', tags:['carmelite','philosophy','cross'],
+    content:'Edith Stein was writing this study of St. John of the Cross for the 400th anniversary of his birth when she was arrested by the Gestapo in 1942. She died at Auschwitz days later, and the manuscript was left unfinished.\n\nIt combines her training as a philosopher with deep spiritual insight into the mystery of the Cross, which she was about to share.' },
+  { id:'b145', category:'book', title:'The Way', author:'St. Josemaría Escrivá, 1939', tags:['opus dei','laity','maxims'],
+    content:'The founder of Opus Dei gathered 999 short points for meditation, written to help ordinary people seek holiness in their work and daily life.\n\nThe brief, direct sayings on prayer, character, work, and love of God have been translated into dozens of languages and sold millions of copies.' },
+  { id:'b146', category:'book', title:'Death Comes for the Archbishop', author:'Willa Cather, 1927', tags:['novel','missions','american west'],
+    content:'Willa Cather’s novel follows a French missionary bishop, Jean Marie Latour, and his friend Fr. Joseph Vaillant as they build up the Church in the vast territory of New Mexico in the 19th century.\n\nInspired by the life of Archbishop Jean-Baptiste Lamy, the book is a luminous portrait of friendship, faith, and the landscape of the Southwest. It is often listed among the great American novels.' },
+  { id:'b147', category:'book', title:'Edmund Campion', author:'Evelyn Waugh, 1935', tags:['biography','martyr','england'],
+    content:'Evelyn Waugh, a recent convert, wrote this vivid biography of the Elizabethan Jesuit martyr St. Edmund Campion and gave its proceeds to Campion Hall in Oxford.\n\nWith a novelist’s skill, he tells the story of Campion’s brilliant Oxford career, his conversion, his secret mission to England, his capture, and his death at Tyburn.' },
+  { id:'b148', category:'book', title:'The End of the Affair', author:'Graham Greene, 1951', tags:['novel','grace','conversion'],
+    content:'Set in London during and after the Blitz, Greene’s novel is narrated by a writer whose lover, Sarah, suddenly ends their affair. Searching for the reason, he discovers that she made a promise to God she did not know she believed in.\n\nIt is a moving and unsettling story about jealousy, grace, and a God who pursues even those who resist Him.' },
+  { id:'b149', category:'book', title:'The Moviegoer', author:'Walker Percy, 1961', tags:['novel','search','american south'],
+    content:'Binx Bolling, a New Orleans stockbroker who loses himself in movies, sets out on a "search" for meaning in the week before Mardi Gras.\n\nWalker Percy, a convert and physician-turned-novelist, explores the malaise of modern life with humor and insight. The novel won the National Book Award in 1962.' },
+  { id:'b150', category:'book', title:'Wise Blood', author:'Flannery O’Connor, 1952', tags:['novel','grace','american south'],
+    content:'Flannery O’Connor’s first novel follows Hazel Motes, a young veteran who founds the "Church Without Christ" to escape the Jesus who haunts him.\n\nDarkly comic and violent, it shows grace breaking into the most unlikely lives. O’Connor described Hazel’s integrity as lying in his inability to get rid of the ragged figure of Christ moving in the back of his mind.' },
+  { id:'b151', category:'book', title:'Father Elijah: An Apocalypse', author:'Michael D. O’Brien, 1996', tags:['novel','apocalypse','priests'],
+    content:'Father Elijah Schäfer, a Holocaust survivor turned Carmelite monk, is sent by the Pope on a secret mission to confront a charismatic political leader who may be the Antichrist.\n\nCanadian writer Michael O’Brien’s thriller explores faith, temptation, and the spiritual struggles of the modern world.' },
+  { id:'b152', category:'book', title:'The Spirit of the Liturgy (Ratzinger)', author:'Joseph Ratzinger (Pope Benedict XVI), 2000', tags:['liturgy','mass','worship'],
+    content:'Written as a tribute to Romano Guardini’s book of the same name, Cardinal Ratzinger’s study explores the meaning of Christian worship: its roots in the Old Testament, its orientation toward God, and the place of sacred time, space, art, music, and gesture.\n\nIt became one of the most widely discussed books on the liturgy in recent decades.' },
+  { id:'b153', category:'book', title:'Handbook of Christian Apologetics', author:'Peter Kreeft and Ronald K. Tacelli, SJ, 1994', tags:['apologetics','philosophy','reference'],
+    content:'Two Boston College philosophers present clear, concise arguments for the existence of God, the divinity of Christ, the Resurrection, life after death, and the reliability of Scripture, and answer common objections such as the problem of evil.\n\nIts outline format makes it a practical reference for anyone who wants to explain and defend the faith.' },
+  { id:'b154', category:'book', title:'The Lamb’s Supper', author:'Scott Hahn, 1999', tags:['mass','revelation','scripture'],
+    content:'Scott Hahn, a former Presbyterian minister who became Catholic, shows how the Book of Revelation describes the heavenly liturgy that every Mass makes present on earth.\n\nWalking through the parts of the Mass, he connects them to their roots in Scripture. It has helped countless readers see the Mass as "heaven on earth."' },
+  { id:'b155', category:'book', title:'Rome Sweet Home', author:'Scott and Kimberly Hahn, 1993', tags:['conversion','memoir','marriage'],
+    content:'Scott and Kimberly Hahn tell, in alternating chapters, the story of their journey from evangelical Protestantism into the Catholic Church, including the strain their convictions placed on their marriage when Scott converted years before Kimberly.\n\nThe book has become one of the most popular modern conversion stories.' },
+  { id:'b156', category:'book', title:'Jesus and the Jewish Roots of the Eucharist', author:'Brant Pitre, 2011', tags:['eucharist','scripture','judaism'],
+    content:'Biblical scholar Brant Pitre explores the Jewish hopes for a new Passover, new manna, and the bread of the Presence in the Temple, and shows how Jesus fulfilled them at the Last Supper.\n\nThe book makes a compelling case for the Real Presence from the world in which Jesus lived and taught.' },
+  { id:'b157', category:'book', title:'Searching for and Maintaining Peace', author:'Fr. Jacques Philippe, 1991', tags:['peace','trust','spirituality'],
+    content:'This small, beloved book explains why peace of heart is essential to the spiritual life and how we lose it through fear, scruples, and the desire to control everything.\n\nFr. Philippe offers simple advice on trust in God, accepting our weakness, and responding to suffering without anxiety.' },
+  { id:'b158', category:'book', title:'33 Days to Morning Glory', author:'Fr. Michael E. Gaitley, MIC, 2011', tags:['mary','consecration','retreat'],
+    content:'This do-it-yourself retreat prepares readers for Marian consecration over thirty-three days, drawing on the teaching of four great Marian saints: St. Louis de Montfort, St. Maximilian Kolbe, St. Teresa of Calcutta, and St. John Paul II.\n\nIts short daily readings have made it popular with parishes and small groups.' },
+  { id:'b159', category:'book', title:'The Power of Silence', author:'Cardinal Robert Sarah, 2016', tags:['silence','prayer','contemplation'],
+    content:'In this book-length interview, Cardinal Robert Sarah of Guinea reflects on the need for silence in a world addicted to noise. He argues that God speaks in silence and that we can hear Him only when we learn to be still.\n\nIts reflections draw on the Carthusian monks, the saints, and Sarah’s own experience under a Marxist dictatorship.' },
+  { id:'b160', category:'book', title:'With God in Russia', author:'Walter J. Ciszek, SJ, 1964', tags:['memoir','prison','soviet union'],
+    content:'Fr. Walter Ciszek, an American Jesuit, entered the Soviet Union secretly in 1940 and spent twenty-three years in prisons, the Lubyanka, and labor camps in Siberia before being released in a prisoner exchange.\n\nThis memoir tells the outward story of his survival; its companion, He Leadeth Me, tells the inner story of his faith.' },
+  { id:'b161', category:'book', title:'The Ball and the Cross', author:'G.K. Chesterton, 1909', tags:['novel','debate','comedy'],
+    content:'A devout Catholic Highlander and a fiery atheist agree to fight a duel over religion, but the police, the press, and the whole modern world keep interrupting them.\n\nAs they flee across England, the two enemies become friends. The novel is full of Chesterton’s paradoxes and humor.',
+    link:'https://www.gutenberg.org/ebooks/5265' },
+  { id:'b162', category:'book', title:'The Catholic Church and Conversion', author:'G.K. Chesterton, 1926', tags:['conversion','apologetics','essay'],
+    content:'Written a few years after his own reception into the Church in 1922, Chesterton’s short book describes the stages a person goes through in approaching the Catholic faith: first patronizing it, then discovering it, and finally running from it, before surrendering.\n\nIt is a witty, honest account of why so many thoughtful people were becoming Catholic.' },
+  { id:'b163', category:'book', title:'The Belief of Catholics', author:'Ronald Knox, 1927', tags:['apologetics','convert','classic'],
+    content:'Ronald Knox, an Anglican clergyman who became a Catholic priest, explains with clarity and wit why he believes what the Catholic Church teaches, from the existence of God to the authority of the Church.\n\nIt was one of the most effective works of 20th-century English apologetics.' },
+  { id:'b164', category:'book', title:'The End of the Modern World', author:'Romano Guardini, 1950', tags:['culture','modernity','philosophy'],
+    content:'The German-Italian priest Romano Guardini analyzes how the modern age, with its confidence in nature, the autonomous individual, and culture, is giving way to something new: an age of mass society and immense technological power without a corresponding growth in conscience.\n\nPope Francis quoted it extensively in Laudato Si’.' },
+  { id:'b165', category:'book', title:'The Way of Divine Love', author:'Sr. Josefa Menéndez, 1938', tags:['sacred heart','mysticism','mercy'],
+    content:'Josefa Menéndez was a Spanish lay sister of the Society of the Sacred Heart who died at thirty-three in 1923. Her superiors recorded the messages she reported receiving from Christ about His Sacred Heart and His mercy toward sinners.\n\nPublished after her death, the book became a classic of 20th-century devotion to the Sacred Heart.' },
+  { id:'b166', category:'book', title:'The Letters of St. Thérèse of Lisieux', author:'St. Thérèse of Lisieux, written 1877–1897', tags:['carmelite','letters','little way'],
+    content:'Thérèse’s letters to her sisters, her cousins, and two missionary priests she adopted as spiritual brothers show the Little Way in action, in her own words and without the editing of her autobiography.\n\nThey reveal her humor, her suffering during her final illness, and her unshakable trust in God’s merciful love.' },
   { id:'h50', category:'history', title:'Our Lady of the Pillar', author:'c. 40 (tradition)', year:40, era:'apostolic', tags:['marian','apparition','spain','tradition'],
     content:'According to an ancient Spanish tradition, the Virgin Mary appeared to St. James the Greater while he was discouraged by his slow progress preaching in Spain. She was said to be standing on a pillar of jasper by the Ebro River at Zaragoza. She encouraged him and asked for a church to be built there.\n\nIf the tradition is true, this would be the only apparition during Mary’s earthly life. The Basilica of Our Lady of the Pillar still enshrines the pillar, and her feast on October 12 is Spain’s national day of Hispanic heritage.' },
   { id:'h51', category:'history', title:'Our Lady of Walsingham', author:'1061', year:1061, era:'medieval', tags:['marian','apparition','england','pilgrimage'],
@@ -3562,7 +3997,20 @@ const SAINT_META = {
   s133:'revolution 1860 bi te', s134:'revolution 1876 nu my', s135:'revolution 1846 pr ma', s136:'revolution 1887 ma yo la', s137:'revolution 1890 pr dr sc te', s138:'revolution 1894 pa la wo',
   s139:'revolution 1898 pr mo', s140:'modern 1918 nu me mi', s141:'modern 1914 po', s142:'modern 1955 nu fo te', s143:'modern 1902 ma yo', s144:'modern 1903 my yo la',
   s145:'modern 1909 nu fo te', s146:'modern 1927 me la', s147:'modern 1920 yo my', s148:'modern 1942 nu ma sc te', s149:'modern 1925 yo la', s150:'modern 1963 po',
-  s151:'modern 1975 pr fo', s152:'modern 1978 po', s153:'modern 1980 bi ma', s154:'modern 2006 yo la', s155:'angels  an', s156:'angels  an'
+  s151:'modern 1975 pr fo', s152:'modern 1978 po', s153:'modern 1980 bi ma', s154:'modern 2006 yo la', s155:'angels  an', s156:'angels  an',
+  s157:'apostolic 80 ap ma', s158:'apostolic 80 ap ma mi', s159:'apostolic 62 ap ma bi', s160:'apostolic 70 ap ma', s161:'apostolic 97 bi ma mi', s162:'apostolic 70 la',
+  s163:'apostolic 99 po ma sc', s164:'martyrs 287 ma me', s165:'martyrs 305 ma sc yo', s166:'martyrs 304 ma yo', s167:'martyrs 304 ma so', s168:'martyrs 287 ma so',
+  s169:'martyrs 305 bi ma', s170:'martyrs 249 ma', s171:'martyrs 258 bi ma mi', s172:'fathers 367 bi dr sc', s173:'fathers 386 bi dr sc te', s174:'fathers 395 bi sc my',
+  s175:'fathers 379 nu fo', s176:'fathers 405 mo pr ma', s177:'fathers 404 pa nu fo', s178:'fathers 450 bi dr', s179:'fathers 589 bi mo fo', s180:'early 604 bi mo mi',
+  s181:'early 615 mo mi fo', s182:'early 680 nu fo te', s183:'early 687 bi mo mi', s184:'early 749 pr mo dr sc', s185:'medieval 1038 ro pa', s186:'medieval 1066 ro',
+  s187:'medieval 1072 bi mo dr sc', s188:'medieval 1243 ro pa nu', s189:'medieval 1252 ro so pa', s190:'medieval 1275 pr mo sc', s191:'renaissance 1302 nu my sc', s192:'renaissance 1419 pr mo mi',
+  s193:'renaissance 1444 pr mo', s194:'renaissance 1456 pr mo', s195:'renaissance 1484 ro yo', s196:'renaissance 1487 pa so mo la', s197:'reform 1540 fo te nu', s198:'reform 1550 fo me so',
+  s199:'reform 1572 po mo', s200:'reform 1568 yo mo', s201:'reform 1581 pr ma sc', s202:'reform 1586 ma pa la', s203:'reform 1597 pr dr sc te', s204:'reform 1606 bi mi',
+  s205:'reform 1660 fo nu pa', s206:'reform 1672 ma yo mi la', s207:'revolution 1719 pr fo te', s208:'revolution 1775 pr fo my', s209:'revolution 1852 nu mi te', s210:'revolution 1856 nu fo te',
+  s211:'revolution 1841 pr mi ma', s212:'revolution 1857 yo la', s213:'revolution 1862 yo mo', s214:'revolution 1870 bi fo mi sc', s215:'revolution 1881 bi mi fo', s216:'revolution 1878 nu my',
+  s217:'modern 1908 pr mi', s218:'modern 1906 nu my sc', s219:'modern 1916 pr mo so mi', s220:'modern 1920 nu yo my', s221:'modern 1928 ma yo la', s222:'modern 1942 pr mo',
+  s223:'modern 1942 pr mo ma sc te', s224:'modern 1992 nu fo me', s225:'revolution 1815 ma pr mi', s226:'revolution 1839 ma pr', s227:'fathers 459 mo', s228:'revolution 1771 fo pa nu',
+  s229:'reform 1672 nu mi te pa', s230:'revolution 1879 fo nu wo', s231:'modern 1914 nu', s232:'revolution 1711 pr mi'
 };
 const SAINT_ERAS = [
   { key:'apostolic',   name:'The Apostolic Age',        years:'to AD 100' },
@@ -3773,7 +4221,7 @@ function render(){
       home:renderHome, calendar:renderCalendar, rosary:renderRosary, shop:renderShop, stations:renderStations,
       chaplet:renderChaplet, history:renderHistory, daily:renderDaily, theology:renderTheology,
       mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan,
-      community:renderCommunity, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
+      community:renderCommunity, resources:renderResources, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
       'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
@@ -4832,7 +5280,19 @@ const SAINT_WIKI = {
   'St. Joachim':'Saint Joachim',
   'St. Bruno':'Bruno of Cologne',
   'St. Isidore of Seville':'Isidore of Seville',
-  'Sts. Louis and Zélie Martin':'Louis Martin and Marie-Azélie Guérin'
+  'Sts. Louis and Zélie Martin':'Louis Martin and Marie-Azélie Guérin',
+  'St. James the Less':'James, son of Alphaeus',
+  'St. Martha':'Martha',
+  'Pope St. Clement I':'Pope Clement I',
+  'St. Pancras':'Pancras of Rome',
+  'St. Paula':'Paula of Rome',
+  'St. David of Wales':'Saint David',
+  'St. John Damascene':'John of Damascus',
+  'St. Stephen of Hungary':'Stephen I of Hungary',
+  'St. Turibius of Mogrovejo':'Toribio Alfonso de Mogrovejo',
+  'St. Marie of the Incarnation':'Marie of the Incarnation (Ursuline)',
+  'St. Dulce of the Poor':'Dulce de Souza Lopes Pontes',
+  'St. Rafqa':'Rafqa Pietra Choboq Ar-Rayès'
 };
 // Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
 const ENTRY_WIKI = {
@@ -5028,7 +5488,80 @@ const ENTRY_WIKI = {
   h97:["Canonization of Pope John XXIII and Pope John Paul II"],
   h98:["Notre-Dame de Paris fire", "Notre-Dame de Paris"],
   h99:["Synod on Synodality"],
-  h100:["Jubilee 2025", "Jubilee (Christianity)"]
+  h100:["Jubilee 2025", "Jubilee (Christianity)"],
+  b94:["Against Heresies (Irenaeus)", "Irenaeus"],
+  b95:["First Apology of Justin Martyr", "Justin Martyr"],
+  b96:["First Epistle of Clement", "Pope Clement I"],
+  b97:["Basil of Caesarea"],
+  b98:["John Chrysostom"],
+  b99:["De Doctrina Christiana", "Augustine of Hippo"],
+  b100:["Regula Pastoralis", "Pope Gregory I"],
+  b101:["Dialogues (Gregory)", "Pope Gregory I"],
+  b102:["Cur Deus Homo", "Anselm of Canterbury"],
+  b103:["Scivias", "Hildegard of Bingen"],
+  b104:["Summa contra Gentiles", "Thomas Aquinas"],
+  b105:["Bonaventure"],
+  b106:["Catherine of Genoa"],
+  b107:["Louis of Granada"],
+  b108:["Spiritual Canticle", "John of the Cross"],
+  b109:["Living Flame of Love", "John of the Cross"],
+  b110:["Robert Bellarmine"],
+  b111:["Francis de Sales"],
+  b112:["Alphonsus Liguori"],
+  b113:["Alphonsus Liguori"],
+  b114:["An Essay in Aid of a Grammar of Assent", "John Henry Newman"],
+  b115:["Baltimore Catechism"],
+  b116:["Aeterni Patris", "Pope Leo XIII"],
+  b117:["Quadragesimo anno", "Pope Pius XI"],
+  b118:["Mystici corporis Christi", "Pope Pius XII"],
+  b119:["Evangelii nuntiandi", "Pope Paul VI"],
+  b120:["Redemptor hominis", "Pope John Paul II"],
+  b121:["Salvifici doloris", "Pope John Paul II"],
+  b122:["Veritatis splendor", "Pope John Paul II"],
+  b123:["Evangelium vitae", "Pope John Paul II"],
+  b124:["Caritas in veritate", "Pope Benedict XVI"],
+  b125:["Lumen fidei", "Pope Francis"],
+  b126:["Gaudete et exsultate", "Pope Francis"],
+  b127:["Fratelli tutti", "Pope Francis"],
+  b128:["Compendium of the Catechism of the Catholic Church", "Catechism of the Catholic Church"],
+  b129:["Youcat"],
+  b130:["Columba Marmion"],
+  b131:["Antonin-Dalmace Sertillanges"],
+  b132:["Karl Adam"],
+  b133:["Hilaire Belloc"],
+  b134:["Hilaire Belloc"],
+  b135:["Réginald Garrigou-Lagrange"],
+  b136:["Henri de Lubac"],
+  b137:["Dietrich von Hildebrand"],
+  b138:["Caryll Houselander"],
+  b139:["Fulton J. Sheen"],
+  b140:["Fulton J. Sheen"],
+  b141:["New Seeds of Contemplation", "Thomas Merton"],
+  b142:["Love and Responsibility", "Pope John Paul II"],
+  b143:["Hans Urs von Balthasar"],
+  b144:["Edith Stein"],
+  b145:["The Way (book)", "Josemaría Escrivá"],
+  b146:["Death Comes for the Archbishop", "Willa Cather"],
+  b147:["Evelyn Waugh"],
+  b148:["The End of the Affair", "Graham Greene"],
+  b149:["The Moviegoer", "Walker Percy"],
+  b150:["Wise Blood", "Flannery O'Connor"],
+  b151:["Father Elijah", "Michael D. O'Brien"],
+  b152:["Pope Benedict XVI"],
+  b153:["Peter Kreeft"],
+  b154:["Scott Hahn"],
+  b155:["Scott Hahn"],
+  b156:["Brant Pitre"],
+  b157:["Jacques Philippe"],
+  b158:["Marian Fathers of the Immaculate Conception"],
+  b159:["Robert Sarah"],
+  b160:["Walter Ciszek"],
+  b161:["The Ball and the Cross", "G. K. Chesterton"],
+  b162:["G. K. Chesterton"],
+  b163:["Ronald Knox"],
+  b164:["Romano Guardini"],
+  b165:["Josefa Menéndez"],
+  b166:["Thérèse of Lisieux"]
 };
 const SAINTLY_DESC = /saint|martyr|pope|apostle|bishop|priest|nun|friar|monk|archangel|theolog|mystic|abbess|abbot|virgin|evangelist|missionary|hermit|deacon|jesuit|franciscan|dominican|carmelite|christian|catholic|religious|prophet|mother of|father of|patron|jesus|disciple|church|patriarch|cardinal|gospel|founder/i;
 const PORTRAIT_CACHE_KEY = 'sanctify.saintPortraits.v3';
@@ -6171,6 +6704,149 @@ async function loadHomeCommunity(box){
 }
 
 /* =========================================================
+   LEARNING RESOURCES: trusted places to keep learning
+   ========================================================= */
+const RESOURCE_GROUPS = [
+  { key:'start',       name:'New, returning, or exploring',      icon:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>' },
+  { key:'reference',   name:'Church documents & reference',      icon:'<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8.5 12h7M8.5 15.5h7"/>' },
+  { key:'scripture',   name:'Scripture & daily prayer',          icon:'<path d="M6 3.5h12.5v17H6.5A1.5 1.5 0 0 1 5 19V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M11.75 6v7.5M9.25 8.6h5"/>' },
+  { key:'listen',      name:'Podcasts',                          icon:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3.5" y="13.5" width="4" height="6.5" rx="1.5"/><rect x="16.5" y="13.5" width="4" height="6.5" rx="1.5"/>' },
+  { key:'watch',       name:'Video',                             icon:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.2v5.6l4.8-2.8z"/>' },
+  { key:'study',       name:'Courses & lectures',                icon:'<path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.5 1.5 3.4 2.2 5.5 2.2s4-.7 5.5-2.2V11M21.5 9v5"/>' },
+  { key:'apologetics', name:'Explaining & defending the faith',  icon:'<path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M12 8v8M8.5 11h7"/>' },
+  { key:'news',        name:'Catholic news',                     icon:'<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2M7.5 8.5h6M7.5 12h6M7.5 15.5h4"/>' },
+  { key:'families',    name:'Families & children',               icon:'<circle cx="8" cy="7" r="2.6"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20c.4-3.6 2.2-5.6 4.5-5.6s4.1 2 4.5 5.6M13 20c.3-2.7 1.6-4.2 3.5-4.2s3.2 1.5 3.5 4.2"/>' },
+  { key:'science',     name:'Faith & science',                   icon:'<circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/>' }
+];
+
+// cost: free, mixed (free with paid extras), paid
+const RESOURCES = [
+  { group:'start', name:'MassTimes.org', url:'https://masstimes.org/', cost:'free', featured:true,
+    desc:'Find Mass, Confession, and Adoration times at Catholic parishes around the world, searchable by location.' },
+  { group:'start', name:'Catholics Come Home', url:'https://www.catholicscomehome.org/', cost:'free',
+    desc:'Gentle answers and encouragement for anyone returning to the Church or exploring the Catholic faith for the first time.' },
+
+  { group:'reference', name:'Catechism of the Catholic Church', url:'https://www.vatican.va/archive/ENG0015/_INDEX.HTM', cost:'free', featured:true,
+    desc:'The full text of the Catechism online, arranged by paragraph number. The surest single summary of what the Church believes and why.' },
+  { group:'reference', name:'Vatican.va', url:'https://www.vatican.va/', cost:'free',
+    desc:'The official website of the Holy See, with encyclicals, apostolic letters, Council documents, and papal homilies in many languages.' },
+  { group:'reference', name:'New Advent', url:'https://www.newadvent.org/', cost:'free',
+    desc:'The classic Catholic Encyclopedia, the writings of the Church Fathers, the Summa Theologiae, and the Bible, all cross-linked in one place.' },
+  { group:'reference', name:'Papal Encyclicals Online', url:'https://www.papalencyclicals.net/', cost:'free',
+    desc:'An archive of papal documents and the decrees of the ecumenical councils, from the early Church to the present day.' },
+  { group:'reference', name:'Catholic Culture Library', url:'https://www.catholicculture.org/culture/library/', cost:'free',
+    desc:'Thousands of Church documents and classic Catholic texts, organized by topic with short summaries.' },
+  { group:'reference', name:'USCCB', url:'https://www.usccb.org/', cost:'free',
+    desc:'The U.S. Conference of Catholic Bishops, with teaching documents, guides to the sacraments, and resources for prayer and catechesis.' },
+
+  { group:'scripture', name:'Daily Mass Readings (USCCB)', url:'https://bible.usccb.org/', cost:'free',
+    desc:'The readings for each day’s Mass from the New American Bible, the translation read at Mass in the United States, with audio and short video reflections.' },
+  { group:'scripture', name:'RSV Catholic Edition on Bible Gateway', url:'https://www.biblegateway.com/versions/Revised-Standard-Version-Catholic-Edition-RSVCE-Bible/', cost:'free',
+    desc:'Read and search the Revised Standard Version, Catholic Edition, the translation quoted throughout Sanctify.' },
+  { group:'scripture', name:'Universalis', url:'https://universalis.com/', cost:'mixed',
+    desc:'The Liturgy of the Hours and the Mass readings for every day, free on the web, with paid apps for offline use.' },
+  { group:'scripture', name:'Divine Office', url:'https://divineoffice.org/', cost:'free',
+    desc:'Pray the Liturgy of the Hours with the whole Church, with audio recordings of every hour, read and sung.' },
+  { group:'scripture', name:'iBreviary', url:'https://www.ibreviary.com/', cost:'free',
+    desc:'A free breviary, missal, and book of prayers and blessings for phone and computer, in several languages.' },
+  { group:'scripture', name:'Hallow', url:'https://hallow.com/', cost:'mixed',
+    desc:'A prayer app with guided meditations, the Rosary, Scripture readings, and Lectio Divina. Some sessions are free; most need a subscription.' },
+
+  { group:'listen', name:'The Bible in a Year', url:'https://www.ascensionpress.com/bibleinayear', cost:'free', featured:true,
+    desc:'Fr. Mike Schmitz reads the whole Bible in 365 daily episodes of about twenty minutes, with commentary and prayer. One of the most popular podcasts in America.' },
+  { group:'listen', name:'The Catechism in a Year', url:'https://ascensionpress.com/pages/content-hub/the-catechism-in-a-year-with-fr-mike-schmitz', cost:'free',
+    desc:'Fr. Mike Schmitz reads and explains the entire Catechism in short daily episodes, a companion to The Bible in a Year.' },
+  { group:'listen', name:'Catholic Answers Live', url:'https://www.catholic.com/audio/cal', cost:'free',
+    desc:'A daily call-in radio show and podcast where apologists answer listeners’ questions about the faith, live.' },
+
+  { group:'watch', name:'Ascension Presents', url:'https://www.youtube.com/@AscensionPresents', cost:'free',
+    desc:'Short, down-to-earth videos with Fr. Mike Schmitz and others on faith, relationships, suffering, and everyday questions.' },
+  { group:'watch', name:'Bishop Robert Barron', url:'https://www.youtube.com/@BishopBarron', cost:'free',
+    desc:'Commentary on faith, philosophy, film, and culture from the founder of Word on Fire, including his Sunday sermons.' },
+  { group:'watch', name:'Pints With Aquinas', url:'https://www.youtube.com/@pintswithaquinas', cost:'free',
+    desc:'Matt Fradd’s long-form interviews and debates on philosophy, apologetics, and the spiritual life.' },
+  { group:'watch', name:'EWTN', url:'https://www.ewtn.com/', cost:'free',
+    desc:'The worldwide Catholic television and radio network founded by Mother Angelica, with daily Mass, devotions, and teaching programs.' },
+  { group:'watch', name:'FORMED', url:'https://formed.org/', cost:'paid',
+    desc:'A streaming library of Catholic films, Bible studies, audio dramas, and children’s programs. Many parishes give their members free access.' },
+
+  { group:'study', name:'Institute of Catholic Culture', url:'https://instituteofcatholicculture.org/', cost:'free',
+    desc:'Free lectures, courses, and podcasts on theology, Scripture, Church history, and the Eastern Catholic Churches.' },
+  { group:'study', name:'The Thomistic Institute', url:'https://thomisticinstitute.org/', cost:'free',
+    desc:'Lectures by leading Catholic philosophers and theologians, available online and as a podcast, from the Dominican House of Studies.' },
+  { group:'study', name:'Franciscan at Home', url:'https://franciscanathome.com/', cost:'mixed',
+    desc:'Online courses from the Catechetical Institute of Franciscan University of Steubenville, for catechists, parents, and anyone who wants to learn the faith.' },
+  { group:'study', name:'Word on Fire Institute', url:'https://wordonfire.institute/', cost:'paid',
+    desc:'In-depth courses with Bishop Barron and scholars on theology, philosophy, and evangelization, with an online community.' },
+  { group:'study', name:'Catholic Distance University', url:'https://www.cdu.edu/', cost:'paid',
+    desc:'An accredited online Catholic university offering degrees and certificates in theology and catechetics.' },
+
+  { group:'apologetics', name:'Catholic Answers', url:'https://www.catholic.com/', cost:'free',
+    desc:'Thousands of articles, tracts, and an encyclopedia answering common questions and objections about the Catholic faith.' },
+  { group:'apologetics', name:'Word on Fire', url:'https://www.wordonfire.org/', cost:'free',
+    desc:'Bishop Barron’s ministry, with articles, videos, and books that engage the culture and the Catholic intellectual tradition.' },
+
+  { group:'news', name:'Vatican News', url:'https://www.vaticannews.va/en.html', cost:'free',
+    desc:'The official news service of the Holy See, covering the Pope’s homilies, travels, and the life of the Church worldwide.' },
+  { group:'news', name:'EWTN News', url:'https://www.ewtnnews.com/', cost:'free',
+    desc:'Daily Catholic news from EWTN, which now includes the reporting of the former Catholic News Agency.' },
+  { group:'news', name:'National Catholic Register', url:'https://www.ncregister.com/', cost:'free',
+    desc:'News, commentary, and features on the Church in the United States and around the world.' },
+  { group:'news', name:'The Pillar', url:'https://www.pillarcatholic.com/', cost:'mixed',
+    desc:'Independent investigative journalism on Church news, canon law, and Vatican finances. Some articles are for subscribers.' },
+  { group:'news', name:'Aleteia', url:'https://aleteia.org/', cost:'free',
+    desc:'Catholic news, spirituality, and family life articles, published in several languages.' },
+
+  { group:'families', name:'Catholic Icing', url:'https://www.catholicicing.com/', cost:'mixed',
+    desc:'Crafts, printables, and activities for teaching young children about the saints, the sacraments, and the liturgical year.' },
+  { group:'families', name:'Catholic Sprouts', url:'https://catholicsprouts.com/', cost:'free',
+    desc:'A short daily podcast for children, with a prayer, a saint, and a simple lesson on the faith.' },
+  { group:'families', name:'Loyola Press', url:'https://www.loyolapress.com/', cost:'mixed',
+    desc:'The Jesuit publisher’s free family activities, Ignatian prayer guides, and its popular Three-Minute Retreats.' },
+
+  { group:'science', name:'Vatican Observatory', url:'https://www.vaticanobservatory.va/en', cost:'free',
+    desc:'One of the oldest astronomical research institutions in the world, run by Jesuit astronomers, with articles on faith and science.' },
+  { group:'science', name:'Society of Catholic Scientists', url:'https://www.catholicscientists.org/', cost:'free',
+    desc:'An international society showing the harmony of faith and science, with lectures and the stories of Catholic scientists past and present.' }
+];
+const COST_LABEL = { free:'Free', mixed:'Free & paid', paid:'Paid' };
+let resourceGroup = 'all';
+
+function resourceCard(r){
+  const host = new URL(r.url).hostname.replace(/^www\./, '');
+  return `<a class="res-card" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">
+    <span class="res-top"><span class="res-host">${escapeHtml(host)}</span><span class="res-cost res-${r.cost}">${COST_LABEL[r.cost]}</span></span>
+    <span class="res-name">${escapeHtml(r.name)}</span>
+    <span class="res-desc">${escapeHtml(r.desc)}</span>
+    <span class="res-visit">Visit ↗</span>
+  </a>`;
+}
+
+function renderResources(){
+  const groupIcon = g => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${g.icon}</svg>`;
+  const shown = RESOURCE_GROUPS.filter(g => resourceGroup === 'all' || g.key === resourceGroup);
+  entryListEl.innerHTML = `
+    <div class="res-page">
+      ${resourceGroup === 'all' ? `
+      <section class="res-featured">
+        <h3 class="res-featured-title">Start here</h3>
+        <div class="res-grid">${RESOURCES.filter(r => r.featured).map(resourceCard).join('')}</div>
+      </section>` : ''}
+      <div class="patron-filters-row res-chips" role="group" aria-label="Kinds of resources">
+        <button class="patron-chip${resourceGroup === 'all' ? ' active' : ''}" data-rgroup="all" aria-pressed="${resourceGroup === 'all'}">Everything</button>
+        ${RESOURCE_GROUPS.map(g => `<button class="patron-chip${resourceGroup === g.key ? ' active' : ''}" data-rgroup="${g.key}" aria-pressed="${resourceGroup === g.key}">${escapeHtml(g.name)}</button>`).join('')}
+      </div>
+      ${shown.map(g => `
+        <section class="res-section">
+          <h3 class="res-heading"><span class="res-icon">${groupIcon(g)}</span>${escapeHtml(g.name)}</h3>
+          <div class="res-grid">${RESOURCES.filter(r => r.group === g.key).map(resourceCard).join('')}</div>
+        </section>`).join('')}
+      <p class="shop-note">These are independent websites, not affiliated with Sanctify. We try to list well-established, faithful sources, but please use your own judgment, and check with your parish if you are unsure about a resource.</p>
+    </div>`;
+  entryListEl.querySelectorAll('[data-rgroup]').forEach(b => b.addEventListener('click', () => { resourceGroup = b.dataset.rgroup; renderResources(); }));
+}
+
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -6194,6 +6870,7 @@ const NAV_ICONS = {
   quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".7" fill="currentColor"/>',
   shop:'<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  resources:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
   community:'<circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M2.8 20c.6-3.8 3.1-5.9 6.2-5.9s5.6 2.1 6.2 5.9"/><path d="M15.4 14.4c.5-.2 1-.3 1.6-.3 2.3 0 4 1.5 4.4 4.4"/>',
   account:'<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c.9-4 3.9-6.3 7.5-6.3s6.6 2.3 7.5 6.3"/>',
   reply:'<path d="M5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5v-9A1.5 1.5 0 0 1 5.5 4z"/>'
@@ -6228,6 +6905,7 @@ const SECTIONS = {
   calendar:{ name:'Calendar of Feasts & Observances', group:'Explore', icon:'calendar', color:'var(--purple)' },
   plan:{ name:'Bible Reading Plans', group:'Explore', icon:'plan', color:'var(--teal)' },
   quiz:{ name:'Quiz', group:'Explore', icon:'quiz', color:'var(--amber)' },
+  resources:{ name:'Learning Resources', group:'Learn', icon:'resources', color:'var(--teal)' },
   shop:{ name:'Catholic Shops', group:'Explore', icon:'shop', color:'var(--amber)' }
 };
 const LIBRARY_CATS = new Set(['prayer', 'saint', 'theology', 'history', 'book', 'bible', 'all']);
@@ -6307,6 +6985,7 @@ const HUBS = {
         links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions']], meta:`${countOf('history')} events` },
       { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
       { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
+      { route:'learn/resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
       { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
       (() => {
         const t = dailyPick(library.filter(e => e.category === 'theology'), 79, startOfToday());
@@ -6618,7 +7297,8 @@ const ROUTES = {
   'learn/history/apparitions':   { cat:'history', parent:'learn/history', marian:true, name:'Marian Apparitions',
                                    desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
   'learn/plans':                 { cat:'plan', parent:'learn' },
-  'learn/quiz':                  { cat:'quiz', parent:'learn' }
+  'learn/quiz':                  { cat:'quiz', parent:'learn' },
+  'learn/resources':             { cat:'resources', parent:'learn' }
 };
 const CAT_ROUTE = {};
 Object.entries(ROUTES).forEach(([route, r]) => { if(!(r.cat in CAT_ROUTE)) CAT_ROUTE[r.cat] = route; });
