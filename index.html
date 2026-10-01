@@ -475,31 +475,253 @@
   }
 
   /* ---------- Rosary ---------- */
-  .rosary-wrap{max-width:640px; margin:10px auto 0; text-align:center;}
-  .rosary-intro{color:var(--ink-soft); font-size:0.95rem; margin-bottom:18px;}
-  .rosary-mystery-select{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;}
-  .rosary-mystery-btn{
-    font-family:'Source Serif 4', serif; font-size:0.92rem; cursor:pointer;
-    border:1px solid var(--ink); background:transparent; color:var(--ink);
-    padding:9px 16px; border-radius:var(--radius);
+  /* ---------- Guided prayer: Rosary, Stations of the Cross, Divine Mercy Chaplet ---------- */
+  .devo, .devo-start{--devo:var(--wine); max-width:1040px; margin:0 auto;}
+  .devo-progress{height:4px; border-radius:4px; overflow:hidden; margin:2px 0 24px; background:color-mix(in srgb, var(--devo) 14%, var(--line));}
+  .devo-progress span{display:block; height:100%; border-radius:inherit; background:var(--devo); transition:width 0.35s ease;}
+  .devo-layout{display:grid; gap:30px; align-items:start;}
+  .devo-layout.has-aside{grid-template-columns:minmax(220px, 300px) minmax(0, 1fr);}
+  .devo-aside{
+    position:sticky; top:86px; padding:18px 16px; border-radius:22px; border:1px solid var(--line);
+    background:radial-gradient(circle at 50% 32%, color-mix(in srgb, var(--devo) 11%, var(--parchment-light)), var(--parchment-light) 72%);
   }
-  .rosary-mystery-btn:hover{background:rgba(var(--ink-rgb),0.06);}
-  .rosary-mystery-btn.active{background:var(--rose); border-color:var(--rose); color:var(--parchment-light);}
-  .rosary-suggestion{font-style:italic; color:var(--ink-soft); font-size:0.88rem; margin-bottom:20px;}
-  .rosary-stage{
-    border:1px solid var(--ink); background:var(--parchment-light);
-    padding:32px 28px; margin-top:10px;
+  .devo-main{min-width:0; max-width:680px; width:100%; margin:0 auto;}
+  .devo-card{
+    position:relative; text-align:center; padding:42px 46px 34px; border-radius:24px; background:var(--parchment-light);
+    border:1px solid color-mix(in srgb, var(--devo) 38%, var(--line));
+    box-shadow:0 1px 0 rgba(var(--ink-rgb),0.04), 0 22px 44px -28px rgba(var(--ink-rgb),0.45);
   }
-  .rosary-stage .step-meta{font-size:0.82rem; color:var(--ink-soft); margin-bottom:12px; letter-spacing:0.01em;}
-  .rosary-stage .step-label{font-size:1.7rem; color:var(--wine-dark); margin-bottom:16px;}
-  .rosary-stage .step-prayer{font-size:1.06rem; line-height:1.8; white-space:pre-line; text-align:left;}
-  .rosary-beads{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:20px 0 4px;}
-  .rosary-bead{width:11px; height:11px; border-radius:50%; background:var(--parchment-dark); border:1px solid var(--line);}
-  .rosary-bead.filled{background:var(--wine); border-color:var(--wine-dark);}
-  .rosary-bead.current{outline:2px solid var(--gold); outline-offset:2px;}
-  .rosary-nav{display:flex; justify-content:center; gap:12px; margin-top:24px;}
-  .rosary-progress{font-size:0.82rem; color:var(--ink-soft); margin-top:14px;}
-  .rosary-restart{margin-top:22px;}
+  .devo-card::before{
+    content:''; position:absolute; inset:9px; border-radius:17px; pointer-events:none;
+    border:1px solid color-mix(in srgb, var(--devo) 24%, transparent);
+  }
+  .devo-card::after{
+    content:''; position:absolute; left:50%; top:-1px; width:120px; height:3px; transform:translateX(-50%); border-radius:0 0 3px 3px;
+    background:var(--devo);
+  }
+  .devo-emblem{display:flex; justify-content:center; margin-bottom:14px; color:var(--devo);}
+  .devo-medal{
+    display:flex; align-items:center; justify-content:center; width:78px; height:78px; padding:15px; border-radius:50%;
+    border:1.5px solid color-mix(in srgb, var(--devo) 60%, transparent);
+    background:color-mix(in srgb, var(--devo) 10%, var(--parchment-light));
+    box-shadow:0 0 0 7px color-mix(in srgb, var(--devo) 6%, transparent);
+  }
+  .devo-medal svg{width:100%; height:100%; display:block;}
+  .devo-numeral{font-family:'Cormorant Garamond', serif; font-size:1.9rem; font-weight:700; line-height:1; letter-spacing:0.02em;}
+  .devo-ornament{
+    width:30px; height:30px; background:var(--devo); opacity:0.9;
+    -webkit-mask:var(--cross-mask) center / contain no-repeat; mask:var(--cross-mask) center / contain no-repeat;
+  }
+  .devo-kicker{font-size:0.74rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color:var(--devo);}
+  .devo-title{font-family:'Cormorant Garamond', serif; font-size:clamp(1.85rem, 3.4vw, 2.6rem); font-weight:600; line-height:1.12; margin:8px 0 0; color:var(--ink);}
+  .devo-rule{
+    position:relative; width:130px; height:12px; margin:16px auto 22px;
+    background:linear-gradient(var(--devo), var(--devo)) left center / 50px 1px no-repeat, linear-gradient(var(--devo), var(--devo)) right center / 50px 1px no-repeat;
+  }
+  .devo-rule::after{content:''; position:absolute; left:50%; top:50%; width:7px; height:7px; background:var(--devo); transform:translate(-50%, -50%) rotate(45deg);}
+  .devo-text{font-size:1.13rem; line-height:1.85; text-align:left; max-width:540px; margin:0 auto;}
+  .devo-text p{margin:0;}
+  .devo-text p + p{margin-top:12px;}
+  .devo-text > p:first-child::first-letter{
+    float:left; font-family:'Cormorant Garamond', serif; font-size:3.4em; line-height:0.8; font-weight:700;
+    padding:7px 9px 0 0; color:var(--devo);
+  }
+  .devo-text .devo-lead{font-style:italic;}
+  .devo-text > .devo-lead:first-child{text-align:center; font-size:1.18rem;}
+  .devo-text > .devo-lead:first-child::first-letter{float:none; font:inherit; padding:0; color:inherit;}
+  .devo-meta{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px 14px; margin-top:24px;}
+  .devo-fruit{
+    display:inline-flex; flex-direction:column; align-items:center; padding:8px 18px; border-radius:14px;
+    background:color-mix(in srgb, var(--devo) 10%, transparent); font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-weight:600; text-transform:capitalize;
+  }
+  .devo-fruit small{font-family:'Source Serif 4', serif; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; color:var(--devo);}
+  .devo-ref{
+    display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:20px; text-decoration:none; font-size:0.88rem;
+    color:var(--ink); border:1px solid color-mix(in srgb, var(--devo) 40%, var(--line)); background:var(--parchment);
+  }
+  .devo-ref:hover{border-color:var(--devo); color:var(--devo);}
+  .devo-ref svg{width:16px; height:16px; color:var(--devo);}
+  .devo-tradition{font-size:0.85rem; font-style:italic; color:var(--ink-soft);}
+  .devo-versicle{
+    max-width:540px; margin:0 auto 20px; padding:14px 18px; text-align:left; font-size:1.02rem; line-height:1.6;
+    border-left:3px solid var(--devo); border-radius:0 14px 14px 0; background:color-mix(in srgb, var(--devo) 8%, transparent);
+  }
+  .devo-versicle p{margin:0; padding-left:30px; text-indent:-30px;}
+  .devo-versicle p + p{margin-top:6px; font-weight:600;}
+  .devo-versicle .rubric{display:inline-block; width:30px; text-indent:0; color:var(--wine); font-weight:700;}
+  .devo-text .devo-versicle p:first-child::first-letter{float:none; font:inherit; padding:0; color:inherit;}
+  .devo-said{margin:22px 0 0; font-variant:small-caps; letter-spacing:0.08em; font-size:1.05rem; color:var(--ink-soft);}
+  .devo-stanza{max-width:440px; margin:20px auto 0; padding-top:18px; border-top:1px dashed color-mix(in srgb, var(--devo) 35%, var(--line)); font-style:italic; line-height:1.7; color:var(--ink-soft);}
+  .devo-stanza-label{display:block; font-style:normal; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color:var(--devo); margin-bottom:6px;}
+  .devo-beads{display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; margin-top:28px;}
+  .devo-bead{
+    width:14px; height:14px; border-radius:50%; transition:transform 0.2s ease, background 0.2s ease;
+    border:1.5px solid color-mix(in srgb, var(--devo) 55%, var(--line));
+  }
+  .devo-bead.done{background:var(--devo); border-color:var(--devo);}
+  .devo-bead.current{background:var(--gold); border-color:var(--ink); transform:scale(1.3); box-shadow:0 0 0 4px color-mix(in srgb, var(--gold) 30%, transparent);}
+  .devo-pips{display:none; justify-content:center; flex-wrap:wrap; gap:6px; margin-top:20px;}
+  .devo-pips span{
+    min-width:28px; height:22px; padding:0 6px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:0.85rem; color:var(--ink-soft); border:1px solid var(--line);
+  }
+  .devo-pips span.done{background:var(--devo); border-color:var(--devo); color:var(--parchment-light);}
+  .devo-pips span.current{border-color:var(--gold); color:var(--ink); box-shadow:0 0 0 2px var(--gold);}
+  .devo-pips-14 span{min-width:22px; font-family:'Source Serif 4', serif; font-size:0.72rem;}
+  .devo-nav{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:20px;}
+  .devo-nav .btn{border-radius:24px; padding:11px 20px;}
+  .devo-next{min-width:150px; background:var(--devo) !important; border-color:var(--devo) !important;}
+  .devo-next:hover{filter:brightness(0.92);}
+  .devo-count{font-size:0.85rem; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+  .devo-foot{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:0.8rem; color:var(--ink-soft);}
+  .devo-foot .text-link{font-size:0.85rem;}
+  @media (hover:none){ .devo-keys{display:none;} }
+  .devo-done, .devo-intro{max-width:680px; margin:0 auto;}
+  .devo-closing{font-size:1.12rem; line-height:1.75; max-width:520px; margin:0 auto;}
+  .devo-done .devo-closing{font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-style:italic;}
+  .devo-actions{display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:24px;}
+  .devo-actions .btn.primary, .devo-begin .btn.primary{background:var(--devo); border-color:var(--devo);}
+  .devo-small{font-size:0.82rem; color:var(--ink-soft); margin:14px 0 0;}
+  .devo-pill{display:inline-block; margin:18px 0 0; padding:7px 16px; border-radius:20px; font-size:0.88rem; background:color-mix(in srgb, var(--devo) 12%, transparent); color:var(--ink);}
+  .devo-mercy{
+    background:
+      radial-gradient(ellipse 60% 70% at 38% 0%, color-mix(in srgb, var(--teal) 12%, transparent), transparent 70%),
+      radial-gradient(ellipse 60% 70% at 62% 0%, color-mix(in srgb, var(--wine) 12%, transparent), transparent 70%),
+      var(--parchment-light);
+  }
+  .devo-subhead{font-size:1.3rem; text-align:center; margin:34px 0 4px;}
+
+  /* Rosary bead diagram */
+  .rosary-svg{display:block; width:100%; height:auto; max-height:calc(100vh - 150px); overflow:visible;}
+  .rs-chain{fill:none; stroke:color-mix(in srgb, var(--devo) 32%, var(--line)); stroke-width:1.2;}
+  .rs-bead{fill:var(--parchment); stroke:color-mix(in srgb, var(--devo) 60%, var(--line)); stroke-width:1.3; transition:fill 0.2s ease;}
+  .rs-bead.done{fill:var(--devo); stroke:var(--devo);}
+  .rs-bead.current{fill:var(--gold); stroke:var(--ink); stroke-width:1.6; animation:beadGlow 1.8s ease-in-out infinite;}
+  @keyframes beadGlow{0%, 100%{stroke-width:1.6;} 50%{stroke-width:4.5; stroke-opacity:0.5;}}
+  .rs-medal{fill:var(--parchment); stroke:var(--gold); stroke-width:1.6;}
+  .rs-medal.done, .rs-medal.current{fill:var(--gold);}
+  .rs-cross path{fill:color-mix(in srgb, var(--devo) 45%, var(--line));}
+  .rs-cross.done path, .rs-cross.current path{fill:var(--gold);}
+  .rs-center{font-family:'Cormorant Garamond', serif; font-size:38px; font-weight:700; fill:var(--devo); text-anchor:middle;}
+  .rs-center-sub{font-family:'Source Serif 4', serif; font-size:11px; fill:var(--ink-soft); text-anchor:middle;}
+  .devo-aside [data-goto]{cursor:pointer;}
+  .devo-aside .rs-bead[data-goto]:hover{stroke:var(--gold); stroke-width:2.4;}
+  @media (prefers-reduced-motion:reduce){ .rs-bead.current{animation:none;} .devo-progress span{transition:none;} }
+
+  /* The Way of the Cross road */
+  .stations-svg{display:block; width:100%; height:auto; max-height:calc(100vh - 150px);}
+  .ss-road{fill:none; stroke:color-mix(in srgb, var(--devo) 40%, var(--line)); stroke-width:3; stroke-dasharray:1 7; stroke-linecap:round;}
+  .ss-stop circle{fill:var(--parchment-light); stroke:color-mix(in srgb, var(--devo) 55%, var(--line)); stroke-width:1.5; transition:fill 0.2s ease;}
+  .ss-stop text{font-family:'Cormorant Garamond', serif; font-size:11.5px; font-weight:700; fill:var(--ink-soft); text-anchor:middle; pointer-events:none;}
+  .ss-stop.done circle{fill:var(--devo); stroke:var(--devo);}
+  .ss-stop.done text{fill:var(--parchment-light);}
+  .ss-stop.current circle{fill:var(--gold); stroke:var(--ink); stroke-width:1.6;}
+  .ss-stop.current text{fill:var(--ink);}
+  .ss-stop:hover circle{stroke:var(--gold);}
+
+  /* Start pages */
+  .mystery-grid{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px;}
+  .mystery-card{
+    position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; cursor:pointer;
+    padding:20px 18px 18px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);
+    font-family:'Source Serif 4', serif; color:var(--ink); transition:border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .mystery-card:hover{border-color:color-mix(in srgb, var(--devo) 60%, var(--line)); transform:translateY(-2px);}
+  .mystery-card.active{
+    border-color:var(--devo); box-shadow:0 0 0 1px var(--devo), 0 18px 34px -24px var(--devo);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--devo) 11%, var(--parchment-light)), var(--parchment-light) 65%);
+  }
+  .mystery-art{width:48px; height:48px; color:var(--devo); margin-bottom:8px;}
+  .mystery-art svg{width:100%; height:100%;}
+  .mystery-name{font-family:'Cormorant Garamond', serif; font-size:1.45rem; font-weight:600; line-height:1.1;}
+  .mystery-days{font-size:0.8rem; color:var(--ink-soft);}
+  .mystery-card ol{margin:10px 0 0; padding-left:18px; font-size:0.86rem; line-height:1.6; color:var(--ink-soft);}
+  .mystery-card ol li::marker{color:var(--devo); font-weight:700;}
+  .mystery-today{
+    position:absolute; top:16px; right:16px; padding:3px 9px; border-radius:9px; font-size:0.62rem; letter-spacing:0.12em;
+    text-transform:uppercase; font-weight:700; color:var(--parchment-light); background:var(--devo);
+  }
+  .devo-begin{display:flex; flex-direction:column; align-items:center; gap:8px; margin:28px 0 6px;}
+  .devo-begin .btn{font-size:1.05rem; padding:14px 34px;}
+  .devo-begin span{font-size:0.85rem; color:var(--ink-soft);}
+  .devo-howto{max-width:760px; margin:28px auto 0; padding:2px 22px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
+  .devo-howto summary{cursor:pointer; padding:14px 0; font-weight:600; color:var(--ink);}
+  .howto-grid{display:grid; grid-template-columns:190px 1fr; gap:26px; align-items:start; padding:4px 0 20px;}
+  .howto-grid ol{margin:0; padding-left:20px; line-height:1.7;}
+  .howto-grid li + li{margin-top:6px;}
+  .howto-grid li::marker{color:var(--devo); font-weight:700;}
+  .station-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:10px; margin-top:14px;}
+  .station-tile{
+    display:flex; align-items:center; gap:12px; text-align:left; cursor:pointer; padding:11px 14px; border-radius:14px;
+    border:1px solid var(--line); background:var(--parchment-light); color:var(--ink); font-family:'Source Serif 4', serif; font-size:0.92rem; line-height:1.3;
+  }
+  .station-tile:hover{border-color:var(--devo);}
+  .station-num{
+    flex:0 0 40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1rem; color:var(--devo);
+    border:1.5px solid color-mix(in srgb, var(--devo) 50%, transparent); background:color-mix(in srgb, var(--devo) 8%, transparent);
+  }
+  @media (max-width:900px){
+    .devo-layout.has-aside{grid-template-columns:1fr;}
+    .devo-aside{display:none;}
+    .devo-pips{display:flex;}
+    .mystery-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+  }
+  @media (max-width:600px){
+    .devo-card{padding:32px 20px 26px; border-radius:20px;}
+    .devo-text{font-size:1.06rem;}
+    .devo-nav .btn{padding:10px 16px;}
+    .devo-next{min-width:120px;}
+    .mystery-grid{grid-template-columns:1fr;}
+    .howto-grid{grid-template-columns:1fr;}
+    .howto-grid .rosary-svg{max-width:170px; margin:0 auto;}
+  }
+
+  /* ---------- Saint finder ---------- */
+  .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
+  .sf-section{padding-bottom:14px;}
+  .sf-section + .sf-section{border-top:1px solid var(--line); padding-top:14px;}
+  .sf-label{font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-bottom:8px;}
+  .sf-eras{display:flex; gap:8px; overflow-x:auto; padding:18px 2px 6px; scrollbar-width:thin;}
+  .sf-era{
+    position:relative; flex:1 0 118px; display:flex; flex-direction:column; align-items:flex-start; gap:2px; text-align:left; cursor:pointer;
+    padding:10px 11px; border-radius:12px; border:1px solid var(--line); background:var(--parchment); color:var(--ink); font-family:'Source Serif 4', serif;
+  }
+  .sf-era::before{content:''; position:absolute; top:-12px; left:-9px; right:-1px; height:2px; background:color-mix(in srgb, var(--gold) 35%, var(--line));}
+  .sf-era:first-child::before{left:14px;}
+  .sf-era:last-child::before{right:auto; width:23px;}
+  .sf-era::after{
+    content:''; position:absolute; top:-17px; left:12px; width:8px; height:8px; border-radius:50%;
+    background:var(--parchment-light); border:2px solid color-mix(in srgb, var(--gold) 70%, var(--line));
+  }
+  .sf-era:hover:not([disabled]){border-color:var(--gold);}
+  .sf-era.active{border-color:var(--gold); box-shadow:0 0 0 1px var(--gold); background:color-mix(in srgb, var(--gold) 14%, var(--parchment-light));}
+  .sf-era.active::after{background:var(--gold); border-color:var(--gold);}
+  .sf-era[disabled]{opacity:0.45; cursor:default;}
+  .sf-era-years{font-size:0.68rem; color:var(--ink-soft); white-space:nowrap;}
+  .sf-era-name{font-family:'Cormorant Garamond', serif; font-size:1.02rem; font-weight:600; line-height:1.15;}
+  .sf-era-count{font-size:0.72rem; font-weight:600; color:var(--gold); margin-top:2px;}
+  .sf-group{display:grid; grid-template-columns:150px minmax(0, 1fr); gap:6px 14px; align-items:start; margin-bottom:10px;}
+  .sf-group-name{font-size:0.82rem; color:var(--ink-soft); padding-top:7px;}
+  .sf-chips{display:flex; flex-wrap:wrap; gap:7px;}
+  .sf-chip{display:inline-flex; align-items:center; gap:7px;}
+  .sf-n{font-size:0.72rem; opacity:0.7; font-variant-numeric:tabular-nums;}
+  .patron-chip[disabled]{opacity:0.4; cursor:default; pointer-events:none;}
+  .sf-toolbar{flex-wrap:wrap;}
+  .sf-toolbar .view-count strong{color:var(--ink);}
+  .sf-clear{margin-left:10px; font-size:0.85rem;}
+  .sf-toggles{display:flex; flex-wrap:wrap; gap:8px;}
+  .sf-era-head{display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 12px; margin:30px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);}
+  .sf-era-head h3{font-size:1.4rem; margin:0;}
+  .sf-era-head span{font-size:0.82rem; color:var(--ink-soft);}
+  .sf-era-head-count{margin-left:auto;}
+  @media (max-width:640px){
+    .sf{padding:14px 14px 4px;}
+    .sf-group{grid-template-columns:1fr;}
+    .sf-group-name{padding-top:0;}
+    .sf-chips{flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; scrollbar-width:none;}
+    .sf-chips .patron-chip{flex:0 0 auto;}
+  }
 
   /* ---------- Shop ---------- */
   .shop-list{margin-top:8px;}
@@ -3312,21 +3534,171 @@ const PATRON_FILTERS = [
   { label:'Martyrs', term:'martyr' }
 ];
 
-function buildPatronFilterRow(){
-  const row = document.createElement('div');
-  row.className = 'patron-filters';
-  row.innerHTML = `<div class="patron-filters-label">Find a patron saint for:</div>
-    <div class="patron-filters-row">${PATRON_FILTERS.map(f => `<button class="patron-chip" data-term="${escapeHtml(f.term)}">${escapeHtml(f.label)}</button>`).join('')}</div>`;
-  row.querySelectorAll('.patron-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      searchTerm = btn.dataset.term;
-      document.getElementById('searchInput').value = searchTerm;
-      syncSearchUI();
-      render();
-    });
+/* ---------- Saint finder: browse by era, walk of life, or patronage ---------- */
+// For each saint: era, approximate year of death (blank for the archangels), and walks of life
+const SAINT_META = {
+  s1:'medieval 1226 fo mo pr', s2:'revolution 1897 nu dr my sc', s3:'fathers 430 bi dr sc', s4:'medieval 1274 pr mo dr sc te', s5:'reform 1582 nu fo dr my sc', s6:'renaissance 1431 ma so my yo la',
+  s7:'apostolic 64 ap po ma wo', s8:'apostolic 64 ap ma mi sc wo', s9:'apostolic 100 ap sc wo', s10:'apostolic 60 la', s11:'apostolic 20 pa wo la', s12:'apostolic -5 pa la',
+  s13:'fathers 547 mo fo', s14:'fathers 461 bi mi', s15:'medieval 1231 pr mo dr', s16:'apostolic 65 ap ma', s17:'fathers 343 bi', s18:'martyrs 303 ma so',
+  s19:'martyrs 288 ma so', s20:'fathers 387 pa la', s21:'fathers 420 pr dr sc mo', s22:'fathers 397 bi dr sc', s23:'reform 1556 pr fo so my', s24:'reform 1552 pr mi',
+  s25:'revolution 1859 pr', s26:'modern 1968 pr mo my', s27:'modern 1941 pr mo ma mi', s28:'modern 1938 nu my', s29:'modern 2005 po sc', s30:'modern 1997 nu fo mi',
+  s31:'renaissance 1457 nu pa', s32:'revolution 1879 nu my yo', s33:'renaissance 1380 dr my la', s34:'revolution 1821 fo nu te pa', s35:'medieval 1221 pr mo fo', s36:'reform 1660 pr fo',
+  s37:'reform 1617 my la', s38:'reform 1639 mo me', s39:'reform 1680 la yo', s40:'angels  an', s41:'martyrs 304 ma yo', s42:'martyrs 304 ma yo',
+  s43:'martyrs 230 ma', s44:'martyrs 250 ma', s45:'martyrs 269 pr ma', s46:'fathers 316 bi ma me', s47:'martyrs 250 ma', s48:'fathers 356 mo fo',
+  s49:'modern 1962 me pa la', s50:'modern 1937 mo wo', s51:'revolution 1889 pr mi', s52:'modern 1947 nu wo', s53:'modern 1917 nu fo mi te', s54:'revolution 1888 pr fo te',
+  s55:'renaissance 1373 my fo pa', s56:'medieval 1179 nu dr my sc', s57:'reform 1595 pr fo', s58:'reform 1584 bi', s59:'reform 1654 pr mi', s60:'revolution 1787 bi fo dr sc',
+  s61:'medieval 1130 wo la pa', s62:'medieval 1272 wo la', s63:'apostolic 30 ma', s64:'apostolic -5 pa la', s65:'apostolic 34 pr ma', s66:'apostolic 60 ap ma wo',
+  s67:'apostolic 44 ap ma wo', s68:'apostolic 72 ap ma mi', s69:'apostolic 70 ap ma', s70:'apostolic 70 ap wo sc', s71:'apostolic 68 ap sc', s72:'apostolic 84 ap me sc',
+  s73:'apostolic 61 ap mi', s74:'martyrs 107 bi ma', s75:'martyrs 155 bi ma', s76:'martyrs 165 ma sc la', s77:'martyrs 202 bi dr sc', s78:'martyrs 203 ma pa yo',
+  s79:'martyrs 251 ma yo', s80:'martyrs 258 pr ma', s81:'martyrs 258 bi ma sc', s82:'fathers 330 ro pa', s83:'fathers 373 bi dr sc', s84:'fathers 373 pr dr sc',
+  s85:'fathers 397 so bi mo', s86:'fathers 379 bi dr mo sc', s87:'fathers 390 bi dr sc', s88:'fathers 407 bi dr sc', s89:'fathers 444 bi dr sc', s90:'fathers 461 po dr',
+  s91:'fathers 502 nu', s92:'fathers 525 nu fo', s93:'fathers 543 nu fo', s94:'fathers 597 pr mo mi fo', s95:'early 604 po dr mo', s96:'early 636 bi dr sc',
+  s97:'early 650 ma yo ro', s98:'early 735 pr mo dr sc te', s99:'early 754 bi mi ma mo', s100:'early 885 mi mo bi sc', s101:'early 935 ro ma', s102:'medieval 1101 mo fo te',
+  s103:'medieval 1093 ro pa', s104:'medieval 1109 bi mo dr sc', s105:'medieval 1134 bi fo', s106:'medieval 1153 mo dr my', s107:'medieval 1170 bi ma', s108:'medieval 1253 nu fo',
+  s109:'medieval 1231 ro pa', s110:'medieval 1270 ro pa so', s111:'medieval 1274 bi mo dr sc', s112:'medieval 1280 bi mo dr sc te', s113:'renaissance 1345 mo', s114:'renaissance 1440 pa fo my',
+  s115:'reform 1548 my la wo', s116:'reform 1535 ma la pa sc', s117:'reform 1535 bi ma sc', s118:'reform 1591 pr mo dr my sc', s119:'reform 1621 bi dr sc te', s120:'reform 1614 pr fo me so',
+  s121:'reform 1591 yo mo', s122:'reform 1622 bi dr sc', s123:'reform 1641 nu fo pa', s124:'reform 1597 ma mi', s125:'reform 1637 ma la pa', s126:'reform 1663 pr mo my',
+  s127:'reform 1649 pr ma mi', s128:'reform 1690 nu my', s129:'revolution 1716 pr mi sc', s130:'revolution 1755 mo', s131:'revolution 1784 pr mo mi', s132:'revolution 1783 la',
+  s133:'revolution 1860 bi te', s134:'revolution 1876 nu my', s135:'revolution 1846 pr ma', s136:'revolution 1887 ma yo la', s137:'revolution 1890 pr dr sc te', s138:'revolution 1894 pa la wo',
+  s139:'revolution 1898 pr mo', s140:'modern 1918 nu me mi', s141:'modern 1914 po', s142:'modern 1955 nu fo te', s143:'modern 1902 ma yo', s144:'modern 1903 my yo la',
+  s145:'modern 1909 nu fo te', s146:'modern 1927 me la', s147:'modern 1920 yo my', s148:'modern 1942 nu ma sc te', s149:'modern 1925 yo la', s150:'modern 1963 po',
+  s151:'modern 1975 pr fo', s152:'modern 1978 po', s153:'modern 1980 bi ma', s154:'modern 2006 yo la', s155:'angels  an', s156:'angels  an'
+};
+const SAINT_ERAS = [
+  { key:'apostolic',   name:'The Apostolic Age',        years:'to AD 100' },
+  { key:'martyrs',     name:'Age of the Martyrs',       years:'100–313' },
+  { key:'fathers',     name:'The Church Fathers',       years:'313–600' },
+  { key:'early',       name:'Early Middle Ages',        years:'600–1000' },
+  { key:'medieval',    name:'High Middle Ages',         years:'1000–1300' },
+  { key:'renaissance', name:'Late Middle Ages',         years:'1300–1517' },
+  { key:'reform',      name:'Reformation & New World',  years:'1517–1700' },
+  { key:'revolution',  name:'Age of Revolutions',       years:'1700–1900' },
+  { key:'modern',      name:'The Modern Church',        years:'1900–today' },
+  { key:'angels',      name:'The Archangels',           years:'Beyond time' }
+];
+const SAINT_ROLE_GROUPS = [
+  { name:'Served the Church as', roles:[['ap', 'Apostles & evangelists'], ['po', 'Popes'], ['bi', 'Bishops'], ['pr', 'Priests & deacons'],
+    ['mo', 'Monks, friars & hermits'], ['nu', 'Nuns & sisters'], ['fo', 'Founders of orders'], ['mi', 'Missionaries']] },
+  { name:'Lived in the world as', roles:[['la', 'Laypeople'], ['pa', 'Mothers & fathers'], ['yo', 'Children & young people'], ['ro', 'Kings, queens & royalty'],
+    ['so', 'Soldiers'], ['me', 'Physicians & nurses'], ['te', 'Teachers'], ['sc', 'Scholars & writers'], ['wo', 'Workers & servants']] },
+  { name:'Known as', roles:[['ma', 'Martyrs'], ['dr', 'Doctors of the Church'], ['my', 'Mystics & visionaries'], ['an', 'Angels']] }
+];
+const SAINT_ROLE_NAME = Object.fromEntries(SAINT_ROLE_GROUPS.flatMap(g => g.roles));
+const SAINT_INFO = {};
+Object.entries(SAINT_META).forEach(([id, value]) => {
+  const [era, year, ...roles] = value.split(' ');
+  SAINT_INFO[id] = { era, year:year === '' ? null : Number(year), roles };
+});
+let saintEra = 'all';
+let saintRole = 'all';
+
+function saintInfo(id){ return SAINT_INFO[id] || { era:'modern', year:2000, roles:[] }; }
+function saintSortName(e){ return e.title.replace(/^(Pope\s+)?Sts?\.\s+/, ''); }
+
+function renderSaintFinder(all){
+  const inEra = all.filter(e => saintEra === 'all' || saintInfo(e.id).era === saintEra);
+  const shown = inEra.filter(e => saintRole === 'all' || saintInfo(e.id).roles.includes(saintRole));
+  const order = store.get('saintOrder', 'timeline');
+  const view = store.get('view.saint', 'grid');
+  const eraIndex = e => SAINT_ERAS.findIndex(x => x.key === saintInfo(e.id).era);
+  const countFor = era => all.filter(e => (era === 'all' || saintInfo(e.id).era === era) && (saintRole === 'all' || saintInfo(e.id).roles.includes(saintRole))).length;
+  const eraTile = (key, years, name) => {
+    const n = countFor(key);
+    return `<button class="sf-era${saintEra === key ? ' active' : ''}" data-era="${key}" aria-pressed="${saintEra === key}"${n || saintEra === key ? '' : ' disabled'}>
+      <span class="sf-era-years">${escapeHtml(years)}</span><span class="sf-era-name">${escapeHtml(name)}</span><span class="sf-era-count">${plural(n, 'saint', 'saints')}</span>
+    </button>`;
+  };
+
+  const panel = document.createElement('section');
+  panel.className = 'sf';
+  panel.setAttribute('aria-label', 'Find a saint');
+  panel.innerHTML = `
+    <div class="sf-section">
+      <div class="sf-label">When they lived</div>
+      <div class="sf-eras" role="group" aria-label="Era">
+        ${eraTile('all', 'All of history', 'Every era')}
+        ${SAINT_ERAS.map(x => eraTile(x.key, x.years, x.name)).join('')}
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-label">Walk of life</div>
+      ${SAINT_ROLE_GROUPS.map(g => `
+        <div class="sf-group">
+          <span class="sf-group-name">${escapeHtml(g.name)}</span>
+          <div class="sf-chips">${g.roles.map(([key, name]) => {
+            const n = inEra.filter(e => saintInfo(e.id).roles.includes(key)).length;
+            return `<button class="patron-chip sf-chip${saintRole === key ? ' active' : ''}" data-role="${key}" aria-pressed="${saintRole === key}"${n || saintRole === key ? '' : ' disabled'}>${escapeHtml(name)}<span class="sf-n">${n}</span></button>`;
+          }).join('')}</div>
+        </div>`).join('')}
+    </div>
+    <div class="sf-section">
+      <div class="sf-label">Patron saints for</div>
+      <div class="sf-chips">${PATRON_FILTERS.map(f => `<button class="patron-chip" data-term="${escapeHtml(f.term)}">${escapeHtml(f.label)}</button>`).join('')}</div>
+    </div>`;
+  entryListEl.appendChild(panel);
+  entryListEl.appendChild(buildFeastFinder());
+
+  const filtered = saintEra !== 'all' || saintRole !== 'all';
+  const describe = [saintEra !== 'all' ? SAINT_ERAS.find(x => x.key === saintEra).name : '', saintRole !== 'all' ? SAINT_ROLE_NAME[saintRole] : ''].filter(Boolean);
+  const bar = document.createElement('div');
+  bar.className = 'view-toolbar sf-toolbar';
+  bar.innerHTML = `
+    <span class="view-count"><strong>${plural(shown.length, 'saint', 'saints')}</strong>${describe.length ? ' · ' + describe.map(escapeHtml).join(' · ') : ''}${filtered ? '<button class="text-link sf-clear" data-act="clear">Clear filters</button>' : ''}</span>
+    <div class="sf-toggles">
+      <div class="cal-viewtoggle" role="group" aria-label="Order">
+        <button data-order="timeline" class="${order === 'timeline' ? 'active' : ''}" aria-pressed="${order === 'timeline'}">Timeline</button>
+        <button data-order="az" class="${order === 'az' ? 'active' : ''}" aria-pressed="${order === 'az'}">A–Z</button>
+      </div>
+      <div class="cal-viewtoggle" role="group" aria-label="Layout">
+        <button data-view="grid" class="${view === 'grid' ? 'active' : ''}" aria-pressed="${view === 'grid'}">Gallery</button>
+        <button data-view="list" class="${view === 'list' ? 'active' : ''}" aria-pressed="${view === 'list'}">List</button>
+      </div>
+    </div>`;
+  entryListEl.appendChild(bar);
+
+  // Re-draw without losing the era strip's sideways scroll position
+  const redraw = () => {
+    const left = panel.querySelector('.sf-eras').scrollLeft;
+    render();
+    const strip = entryListEl.querySelector('.sf-eras');
+    if(strip) strip.scrollLeft = left;
+  };
+  panel.querySelectorAll('[data-era]').forEach(b => b.addEventListener('click', () => { saintEra = b.dataset.era; redraw(); }));
+  panel.querySelectorAll('[data-role]').forEach(b => b.addEventListener('click', () => { saintRole = saintRole === b.dataset.role ? 'all' : b.dataset.role; redraw(); }));
+  panel.querySelectorAll('[data-term]').forEach(b => b.addEventListener('click', () => {
+    searchTerm = b.dataset.term;
+    searchInput.value = searchTerm;
+    syncSearchUI();
+    render();
+  }));
+  bar.querySelectorAll('[data-order]').forEach(b => b.addEventListener('click', () => { store.set('saintOrder', b.dataset.order); redraw(); }));
+  bar.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => { store.set('view.saint', b.dataset.view); redraw(); }));
+  const clear = bar.querySelector('[data-act="clear"]');
+  if(clear) clear.addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; redraw(); });
+
+  if(!shown.length){
+    entryListEl.insertAdjacentHTML('beforeend', '<div class="empty-state">No saints match these filters.<br><button class="btn" data-act="clear-empty">Clear filters</button></div>');
+    entryListEl.querySelector('[data-act="clear-empty"]').addEventListener('click', () => { saintEra = 'all'; saintRole = 'all'; redraw(); });
+    return;
+  }
+  const draw = (list, container) => view === 'grid' ? renderGallery(list, 'saint', container) : renderRows(list, container);
+  if(order === 'az'){
+    draw([...shown].sort((a, b) => saintSortName(a).localeCompare(saintSortName(b))), entryListEl);
+    return;
+  }
+  // Timeline: oldest first, under a heading for each era
+  const sorted = [...shown].sort((a, b) => (eraIndex(a) - eraIndex(b)) || ((saintInfo(a.id).year ?? 9999) - (saintInfo(b.id).year ?? 9999)));
+  SAINT_ERAS.forEach(era => {
+    const group = sorted.filter(e => saintInfo(e.id).era === era.key);
+    if(!group.length) return;
+    if(saintEra === 'all') entryListEl.insertAdjacentHTML('beforeend', `
+      <div class="sf-era-head"><h3>${escapeHtml(era.name)}</h3><span>${escapeHtml(era.years)}</span><span class="sf-era-head-count">${plural(group.length, 'saint', 'saints')}</span></div>`);
+    const box = document.createElement('div');
+    entryListEl.appendChild(box);
+    draw(group, box);
   });
-  return row;
 }
+
 
 function updateCounts(){
   const counts = { all: library.length, prayer:0, saint:0, history:0, book:0, bible:0, theology:0 };
@@ -3417,10 +3789,7 @@ function render(){
   if(activeCategory === 'all' && !searching){
     entryListEl.appendChild(buildTodayPanel());
   }
-  if(activeCategory === 'saint' && !searching){
-    entryListEl.appendChild(buildPatronFilterRow());
-    entryListEl.appendChild(buildFeastFinder());
-  }
+  if(activeCategory === 'saint' && !searching){ renderSaintFinder(entries); return; }
 
   if(entries.length === 0){
     const div = document.createElement('div');
@@ -3437,7 +3806,7 @@ function render(){
   if(!searching){
     if(activeCategory === 'prayer'){ renderPrayers(entries); return; }
     if(activeCategory === 'bible'){ renderBible(entries); return; }
-    if((activeCategory === 'saint' || activeCategory === 'book')){
+    if(activeCategory === 'book'){
       entryListEl.appendChild(buildViewToggle(activeCategory));
       if(store.get('view.' + activeCategory, 'grid') === 'grid'){ renderGallery(entries, activeCategory); return; }
     }
@@ -3511,7 +3880,7 @@ function fauxCover(e){
     <span class="fc-title">${escapeHtml(e.title)}</span><span class="fc-rule"></span><span class="fc-author">${escapeHtml((e.author || '').split(',')[0])}</span></span>`;
 }
 
-function renderGallery(entries, cat){
+function renderGallery(entries, cat, container){
   const grid = document.createElement('div');
   grid.className = cat === 'book' ? 'shelf' : 'gallery';
   entries.forEach(e => {
@@ -3532,7 +3901,7 @@ function renderGallery(entries, cat){
     grid.appendChild(card);
     observePortrait(card.querySelector('.saint-portrait'));
   });
-  entryListEl.appendChild(grid);
+  (container || entryListEl).appendChild(grid);
 }
 
 /* ---------- Bible, grouped by section ---------- */
@@ -7094,94 +7463,288 @@ let rosarySet = todaysMysterySet();
 let rosarySequence = null;
 let rosaryStep = 0;
 
+/* ---------- Look and Scripture for each set of mysteries ---------- */
+const MYSTERY_STYLE = {
+  joyful:   { color:'var(--rose)',   art:'lily' },
+  sorrowful:{ color:'var(--purple)', art:'sword' },
+  glorious: { color:'var(--gold)',   art:'crown' },
+  luminous: { color:'var(--teal)',   art:'rays' }
+};
+// [emblem, Scripture passage] for each mystery, in order
+const MYSTERY_EXTRA = {
+  joyful:   [['lily', 'Luke 1:26–38'], ['heart', 'Luke 1:39–56'], ['stars', 'Luke 2:1–20'], ['candle', 'Luke 2:22–38'], ['lantern', 'Luke 2:41–52']],
+  sorrowful:[['olive', 'Luke 22:39–46'], ['sword', 'John 19:1'], ['crown', 'Matthew 27:27–31'], ['cross', 'John 19:16–17'], ['budcross', 'Luke 23:33–46']],
+  glorious: [['sunrise', 'Mark 16:1–7'], ['wings', 'Acts 1:6–11'], ['flame', 'Acts 2:1–4'], ['stars', 'Revelation 11:19–12:1'], ['crown', 'Revelation 12:1']],
+  luminous: [['dove', 'Matthew 3:13–17'], ['chalice', 'John 2:1–11'], ['lantern', 'Mark 1:14–15'], ['rays', 'Matthew 17:1–8'], ['monstrance', 'Luke 22:14–20']]
+};
+Object.entries(MYSTERY_EXTRA).forEach(([key, list]) => list.forEach(([art, ref], i) => Object.assign(MYSTERIES[key].list[i], { art, ref })));
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV'];
+const ORDINAL = ['First', 'Second', 'Third', 'Fourth', 'Fifth'];
+
+// Each step names the bead it is prayed on ("at"), so the bead diagram can follow along
 function buildRosarySequence(setKey){
   const set = MYSTERIES[setKey];
   const seq = [];
-  seq.push({ label:'Sign of the Cross', prayer:ROSARY_PRAYERS.cross });
-  seq.push({ label:'Apostles\u2019 Creed', prayer:ROSARY_PRAYERS.creed });
-  seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather });
-  for(let i=1;i<=3;i++) seq.push({ label:`Hail Mary (${i} of 3, for Faith, Hope & Charity)`, prayer:ROSARY_PRAYERS.hailMary });
-  seq.push({ label:'Glory Be', prayer:ROSARY_PRAYERS.gloryBe });
+  const intentions = ['For an increase of faith', 'For an increase of hope', 'For an increase of charity'];
+  seq.push({ label:'Sign of the Cross', prayer:ROSARY_PRAYERS.cross, at:'cross' });
+  seq.push({ label:'Apostles’ Creed', prayer:ROSARY_PRAYERS.creed, at:'cross' });
+  seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather, at:'p-of' });
+  for(let i = 1; i <= 3; i++) seq.push({ label:'Hail Mary', note:intentions[i - 1], prayer:ROSARY_PRAYERS.hailMary, at:'p-hm' + i });
+  seq.push({ label:'Glory Be', prayer:ROSARY_PRAYERS.gloryBe, at:'p-hm3' });
 
   set.list.forEach((mystery, idx) => {
-    seq.push({ label:`Mystery ${idx+1}: ${mystery.name}`, meditation:mystery.meditation, decade:idx+1, isMystery:true });
-    seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather, decade:idx+1 });
-    for(let j=1;j<=10;j++) seq.push({ label:'Hail Mary', prayer:ROSARY_PRAYERS.hailMary, decade:idx+1, bead:j });
-    seq.push({ label:'Glory Be', prayer:ROSARY_PRAYERS.gloryBe, decade:idx+1 });
-    seq.push({ label:'O My Jesus (Fatima Prayer)', prayer:ROSARY_PRAYERS.fatima, decade:idx+1 });
+    const d = idx + 1, ofBead = d === 1 ? 'p-a' : `d${d}-of`;
+    seq.push({ label:mystery.name, isMystery:true, decade:d, at:ofBead });
+    seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather, decade:d, at:ofBead });
+    for(let j = 1; j <= 10; j++) seq.push({ label:'Hail Mary', prayer:ROSARY_PRAYERS.hailMary, decade:d, bead:j, at:`d${d}-${j}` });
+    seq.push({ label:'Glory Be', prayer:ROSARY_PRAYERS.gloryBe, decade:d, at:`d${d}-10` });
+    seq.push({ label:'O My Jesus', note:'The Fatima Prayer', prayer:ROSARY_PRAYERS.fatima, decade:d, at:`d${d}-10` });
   });
 
-  seq.push({ label:'Hail, Holy Queen', prayer:ROSARY_PRAYERS.hailHolyQueen });
-  seq.push({ label:'Closing Prayer', prayer:ROSARY_PRAYERS.closing });
+  seq.push({ label:'Hail, Holy Queen', prayer:ROSARY_PRAYERS.hailHolyQueen, at:'medal' });
+  seq.push({ label:'Closing Prayer', prayer:ROSARY_PRAYERS.closing, at:'medal' });
   return seq;
+}
+
+/* =========================================================
+   GUIDED PRAYER: the shared look of the Rosary, Stations, and Chaplet
+   ========================================================= */
+let devoKeys = null;   // what the arrow keys do on a guided-prayer page
+
+function devoParas(text){
+  return String(text).split(/\n\s*\n/).map(p => `<p>${escapeHtml(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
+}
+function scriptureLink(ref){
+  const q = encodeURIComponent(ref.replace(/–/g, '-'));
+  return `<a class="devo-ref" href="https://www.biblegateway.com/passage/?search=${q}&amp;version=RSVCE" target="_blank" rel="noopener">${navIcon('bible')}<span>${escapeHtml(ref)}</span></a>`;
+}
+function devoMedal(inner){ return `<span class="devo-medal">${inner}</span>`; }
+function devoBeadRow(count, current, label){
+  let dots = '';
+  for(let j = 1; j <= count; j++) dots += `<span class="devo-bead${j < current ? ' done' : j === current ? ' current' : ''}"></span>`;
+  return `<div class="devo-beads" role="img" aria-label="${escapeHtml(label)}">${dots}</div>`;
+}
+
+// One step of a guided prayer
+// o = { kind, color, aside, emblem, kicker, title, body, extra, track, step, total, go(i), exit(), exitLabel }
+function renderDevotionStep(o){
+  const last = o.step === o.total - 1;
+  const active = document.activeElement;
+  const hadFocus = !!(active && active.closest && active.closest('.devo'));
+  entryListEl.innerHTML = `
+    <div class="devo devo-${o.kind}" style="--devo:${o.color}">
+      <div class="devo-progress" role="progressbar" aria-label="Progress" aria-valuemin="1" aria-valuemax="${o.total}" aria-valuenow="${o.step + 1}">
+        <span style="width:${((o.step + 1) / o.total * 100).toFixed(1)}%"></span>
+      </div>
+      <div class="devo-layout${o.aside ? ' has-aside' : ''}">
+        ${o.aside ? `<aside class="devo-aside">${o.aside}</aside>` : ''}
+        <div class="devo-main">
+          <article class="devo-card" aria-live="polite">
+            <div class="devo-emblem">${o.emblem}</div>
+            <div class="devo-kicker">${o.kicker}</div>
+            <h3 class="devo-title">${escapeHtml(o.title)}</h3>
+            <div class="devo-rule" aria-hidden="true"></div>
+            <div class="devo-text">${o.body}</div>
+            ${o.extra || ''}
+            ${o.track || ''}
+          </article>
+          <div class="devo-nav">
+            <button class="btn devo-back" ${o.step === 0 ? 'disabled' : ''}>← Back</button>
+            <span class="devo-count">${o.step + 1} of ${o.total}</span>
+            <button class="btn primary pill devo-next">${last ? 'Amen' : 'Next →'}</button>
+          </div>
+          <div class="devo-foot">
+            <button class="text-link" data-act="exit">${o.exitLabel}</button>
+            <span class="devo-keys">Tip: the ← and → keys move between prayers</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  const root = entryListEl.querySelector('.devo');
+  const back = () => { if(o.step > 0) o.go(o.step - 1); };
+  const next = () => o.go(o.step + 1);   // one past the last step shows the closing card
+  root.querySelector('.devo-back').addEventListener('click', back);
+  root.querySelector('.devo-next').addEventListener('click', next);
+  root.querySelector('[data-act="exit"]').addEventListener('click', o.exit);
+  root.querySelectorAll('[data-goto]').forEach(el => el.addEventListener('click', () => o.go(Number(el.dataset.goto))));
+  devoKeys = { back, next };
+  if(hadFocus) root.querySelector('.devo-next').focus({ preventScroll:true });
+}
+
+// The closing card after the last prayer
+function renderDevotionDone(o){
+  devoKeys = null;
+  entryListEl.innerHTML = `
+    <div class="devo devo-${o.kind}" style="--devo:${o.color}">
+      <article class="devo-card devo-done">
+        <div class="devo-emblem">${o.emblem}</div>
+        <div class="devo-kicker">Amen</div>
+        <h3 class="devo-title">${escapeHtml(o.title)}</h3>
+        <div class="devo-rule" aria-hidden="true"></div>
+        <p class="devo-closing">${o.text}</p>
+        <div class="devo-actions">
+          <button class="btn primary pill" data-act="again">${o.againLabel}</button>
+          <button class="btn quiet" data-route="pray">More ways to pray</button>
+        </div>
+      </article>
+    </div>`;
+  entryListEl.querySelector('[data-act="again"]').addEventListener('click', o.again);
+  window.scrollTo({ top:0 });
+}
+
+document.addEventListener('keydown', e => {
+  if(!devoKeys || !['rosary', 'stations', 'chaplet'].includes(activeCategory) || searchTerm.trim()) return;
+  if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  if(e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+  if(readOverlay.classList.contains('open') || document.body.classList.contains('nav-open')) return;
+  if(e.key === 'ArrowRight'){ e.preventDefault(); devoKeys.next(); }
+  else if(e.key === 'ArrowLeft'){ e.preventDefault(); devoKeys.back(); }
+});
+
+/* ---------- The bead diagram (also used for the Chaplet) ---------- */
+const ROSARY_GEOM = (() => {
+  const cx = 150, cy = 146, r = 116, gap = 14;
+  const beads = [];   // in the order they are prayed
+  const add = (key, x, y, size) => beads.push({ key, x, y, size });
+  add('cross', 150, 420, 'cross');
+  add('p-of', 150, 379, 'big');
+  [1, 2, 3].forEach(i => add('p-hm' + i, 150, 374 - i * 17, 'small'));
+  add('p-a', 150, 300, 'big');
+  const units = [];
+  for(let d = 1; d <= 5; d++){
+    if(d > 1) units.push({ key:`d${d}-of`, w:1.9, size:'big' });
+    for(let j = 1; j <= 10; j++) units.push({ key:`d${d}-${j}`, w:1, size:'small' });
+  }
+  const totalW = units.reduce((s, u) => s + u.w, 0);
+  let acc = 0;
+  units.forEach(u => {
+    const a = (90 + gap + (360 - 2 * gap) * (acc + u.w / 2) / totalW) * Math.PI / 180;
+    acc += u.w;
+    add(u.key, cx + r * Math.cos(a), cy + r * Math.sin(a), u.size);
+  });
+  add('medal', 150, cy + r + 10, 'medal');
+  beads.forEach((b, i) => { b.order = i; });
+  return { cx, cy, r, beads, byKey:Object.fromEntries(beads.map(b => [b.key, b])) };
+})();
+
+function rosarySvg(currentKey, seq, center){
+  const g = ROSARY_GEOM;
+  const cur = currentKey ? g.byKey[currentKey].order : -1;
+  const firstStep = {};
+  (seq || []).forEach((s, i) => { if(!(s.at in firstStep)) firstStep[s.at] = i; });
+  const crossPath = document.querySelector('.brand .mark path').getAttribute('d');
+  const out = [
+    `<circle class="rs-chain" cx="${g.cx}" cy="${g.cy}" r="${g.r}"/>`,
+    `<path class="rs-chain" d="M150 ${g.cy + g.r + 10}V398"/>`
+  ];
+  if(center) out.push(`<text class="rs-center" x="150" y="${g.cy + 4}">${center.big}</text><text class="rs-center-sub" x="150" y="${g.cy + 30}">${escapeHtml(center.small || '')}</text>`);
+  g.beads.forEach(b => {
+    const state = b.order < cur ? ' done' : b.order === cur ? ' current' : '';
+    const step = firstStep[b.key];
+    const go = step !== undefined ? ` data-goto="${step}"` : '';
+    if(b.size === 'cross') out.push(`<g class="rs-cross${state}"${go}><path transform="translate(126 397) scale(.75)" d="${crossPath}"/></g>`);
+    else if(b.size === 'medal') out.push(`<ellipse class="rs-medal${state}"${go} cx="150" cy="${b.y}" rx="8.5" ry="11"/>`);
+    else out.push(`<circle class="rs-bead rs-${b.size}${state}"${go} cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="${b.size === 'big' ? 7.2 : 4.7}"/>`);
+  });
+  return `<svg class="rosary-svg" viewBox="0 0 300 448" role="img" aria-label="Rosary beads${currentKey ? ', showing your place. Select a bead to jump to it.' : ''}">${out.join('')}</svg>`;
+}
+
+/* ---------- The Rosary ---------- */
+function rosaryHowTo(){
+  return `
+    <details class="devo-howto">
+      <summary>How to pray the Rosary</summary>
+      <div class="howto-grid">
+        ${rosarySvg(null, null, { big:'Ave', small:'Maria' })}
+        <ol>
+          <li>On the crucifix, make the Sign of the Cross and pray the Apostles’ Creed.</li>
+          <li>On the first large bead, pray the Our Father.</li>
+          <li>On the next three beads, pray a Hail Mary each for faith, hope, and charity, then the Glory Be.</li>
+          <li>Announce the first mystery, and pray the Our Father on the large bead.</li>
+          <li>On the ten small beads, pray ten Hail Marys while meditating on the mystery.</li>
+          <li>End the decade with the Glory Be and the Fatima Prayer. Repeat for the other four mysteries.</li>
+          <li>At the centerpiece, finish with the Hail, Holy Queen and the closing prayer.</li>
+        </ol>
+      </div>
+    </details>`;
+}
+
+function renderRosaryStart(){
+  devoKeys = null;
+  const today = todaysMysterySet();
+  entryListEl.innerHTML = `
+    <div class="devo-start">
+      <div class="mystery-grid" role="radiogroup" aria-label="Mysteries">
+        ${Object.keys(MYSTERIES).map(key => {
+          const m = MYSTERIES[key], st = MYSTERY_STYLE[key];
+          return `<button class="mystery-card${key === rosarySet ? ' active' : ''}" role="radio" aria-checked="${key === rosarySet}" data-set="${key}" style="--devo:${st.color}">
+            ${key === today ? '<span class="mystery-today">Today</span>' : ''}
+            <span class="mystery-art">${cardArt(st.art)}</span>
+            <span class="mystery-name">${escapeHtml(m.name)}</span>
+            <span class="mystery-days">${escapeHtml(m.days)}</span>
+            <ol>${m.list.map(x => `<li>${escapeHtml(x.name.replace(/^The /, ''))}</li>`).join('')}</ol>
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="devo-begin" style="--devo:${MYSTERY_STYLE[rosarySet].color}">
+        <button class="btn primary pill" id="rosaryBeginBtn">Begin the ${escapeHtml(MYSTERIES[rosarySet].name)}</button>
+        <span>Five decades · about 20 minutes</span>
+      </div>
+      ${rosaryHowTo()}
+    </div>`;
+  entryListEl.querySelectorAll('.mystery-card').forEach(btn => btn.addEventListener('click', () => { rosarySet = btn.dataset.set; renderRosaryStart(); }));
+  document.getElementById('rosaryBeginBtn').addEventListener('click', () => {
+    rosarySequence = buildRosarySequence(rosarySet);
+    rosaryStep = 0;
+    renderRosary();
+  });
 }
 
 function renderRosary(){
   entryListEl.innerHTML = '';
-  const wrap = document.createElement('div');
-  wrap.className = 'rosary-wrap';
-
-  if(!rosarySequence){
-    wrap.innerHTML = `
-      <p class="rosary-intro">Choose which set of mysteries to pray. Traditionally: Joyful (Mon & Sat), Sorrowful (Tue & Fri), Glorious (Wed & Sun), Luminous (Thu).</p>
-      <div class="rosary-mystery-select">
-        ${Object.keys(MYSTERIES).map(key => `<button class="rosary-mystery-btn ${key===rosarySet?'active':''}" data-set="${key}">${MYSTERIES[key].name}</button>`).join('')}
-      </div>
-      <div class="rosary-suggestion">Today\u2019s traditional mysteries: ${MYSTERIES[todaysMysterySet()].name}</div>
-      <button class="btn primary" id="rosaryBeginBtn">Begin praying</button>
-    `;
-    entryListEl.appendChild(wrap);
-    wrap.querySelectorAll('.rosary-mystery-btn').forEach(btn => {
-      btn.addEventListener('click', () => { rosarySet = btn.dataset.set; renderRosary(); });
+  if(!rosarySequence) return renderRosaryStart();
+  const set = MYSTERIES[rosarySet], style = MYSTERY_STYLE[rosarySet];
+  const setShort = set.name.replace(' Mysteries', '');
+  const total = rosarySequence.length;
+  const again = () => { rosarySequence = null; rosaryStep = 0; renderRosary(); };
+  if(rosaryStep >= total){
+    return renderDevotionDone({
+      kind:'rosary', color:style.color, emblem:devoMedal(cardArt(style.art)), title:`You have prayed the ${set.name}`,
+      text:'Queen of the Most Holy Rosary, pray for us.', againLabel:'Pray the Rosary again', again
     });
-    document.getElementById('rosaryBeginBtn').addEventListener('click', () => {
-      rosarySequence = buildRosarySequence(rosarySet);
-      rosaryStep = 0;
-      renderRosary();
-    });
-    return;
   }
 
   const step = rosarySequence[rosaryStep];
-  const total = rosarySequence.length;
-
-  let beadsHtml = '';
-  if(step.decade){
-    const dots = [];
-    for(let j=1;j<=10;j++){
-      const cls = ['rosary-bead'];
-      if(step.bead && j <= step.bead) cls.push('filled');
-      if(step.bead === j) cls.push('current');
-      dots.push(`<span class="${cls.join(' ')}"></span>`);
-    }
-    beadsHtml = `<div class="rosary-beads">${dots.join('')}</div>`;
+  const d = step.decade, mystery = d ? set.list[d - 1] : null;
+  let kicker, title = step.label, body, extra = '', emblem;
+  if(step.isMystery){
+    const [meditation, fruit] = mystery.meditation.split(/\s*Fruit of the mystery:\s*/);
+    kicker = `The ${ORDINAL[d - 1]} ${setShort} Mystery`;
+    body = `<p class="devo-lead">${escapeHtml(meditation)}</p>`;
+    extra = `<div class="devo-meta">
+      ${fruit ? `<span class="devo-fruit"><small>Fruit of the mystery</small>${escapeHtml(fruit.replace(/\.$/, ''))}</span>` : ''}
+      ${scriptureLink(mystery.ref)}
+    </div>`;
+    emblem = devoMedal(cardArt(mystery.art));
+  } else {
+    kicker = d ? `Decade ${ROMAN[d - 1]} · ${escapeHtml(mystery.name)}` : step.note ? escapeHtml(step.note) : 'Opening prayers';
+    if(d && step.note) kicker = `Decade ${ROMAN[d - 1]} · ${escapeHtml(step.note)}`;
+    body = devoParas(step.prayer);
+    emblem = '<span class="devo-ornament"></span>';
   }
+  const track = step.bead
+    ? devoBeadRow(10, step.bead, `Hail Mary ${step.bead} of 10`)
+    : (!d && step.at.startsWith('p-hm') && step.label === 'Hail Mary') ? devoBeadRow(3, Number(step.at.slice(-1)), `Hail Mary ${step.at.slice(-1)} of 3`) : '';
+  const finishedDecades = d ? d - 1 : (step.at === 'medal' ? 5 : 0);
+  const pips = `<div class="devo-pips" aria-hidden="true">${[1, 2, 3, 4, 5].map(i => `<span class="${i <= finishedDecades ? 'done' : i === d ? 'current' : ''}">${ROMAN[i - 1]}</span>`).join('')}</div>`;
 
-  wrap.innerHTML = `
-    <div class="rosary-stage">
-      <div class="step-meta">${MYSTERIES[rosarySet].name}${step.decade ? ' \u00b7 Decade ' + step.decade + ' of 5' : ''}</div>
-      <div class="step-label">${escapeHtml(step.label)}</div>
-      ${step.isMystery ? `<div class="step-prayer">${escapeHtml(step.meditation)}</div>` : `<div class="step-prayer">${escapeHtml(step.prayer).replace(/\n/g,'<br><br>')}</div>`}
-      ${beadsHtml}
-    </div>
-    <div class="rosary-nav">
-      <button class="btn" id="rosaryBackBtn" ${rosaryStep===0?'disabled':''}>Back</button>
-      <button class="btn primary" id="rosaryNextBtn">${rosaryStep === total-1 ? 'Finish' : 'Next'}</button>
-    </div>
-    <div class="rosary-progress">Step ${rosaryStep+1} of ${total}</div>
-    <div class="rosary-restart"><button class="btn quiet" id="rosaryRestartBtn">Choose different mysteries</button></div>
-  `;
-  entryListEl.appendChild(wrap);
-
-  const backBtn = document.getElementById('rosaryBackBtn');
-  if(backBtn) backBtn.addEventListener('click', () => { if(rosaryStep>0){ rosaryStep--; renderRosary(); } });
-
-  document.getElementById('rosaryNextBtn').addEventListener('click', () => {
-    if(rosaryStep < total-1){ rosaryStep++; renderRosary(); }
-    else { rosarySequence = null; rosaryStep = 0; renderRosary(); }
-  });
-  document.getElementById('rosaryRestartBtn').addEventListener('click', () => {
-    rosarySequence = null; rosaryStep = 0; renderRosary();
+  renderDevotionStep({
+    kind:'rosary', color:style.color, step:rosaryStep, total, kicker, title, body, extra, emblem,
+    track:track + pips,
+    aside:rosarySvg(step.at, rosarySequence, d ? { big:ROMAN[d - 1], small:mystery.name } : { big:'Ave', small:set.name }),
+    go:i => { rosaryStep = Math.max(0, Math.min(i, total)); renderRosary(); },
+    exit:again, exitLabel:'Choose different mysteries'
   });
 }
 
@@ -7244,48 +7807,100 @@ const STATIONS_DATA = [
   { title:'Jesus is Laid in the Tomb', meditation:'Jesus is laid in the tomb, and the stone is rolled shut. We wait in the stillness of Holy Saturday, trusting in the resurrection still to come.' }
 ];
 
-let stationsStep = null;
+// Where each station is found in Scripture (null: from tradition), and the verse of the
+// Stabat Mater (Edward Caswall's translation) traditionally sung on the way to the next station
+const STATIONS_EXTRA = [
+  ['Matthew 27:24–26', 'At the cross her station keeping,\nStood the mournful Mother weeping,\nClose to Jesus to the last.'],
+  ['John 19:16–17', 'Through her heart, His sorrow sharing,\nAll His bitter anguish bearing,\nNow at length the sword has passed.'],
+  [null, 'O how sad and sore distressed\nWas that Mother highly blest\nOf the sole-begotten One!'],
+  [null, 'Christ above in torment hangs;\nShe beneath beholds the pangs\nOf her dying glorious Son.'],
+  ['Luke 23:26', 'Is there one who would not weep,\nWhelmed in miseries so deep,\nChrist’s dear Mother to behold?'],
+  [null, 'Can the human heart refrain\nFrom partaking in her pain,\nIn that Mother’s pain untold?'],
+  [null, 'Bruised, derided, cursed, defiled,\nShe beheld her tender Child\nAll with bloody scourges rent.'],
+  ['Luke 23:27–31', 'For the sins of His own nation,\nSaw Him hang in desolation,\nTill His spirit forth He sent.'],
+  [null, 'O thou Mother! fount of love!\nTouch my spirit from above,\nMake my heart with thine accord.'],
+  ['John 19:23–24', 'Make me feel as thou hast felt;\nMake my soul to glow and melt\nWith the love of Christ my Lord.'],
+  ['Luke 23:33–34', 'Holy Mother! pierce me through;\nIn my heart each wound renew\nOf my Saviour crucified.'],
+  ['Luke 23:44–46', 'Let me share with thee His pain,\nWho for all my sins was slain,\nWho for me in torments died.'],
+  ['John 19:38', 'Let me mingle tears with thee,\nMourning Him who mourned for me,\nAll the days that I may live.'],
+  ['John 19:40–42', 'By the cross with thee to stay,\nThere with thee to weep and pray,\nIs all I ask of thee to give.']
+];
+STATIONS_EXTRA.forEach(([ref, stanza], i) => Object.assign(STATIONS_DATA[i], { ref, stanza }));
+const STATIONS_COLOR = 'var(--purple)';
+
+let stationsStep = null;   // null: the overview; 14: finished
+
+// The Way of the Cross as a winding road of fourteen stops
+function stationsSvg(current){
+  const pts = STATIONS_DATA.map((s, i) => ({ x:100 + 50 * Math.sin(i * 0.95), y:26 + i * 38 }));
+  let d = `M${pts[0].x.toFixed(1)} ${pts[0].y}`;
+  for(let i = 1; i < pts.length; i++){
+    const p = pts[i - 1], q = pts[i], my = (p.y + q.y) / 2;
+    d += `C${p.x.toFixed(1)} ${my} ${q.x.toFixed(1)} ${my} ${q.x.toFixed(1)} ${q.y}`;
+  }
+  return `<svg class="stations-svg" viewBox="0 0 200 546" role="img" aria-label="The fourteen stations, showing your place. Select a station to go to it.">
+    <path class="ss-road" d="${d}"/>
+    ${pts.map((p, i) => `<g class="ss-stop${i < current ? ' done' : i === current ? ' current' : ''}" data-goto="${i}">
+      <title>${ROMAN[i]}. ${escapeHtml(STATIONS_DATA[i].title)}</title>
+      <circle cx="${p.x.toFixed(1)}" cy="${p.y}" r="14"/>
+      <text x="${p.x.toFixed(1)}" y="${p.y + 4}">${ROMAN[i]}</text>
+    </g>`).join('')}
+  </svg>`;
+}
+
+function renderStationsStart(){
+  devoKeys = null;
+  entryListEl.innerHTML = `
+    <div class="devo-start" style="--devo:${STATIONS_COLOR}">
+      <article class="devo-card devo-intro">
+        <div class="devo-emblem">${devoMedal(cardArt('budcross'))}</div>
+        <div class="devo-kicker">Via Crucis</div>
+        <h3 class="devo-title">Walk the Way of the Cross</h3>
+        <div class="devo-rule" aria-hidden="true"></div>
+        <p class="devo-closing">Follow Jesus from Pilate’s judgment to the tomb in fourteen stations. At each one, pray the versicle, meditate on the moment, and offer an Our Father, a Hail Mary, and a Glory Be. A verse of the <em>Stabat Mater</em> carries you on to the next station.</p>
+        <div class="devo-actions"><button class="btn primary pill" id="stationsBeginBtn">Begin at the First Station</button></div>
+        <p class="devo-small">Traditionally prayed on Fridays, and especially during Lent · about 25 minutes</p>
+      </article>
+      <h3 class="devo-subhead">Or begin at any station</h3>
+      <div class="station-grid">
+        ${STATIONS_DATA.map((s, i) => `<button class="station-tile" data-station="${i}"><span class="station-num">${ROMAN[i]}</span><span>${escapeHtml(s.title)}</span></button>`).join('')}
+      </div>
+    </div>`;
+  document.getElementById('stationsBeginBtn').addEventListener('click', () => { stationsStep = 0; renderStations(); });
+  entryListEl.querySelectorAll('[data-station]').forEach(b => b.addEventListener('click', () => { stationsStep = Number(b.dataset.station); renderStations(); window.scrollTo({ top:0 }); }));
+}
 
 function renderStations(){
   entryListEl.innerHTML = '';
-  const wrap = document.createElement('div');
-  wrap.className = 'rosary-wrap';
-
-  if(stationsStep === null){
-    wrap.innerHTML = `
-      <p class="rosary-intro">Walk through the fourteen Stations of the Cross, traditionally prayed on Fridays and especially during Lent. Each station pairs a moment of Christ\u2019s Passion with a short meditation.</p>
-      <button class="btn primary" id="stationsBeginBtn">Begin</button>
-    `;
-    entryListEl.appendChild(wrap);
-    document.getElementById('stationsBeginBtn').addEventListener('click', () => { stationsStep = 0; renderStations(); });
-    return;
-  }
-
-  const s = STATIONS_DATA[stationsStep];
+  if(stationsStep === null) return renderStationsStart();
   const total = STATIONS_DATA.length;
-  wrap.innerHTML = `
-    <div class="rosary-stage">
-      <div class="step-meta">Station ${stationsStep+1} of ${total}</div>
-      <div class="step-label">${escapeHtml(s.title)}</div>
-      <div class="step-prayer">${escapeHtml(s.meditation)}</div>
-      <div class="step-prayer" style="margin-top:16px; font-style:italic;">${escapeHtml(STATIONS_VERSICLE.v)}<br>${escapeHtml(STATIONS_VERSICLE.r)}</div>
+  const again = () => { stationsStep = null; renderStations(); };
+  if(stationsStep >= total){
+    return renderDevotionDone({
+      kind:'stations', color:STATIONS_COLOR, emblem:devoMedal(cardArt('budcross')), title:'You have walked the Way of the Cross',
+      text:'We adore You, O Christ, and we bless You, because by Your holy cross You have redeemed the world.', againLabel:'Walk the Stations again', again
+    });
+  }
+  const s = STATIONS_DATA[stationsStep];
+  const body = `
+    <div class="devo-versicle">
+      <p><span class="rubric">℣.</span>${escapeHtml(STATIONS_VERSICLE.v)}</p>
+      <p><span class="rubric">℟.</span>${escapeHtml(STATIONS_VERSICLE.r)}</p>
     </div>
-    <div class="rosary-nav">
-      <button class="btn" id="stationsBackBtn" ${stationsStep===0?'disabled':''}>Back</button>
-      <button class="btn primary" id="stationsNextBtn">${stationsStep === total-1 ? 'Finish' : 'Next'}</button>
-    </div>
-    <div class="rosary-progress">Station ${stationsStep+1} of ${total}</div>
-    <div class="rosary-restart"><button class="btn quiet" id="stationsRestartBtn">Start over</button></div>
-  `;
-  entryListEl.appendChild(wrap);
-
-  const backBtn = document.getElementById('stationsBackBtn');
-  if(backBtn) backBtn.addEventListener('click', () => { if(stationsStep>0){ stationsStep--; renderStations(); } });
-  document.getElementById('stationsNextBtn').addEventListener('click', () => {
-    if(stationsStep < total-1){ stationsStep++; renderStations(); }
-    else { stationsStep = null; renderStations(); }
+    <p class="devo-lead">${escapeHtml(s.meditation)}</p>`;
+  const extra = `
+    <div class="devo-meta">${s.ref ? scriptureLink(s.ref) : '<span class="devo-tradition">From the tradition of the Church</span>'}</div>
+    <p class="devo-said">Our Father · Hail Mary · Glory Be</p>
+    <div class="devo-stanza"><span class="devo-stanza-label">Stabat Mater</span>${escapeHtml(s.stanza).replace(/\n/g, '<br>')}</div>`;
+  const track = `<div class="devo-pips devo-pips-14" aria-hidden="true">${STATIONS_DATA.map((x, i) => `<span class="${i < stationsStep ? 'done' : i === stationsStep ? 'current' : ''}">${i + 1}</span>`).join('')}</div>`;
+  renderDevotionStep({
+    kind:'stations', color:STATIONS_COLOR, step:stationsStep, total,
+    emblem:devoMedal(`<span class="devo-numeral">${ROMAN[stationsStep]}</span>`),
+    kicker:`Station ${ROMAN[stationsStep]} of XIV`, title:s.title, body, extra, track,
+    aside:stationsSvg(stationsStep),
+    go:i => { stationsStep = Math.max(0, Math.min(i, total)); renderStations(); },
+    exit:again, exitLabel:'Back to all stations'
   });
-  document.getElementById('stationsRestartBtn').addEventListener('click', () => { stationsStep = null; renderStations(); });
 }
 
 /* =========================================================
@@ -7302,76 +7917,96 @@ const CHAPLET_PRAYERS = {
 let chapletSequence = null;
 let chapletStep = 0;
 
+const CHAPLET_COLOR = 'var(--teal)';
+
 function buildChapletSequence(){
   const seq = [];
-  seq.push({ label:'Sign of the Cross', prayer:ROSARY_PRAYERS.cross });
-  seq.push({ label:'Opening', prayer:CHAPLET_PRAYERS.opening });
-  seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather });
-  seq.push({ label:'Hail Mary', prayer:ROSARY_PRAYERS.hailMary });
-  seq.push({ label:'Apostles\u2019 Creed', prayer:ROSARY_PRAYERS.creed });
-  for(let d=1; d<=5; d++){
-    seq.push({ label:'Eternal Father', prayer:CHAPLET_PRAYERS.eternalFather, decade:d });
-    for(let j=1; j<=10; j++) seq.push({ label:'For the Sake of His Sorrowful Passion', prayer:CHAPLET_PRAYERS.forTheSake, decade:d, bead:j });
+  seq.push({ label:'Sign of the Cross', prayer:ROSARY_PRAYERS.cross, at:'cross' });
+  seq.push({ label:'Opening Prayer', prayer:CHAPLET_PRAYERS.opening, at:'cross' });
+  seq.push({ label:'Our Father', prayer:ROSARY_PRAYERS.ourFather, at:'p-of' });
+  seq.push({ label:'Hail Mary', prayer:ROSARY_PRAYERS.hailMary, at:'p-hm1' });
+  seq.push({ label:'Apostles’ Creed', prayer:ROSARY_PRAYERS.creed, at:'p-hm2' });
+  for(let d = 1; d <= 5; d++){
+    seq.push({ label:'Eternal Father', prayer:CHAPLET_PRAYERS.eternalFather, decade:d, at:d === 1 ? 'p-a' : `d${d}-of` });
+    for(let j = 1; j <= 10; j++) seq.push({ label:'For the Sake of His Sorrowful Passion', prayer:CHAPLET_PRAYERS.forTheSake, decade:d, bead:j, at:`d${d}-${j}` });
   }
-  for(let k=1; k<=3; k++) seq.push({ label:`Holy God (${k} of 3)`, prayer:CHAPLET_PRAYERS.holyGod });
-  seq.push({ label:'Closing Prayer', prayer:CHAPLET_PRAYERS.closing });
+  for(let k = 1; k <= 3; k++) seq.push({ label:'Holy God', note:`${k} of 3`, prayer:CHAPLET_PRAYERS.holyGod, at:'medal', holy:k });
+  seq.push({ label:'Closing Prayer', prayer:CHAPLET_PRAYERS.closing, at:'medal' });
   return seq;
+}
+
+// "The Hour of Mercy is now" or how long until 3:00 pm
+function hourOfMercyText(){
+  const now = new Date();
+  if(now.getHours() === 15) return 'It is the Hour of Mercy now.';
+  const next = new Date(now);
+  next.setHours(15, 0, 0, 0);
+  if(next <= now) next.setDate(next.getDate() + 1);
+  const mins = Math.round((next - now) / 60000), h = Math.floor(mins / 60), m = mins % 60;
+  return `The Hour of Mercy begins in ${h ? h + ' hr ' : ''}${m} min.`;
+}
+
+function renderChapletStart(){
+  devoKeys = null;
+  entryListEl.innerHTML = `
+    <div class="devo-start" style="--devo:${CHAPLET_COLOR}">
+      <article class="devo-card devo-intro devo-mercy">
+        <div class="devo-emblem">${devoMedal(cardArt('rays'))}</div>
+        <div class="devo-kicker">Jesus, I trust in You</div>
+        <h3 class="devo-title">The Chaplet of Divine Mercy</h3>
+        <div class="devo-rule" aria-hidden="true"></div>
+        <p class="devo-closing">Given by Christ to St. Faustina Kowalska in the 1930s, the Chaplet is prayed on ordinary rosary beads, especially at 3:00 pm, the hour of Christ’s death.</p>
+        <p class="devo-pill">${hourOfMercyText()}</p>
+        <div class="devo-actions"><button class="btn primary pill" id="chapletBeginBtn">Begin praying</button></div>
+        <p class="devo-small">Five decades · about 10 minutes</p>
+      </article>
+      <details class="devo-howto">
+        <summary>How to pray the Chaplet</summary>
+        <div class="howto-grid">
+          ${rosarySvg(null, null, { big:'✠', small:'Jesus, I trust in You' })}
+          <ol>
+            <li>Begin with the Sign of the Cross and the opening prayer.</li>
+            <li>Pray one Our Father, one Hail Mary, and the Apostles’ Creed.</li>
+            <li>On each large bead, pray “Eternal Father, I offer You…”</li>
+            <li>On each of the ten small beads, pray “For the sake of His sorrowful Passion…”</li>
+            <li>After the fifth decade, pray “Holy God, Holy Mighty One…” three times, then the closing prayer.</li>
+          </ol>
+        </div>
+      </details>
+    </div>`;
+  document.getElementById('chapletBeginBtn').addEventListener('click', () => {
+    chapletSequence = buildChapletSequence();
+    chapletStep = 0;
+    renderChaplet();
+  });
 }
 
 function renderChaplet(){
   entryListEl.innerHTML = '';
-  const wrap = document.createElement('div');
-  wrap.className = 'rosary-wrap';
-
-  if(!chapletSequence){
-    wrap.innerHTML = `
-      <p class="rosary-intro">The Chaplet of Divine Mercy, given by Christ to St. Faustina Kowalska, is traditionally prayed on rosary beads, especially at 3:00 pm, the "Hour of Mercy."</p>
-      <button class="btn primary" id="chapletBeginBtn">Begin praying</button>
-    `;
-    entryListEl.appendChild(wrap);
-    document.getElementById('chapletBeginBtn').addEventListener('click', () => {
-      chapletSequence = buildChapletSequence(); chapletStep = 0; renderChaplet();
-    });
-    return;
-  }
-
-  const step = chapletSequence[chapletStep];
+  if(!chapletSequence) return renderChapletStart();
   const total = chapletSequence.length;
-  let beadsHtml = '';
-  if(step.decade){
-    const dots = [];
-    for(let j=1;j<=10;j++){
-      const cls = ['rosary-bead'];
-      if(step.bead && j <= step.bead) cls.push('filled');
-      if(step.bead === j) cls.push('current');
-      dots.push(`<span class="${cls.join(' ')}"></span>`);
-    }
-    beadsHtml = `<div class="rosary-beads">${dots.join('')}</div>`;
+  const again = () => { chapletSequence = null; chapletStep = 0; renderChaplet(); };
+  if(chapletStep >= total){
+    return renderDevotionDone({
+      kind:'chaplet', color:CHAPLET_COLOR, emblem:devoMedal(cardArt('rays')), title:'You have prayed the Chaplet of Divine Mercy',
+      text:'Jesus, I trust in You.', againLabel:'Pray the Chaplet again', again
+    });
   }
-
-  wrap.innerHTML = `
-    <div class="rosary-stage">
-      <div class="step-meta">${step.decade ? 'Decade ' + step.decade + ' of 5' : 'Divine Mercy Chaplet'}</div>
-      <div class="step-label">${escapeHtml(step.label)}</div>
-      <div class="step-prayer">${escapeHtml(step.prayer)}</div>
-      ${beadsHtml}
-    </div>
-    <div class="rosary-nav">
-      <button class="btn" id="chapletBackBtn" ${chapletStep===0?'disabled':''}>Back</button>
-      <button class="btn primary" id="chapletNextBtn">${chapletStep === total-1 ? 'Finish' : 'Next'}</button>
-    </div>
-    <div class="rosary-progress">Step ${chapletStep+1} of ${total}</div>
-    <div class="rosary-restart"><button class="btn quiet" id="chapletRestartBtn">Start over</button></div>
-  `;
-  entryListEl.appendChild(wrap);
-
-  const backBtn = document.getElementById('chapletBackBtn');
-  if(backBtn) backBtn.addEventListener('click', () => { if(chapletStep>0){ chapletStep--; renderChaplet(); } });
-  document.getElementById('chapletNextBtn').addEventListener('click', () => {
-    if(chapletStep < total-1){ chapletStep++; renderChaplet(); }
-    else { chapletSequence = null; chapletStep = 0; renderChaplet(); }
+  const step = chapletSequence[chapletStep];
+  const d = step.decade;
+  const kicker = d ? `Decade ${ROMAN[d - 1]} of V` : step.holy ? `Holy God · ${step.note}` : 'Divine Mercy Chaplet';
+  const track = step.bead ? devoBeadRow(10, step.bead, `Bead ${step.bead} of 10`)
+    : step.holy ? devoBeadRow(3, step.holy, `${step.holy} of 3`) : '';
+  const finishedDecades = d ? d - 1 : (step.at === 'medal' ? 5 : 0);
+  const pips = `<div class="devo-pips" aria-hidden="true">${[1, 2, 3, 4, 5].map(i => `<span class="${i <= finishedDecades ? 'done' : i === d ? 'current' : ''}">${ROMAN[i - 1]}</span>`).join('')}</div>`;
+  renderDevotionStep({
+    kind:'chaplet', color:CHAPLET_COLOR, step:chapletStep, total, kicker, title:step.label,
+    body:devoParas(step.prayer), track:track + pips,
+    emblem:step.bead ? '<span class="devo-ornament"></span>' : devoMedal(cardArt('rays')),
+    aside:rosarySvg(step.at, chapletSequence, { big:d ? ROMAN[d - 1] : '✠', small:'Jesus, I trust in You' }),
+    go:i => { chapletStep = Math.max(0, Math.min(i, total)); renderChaplet(); },
+    exit:again, exitLabel:'Start over'
   });
-  document.getElementById('chapletRestartBtn').addEventListener('click', () => { chapletSequence = null; chapletStep = 0; renderChaplet(); });
 }
 
 /* =========================================================
