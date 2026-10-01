@@ -725,6 +725,153 @@
   .sf-patron-search:focus-within{border-color:var(--gold); box-shadow:0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);}
   .sf-patron-search svg{width:16px; height:16px; color:var(--ink-soft); flex:0 0 auto;}
   .sf-patron-search input{flex:1; min-width:0; height:100%; border:none; outline:none; background:transparent; font-family:'Source Serif 4', serif; font-size:0.95rem; color:var(--ink);}
+  /* ---------- Guided prayer extras ---------- */
+  .devo-pips.always{display:flex;}
+  .devo-text .devo-pray{font-style:italic; padding:12px 16px; margin-top:14px; border-radius:12px; background:color-mix(in srgb, var(--devo) 7%, transparent);}
+  .devo-text > .devo-pray:first-child::first-letter{float:none; font:inherit; padding:0; color:inherit;}
+  .devo-prompts{margin:12px 0 0; padding-left:20px; line-height:1.7;}
+  .devo-prompts li + li{margin-top:6px;}
+  .devo-prompts li::marker{color:var(--devo);}
+  .lectio-verse{
+    margin:0 auto 18px; max-width:520px; padding:18px 22px; border-radius:16px; text-align:center;
+    font-family:'Cormorant Garamond', serif; font-size:1.45rem; line-height:1.4; font-style:italic;
+    background:color-mix(in srgb, var(--devo) 9%, transparent); border:1px solid color-mix(in srgb, var(--devo) 25%, transparent);
+  }
+  .lectio-verse cite{display:block; margin-top:8px; font-family:'Source Serif 4', serif; font-size:0.82rem; font-style:normal; letter-spacing:0.08em; color:var(--devo);}
+  .devo-intro .lectio-verse{margin-top:20px;}
+  .devo-listen{margin-left:12px;}
+  .mass-why{font-style:italic; color:var(--ink-soft); margin:16px auto 0; max-width:540px;}
+
+  /* ---------- Prayer tracker ---------- */
+  .tracker{max-width:900px; display:grid; gap:18px;}
+  .tracker > *{min-width:0;}
+  .tracker > section, .tracker-settings{padding:20px 22px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
+  .tracker-stats{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px 22px;
+    background:linear-gradient(135deg, color-mix(in srgb, var(--gold) 14%, var(--parchment-light)), var(--parchment-light) 70%) !important;}
+  .ts-main{display:flex; align-items:center; gap:12px;}
+  .ts-flame{width:54px; height:54px; color:var(--gold);}
+  .ts-flame svg{width:100%; height:100%;}
+  .ts-num{font-family:'Cormorant Garamond', serif; font-size:3rem; font-weight:700; line-height:0.9;}
+  .ts-label{font-size:0.82rem; color:var(--ink-soft);}
+  .ts-msg{margin:0; color:var(--ink-soft);}
+  .ts-mini{display:flex; gap:18px;}
+  .ts-mini div{display:flex; flex-direction:column; align-items:center; text-align:center;}
+  .ts-mini strong{font-family:'Cormorant Garamond', serif; font-size:1.6rem; line-height:1;}
+  .ts-mini span{font-size:0.72rem; color:var(--ink-soft); max-width:80px;}
+  .td-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:14px;}
+  .td-head h3{margin:0; font-size:1.35rem;}
+  .td-nav{display:flex; align-items:center; gap:6px;}
+  .td-nav .icon-btn{width:34px; height:34px; font-size:1.2rem;}
+  .td-nav .icon-btn[disabled]{opacity:0.35; cursor:default;}
+  .habit-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:10px;}
+  .habit{display:flex; flex-direction:column; border-radius:14px; border:1px solid var(--line); background:var(--parchment); overflow:hidden;}
+  .habit.done{border-color:var(--gold); background:color-mix(in srgb, var(--gold) 12%, var(--parchment));}
+  .habit-check{display:flex; align-items:center; gap:12px; padding:12px 14px; border:none; background:none; cursor:pointer; text-align:left; color:var(--ink); font-family:'Source Serif 4', serif;}
+  .habit-icon{flex:0 0 34px; width:34px; height:34px; padding:7px; border-radius:10px; color:var(--gold); background:color-mix(in srgb, var(--gold) 13%, transparent);}
+  .habit-icon svg{width:100%; height:100%; display:block;}
+  .habit-text{flex:1; min-width:0; display:flex; flex-direction:column;}
+  .habit-text small{font-size:0.78rem; color:var(--ink-soft);}
+  .habit-tick{flex:0 0 26px; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:1.5px solid color-mix(in srgb, var(--gold) 60%, var(--line)); font-weight:700; color:var(--parchment-light);}
+  .habit.done .habit-tick{background:var(--gold); border-color:var(--gold);}
+  .habit-go{border:none; border-top:1px solid var(--line); background:none; cursor:pointer; padding:8px 14px; text-align:left; font-family:'Source Serif 4', serif; font-size:0.82rem; color:var(--wine);}
+  .habit-go:hover{background:color-mix(in srgb, var(--gold) 8%, transparent);}
+  .heatmap{display:flex; gap:4px; overflow-x:auto; padding-bottom:4px;}
+  .hm-col{display:flex; flex-direction:column; gap:4px;}
+  .hm-cell{display:inline-block; width:16px; height:16px; border-radius:4px; border:none; padding:0; background:color-mix(in srgb, var(--ink) 8%, transparent);}
+  button.hm-cell{cursor:pointer;}
+  .hm-cell.future{background:transparent;}
+  .hm-cell.l1{background:color-mix(in srgb, var(--gold) 35%, transparent);}
+  .hm-cell.l2{background:color-mix(in srgb, var(--gold) 60%, transparent);}
+  .hm-cell.l3{background:color-mix(in srgb, var(--gold) 82%, transparent);}
+  .hm-cell.l4{background:var(--wine);}
+  .hm-cell.sel{outline:2px solid var(--ink); outline-offset:1px;}
+  .hm-legend{display:inline-flex; align-items:center; gap:3px; font-size:0.75rem; color:var(--ink-soft);}
+  .hm-legend .hm-cell{width:12px; height:12px;}
+  .tracker-note{font-size:0.82rem; color:var(--ink-soft); margin:12px 0 0;}
+  .tracker-settings summary{cursor:pointer; font-weight:600;}
+  .tracker-settings .sf-chips{margin-top:12px;}
+  @media (max-width:700px){
+    .tracker-stats{grid-template-columns:1fr;}
+    .ts-mini{justify-content:space-between;}
+  }
+
+  /* ---------- Home: today's prayer ---------- */
+  .home-prayer{display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 18px; margin:22px 0; border-radius:18px; border:1px solid var(--line); background:var(--parchment-light);}
+  .home-prayer-streak{display:flex; align-items:center; gap:8px; font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-weight:600;}
+  .home-prayer-streak svg{width:26px; height:26px; color:var(--gold);}
+  .home-prayer-chips{display:flex; flex-wrap:wrap; gap:6px; flex:1;}
+  .home-prayer .patron-chip.active::before{content:'✓ ';}
+
+  /* ---------- The Mass explained ---------- */
+  .mass-page{max-width:900px;}
+  .mass-intro{display:flex; align-items:center; gap:18px 26px; flex-wrap:wrap; padding:20px 22px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
+  .mass-intro > div{flex:1 1 380px;}
+  .mass-intro p{margin:0 0 12px;}
+  .mass-legend{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+  .mass-legend-note{font-size:0.78rem; color:var(--ink-soft);}
+  .posture{display:inline-flex; align-items:center; gap:5px; padding:3px 10px 3px 6px; border-radius:12px; font-size:0.75rem; font-weight:600; white-space:nowrap;}
+  .posture svg{width:18px; height:18px;}
+  .posture-stand{color:var(--teal); background:color-mix(in srgb, var(--teal) 13%, transparent);}
+  .posture-sit{color:var(--indigo); background:color-mix(in srgb, var(--indigo) 13%, transparent);}
+  .posture-kneel{color:var(--wine); background:color-mix(in srgb, var(--wine) 12%, transparent);}
+  .devo-emblem .posture{font-size:0.9rem; padding:6px 14px 6px 10px;}
+  .devo-emblem .posture svg{width:26px; height:26px;}
+  .mass-strip{display:flex; gap:4px; margin:18px 0 6px; position:sticky; top:72px; z-index:5;}
+  .mass-strip-seg{min-width:0; display:flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; text-decoration:none; font-size:0.78rem; color:var(--ink);
+    background:var(--parchment-light); border:1px solid var(--line); overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+  .mass-strip-seg span{font-family:'Cormorant Garamond', serif; font-weight:700; color:var(--wine);}
+  .mass-strip-seg:hover{border-color:var(--wine);}
+  .mass-section{scroll-margin-top:130px;}
+  .mass-section-title{display:flex; align-items:center; gap:10px; font-size:1.5rem; margin:30px 0 10px;}
+  .mass-roman{width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; color:var(--parchment-light); background:var(--wine);}
+  .mass-list{list-style:none; margin:0; padding:0;}
+  .mass-part{display:flex; gap:14px; padding:16px 0; border-top:1px solid var(--line);}
+  .mass-num{flex:0 0 30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; color:var(--wine); border:1.5px solid color-mix(in srgb, var(--wine) 40%, var(--line));}
+  .mass-body{flex:1; min-width:0;}
+  .mass-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .mass-head h4{margin:0; font-size:1.2rem;}
+  .mass-when{font-size:0.78rem; color:var(--gold); margin-top:2px;}
+  .mass-body p{margin:8px 0 0;}
+  .mass-body .mass-why{margin:6px 0 10px; max-width:none;}
+  @media (max-width:640px){ .mass-strip-seg{font-size:0; gap:0; justify-content:center;} .mass-strip-seg span{font-size:0.9rem;} }
+
+  /* ---------- Glossary ---------- */
+  .glossary{max-width:860px;}
+  .glossary-tools{position:sticky; top:72px; z-index:5; padding:12px 0; background:var(--parchment);}
+  .glossary-tools .sf-patron-search{max-width:none;}
+  .glossary-letters{display:flex; flex-wrap:wrap; gap:4px;}
+  .glossary-letters a{min-width:28px; padding:4px 0; text-align:center; border-radius:8px; text-decoration:none; font-weight:600; color:var(--wine); border:1px solid var(--line); background:var(--parchment-light);}
+  .glossary-letters a.off{opacity:0.35; pointer-events:none;}
+  .glossary-group{scroll-margin-top:170px;}
+  .glossary-letter{font-size:2rem; color:var(--gold); margin:22px 0 6px; border-bottom:1px solid var(--line);}
+  .glossary dl{margin:0;}
+  .glossary-item{padding:10px 0; border-bottom:1px dashed var(--line);}
+  .glossary-item dt{font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-weight:700;}
+  .glossary-item dd{margin:2px 0 0; color:var(--ink-soft); line-height:1.6;}
+
+  /* ---------- Find your patron saint ---------- */
+  .pf{max-width:980px;}
+  .pf-form{padding:20px 22px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
+  .pf-intro{margin:0 0 16px; color:var(--ink-soft);}
+  .pf-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:14px 18px; margin-bottom:6px;}
+  .pf-q{display:flex; flex-direction:column; gap:6px; font-weight:600; font-size:0.92rem;}
+  .pf-q select{font-family:'Source Serif 4', serif; font-size:0.95rem; font-weight:400; padding:9px 10px; border-radius:10px; border:1px solid var(--line); background:var(--parchment); color:var(--ink); min-width:0;}
+  .pf-row{display:flex; gap:8px;}
+  .pf-row select:first-child{flex:2;} .pf-row select:last-child{flex:1;}
+  .pf-heading{font-size:1.4rem; margin:26px 0 12px;}
+  .pf-empty{margin:22px 0; color:var(--ink-soft); font-style:italic;}
+  .pf-results{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px;}
+  .pf-card{display:flex; gap:14px; align-items:flex-start; text-align:left; cursor:pointer; padding:14px; border-radius:16px; border:1px solid var(--line); background:var(--parchment-light); color:var(--ink); font-family:'Source Serif 4', serif;}
+  .pf-card:hover{border-color:var(--gold);}
+  .pf-card .saint-portrait{flex:0 0 64px; width:64px; height:80px;}
+  .pf-card-body{display:flex; flex-direction:column; gap:4px; min-width:0;}
+  .pf-card-title{font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-weight:700; line-height:1.15;}
+  .pf-why{display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;}
+  .pf-why .patron-tag{font-size:0.72rem;}
+  .sf-quiz-link{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:-6px 0 18px; padding:12px 16px; border-radius:14px;
+    background:color-mix(in srgb, var(--gold) 10%, var(--parchment-light)); border:1px dashed color-mix(in srgb, var(--gold) 50%, var(--line));}
+
   /* ---------- Saint finder ---------- */
   .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
   .sf-section{padding-bottom:14px;}
@@ -1827,12 +1974,17 @@
         <li><button class="navlink" data-route="pray/chaplet" data-cat="chaplet">Divine Mercy Chaplet</button></li>
         <li><button class="navlink" data-route="pray/examination" data-cat="exam">Examination of Conscience</button></li>
         <li><button class="navlink" data-route="pray/timer" data-cat="timer">Prayer Timer</button></li>
+        <li><button class="navlink" data-route="pray/examen" data-cat="examen">Daily Examen</button></li>
+        <li><button class="navlink" data-route="pray/angelus" data-cat="angelus">Angelus</button></li>
+        <li><button class="navlink" data-route="pray/lectio" data-cat="lectio">Lectio Divina</button></li>
+        <li><button class="navlink" data-route="pray/tracker" data-cat="tracker">Prayer Tracker</button></li>
       </ul>
     </div>
     <div class="nav-group">
       <button class="group-label group-link" data-route="library">Library ›</button>
       <ul>
         <li><button class="navlink" data-route="library/saints" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
+        <li><button class="navlink" data-route="library/saints/patron-finder" data-cat="patronfinder">Find Your Patron Saint</button></li>
         <li><button class="navlink" data-route="library/books" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
         <li><button class="navlink" data-route="library/bible" data-cat="bible">The Bible <span class="count" id="count-bible"></span></button></li>
         <li><button class="navlink" data-route="library/all" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
@@ -1846,6 +1998,8 @@
         <li><button class="navlink" data-route="learn/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
         <li><button class="navlink" data-route="learn/plans" data-cat="plan">Bible Reading Plans</button></li>
         <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
+        <li><button class="navlink" data-route="learn/mass" data-cat="mass">The Mass Explained</button></li>
+        <li><button class="navlink" data-route="learn/glossary" data-cat="glossary">Catholic Glossary</button></li>
         <li><button class="navlink" data-route="resources" data-cat="resources">Learning Resources</button></li>
       </ul>
     </div>
@@ -1878,13 +2032,13 @@
     <div class="footer-cols">
       <div><h4>Pray</h4>
         <button data-route="pray/prayers">Prayers</button><button data-route="pray/rosary">Rosary</button><button data-route="pray/stations">Stations of the Cross</button>
-        <button data-route="pray/chaplet">Divine Mercy Chaplet</button><button data-route="pray/examination">Examination of Conscience</button><button data-route="pray/timer">Prayer Timer</button></div>
+        <button data-route="pray/chaplet">Divine Mercy Chaplet</button><button data-route="pray/examination">Examination of Conscience</button><button data-route="pray/timer">Prayer Timer</button><button data-route="pray/examen">Daily Examen</button><button data-route="pray/angelus">Angelus</button><button data-route="pray/lectio">Lectio Divina</button><button data-route="pray/tracker">Prayer Tracker</button></div>
       <div><h4>Library</h4>
-        <button data-route="library/saints">Saints</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
+        <button data-route="library/saints">Saints</button><button data-route="library/saints/patron-finder">Find Your Patron Saint</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
         <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
       <div><h4>Learn</h4>
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
-        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="resources">Learning Resources</button></div>
+        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="resources">Learning Resources</button></div>
       <div><h4>Sanctify</h4>
         <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button></div>
     </div>
@@ -1926,6 +2080,13 @@ const CAT_DESC = {
   timer: 'Set aside time for silent prayer, meditation, or a Holy Hour, with a gentle bell to begin and end.',
   quiz: 'Test what you know about the saints, Scripture, Church history, and great Catholic books.',
   prayer: 'Every prayer as an illustrated prayer card. Choose a topic, then open a card to pray it, save it, or print it.',
+  examen: 'The prayer St. Ignatius never wanted his companions to skip: five short steps to look back on the day with God.',
+  angelus: 'The ancient prayer of the Incarnation, prayed at morning, noon, and evening. During the Easter season, the Regina Caeli.',
+  lectio: 'Pray with a passage of Scripture the way the monks did: read, reflect, respond, and rest in God.',
+  tracker: 'Keep a private record of your daily prayer, build a steady habit, and see your faithfulness over the weeks.',
+  mass: 'Every part of the Mass in order, with when to stand, sit, and kneel, and what each moment means. Follow along on your phone at Mass.',
+  glossary: 'Clear, short definitions of the words of the Catholic faith, from Absolution to the Vulgate.',
+  patronfinder: 'A few quick questions to suggest saints for your birthday, your work, and the needs on your heart.',
   resources: 'Trusted places to keep learning about the faith: Church documents, Scripture and prayer, podcasts, video, courses, and more.',
   community: 'Share prayer requests, ask questions about the faith, and talk about the saints and good books with other Sanctify members.',
   'forum-new': 'Start a new conversation in the Community.',
@@ -4466,6 +4627,7 @@ function renderSaintFinder(everyone){
         return `<button class="patron-chip sf-chip${saintPatron === f.term ? ' active' : ''}" data-term="${escapeHtml(f.term)}" aria-pressed="${saintPatron === f.term}"${n || saintPatron === f.term ? '' : ' disabled'}>${escapeHtml(f.label)}<span class="sf-n">${n}</span></button>`;
       }).join('')}</div>
     </div>`;
+  entryListEl.insertAdjacentHTML('beforeend', `<div class="sf-quiz-link"><span>Not sure where to start? Answer a few questions and get suggestions.</span><button class="btn quiet" data-route="library/saints/patron-finder">Find your patron saint →</button></div>`);
   entryListEl.appendChild(panel);
   entryListEl.appendChild(buildFeastFinder());
 
@@ -4613,7 +4775,9 @@ function render(){
       home:renderHome, calendar:renderCalendar, rosary:renderRosary, shop:renderShop, stations:renderStations,
       chaplet:renderChaplet, history:renderHistory, daily:renderDaily, theology:renderTheology,
       mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan,
-      community:renderCommunity, resources:renderResources, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
+      community:renderCommunity, resources:renderResources,
+      examen:() => renderGuided('examen'), angelus:() => renderGuided('angelus'), lectio:() => renderGuided('lectio'),
+      tracker:renderTracker, mass:renderMass, glossary:renderGlossary, patronfinder:renderPatronFinder, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
       'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
@@ -7312,6 +7476,786 @@ function renderResources(){
 }
 
 /* =========================================================
+   PRAYER TRACKER: a private record of daily prayer
+   ---------------------------------------------------------
+   Stored only in this browser, as { 'YYYY-MM-DD': ['rosary', ...] }.
+   Guided prayers mark themselves done when you finish them.
+   ========================================================= */
+const HABITS = [
+  { key:'morning',    name:'Morning Offering',      icon:'daily',    open:'p16',               note:'Offer the day to God' },
+  { key:'scripture',  name:'Scripture',             icon:'bible',    route:'pray/lectio',      note:'Lectio Divina or any reading' },
+  { key:'angelus',    name:'Angelus',               icon:'angelus',  route:'pray/angelus',     note:'Morning, noon, or evening' },
+  { key:'rosary',     name:'Rosary',                icon:'rosary',   route:'pray/rosary',      note:'Five decades' },
+  { key:'mass',       name:'Mass',                  icon:'mass',     route:'learn/mass',       note:'Sunday or daily Mass' },
+  { key:'chaplet',    name:'Divine Mercy Chaplet',  icon:'chaplet',  route:'pray/chaplet',     note:'Especially at 3 pm' },
+  { key:'silence',    name:'Silent prayer',         icon:'timer',    route:'pray/timer',       note:'Time alone with God' },
+  { key:'examen',     name:'Examen',                icon:'examen',   route:'pray/examen',      note:'Review the day with God' },
+  { key:'stations',   name:'Stations of the Cross', icon:'stations', route:'pray/stations',    note:'Especially on Fridays' },
+  { key:'adoration',  name:'Adoration',             icon:'mass',     route:null,               note:'Time before the Blessed Sacrament' },
+  { key:'confession', name:'Confession',            icon:'exam',     route:'pray/examination', note:'The sacrament of mercy' }
+];
+const DEFAULT_HABITS = ['morning', 'scripture', 'rosary', 'mass', 'examen'];
+let trackerDay = null;   // the day shown in the checklist (null: today)
+
+function dateKey(d){ return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+function trackerLog(){ return store.get('tracker', {}); }
+function prayedOn(d){ return trackerLog()[dateKey(d)] || []; }
+
+function logPrayer(key, d){
+  const log = trackerLog(), k = dateKey(d || startOfToday());
+  const list = new Set(log[k] || []);
+  if(list.has(key)) return;
+  list.add(key);
+  log[k] = [...list];
+  store.set('tracker', log);
+}
+function togglePrayerLog(key, d){
+  const log = trackerLog(), k = dateKey(d);
+  const list = new Set(log[k] || []);
+  if(list.has(key)) list.delete(key); else list.add(key);
+  if(list.size) log[k] = [...list]; else delete log[k];
+  store.set('tracker', log);
+  return list.has(key);
+}
+
+function prayerStats(){
+  const log = trackerLog();
+  const today = startOfToday();
+  let current = 0;
+  let d = prayedOn(today).length ? today : addDays(today, -1);
+  while((log[dateKey(d)] || []).length){ current++; d = addDays(d, -1); }
+  const days = Object.keys(log).filter(k => log[k].length).sort();
+  let longest = 0, run = 0, prev = null;
+  days.forEach(k => {
+    const [y, m, dd] = k.split('-').map(Number);
+    const day = new Date(y, m - 1, dd);
+    run = prev && sameDay(addDays(prev, 1), day) ? run + 1 : 1;
+    longest = Math.max(longest, run);
+    prev = day;
+  });
+  const monthPrefix = dateKey(today).slice(0, 7);
+  return {
+    current, longest,
+    thisMonth:days.filter(k => k.startsWith(monthPrefix)).length,
+    total:days.reduce((n, k) => n + log[k].length, 0)
+  };
+}
+
+function streakMessage(n){
+  if(!n) return 'Every day is a new beginning. Start with one small prayer today.';
+  if(n === 1) return 'A good start. Come back tomorrow to keep it going.';
+  if(n < 7) return `${n} days in a row. Small, faithful steps add up.`;
+  if(n < 30) return `${n} days in a row. Prayer is becoming a habit.`;
+  return `${n} days in a row. Thanks be to God!`;
+}
+
+function renderTracker(){
+  const today = startOfToday();
+  const day = trackerDay && trackerDay <= today ? trackerDay : today;
+  const isToday = sameDay(day, today);
+  const enabled = store.get('tracker.habits', DEFAULT_HABITS);
+  const done = new Set(prayedOn(day));
+  const stats = prayerStats();
+  const log = trackerLog();
+
+  // Heatmap: the last 18 weeks, one column per week, Sunday at the top
+  const weeks = 18;
+  const start = addDays(today, -today.getDay() - (weeks - 1) * 7);
+  let cells = '';
+  for(let w = 0; w < weeks; w++){
+    cells += '<div class="hm-col">';
+    for(let r = 0; r < 7; r++){
+      const d = addDays(start, w * 7 + r);
+      if(d > today){ cells += '<span class="hm-cell future"></span>'; continue; }
+      const n = (log[dateKey(d)] || []).length;
+      const lvl = n >= 4 ? 4 : n;
+      const label = `${d.toLocaleDateString(undefined, { weekday:'short', month:'short', day:'numeric' })}: ${n ? plural(n, 'prayer', 'prayers') : 'no prayers logged'}`;
+      cells += `<button class="hm-cell l${lvl}${sameDay(d, day) ? ' sel' : ''}" data-day="${dateKey(d)}" title="${label}" aria-label="${label}"></button>`;
+    }
+    cells += '</div>';
+  }
+
+  entryListEl.innerHTML = `
+    <div class="tracker">
+      <section class="tracker-stats">
+        <div class="ts-main"><span class="ts-flame" aria-hidden="true">${cardArt('flame')}</span>
+          <div><div class="ts-num">${stats.current}</div><div class="ts-label">day${stats.current === 1 ? '' : 's'} in a row</div></div></div>
+        <p class="ts-msg">${escapeHtml(streakMessage(stats.current))}</p>
+        <div class="ts-mini">
+          <div><strong>${stats.longest}</strong><span>Longest streak</span></div>
+          <div><strong>${stats.thisMonth}</strong><span>Days this month</span></div>
+          <div><strong>${stats.total}</strong><span>Prayers logged</span></div>
+        </div>
+      </section>
+
+      <section class="tracker-day">
+        <div class="td-head">
+          <h3>${isToday ? 'Today' : escapeHtml(day.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' }))}</h3>
+          <div class="td-nav">
+            <button class="icon-btn" data-shift="-1" aria-label="Previous day">‹</button>
+            <button class="icon-btn" data-shift="1" aria-label="Next day" ${isToday ? 'disabled' : ''}>›</button>
+            ${isToday ? '' : '<button class="text-link" data-shift="today">Back to today</button>'}
+          </div>
+        </div>
+        <div class="habit-grid">
+          ${HABITS.filter(h => enabled.includes(h.key)).map(h => `
+            <div class="habit${done.has(h.key) ? ' done' : ''}">
+              <button class="habit-check" data-habit="${h.key}" aria-pressed="${done.has(h.key)}">
+                <span class="habit-icon">${navIcon(h.icon)}</span>
+                <span class="habit-text"><strong>${escapeHtml(h.name)}</strong><small>${escapeHtml(h.note)}</small></span>
+                <span class="habit-tick" aria-hidden="true">${done.has(h.key) ? '✓' : ''}</span>
+              </button>
+              ${isToday && (h.route || h.open) && !done.has(h.key) ? `<button class="habit-go" ${h.route ? `data-route="${h.route}"` : `data-open="${h.open}"`}>${h.key === 'mass' ? 'About the Mass' : 'Pray now'} →</button>` : ''}
+            </div>`).join('')}
+        </div>
+      </section>
+
+      <section class="tracker-map">
+        <div class="td-head"><h3>The last ${weeks} weeks</h3>
+          <span class="hm-legend">Less <span class="hm-cell l0"></span><span class="hm-cell l1"></span><span class="hm-cell l2"></span><span class="hm-cell l3"></span><span class="hm-cell l4"></span> More</span></div>
+        <div class="heatmap">${cells}</div>
+        <p class="tracker-note">Select any day to see or change what you prayed. Finishing the Rosary, Chaplet, Stations, Examen, Angelus, Lectio Divina, or a prayer timer marks it automatically.</p>
+      </section>
+
+      <details class="tracker-settings">
+        <summary>Choose what to track</summary>
+        <div class="sf-chips">${HABITS.map(h => `<button class="patron-chip${enabled.includes(h.key) ? ' active' : ''}" data-toggle-habit="${h.key}" aria-pressed="${enabled.includes(h.key)}">${escapeHtml(h.name)}</button>`).join('')}</div>
+        <p class="tracker-note">Your prayer log is private. It is kept only in this browser and is never sent anywhere.</p>
+      </details>
+    </div>`;
+
+  const root = entryListEl.querySelector('.tracker');
+  root.querySelectorAll('[data-habit]').forEach(b => b.addEventListener('click', () => {
+    const on = togglePrayerLog(b.dataset.habit, day);
+    if(on && isToday && prayerStats().current > 0 && prayedOn(day).length === 1) toast('Thanks be to God! Logged for today');
+    renderTracker();
+  }));
+  root.querySelectorAll('[data-day]').forEach(b => b.addEventListener('click', () => {
+    const [y, m, d] = b.dataset.day.split('-').map(Number);
+    trackerDay = new Date(y, m - 1, d);
+    renderTracker();
+  }));
+  root.querySelectorAll('[data-shift]').forEach(b => b.addEventListener('click', () => {
+    trackerDay = b.dataset.shift === 'today' ? null : addDays(day, Number(b.dataset.shift));
+    renderTracker();
+  }));
+  root.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openReadModal(b.dataset.open)));
+  root.querySelectorAll('[data-toggle-habit]').forEach(b => b.addEventListener('click', () => {
+    const list = new Set(store.get('tracker.habits', DEFAULT_HABITS));
+    if(list.has(b.dataset.toggleHabit)) list.delete(b.dataset.toggleHabit); else list.add(b.dataset.toggleHabit);
+    store.set('tracker.habits', HABITS.map(h => h.key).filter(k => list.has(k)));
+    renderTracker();
+    const det = entryListEl.querySelector('.tracker-settings');
+    if(det) det.open = true;
+  }));
+}
+
+/* =========================================================
+   MORE GUIDED PRAYERS: the Examen, the Angelus, Lectio Divina
+   (built on the same cards as the Rosary and the Stations)
+   ========================================================= */
+const ACT_OF_CONTRITION = 'My God, I am sorry for my sins with all my heart. In choosing to do wrong and failing to do good, I have sinned against you whom I should love above all things. I firmly intend, with your help, to do penance, to sin no more, and to avoid whatever leads me to sin. Our Savior Jesus Christ suffered and died for us. In his name, my God, have mercy. Amen.';
+const COME_HOLY_SPIRIT = 'Come, Holy Spirit, fill the hearts of thy faithful and kindle in them the fire of thy love.';
+let lectioVerse = null;   // index into DAILY_VERSES
+
+function versicles(pairs){
+  return `<div class="devo-versicle">${pairs.map(([v, r]) => `<p><span class="rubric">℣.</span>${escapeHtml(v)}</p><p><span class="rubric">℟.</span>${escapeHtml(r)}</p>`).join('')}</div>`;
+}
+function promptList(items){ return `<ul class="devo-prompts">${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>`; }
+function isEasterSeason(){ return liturgicalSeason(startOfToday()).key === 'easter'; }
+
+// When the next Angelus bell rings (6 am, noon, 6 pm)
+function nextAngelusText(){
+  const now = new Date();
+  const times = [6, 12, 18].map(h => { const t = new Date(now); t.setHours(h, 0, 0, 0); return t; });
+  if(times.some(t => Math.abs(now - t) < 30 * 60000)) return 'It is the hour of the Angelus now.';
+  let next = times.find(t => t > now);
+  if(!next){ next = addDays(times[0], 1); next.setHours(6, 0, 0, 0); }
+  const mins = Math.round((next - now) / 60000), h = Math.floor(mins / 60), m = mins % 60;
+  const label = next.getHours() === 12 ? 'noon' : next.getHours() === 6 ? '6 am' : '6 pm';
+  return `The next Angelus bell is at ${label}, in ${h ? h + ' hr ' : ''}${m} min.`;
+}
+
+const GUIDED = {
+  examen:{
+    color:'var(--indigo)', art:'lantern', habit:'examen', kicker:'Ignatian prayer', title:'The Daily Examen',
+    intro:'St. Ignatius of Loyola taught his companions to pause once or twice each day and look back on it with God. In five short steps, you notice God’s gifts, see where you followed or resisted Him, and ask for the grace you need tomorrow.',
+    small:'About 10 to 15 minutes · traditionally in the evening',
+    begin:'Begin the Examen',
+    steps:() => [
+      { kicker:'Step 1 · Presence', title:'Become aware of God’s presence',
+        body:`<p>Settle into stillness. Take a few slow breaths, and remember that God is here with you, looking on you with love.</p><p>Ask the Holy Spirit to help you see this day as God sees it: honestly, without excuses, and without fear.</p><p class="devo-pray">Lord, help me to look back on this day with Your eyes.</p>` },
+      { kicker:'Step 2 · Gratitude', title:'Give thanks',
+        body:`<p>Walk back through the day and notice its gifts, large and small. Thank God for each one by name.</p>${promptList(['Who was a blessing to me today?', 'What moment of beauty, rest, or laughter did I receive?', 'What did I learn, accomplish, or survive?'])}` },
+      { kicker:'Step 3 · Review', title:'Review the day',
+        body:`<p>Go through the day hour by hour, like watching a film. Pay attention to your feelings along the way.</p>${promptList(['When did I feel close to God, peaceful, or alive?', 'When did I feel far from Him, anxious, or restless?', 'How did I treat the people I met?'])}` },
+      { kicker:'Step 4 · Sorrow', title:'Ask for forgiveness',
+        body:`<p>Look honestly at the moments when you fell short in love. Do not linger in discouragement; bring them to the Father who is waiting to forgive.</p><p>If you are aware of a serious sin, resolve to go to Confession soon.</p><p class="devo-pray">${escapeHtml(ACT_OF_CONTRITION)}</p>` },
+      { kicker:'Step 5 · Tomorrow', title:'Look toward tomorrow',
+        body:`<p>What lies ahead of you tomorrow? Ask God for the specific grace you will need: patience, courage, wisdom, or love for a particular person.</p><p>Close by praying the Our Father.</p><p class="devo-pray">${escapeHtml(ROSARY_PRAYERS.ourFather)}</p>` }
+    ],
+    doneTitle:'You have prayed the Examen', doneText:'May the all-powerful Lord grant us a restful night and a peaceful death. Amen.', again:'Pray the Examen again'
+  },
+  angelus:{
+    color:'var(--rose)', art:'bell', habit:'angelus',
+    get kicker(){ return isEasterSeason() ? 'Easter season' : 'Morning, noon, and evening'; },
+    get title(){ return isEasterSeason() ? 'The Regina Caeli' : 'The Angelus'; },
+    get intro(){
+      return isEasterSeason()
+        ? 'From Easter Sunday until Pentecost, the Church prays the joyful Regina Caeli in place of the Angelus, rejoicing with Mary in her Son’s Resurrection.'
+        : 'For centuries, church bells have rung at 6 am, noon, and 6 pm to call Christians to pause and remember the Incarnation, the moment the Word became flesh in the womb of the Virgin Mary.';
+    },
+    small:'About 3 minutes',
+    get begin(){ return isEasterSeason() ? 'Pray the Regina Caeli' : 'Pray the Angelus'; },
+    note:() => `<p class="devo-pill">${nextAngelusText()}</p>`,
+    steps:() => isEasterSeason() ? [
+      { kicker:'Regina Caeli', title:'Queen of Heaven, rejoice',
+        body:versicles([['Queen of Heaven, rejoice, alleluia.', 'For he whom you did merit to bear, alleluia.'], ['Has risen, as he said, alleluia.', 'Pray for us to God, alleluia.'], ['Rejoice and be glad, O Virgin Mary, alleluia.', 'For the Lord has truly risen, alleluia.']]) },
+      { kicker:'Regina Caeli', title:'Let us pray',
+        body:`<p>O God, who gave joy to the world through the resurrection of thy Son, our Lord Jesus Christ, grant, we beseech thee, that through the intercession of the Virgin Mary, his Mother, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.</p>` }
+    ] : [
+      { kicker:'The Angelus · I', title:'The Angel of the Lord',
+        body:versicles([['The Angel of the Lord declared unto Mary.', 'And she conceived of the Holy Spirit.']]) + devoParas(ROSARY_PRAYERS.hailMary) },
+      { kicker:'The Angelus · II', title:'Behold the handmaid of the Lord',
+        body:versicles([['Behold the handmaid of the Lord.', 'Be it done unto me according to thy word.']]) + devoParas(ROSARY_PRAYERS.hailMary) },
+      { kicker:'The Angelus · III', title:'And the Word was made flesh',
+        body:versicles([['And the Word was made flesh.', 'And dwelt among us.']]) + devoParas(ROSARY_PRAYERS.hailMary) },
+      { kicker:'The Angelus', title:'Let us pray',
+        body:versicles([['Pray for us, O holy Mother of God.', 'That we may be made worthy of the promises of Christ.']]) +
+          `<p>Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ our Lord. Amen.</p>` }
+    ],
+    get doneTitle(){ return isEasterSeason() ? 'You have prayed the Regina Caeli' : 'You have prayed the Angelus'; },
+    get doneText(){ return isEasterSeason() ? 'Rejoice and be glad, O Virgin Mary, alleluia.' : 'And the Word was made flesh, and dwelt among us.'; },
+    again:'Pray again'
+  },
+  lectio:{
+    color:'var(--green)', art:'olive', habit:'scripture', kicker:'Praying with Scripture', title:'Lectio Divina',
+    intro:'Lectio Divina, "divine reading," is the ancient way the monks prayed with the Bible: reading a short passage slowly, letting a word take root in the heart, speaking to God about it, and resting in His presence.',
+    small:'About 15 minutes · Scripture from the RSV Catholic Edition',
+    begin:'Begin Lectio Divina',
+    note:() => {
+      const v = DAILY_VERSES[lectioVerse];
+      return `<blockquote class="lectio-verse">${escapeHtml(v.text)}<cite>${escapeHtml(v.ref)}</cite></blockquote>
+        <p class="devo-small"><button class="text-link" data-act="another-verse">Choose another passage</button></p>`;
+    },
+    steps:() => {
+      const v = DAILY_VERSES[lectioVerse];
+      const verse = `<blockquote class="lectio-verse">${escapeHtml(v.text)}<cite>${escapeHtml(v.ref)}</cite></blockquote>`;
+      return [
+        { kicker:'Prepare', title:'Quiet your heart',
+          body:`<p>Find a quiet place. Put away distractions and sit comfortably. Ask the Holy Spirit to open your heart to God’s word.</p><p class="devo-pray">${escapeHtml(COME_HOLY_SPIRIT)}</p>` },
+        { kicker:'Lectio · Read', title:'Read the word slowly', body:verse + `<p>Read the passage slowly, aloud if you can, two or three times. Do not hurry to understand everything. Simply listen.</p>`, extra:`<div class="devo-meta">${scriptureLink(v.ref)}</div>` },
+        { kicker:'Meditatio · Reflect', title:'Let a word speak to you', body:verse + promptList(['Which word or phrase stands out to you?', 'Repeat it quietly. Why might God be offering it to you today?', 'How does it touch your life, your worries, or your joys?']) },
+        { kicker:'Oratio · Respond', title:'Speak to God', body:`<p>Now talk to God about what you have noticed, simply and honestly, as a friend speaks to a friend. Thank Him, ask Him, tell Him what is in your heart.</p>` },
+        { kicker:'Contemplatio · Rest', title:'Rest in God', body:`<p>Let go of words and ideas. Rest quietly in God’s presence for a few minutes, the way you might sit with someone you love without needing to speak.</p><p>If your mind wanders, gently return to the word that spoke to you.</p>` },
+        { kicker:'Actio · Live it', title:'Carry the word with you', body:verse + `<p>Choose one small, concrete way to live this word today. Carry the phrase with you and return to it during the day.</p><p class="devo-pray">Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.</p>` }
+      ];
+    },
+    doneTitle:'You have prayed with God’s word', doneText:'Thanks be to God for the gift of His word.', again:'Pray with another passage'
+  }
+};
+const guidedState = { examen:null, angelus:null, lectio:null };
+
+function renderGuided(kind){
+  const g = GUIDED[kind];
+  if(kind === 'lectio' && lectioVerse === null) lectioVerse = DAILY_VERSES.indexOf(dailyPick(DAILY_VERSES, 47, startOfToday()));
+  const steps = g.steps();
+  const st = guidedState[kind];
+  const restart = () => {
+    guidedState[kind] = null;
+    if(kind === 'lectio') lectioVerse = (lectioVerse + 1 + Math.floor(Math.random() * (DAILY_VERSES.length - 1))) % DAILY_VERSES.length;
+    renderGuided(kind);
+  };
+  if(st === null){
+    devoKeys = null;
+    entryListEl.innerHTML = `
+      <div class="devo-start" style="--devo:${g.color}">
+        <article class="devo-card devo-intro">
+          <div class="devo-emblem">${devoMedal(cardArt(g.art))}</div>
+          <div class="devo-kicker">${escapeHtml(g.kicker)}</div>
+          <h3 class="devo-title">${escapeHtml(g.title)}</h3>
+          <div class="devo-rule" aria-hidden="true"></div>
+          <p class="devo-closing">${escapeHtml(g.intro)}</p>
+          ${g.note ? g.note() : ''}
+          <div class="devo-actions"><button class="btn primary pill" data-act="begin">${escapeHtml(g.begin)}</button></div>
+          <p class="devo-small">${escapeHtml(g.small)}</p>
+        </article>
+      </div>`;
+    entryListEl.querySelector('[data-act="begin"]').addEventListener('click', () => { guidedState[kind] = 0; renderGuided(kind); });
+    const another = entryListEl.querySelector('[data-act="another-verse"]');
+    if(another) another.addEventListener('click', () => { lectioVerse = (lectioVerse + 1 + Math.floor(Math.random() * (DAILY_VERSES.length - 1))) % DAILY_VERSES.length; renderGuided(kind); });
+    return;
+  }
+  if(st >= steps.length){
+    logPrayer(g.habit);
+    return renderDevotionDone({ kind, color:g.color, emblem:devoMedal(cardArt(g.art)), title:g.doneTitle, text:escapeHtml(g.doneText), againLabel:g.again, again:restart });
+  }
+  const s = steps[st];
+  renderDevotionStep({
+    kind, color:g.color, step:st, total:steps.length,
+    emblem:st === 0 ? devoMedal(cardArt(g.art)) : '<span class="devo-ornament"></span>',
+    kicker:escapeHtml(s.kicker), title:s.title, body:s.body, extra:s.extra || '',
+    track:`<div class="devo-pips always" aria-hidden="true">${steps.map((x, i) => `<span class="${i < st ? 'done' : i === st ? 'current' : ''}">${i + 1}</span>`).join('')}</div>`,
+    go:i => { guidedState[kind] = Math.max(0, Math.min(i, steps.length)); renderGuided(kind); },
+    exit:() => { guidedState[kind] = null; renderGuided(kind); }, exitLabel:'Start over'
+  });
+}
+
+// A small strip on the home page: today's prayers at a glance
+function homePrayerHtml(){
+  const enabled = store.get('tracker.habits', DEFAULT_HABITS);
+  const done = new Set(prayedOn(startOfToday()));
+  const streak = prayerStats().current;
+  return `<section class="home-prayer" id="homePrayer" aria-label="Your prayer today">
+    <span class="home-prayer-streak">${cardArt('flame')}${streak ? plural(streak, 'day', 'days') + ' of prayer' : 'Your prayer today'}</span>
+    <div class="home-prayer-chips">${HABITS.filter(h => enabled.includes(h.key)).map(h => `<button class="patron-chip${done.has(h.key) ? ' active' : ''}" data-home-habit="${h.key}" aria-pressed="${done.has(h.key)}">${escapeHtml(h.name)}</button>`).join('')}</div>
+    <button class="text-link" data-route="pray/tracker">Prayer tracker →</button>
+  </section>`;
+}
+function bindHomePrayer(root){
+  const box = root.querySelector('#homePrayer');
+  if(!box) return;
+  box.querySelectorAll('[data-home-habit]').forEach(b => b.addEventListener('click', () => {
+    togglePrayerLog(b.dataset.homeHabit, startOfToday());
+    box.outerHTML = homePrayerHtml();
+    bindHomePrayer(root);
+  }));
+}
+
+/* =========================================================
+   THE MASS EXPLAINED: every part, with posture and meaning
+   ========================================================= */
+const POSTURE_ICONS = {
+  stand:'<circle cx="12" cy="4" r="2.2"/><path d="M12 7.2v7.3M12 14.5l-2.6 6.5M12 14.5l2.6 6.5M8 10.5l4-1.5 4 1.5"/>',
+  sit:'<circle cx="9" cy="4" r="2.2"/><path d="M9 7.2v6.3h6.5V21M9 10l4.5 1.6M5 21v-5h4"/>',
+  kneel:'<circle cx="11" cy="4" r="2.2"/><path d="M11 7.2v6.8l-1.5 6H18M11 10.5l3.5 2"/>'
+};
+const POSTURE_NAME = { stand:'Stand', sit:'Sit', kneel:'Kneel' };
+const MASS_PARTS = [
+  { section:'Introductory Rites', parts:[
+    { name:'Entrance', posture:'stand',
+      what:'The priest and ministers process to the altar while everyone sings the Entrance Chant. The priest kisses the altar, a symbol of Christ, and may incense it.',
+      why:'We are gathered from our scattered lives into one Body, ready to worship together.' },
+    { name:'Sign of the Cross and Greeting', posture:'stand',
+      what:'All make the Sign of the Cross. The priest greets the people: “The Lord be with you.” We answer: “And with your spirit.”',
+      why:'From the first moment, the Mass is prayed in the name of the Trinity, and Christ is present among His people.', ref:'Matthew 18:20' },
+    { name:'Penitential Act', posture:'stand',
+      what:'After a moment of silence, we acknowledge our sins, often with the prayer “I confess to almighty God,” and ask for mercy: “Lord, have mercy. Christ, have mercy. Lord, have mercy.”',
+      why:'We approach God humbly, like the tax collector who prayed, “God, be merciful to me a sinner.”', ref:'Luke 18:13' },
+    { name:'Gloria', posture:'stand', when:'Sundays outside Advent and Lent, and on solemnities and feasts',
+      what:'We sing or say “Glory to God in the highest,” an ancient hymn of praise to the Father, the Son, and the Holy Spirit.',
+      why:'It begins with the song of the angels at the birth of Christ.', ref:'Luke 2:14' },
+    { name:'Collect', posture:'stand',
+      what:'The priest says, “Let us pray,” and after a short silence prays the opening prayer of the day, gathering (“collecting”) everyone’s intentions into one.',
+      why:'Each Mass has its own prayer, tied to the feast or season of the day.' }
+  ]},
+  { section:'Liturgy of the Word', parts:[
+    { name:'First Reading', posture:'sit',
+      what:'A reader proclaims a passage, usually from the Old Testament (from the Acts of the Apostles during the Easter season). It ends: “The word of the Lord.” We answer: “Thanks be to God.”',
+      why:'God speaks to His people. The first reading usually prepares for the Gospel of the day.' },
+    { name:'Responsorial Psalm', posture:'sit',
+      what:'A psalm is sung or recited, with all repeating a short response.',
+      why:'We answer God’s word with God’s own words, the prayers of ancient Israel that Jesus himself prayed.' },
+    { name:'Second Reading', posture:'sit', when:'Sundays and solemnities',
+      what:'A passage from one of the New Testament letters or the Book of Revelation.',
+      why:'The apostles teach us how to live the faith in the Church.' },
+    { name:'Gospel Acclamation', posture:'stand',
+      what:'We stand and sing “Alleluia” (in Lent, another acclamation of praise), with a verse that introduces the Gospel.',
+      why:'We stand to welcome Christ, who is about to speak to us in the Gospel.' },
+    { name:'Gospel', posture:'stand',
+      what:'A deacon or priest proclaims the Gospel. As it is announced, we trace a small cross on our forehead, lips, and heart. It ends: “The Gospel of the Lord.” We answer: “Praise to you, Lord Jesus Christ.”',
+      why:'The small crosses ask that Christ’s word be in our minds, on our lips, and in our hearts.' },
+    { name:'Homily', posture:'sit',
+      what:'The priest or deacon explains the readings and applies them to our lives today.',
+      why:'The word of God is meant to be understood and lived, not only heard.' },
+    { name:'Profession of Faith', posture:'stand', when:'Sundays and solemnities',
+      what:'We pray the Nicene Creed (or sometimes the Apostles’ Creed). All bow at the words “and by the Holy Spirit was incarnate of the Virgin Mary, and became man.”',
+      why:'Having heard God’s word, we answer with the faith of the whole Church, summarized at the Councils of Nicaea and Constantinople.' },
+    { name:'Universal Prayer', posture:'stand',
+      what:'Also called the Prayer of the Faithful: we pray for the Church, the world, those in need, and the local community, often answering, “Lord, hear our prayer.”',
+      why:'As members of Christ’s Body, we intercede for the whole world.' }
+  ]},
+  { section:'Liturgy of the Eucharist', parts:[
+    { name:'Preparation of the Gifts', posture:'sit',
+      what:'Bread and wine are brought to the altar, often by members of the congregation, along with the collection for the Church and the poor. The priest mixes a little water into the wine and washes his hands.',
+      why:'We offer ourselves along with the gifts, “fruit of the earth and work of human hands,” to be transformed by God.' },
+    { name:'Prayer over the Offerings', posture:'stand',
+      what:'The priest says, “Pray, brethren, that my sacrifice and yours may be acceptable to God, the almighty Father.” We answer, “May the Lord accept the sacrifice at your hands…”',
+      why:'The Mass is a sacrifice: the one sacrifice of Christ on the Cross made present, in which we unite our own offering.' },
+    { name:'Preface and Holy, Holy', posture:'stand',
+      what:'“Lift up your hearts.” “We lift them up to the Lord.” The priest gives thanks to God, and we join the angels in singing “Holy, Holy, Holy Lord God of hosts.”',
+      why:'Heaven and earth worship together. The hymn joins the song of the seraphim to the crowds’ cry on Palm Sunday.', ref:'Isaiah 6:3' },
+    { name:'Eucharistic Prayer and Consecration', posture:'kneel',
+      what:'The priest asks the Father to send the Holy Spirit upon the gifts, then speaks the words of Jesus at the Last Supper: “This is my Body… This is the chalice of my Blood.” He raises the Host and the chalice for all to adore. Bells may ring.',
+      why:'This is the heart of the Mass. By the power of the Holy Spirit and the words of Christ, the bread and wine become His Body and Blood.', ref:'Luke 22:19–20' },
+    { name:'Mystery of Faith', posture:'kneel',
+      what:'The priest says, “The mystery of faith,” and we answer with an acclamation such as “We proclaim your Death, O Lord, and profess your Resurrection until you come again.”',
+      why:'We proclaim the Paschal Mystery: Christ’s death and Resurrection, made present on the altar.', ref:'1 Corinthians 11:26' },
+    { name:'Doxology and Great Amen', posture:'kneel',
+      what:'The priest lifts up the Body and Blood of Christ: “Through him, and with him, and in him… all glory and honor is yours, for ever and ever.” All answer with the Great Amen.',
+      why:'Our “Amen” is our “yes” to everything prayed in the Eucharistic Prayer.' }
+  ]},
+  { section:'Communion Rite', parts:[
+    { name:'The Lord’s Prayer', posture:'stand',
+      what:'Together we pray the Our Father, the prayer Jesus taught his disciples.',
+      why:'Before receiving the Bread of Life, we ask for our daily bread and for forgiveness as we forgive.', ref:'Matthew 6:9–13' },
+    { name:'Sign of Peace', posture:'stand',
+      what:'We offer a sign of peace, such as a handshake or a nod, to those near us.',
+      why:'We are reconciled with one another before we approach the altar.', ref:'Matthew 5:23–24' },
+    { name:'Lamb of God', posture:'kneel', note:'Stand while it is sung; kneel when it ends',
+      what:'The priest breaks the Host while we sing “Lamb of God, you take away the sins of the world.” He shows the Host: “Behold the Lamb of God…” and we answer: “Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed.”',
+      why:'Our answer echoes the humble faith of the Roman centurion.', ref:'Matthew 8:8' },
+    { name:'Holy Communion', posture:'stand', note:'Stand to receive; afterward, kneel or sit in prayer',
+      what:'Catholics who are properly prepared come forward to receive. The minister says, “The Body of Christ,” and we answer, “Amen.” In many parishes, those not receiving may come forward with arms crossed for a blessing, or pray a spiritual communion in the pew.',
+      why:'We receive Jesus Himself, and become more fully one Body in Him.' },
+    { name:'Prayer after Communion', posture:'stand',
+      what:'After a time of silent thanksgiving, the priest prays that the sacrament will bear fruit in our lives.',
+      why:'Communion is meant to change how we live.' }
+  ]},
+  { section:'Concluding Rites', parts:[
+    { name:'Blessing', posture:'stand',
+      what:'After any brief announcements, the priest blesses everyone in the name of the Father, and of the Son, and of the Holy Spirit.',
+      why:'We leave under God’s blessing, just as we began in His name.' },
+    { name:'Dismissal', posture:'stand',
+      what:'The deacon or priest sends us out: “Go forth, the Mass is ended,” or “Go in peace, glorifying the Lord by your life.” We answer, “Thanks be to God.”',
+      why:'The word “Mass” comes from the Latin dismissal, “Ite, missa est.” We are sent to bring Christ into the world.' }
+  ]}
+];
+let massStep = null;   // null: the overview; otherwise the step in "follow along" mode
+
+function postureBadge(p, note){
+  return `<span class="posture posture-${p}" title="${escapeHtml(note || POSTURE_NAME[p])}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${POSTURE_ICONS[p]}</svg>${POSTURE_NAME[p]}</span>`;
+}
+
+function renderMass(){
+  const flat = MASS_PARTS.flatMap((s, si) => s.parts.map(p => ({ ...p, section:s.section, si })));
+  if(massStep !== null){
+    if(massStep >= flat.length){
+      logPrayer('mass');
+      return renderDevotionDone({ kind:'mass', color:'var(--wine)', emblem:devoMedal(cardArt('chalice')), title:'Go in peace',
+        text:'Thanks be to God.', againLabel:'Back to The Mass Explained', again:() => { massStep = null; renderMass(); } });
+    }
+    const p = flat[massStep];
+    return renderDevotionStep({
+      kind:'mass', color:'var(--wine)', step:massStep, total:flat.length,
+      emblem:postureBadge(p.posture, p.note), kicker:escapeHtml(p.section), title:p.name,
+      body:`<p>${escapeHtml(p.what)}</p>${p.note ? `<p class="devo-small">${escapeHtml(p.note)}</p>` : ''}`,
+      extra:`<p class="mass-why">${escapeHtml(p.why)}</p>${p.ref ? `<div class="devo-meta">${scriptureLink(p.ref)}</div>` : ''}`,
+      track:`<div class="devo-pips always" aria-hidden="true">${MASS_PARTS.map((s, i) => `<span class="${i < p.si ? 'done' : i === p.si ? 'current' : ''}">${ROMAN[i]}</span>`).join('')}</div>`,
+      go:i => { massStep = Math.max(0, Math.min(i, flat.length)); renderMass(); window.scrollTo({ top:0 }); },
+      exit:() => { massStep = null; renderMass(); }, exitLabel:'Back to the overview'
+    });
+  }
+  devoKeys = null;
+  let n = 0;
+  entryListEl.innerHTML = `
+    <div class="mass-page">
+      <section class="mass-intro">
+        <div>
+          <p>The Mass is the source and summit of the Christian life: the one sacrifice of Christ on the Cross made present, and the banquet in which He gives us His Body and Blood. Here is every part of the Mass, in order, with what to do and why it matters.</p>
+          <div class="mass-legend">${Object.keys(POSTURE_NAME).map(p => postureBadge(p)).join('')}<span class="mass-legend-note">Postures are those customary in the United States, and vary a little from country to country.</span></div>
+        </div>
+        <button class="btn primary pill" id="massFollow">Follow along at Mass</button>
+      </section>
+      <nav class="mass-strip" aria-label="Parts of the Mass">${MASS_PARTS.map((s, i) => `<a href="#mass-${i}" class="mass-strip-seg" style="flex:${s.parts.length}"><span>${ROMAN[i]}</span>${escapeHtml(s.section)}</a>`).join('')}</nav>
+      ${MASS_PARTS.map((s, si) => `
+        <section class="mass-section" id="mass-${si}">
+          <h3 class="mass-section-title"><span class="mass-roman">${ROMAN[si]}</span>${escapeHtml(s.section)}</h3>
+          <ol class="mass-list">${s.parts.map(p => { n++; return `
+            <li class="mass-part">
+              <span class="mass-num">${n}</span>
+              <div class="mass-body">
+                <div class="mass-head"><h4>${escapeHtml(p.name)}</h4>${postureBadge(p.posture, p.note)}</div>
+                ${p.when ? `<div class="mass-when">${escapeHtml(p.when)}</div>` : ''}
+                ${p.note ? `<div class="mass-when">${escapeHtml(p.note)}</div>` : ''}
+                <p>${escapeHtml(p.what)}</p>
+                <p class="mass-why">${escapeHtml(p.why)}</p>
+                ${p.ref ? scriptureLink(p.ref) : ''}
+              </div>
+            </li>`; }).join('')}</ol>
+        </section>`).join('')}
+      <p class="shop-note">Find Mass times near you at <a href="https://masstimes.org/" target="_blank" rel="noopener">MassTimes.org</a>, and the readings for any day in the Calendar.</p>
+    </div>`;
+  document.getElementById('massFollow').addEventListener('click', () => { massStep = 0; renderMass(); window.scrollTo({ top:0 }); });
+  entryListEl.querySelectorAll('.mass-strip-seg').forEach(a => a.addEventListener('click', ev => {
+    ev.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior:'smooth', block:'start' });
+  }));
+}
+
+/* =========================================================
+   CATHOLIC GLOSSARY: words of the faith, A to Z
+   ========================================================= */
+const GLOSSARY = [
+  ['Absolution', 'The forgiveness of sins pronounced by a priest in the sacrament of Confession, by the authority Christ gave the apostles.'],
+  ['Abstinence', 'Refraining from meat on certain days of penance, such as Ash Wednesday and the Fridays of Lent, for Catholics fourteen and older.'],
+  ['Advent', 'The four weeks of preparation before Christmas, a season of joyful waiting for Christ’s coming at Christmas and at the end of time. Its color is violet.'],
+  ['Alleluia', 'A Hebrew word meaning “Praise the Lord,” sung before the Gospel and throughout the Easter season, but omitted during Lent.'],
+  ['Altar', 'The table on which the sacrifice of the Mass is offered. It is a symbol of Christ, and is kissed by the priest at the beginning and end of Mass.'],
+  ['Anointing of the Sick', 'The sacrament in which a priest anoints the seriously ill or elderly with blessed oil, giving them strength, peace, and the forgiveness of sins.'],
+  ['Apologetics', 'The reasoned explanation and defense of the Christian faith, from the Greek word for “a defense.”'],
+  ['Apostolic Succession', 'The unbroken handing on of the apostles’ mission and authority to the bishops through the laying on of hands.'],
+  ['Ascension', 'Christ’s return in His glorified body to the Father, forty days after the Resurrection.'],
+  ['Assumption', 'The dogma that the Virgin Mary, at the end of her earthly life, was taken up body and soul into heavenly glory. Defined in 1950 and celebrated on August 15.'],
+  ['Baptism', 'The first sacrament, which frees us from original sin, makes us children of God and members of the Church, and opens the way to the other sacraments.'],
+  ['Beatific Vision', 'The direct sight of God face to face, which is the perfect happiness of the saints in heaven.'],
+  ['Beatification', 'The Church’s declaration that a deceased person lived a holy life and is in heaven, allowing them to be honored as “Blessed.” It is a step toward canonization.'],
+  ['Benediction', 'A service of prayer in which the Blessed Sacrament is exposed in a monstrance, adored, and used by the priest to bless the people.'],
+  ['Bishop', 'A successor of the apostles who has received the fullness of Holy Orders and shepherds a diocese as its teacher, priest, and pastor.'],
+  ['Blessed Sacrament', 'The Eucharist, especially the consecrated Hosts reserved in the tabernacle, in which Christ is truly present.'],
+  ['Breviary', 'The book containing the Liturgy of the Hours, the daily prayer of the Church.'],
+  ['Canon of Scripture', 'The list of books the Church recognizes as inspired Scripture: 46 in the Old Testament and 27 in the New, 73 in all.'],
+  ['Canon Law', 'The body of laws governing the life and organization of the Catholic Church, collected in the Code of Canon Law.'],
+  ['Canonization', 'The pope’s solemn declaration that a person is a saint in heaven, worthy of public veneration by the whole Church.'],
+  ['Cardinal', 'A senior bishop or priest appointed by the pope to advise him and, if under eighty, to elect a new pope in a conclave.'],
+  ['Cardinal Virtues', 'The four moral virtues on which all others “hinge”: prudence, justice, fortitude, and temperance.'],
+  ['Catechism', 'A summary of Catholic teaching. The Catechism of the Catholic Church, published in 1992, is the official reference for the whole Church.'],
+  ['Catechumen', 'An unbaptized person preparing to enter the Church through Baptism, Confirmation, and the Eucharist.'],
+  ['Chalice', 'The cup that holds the wine that becomes the Precious Blood of Christ at Mass.'],
+  ['Charism', 'A special gift of the Holy Spirit given for the good of the Church, such as the particular spirit of a religious order.'],
+  ['Chrism', 'Olive oil mixed with balsam and consecrated by the bishop, used in Baptism, Confirmation, and Holy Orders.'],
+  ['Ciborium', 'A covered vessel used to hold the consecrated Hosts for Communion and for reservation in the tabernacle.'],
+  ['Communion of Saints', 'The union of all the faithful in Christ: the saints in heaven, the souls in purgatory, and the Church on earth, who help one another by prayer.'],
+  ['Conclave', 'The closed meeting of cardinals in the Sistine Chapel to elect a new pope.'],
+  ['Concupiscence', 'The inclination toward sin that remains in us after Baptism as an effect of original sin.'],
+  ['Confession', 'The sacrament of Penance and Reconciliation, in which sins committed after Baptism are forgiven through the absolution of a priest.'],
+  ['Confirmation', 'The sacrament that completes Baptism, sealing the baptized with the gift of the Holy Spirit and strengthening them to witness to Christ.'],
+  ['Consecration', 'The moment at Mass when, by the words of Christ spoken by the priest, the bread and wine become the Body and Blood of Christ.'],
+  ['Contrition', 'Sorrow for sin with the resolve not to sin again. Perfect contrition comes from love of God; imperfect contrition from lesser motives such as fear of punishment.'],
+  ['Covenant', 'A solemn, binding relationship between God and His people, made with Noah, Abraham, Moses, and David, and fulfilled in the New Covenant in Christ’s blood.'],
+  ['Creed', 'A summary statement of the faith, such as the Apostles’ Creed or the Nicene Creed, from the Latin credo, “I believe.”'],
+  ['Deacon', 'A man ordained to the first degree of Holy Orders to serve the Church through proclaiming the Gospel, preaching, baptizing, and works of charity.'],
+  ['Deposit of Faith', 'The whole of God’s revelation, contained in Sacred Scripture and Sacred Tradition, entrusted to the Church to guard and hand on.'],
+  ['Diocese', 'A local Church, usually a geographic area, led by a bishop.'],
+  ['Doctor of the Church', 'A title given to saints whose writings have been of special benefit to the whole Church, such as St. Augustine and St. Thérèse of Lisieux.'],
+  ['Dogma', 'A truth revealed by God that the Church has solemnly defined and that all Catholics are bound to believe.'],
+  ['Doxology', 'A short hymn of praise to God, such as the Glory Be or the conclusion of the Eucharistic Prayer.'],
+  ['Easter Triduum', 'The three holiest days of the year, from the evening Mass of the Lord’s Supper on Holy Thursday through Easter Sunday.'],
+  ['Ecumenical Council', 'A gathering of the world’s bishops in union with the pope to teach and govern the whole Church. There have been twenty-one, from Nicaea to Vatican II.'],
+  ['Ecumenism', 'The work of restoring unity among all Christians.'],
+  ['Encyclical', 'A letter from the pope to the whole Church, or to the world, on a matter of faith, morals, or society.'],
+  ['Epiphany', 'The feast celebrating Christ revealed to the nations, recalled in the visit of the Magi.'],
+  ['Eucharist', 'The sacrament of Christ’s Body and Blood, the source and summit of the Christian life. The word means “thanksgiving.”'],
+  ['Evangelization', 'Bringing the Good News of Jesus Christ to others by word and example.'],
+  ['Ex Cathedra', 'Latin for “from the chair.” The pope speaks ex cathedra when he solemnly defines a doctrine of faith or morals for the whole Church; such teaching is infallible.'],
+  ['Excommunication', 'A serious penalty that excludes a Catholic from receiving the sacraments until they repent and are reconciled. Its purpose is to call the person back.'],
+  ['Fasting', 'Limiting food as a form of penance. Catholics aged eighteen to fifty-nine fast on Ash Wednesday and Good Friday.'],
+  ['Genuflection', 'Bending the right knee to the floor as a sign of adoration before Christ present in the tabernacle.'],
+  ['Grace', 'The free and undeserved gift of God’s own life in us. Sanctifying grace makes us holy; actual grace helps us to act rightly.'],
+  ['Holy Days of Obligation', 'Feasts besides Sundays on which Catholics are required to attend Mass, such as Christmas and the Immaculate Conception.'],
+  ['Holy Orders', 'The sacrament by which men are ordained deacons, priests, or bishops to serve the Church.'],
+  ['Holy See', 'The pope and the central government of the Catholic Church in Rome, from the Latin sancta sedes, “holy seat.”'],
+  ['Homily', 'The sermon given by a priest or deacon after the Gospel at Mass, explaining the readings.'],
+  ['Host', 'The bread consecrated at Mass, from the Latin hostia, “victim” or “sacrifice.”'],
+  ['Icon', 'A sacred image, especially in the Eastern tradition, painted according to ancient rules as a window to heavenly realities.'],
+  ['Immaculate Conception', 'The dogma that the Virgin Mary was preserved free from original sin from the first moment of her conception. Defined in 1854 and celebrated on December 8.'],
+  ['Incarnation', 'The mystery of the eternal Son of God becoming man in the womb of the Virgin Mary, true God and true man.'],
+  ['Indulgence', 'The remission, through the Church, of the temporal punishment due to sins that have already been forgiven.'],
+  ['Infallibility', 'The gift of the Holy Spirit that preserves the Church, the pope, and the bishops in union with him from error when they definitively teach on faith and morals.'],
+  ['Intercession', 'Praying on behalf of others. We ask the saints to intercede for us, as we ask fellow Christians on earth to pray for us.'],
+  ['Laity', 'All the faithful who are not ordained or in religious life, called to make Christ present in the world through family, work, and society.'],
+  ['Lectionary', 'The book containing the Scripture readings for Mass, arranged in a three-year cycle for Sundays and a two-year cycle for weekdays.'],
+  ['Lent', 'The forty days of prayer, fasting, and almsgiving that prepare for Easter, beginning on Ash Wednesday.'],
+  ['Litany', 'A prayer made of a series of invocations and responses, such as the Litany of the Saints.'],
+  ['Liturgy', 'The public worship of the Church, above all the Mass, the sacraments, and the Liturgy of the Hours.'],
+  ['Liturgy of the Hours', 'The daily prayer of the Church, made up of psalms, readings, and prayers at set hours of the day. Clergy and religious pray it daily, and laypeople are encouraged to join them.'],
+  ['Magisterium', 'The teaching authority of the Church, exercised by the pope and the bishops in communion with him.'],
+  ['Marriage', 'The sacrament in which a baptized man and woman give themselves to each other for life, as a sign of Christ’s love for the Church.'],
+  ['Martyr', 'A person who is killed for their faith in Christ. The word means “witness.”'],
+  ['Mass', 'The central act of Catholic worship, in which the sacrifice of Christ is made present and His Body and Blood are received in Communion.'],
+  ['Monstrance', 'A vessel, often shaped like a sunburst, used to display the Blessed Sacrament for adoration.'],
+  ['Mortal Sin', 'A grave sin committed with full knowledge and deliberate consent, which destroys charity in the heart and must be confessed.'],
+  ['Novena', 'Nine days of prayer for a particular intention, modeled on the nine days the apostles and Mary prayed between the Ascension and Pentecost.'],
+  ['Original Sin', 'The fallen state into which every human being is born as a result of the sin of Adam and Eve, taken away by Baptism.'],
+  ['Parish', 'A community of the faithful within a diocese, entrusted to a pastor.'],
+  ['Paschal Mystery', 'Christ’s saving work, accomplished through His Passion, death, Resurrection, and Ascension.'],
+  ['Pentecost', 'The descent of the Holy Spirit on the apostles and Mary fifty days after Easter, often called the birthday of the Church.'],
+  ['Pope', 'The bishop of Rome, successor of St. Peter, and visible head of the Catholic Church on earth.'],
+  ['Purgatory', 'The final purification after death of those who die in God’s friendship but still need to be made perfectly holy before entering heaven.'],
+  ['Real Presence', 'The truth that Jesus Christ is truly, really, and substantially present in the Eucharist: Body, Blood, soul, and divinity.'],
+  ['Relic', 'An object connected with a saint, such as part of their body or something they used, honored as a reminder of their holiness.'],
+  ['Rite', 'A liturgical tradition within the Church, such as the Roman Rite or the Byzantine Rite. There are twenty-four Churches in full communion with Rome.'],
+  ['OCIA', 'The Order of Christian Initiation of Adults (formerly RCIA), the process by which adults are prepared to become Catholic.'],
+  ['Rosary', 'A prayer on beads in which we meditate on the mysteries of the life of Christ and Mary while praying Hail Marys, Our Fathers, and Glory Bes.'],
+  ['Sacrament', 'A visible sign, instituted by Christ, that gives grace. There are seven: Baptism, Confirmation, Eucharist, Penance, Anointing of the Sick, Holy Orders, and Matrimony.'],
+  ['Sacramental', 'A sacred sign instituted by the Church, such as holy water, a blessing, or a rosary, that prepares us to receive grace.'],
+  ['Sanctuary', 'The area of a church around the altar, where the priest and ministers carry out the liturgy.'],
+  ['Scapular', 'Two small pieces of cloth worn over the shoulders as a sign of devotion and consecration, especially to Our Lady of Mount Carmel.'],
+  ['Tabernacle', 'The locked box, usually near the altar, in which the Blessed Sacrament is reserved. A burning lamp beside it shows that Christ is present.'],
+  ['Theological Virtues', 'Faith, hope, and charity: virtues given by God that unite us directly to Him.'],
+  ['Tradition', 'Sacred Tradition is the living transmission of the Gospel handed down from the apostles, which, together with Scripture, forms one deposit of faith.'],
+  ['Transubstantiation', 'The change of the whole substance of bread and wine into the Body and Blood of Christ at the Consecration, while their appearances remain.'],
+  ['Trinity', 'The central mystery of the Christian faith: one God in three divine Persons, the Father, the Son, and the Holy Spirit.'],
+  ['Venial Sin', 'A less serious sin that weakens but does not destroy charity in the soul.'],
+  ['Vestments', 'The liturgical garments worn by clergy, such as the alb, stole, and chasuble, whose colors follow the liturgical season.'],
+  ['Viaticum', 'Holy Communion given to a dying person, from the Latin for “provision for the journey.”'],
+  ['Vocation', 'God’s call to each person: to holiness, and to a particular state of life such as marriage, priesthood, or consecrated life.'],
+  ['Vulgate', 'St. Jerome’s Latin translation of the Bible, made in the late 4th century, the standard Bible of the Western Church for centuries.']
+].sort((a, b) => a[0].localeCompare(b[0]));
+let glossaryQuery = '';
+
+function renderGlossary(){
+  const q = glossaryQuery.trim().toLowerCase();
+  const terms = GLOSSARY.filter(([t, d]) => !q || t.toLowerCase().includes(q) || d.toLowerCase().includes(q));
+  const letters = [...new Set(GLOSSARY.map(([t]) => t[0].toUpperCase()))];
+  const groups = {};
+  terms.forEach(([t, d]) => (groups[t[0].toUpperCase()] = groups[t[0].toUpperCase()] || []).push([t, d]));
+  entryListEl.innerHTML = `
+    <div class="glossary">
+      <div class="glossary-tools">
+        <div class="sf-patron-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input id="glossarySearch" type="search" placeholder="Look up a word…" aria-label="Search the glossary" value="${escapeHtml(glossaryQuery)}" autocomplete="off"></div>
+        <nav class="glossary-letters" aria-label="Jump to a letter">${letters.map(l => `<a href="#gl-${l}" class="${groups[l] ? '' : 'off'}">${l}</a>`).join('')}</nav>
+      </div>
+      <p class="view-count">${plural(terms.length, 'term', 'terms')}</p>
+      ${terms.length ? Object.keys(groups).map(l => `
+        <section class="glossary-group" id="gl-${l}">
+          <h3 class="glossary-letter">${l}</h3>
+          <dl>${groups[l].map(([t, d]) => `<div class="glossary-item"><dt>${escapeHtml(t)}</dt><dd>${escapeHtml(d)}</dd></div>`).join('')}</dl>
+        </section>`).join('') : '<div class="empty-state">No words match your search.</div>'}
+    </div>`;
+  const box = document.getElementById('glossarySearch');
+  let t = null;
+  box.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      glossaryQuery = box.value;
+      renderGlossary();
+      const again = document.getElementById('glossarySearch');
+      again.focus({ preventScroll:true });
+      again.setSelectionRange(again.value.length, again.value.length);
+    }, 200);
+  });
+  entryListEl.querySelectorAll('.glossary-letters a').forEach(a => a.addEventListener('click', ev => {
+    ev.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+  }));
+}
+
+/* =========================================================
+   FIND YOUR PATRON SAINT: a few questions, a few suggestions
+   ========================================================= */
+const PF_WORK = [   // [key, label, patronage keywords, walk of life, "patron of" wording]
+  ['student', 'A student', 'student|school|universit|test takers', 'yo', 'students'], ['teacher', 'A teacher', 'teacher|educat|school', 'te', 'teachers'],
+  ['health', 'A doctor, nurse, or caregiver', 'physician|nurse|surgeon|pharmacist|hospital|caregiver', 'me', 'the medical professions'], ['parent', 'A mother or father', 'mother|father|parent|famil', 'pa', 'parents and families'],
+  ['service', 'A soldier, officer, or firefighter', 'soldier|police|firefighter|military|paramedic', 'so', 'those who protect others'], ['trades', 'A worker or tradesperson', 'worker|laborer|carpenter|builder|mason|smith|baker|cook', 'wo', 'workers and craftsmen'],
+  ['arts', 'An artist or musician', 'music|singer|artist|poet|dancer|actor', '', 'artists and musicians'], ['writer', 'A writer or journalist', 'writer|journalist|author|printer|editor|press', 'sc', 'writers'],
+  ['law', 'In law or public service', 'lawyer|jurist|statesm|politician|ruler|king', 'ro', 'lawyers and leaders'], ['outdoors', 'A farmer or lover of nature', 'farmer|gardener|hunter|ecology|environment|animal|forest', '', 'the land and its creatures'],
+  ['business', 'In business or finance', 'business|merchant|accountant|banker', '', 'business people'], ['tech', 'In technology or science', 'internet|computer|programmer|engineer|scientist|astronom', '', 'science and technology'],
+  ['travel', 'A traveler, driver, or sailor', 'travel|driver|pilot|aviator|sailor|mariner', '', 'travelers'], ['church', 'A priest, religious, or minister', 'priest|monk|nun|seminarian|confessor|catechist|deacon', 'pr', 'those who serve the Church']
+];
+const PF_NEED = [
+  ['healing', 'Healing for myself or someone I love', 'sick|cancer|ill|heal|disease|blind'], ['family', 'My family or marriage', 'famil|marriage|married|mother|father|children'],
+  ['anxiety', 'Anxiety, stress, or mental health', 'mental illness|anxiety|depression|stress'], ['hopeless', 'A situation that seems hopeless', 'impossible|desperate|lost causes'],
+  ['work', 'Finding work', 'job seekers|unemployed|workers'], ['exams', 'Studies and exams', 'student|test takers'],
+  ['grief', 'Grief and loss', 'widow|loss of parents|death'], ['baby', 'A baby or a pregnancy', 'expectant|childbirth|unborn|conceive|hoping for children'],
+  ['faith', 'Faith for someone I love', 'convert|conversion'], ['addiction', 'Freedom from addiction', 'alcoholics|drug addicts|gambling'],
+  ['peace', 'Peace and reconciliation', 'peace|reconciliation|nonviolence'], ['lost', 'Finding something lost', 'lost items|lost keys']
+];
+const PF_INSPIRE = [
+  ['martyrs', 'Courage under persecution', 'ma', ''], ['mystics', 'Deep prayer', 'my', ''], ['scholars', 'Wisdom and learning', 'dr|sc', ''],
+  ['poor', 'Serving the poor and the sick', '', 'poor|sick|charity|hospital'], ['young', 'Holiness while young', 'yo', ''],
+  ['married', 'Holiness in marriage and family', 'pa', ''], ['mission', 'Adventure and mission', 'mi', ''], ['converts', 'A dramatic conversion', '', 'convert|conversion|penitent']
+];
+const PF_ERA = [['any', 'Any time'], ['ancient', 'The early Church', 'apostolic martyrs fathers'], ['medieval', 'The Middle Ages', 'early medieval renaissance'], ['early', 'The 1500s to 1800s', 'reform revolution'], ['modern', 'Our own times', 'modern']];
+const pf = { month:'', day:'', work:'', need:'', inspire:'', era:'any' };
+
+function patronScore(e){
+  const info = saintInfo(e.id);
+  let score = 0;
+  const why = [];
+  if(pf.month && pf.day && (SAINT_FEASTS[`${pf.month}-${pf.day}`] || []).includes(e)){ score += 6; why.push('Feast day on your birthday'); }
+  const w = PF_WORK.find(x => x[0] === pf.work);
+  if(w){
+    if(patronMatches(e, w[2])){ score += 4; why.push('Patron of ' + w[4]); }
+    else if(w[3] && info.roles.includes(w[3])){ score += 2; why.push(SAINT_ROLE_NAME[w[3]]); }
+  }
+  const n = PF_NEED.find(x => x[0] === pf.need);
+  if(n && patronMatches(e, n[2])){ score += 4; why.push(n[1]); }
+  const insp = PF_INSPIRE.find(x => x[0] === pf.inspire);
+  if(insp && ((insp[2] && insp[2].split('|').some(r => info.roles.includes(r))) || (insp[3] && patronMatches(e, insp[3])))){ score += 2; why.push(insp[1]); }
+  const era = PF_ERA.find(x => x[0] === pf.era);
+  if(score > 0 && era && era[2] && era[2].split(' ').includes(info.era)){ score += 1.5; why.push(SAINT_ERAS.find(x => x.key === info.era).name); }
+  return { score, why };
+}
+
+function renderPatronFinder(){
+  const months = MONTH_NAMES.map((m, i) => `<option value="${i + 1}"${String(i + 1) === pf.month ? ' selected' : ''}>${m}</option>`).join('');
+  const days = Array.from({ length:31 }, (_, i) => `<option value="${i + 1}"${String(i + 1) === pf.day ? ' selected' : ''}>${i + 1}</option>`).join('');
+  const select = (key, opts, placeholder) => `<select data-pf="${key}"><option value="">${placeholder}</option>${opts.map(o => `<option value="${o[0]}"${pf[key] === o[0] ? ' selected' : ''}>${escapeHtml(o[1])}</option>`).join('')}</select>`;
+  const asked = pf.day || pf.work || pf.need || pf.inspire;
+  const results = asked
+    ? library.filter(e => e.category === 'saint').map(e => ({ e, ...patronScore(e) })).filter(r => r.score > 0)
+        .sort((a, b) => b.score - a.score || a.e.title.localeCompare(b.e.title)).slice(0, 9)
+    : [];
+  entryListEl.innerHTML = `
+    <div class="pf">
+      <section class="pf-form">
+        <p class="pf-intro">Every Christian has friends in heaven. Answer as many questions as you like, and Sanctify will suggest saints to get to know and ask for prayers, whether for Confirmation, for your work, or for a need on your heart.</p>
+        <div class="pf-grid">
+          <label class="pf-q"><span>When is your birthday?</span>
+            <span class="pf-row"><select data-pf="month"><option value="">Month</option>${months}</select><select data-pf="day"><option value="">Day</option>${days}</select></span></label>
+          <label class="pf-q"><span>What do you do?</span>${select('work', PF_WORK, 'Choose one')}</label>
+          <label class="pf-q"><span>What are you praying for?</span>${select('need', PF_NEED, 'Choose one')}</label>
+          <label class="pf-q"><span>What inspires you most in a saint?</span>${select('inspire', PF_INSPIRE, 'Choose one')}</label>
+          <label class="pf-q"><span>Which era draws you?</span>${select('era', PF_ERA, 'Any time').replace('<option value="">Any time</option>', '')}</label>
+        </div>
+        ${asked ? '<button class="text-link" data-act="reset">Start over</button>' : ''}
+      </section>
+      ${!asked ? '<p class="pf-empty">Answer a question above to see your suggestions.</p>' : results.length ? `
+      <h3 class="pf-heading">Saints for you</h3>
+      <div class="pf-results">${results.map(({ e, why }) => `
+        <button class="pf-card" data-open="${e.id}">
+          <span class="saint-portrait" data-sid="${e.id}">${portraitPlaceholder(e.title)}</span>
+          <span class="pf-card-body">
+            <span class="pf-card-title">${escapeHtml(e.title)}</span>
+            <span class="g-meta">${escapeHtml(feastLabel(e))}</span>
+            <span class="pf-why">${why.map(w => `<span class="patron-tag">${escapeHtml(w)}</span>`).join('')}</span>
+          </span>
+        </button>`).join('')}</div>` : '<p class="pf-empty">No saints match all of those answers. Try changing one of them.</p>'}
+      <p class="shop-note">Many people choose a Confirmation saint whose virtues they want to imitate. Read about a few, ask them for their prayers, and see which one becomes a friend.</p>
+    </div>`;
+  entryListEl.querySelectorAll('[data-pf]').forEach(s => s.addEventListener('change', () => { pf[s.dataset.pf] = s.value; renderPatronFinder(); }));
+  const reset = entryListEl.querySelector('[data-act="reset"]');
+  if(reset) reset.addEventListener('click', () => { Object.assign(pf, { month:'', day:'', work:'', need:'', inspire:'', era:'any' }); renderPatronFinder(); });
+  entryListEl.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openReadModal(b.dataset.open)));
+  entryListEl.querySelectorAll('.pf-card .saint-portrait').forEach(observePortrait);
+}
+
+/* =========================================================
+   READ ALOUD: the browser's own voice reads prayers and entries
+   ========================================================= */
+const canSpeak = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+let speakingButton = null;
+
+function stopSpeaking(){
+  if(!canSpeak) return;
+  window.speechSynthesis.cancel();
+  if(speakingButton){ speakingButton.textContent = speakingButton.dataset.label; speakingButton.setAttribute('aria-pressed', 'false'); }
+  speakingButton = null;
+}
+function toggleSpeak(button, text){
+  if(!canSpeak) return;
+  if(speakingButton === button){ stopSpeaking(); return; }
+  stopSpeaking();
+  const u = new SpeechSynthesisUtterance(text.replace(/[℣℟]\./g, '').replace(/\s+/g, ' ').trim());
+  u.rate = 0.92;
+  u.lang = document.getElementById('readBody').lang || 'en';
+  u.onend = u.onerror = () => { if(speakingButton === button) stopSpeaking(); };
+  speakingButton = button;
+  button.dataset.label = button.dataset.label || button.textContent;
+  button.textContent = '■ Stop';
+  button.setAttribute('aria-pressed', 'true');
+  window.speechSynthesis.speak(u);
+}
+// Stop reading when the reading window closes (called once the page is set up)
+function watchReadOverlay(){
+  new MutationObserver(() => { if(!readOverlay.classList.contains('open')) stopSpeaking(); })
+    .observe(readOverlay, { attributes:true, attributeFilter:['class'] });
+}
+
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -7335,6 +8279,13 @@ const NAV_ICONS = {
   quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".7" fill="currentColor"/>',
   shop:'<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  angelus:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0M12 3v2"/>',
+  examen:'<path d="M12 3c-1.5 2-2.5 3.3-2.5 4.7a2.5 2.5 0 0 0 5 0C14.5 6.3 13.5 5 12 3z"/><rect x="9" y="11.5" width="6" height="9.5" rx="1"/><path d="M6.5 21h11"/>',
+  lectio:'<path d="M2.5 5.5h7a2.5 2.5 0 0 1 2.5 2.5v12a2 2 0 0 0-2-2H2.5z"/><path d="M21.5 5.5h-7A2.5 2.5 0 0 0 12 8v12a2 2 0 0 1 2-2h7.5z"/><path d="M16 9.5c1.5.3 2.5 1.2 2.5 2.5"/>',
+  tracker:'<rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/>',
+  mass:'<circle cx="12" cy="5" r="2.5"/><path d="M6.5 9.5h11c0 3.5-2.5 5.5-5.5 5.5s-5.5-2-5.5-5.5zM12 15v4.5M8.5 20.5h7"/>',
+  glossary:'<path d="M3 19l4.5-12L12 19M4.7 14.5h5.6"/><circle cx="17" cy="15.5" r="3"/><path d="M20 12.5V19"/>',
+  patronfinder:'<ellipse cx="11" cy="4.5" rx="4" ry="1.4"/><circle cx="11" cy="10" r="3"/><path d="M4.5 20.5c.8-3.6 3.3-5.8 6.5-5.8 1.4 0 2.6.4 3.6 1.1"/><path d="M18.5 13.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>',
   resources:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
   community:'<circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M2.8 20c.6-3.8 3.1-5.9 6.2-5.9s5.6 2.1 6.2 5.9"/><path d="M15.4 14.4c.5-.2 1-.3 1.6-.3 2.3 0 4 1.5 4.4 4.4"/>',
   account:'<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c.9-4 3.9-6.3 7.5-6.3s6.6 2.3 7.5 6.3"/>',
@@ -7367,6 +8318,13 @@ const SECTIONS = {
   chaplet:{ name:'Divine Mercy Chaplet', group:'Pray', icon:'chaplet', color:'var(--teal)' },
   exam:{ name:'Examination of Conscience', group:'Pray', icon:'exam', color:'var(--purple)' },
   timer:{ name:'Prayer Timer', group:'Pray', icon:'timer', color:'var(--indigo)' },
+  examen:{ name:'The Daily Examen', group:'Pray', icon:'examen', color:'var(--indigo)' },
+  angelus:{ name:'The Angelus', group:'Pray', icon:'angelus', color:'var(--rose)' },
+  lectio:{ name:'Lectio Divina', group:'Pray', icon:'lectio', color:'var(--green)' },
+  tracker:{ name:'Prayer Tracker', group:'Pray', icon:'tracker', color:'var(--gold)' },
+  mass:{ name:'The Mass Explained', group:'Learn', icon:'mass', color:'var(--wine)' },
+  glossary:{ name:'Catholic Glossary', group:'Learn', icon:'glossary', color:'var(--purple)' },
+  patronfinder:{ name:'Find Your Patron Saint', group:'Library', icon:'patronfinder', color:'var(--gold)' },
   calendar:{ name:'Calendar of Feasts & Observances', group:'Explore', icon:'calendar', color:'var(--purple)' },
   plan:{ name:'Bible Reading Plans', group:'Explore', icon:'plan', color:'var(--teal)' },
   quiz:{ name:'Quiz', group:'Explore', icon:'quiz', color:'var(--amber)' },
@@ -7414,6 +8372,10 @@ const HUBS = {
         { route:'pray/chaplet', desc:'The Chaplet of Divine Mercy, as given to St. Faustina, prayed on rosary beads.', meta:'About 15 minutes' },
         { route:'pray/examination', desc:'Prepare for Confession with a guided examination, following the Ten Commandments.', meta:'Private: nothing is saved' },
         { route:'pray/timer', desc:'Set aside time for silent prayer or a Holy Hour, with a gentle bell to begin and end.', meta:'5 minutes to an hour' },
+        { route:'pray/examen', desc:'Look back on your day with God in five short steps, the evening prayer of St. Ignatius.', meta:'About 10 minutes' },
+        { route:'pray/angelus', title:isEasterSeason() ? 'The Regina Caeli' : 'The Angelus', desc:'Pause at morning, noon, or evening to honor the Incarnation with Mary.', meta:'About 3 minutes' },
+        { route:'pray/lectio', desc:'Pray slowly with a passage of Scripture: read, reflect, respond, and rest.', meta:'About 15 minutes' },
+        { route:'pray/tracker', desc:'A private record of your daily prayer, with streaks and a calendar of your faithfulness.', meta:(() => { const n = prayerStats().current; return n ? `${n}-day streak` : 'Stored only on this device'; })() },
         { route:'mine', title:'Novenas & Intentions', icon:'mine', desc:'Keep a list of your prayer intentions, and pray a nine-day novena with any saint.', meta:novenas ? `${novenas} novena${novenas > 1 ? 's' : ''} in progress` : 'Stored only on this device' }
       ];
     }
@@ -7431,6 +8393,7 @@ const HUBS = {
           extra:`<button class="bento-feature" data-open="${saint.id}"><span class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</span><span><span class="daily-kicker">${feastIds.length ? 'Feast today' : 'Saint of the day'}</span><strong>${escapeHtml(saint.title)}</strong></span></button>`,
           meta:`${countOf('saint')} saints`, cta:'Browse the saints' },
         { route:'library/books', desc:'Spiritual classics, Church documents, and great Catholic literature, with summaries and links to read.', meta:`${countOf('book')} books` },
+        { route:'library/saints/patron-finder', desc:'Answer a few questions to find saints for your birthday, your work, and your needs.', meta:'A short quiz' },
         { route:'library/bible', desc:'All 73 books of the Catholic canon, grouped by section, with study notes and links to the full text.', meta:'73 books' },
         { route:'library/all', desc:'Every prayer, saint, book, event, and teaching in one searchable list.', meta:`${library.length} entries` },
         { action:'surprise', title:'Surprise Me', icon:'all', color:'var(--gold)', desc:'Open a random prayer, saint, book, event, or teaching, and discover something new.', meta:'A little serendipity', cta:'Surprise me' },
@@ -7450,6 +8413,8 @@ const HUBS = {
         links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions']], meta:`${countOf('history')} events` },
       { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
       { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
+      { route:'learn/mass', desc:'Every part of the Mass, with when to stand, sit, and kneel, and why. Follow along on your phone.', meta:`${MASS_PARTS.reduce((n, s) => n + s.parts.length, 0)} parts` },
+      { route:'learn/glossary', desc:'Short, clear definitions of the words of the faith, from Absolution to the Vulgate.', meta:`${GLOSSARY.length} terms` },
       { route:'resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
       { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
       (() => {
@@ -7663,6 +8628,8 @@ function renderHome(){
       <div class="home-community-posts" id="homeCommunity"></div>
     </section>
 
+    ${homePrayerHtml()}
+
     <section class="home-continue" id="homeContinue"></section>
 
     <section class="home-section home-split">
@@ -7724,6 +8691,7 @@ function renderHome(){
   wrap.querySelectorAll('.path-card').forEach(c => c.addEventListener('keydown', ev => { if(ev.target === c && (ev.key === 'Enter' || ev.key === ' ')){ ev.preventDefault(); navigate(c.dataset.route); } }));
   wrap.querySelectorAll('.saint-portrait[data-sid]').forEach(observePortrait);
   loadHomeCommunity(wrap.querySelector('#homeCommunity'));
+  bindHomePrayer(wrap);
 }
 
 /* =========================================================
@@ -7746,8 +8714,13 @@ const ROUTES = {
   'pray/chaplet':                { cat:'chaplet', parent:'pray' },
   'pray/examination':            { cat:'exam', parent:'pray' },
   'pray/timer':                  { cat:'timer', parent:'pray' },
+  'pray/examen':                 { cat:'examen', parent:'pray' },
+  'pray/angelus':                { cat:'angelus', parent:'pray' },
+  'pray/lectio':                 { cat:'lectio', parent:'pray' },
+  'pray/tracker':                { cat:'tracker', parent:'pray' },
   'library':                     { cat:'hub-library' },
   'library/saints':              { cat:'saint', parent:'library' },
+  'library/saints/patron-finder':{ cat:'patronfinder', parent:'library/saints' },
   'library/books':               { cat:'book', parent:'library' },
   'library/bible':               { cat:'bible', parent:'library' },
   'library/all':                 { cat:'all', parent:'library' },
@@ -7763,6 +8736,8 @@ const ROUTES = {
                                    desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
   'learn/plans':                 { cat:'plan', parent:'learn' },
   'learn/quiz':                  { cat:'quiz', parent:'learn' },
+  'learn/mass':                  { cat:'mass', parent:'learn' },
+  'learn/glossary':              { cat:'glossary', parent:'learn' },
   'learn/resources':             { cat:'resources', parent:'learn' },
   'resources':                   { cat:'resources' }
 };
@@ -7786,6 +8761,7 @@ function routeFromHash(){
 }
 
 function applyRoute(path){
+  stopSpeaking();
   const post = POST_ROUTE.exec(path);
   forumThreadId = post ? Number(post[1]) : null;
   let route = post ? 'community/post' : path;
@@ -8011,6 +8987,7 @@ function renderReadActions(e){
     <button class="read-action" data-act="copy">Copy text</button>
     <button class="read-action" data-act="share">Share</button>
     <button class="read-action" data-act="discuss">Discuss</button>
+    ${canSpeak ? '<button class="read-action" data-act="listen" aria-pressed="false">🔊 Listen</button>' : ''}
     ${canNovena ? `<button class="read-action" data-act="novena"${activeNovena ? ' disabled' : ''}>${activeNovena ? 'Novena in progress' : 'Start a novena'}</button>` : ''}
     ${PRAYER_ES[e.id] ? `<span class="lang-toggle" role="group" aria-label="Language"><button class="lang-btn" data-lang="en" aria-pressed="true">English</button><button class="lang-btn" data-lang="es" aria-pressed="false" lang="es">Español</button></span>` : ''}`;
   bar.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
@@ -8024,6 +9001,11 @@ function renderReadActions(e){
     if(activeCategory === 'mine') renderMine();
   });
   bar.querySelector('[data-act="discuss"]').addEventListener('click', () => discussEntry(e));
+  const listen = bar.querySelector('[data-act="listen"]');
+  if(listen) listen.addEventListener('click', () => {
+    const extra = document.getElementById('readIntercession');
+    toggleSpeak(listen, e.title + '. ' + document.getElementById('readBody').innerText + (extra ? ' ' + extra.innerText.replace(/^Prayer of Intercession/, '') : ''));
+  });
   bar.querySelector('[data-act="copy"]').addEventListener('click', async () => {
     toast(await copyText(entryPlainText(e)) ? 'Text copied' : 'Could not copy');
   });
@@ -8068,6 +9050,8 @@ function miniRow(e, extraHtml){
 
 function renderMine(){
   entryListEl.innerHTML = '';
+  entryListEl.insertAdjacentHTML('beforeend', homePrayerHtml());
+  bindHomePrayer(entryListEl);
   const find = id => library.find(x => x.id === id);
 
   // Novenas
@@ -8235,6 +9219,7 @@ function timerTick(){
     clearInterval(timerState.tick);
     setWakeLock(false);
     playBell(); setTimeout(playBell, 1600); setTimeout(playBell, 3200);
+    logPrayer('silence');
     toast('Your time of prayer is complete');
   }
   updateTimerView();
@@ -8684,6 +9669,7 @@ function devoBeadRow(count, current, label){
 // One step of a guided prayer
 // o = { kind, color, aside, emblem, kicker, title, body, extra, track, step, total, go(i), exit(), exitLabel }
 function renderDevotionStep(o){
+  stopSpeaking();
   const last = o.step === o.total - 1;
   const active = document.activeElement;
   const hadFocus = !!(active && active.closest && active.closest('.devo'));
@@ -8711,7 +9697,7 @@ function renderDevotionStep(o){
           </div>
           <div class="devo-foot">
             <button class="text-link" data-act="exit">${o.exitLabel}</button>
-            <span class="devo-keys">Tip: the ← and → keys move between prayers</span>
+            <span>${canSpeak ? '<button class="text-link" data-act="listen" aria-pressed="false">🔊 Read aloud</button>' : ''}<span class="devo-keys devo-listen">Tip: the ← and → keys move between prayers</span></span>
           </div>
         </div>
       </div>
@@ -8723,6 +9709,12 @@ function renderDevotionStep(o){
   root.querySelector('.devo-next').addEventListener('click', next);
   root.querySelector('[data-act="exit"]').addEventListener('click', o.exit);
   root.querySelectorAll('[data-goto]').forEach(el => el.addEventListener('click', () => o.go(Number(el.dataset.goto))));
+  const listen = root.querySelector('[data-act="listen"]');
+  if(listen) listen.addEventListener('click', () => {
+    const card = root.querySelector('.devo-card');
+    const stanza = card.querySelector('.devo-stanza');
+    toggleSpeak(listen, o.title + '. ' + card.querySelector('.devo-text').innerText + (stanza ? ' ' + stanza.innerText.replace(/^Stabat Mater/i, '') : ''));
+  });
   devoKeys = { back, next };
   if(hadFocus) root.querySelector('.devo-next').focus({ preventScroll:true });
 }
@@ -8749,7 +9741,7 @@ function renderDevotionDone(o){
 }
 
 document.addEventListener('keydown', e => {
-  if(!devoKeys || !['rosary', 'stations', 'chaplet'].includes(activeCategory) || searchTerm.trim()) return;
+  if(!devoKeys || !['rosary', 'stations', 'chaplet', 'examen', 'angelus', 'lectio', 'mass'].includes(activeCategory) || searchTerm.trim()) return;
   if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
   if(e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
   if(readOverlay.classList.contains('open') || document.body.classList.contains('nav-open')) return;
@@ -8864,6 +9856,7 @@ function renderRosary(){
   const total = rosarySequence.length;
   const again = () => { rosarySequence = null; rosaryStep = 0; renderRosary(); };
   if(rosaryStep >= total){
+    logPrayer('rosary');
     return renderDevotionDone({
       kind:'rosary', color:style.color, emblem:devoMedal(cardArt(style.art)), title:`You have prayed the ${set.name}`,
       text:'Queen of the Most Holy Rosary, pray for us.', againLabel:'Pray the Rosary again', again
@@ -9031,6 +10024,7 @@ function renderStations(){
   const total = STATIONS_DATA.length;
   const again = () => { stationsStep = null; renderStations(); };
   if(stationsStep >= total){
+    logPrayer('stations');
     return renderDevotionDone({
       kind:'stations', color:STATIONS_COLOR, emblem:devoMedal(cardArt('budcross')), title:'You have walked the Way of the Cross',
       text:'We adore You, O Christ, and we bless You, because by Your holy cross You have redeemed the world.', againLabel:'Walk the Stations again', again
@@ -9142,6 +10136,7 @@ function renderChaplet(){
   const total = chapletSequence.length;
   const again = () => { chapletSequence = null; chapletStep = 0; renderChaplet(); };
   if(chapletStep >= total){
+    logPrayer('chaplet');
     return renderDevotionDone({
       kind:'chaplet', color:CHAPLET_COLOR, emblem:devoMedal(cardArt('rays')), title:'You have prayed the Chaplet of Divine Mercy',
       text:'Jesus, I trust in You.', againLabel:'Pray the Chaplet again', again
@@ -9178,6 +10173,7 @@ function renderChaplet(){
 })();
 // Check whether the visitor is signed in to the Community (shows their initial in the top bar)
 ensureAccount();
+watchReadOverlay();
 // Shared links: index.html#read=s1 opens that entry directly
 (function openSharedEntry(){
   const m = /^#read=(.+)$/.exec(location.hash);
