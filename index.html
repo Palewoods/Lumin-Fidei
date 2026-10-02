@@ -872,6 +872,43 @@
   .sf-quiz-link{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:-6px 0 18px; padding:12px 16px; border-radius:14px;
     background:color-mix(in srgb, var(--gold) 10%, var(--parchment-light)); border:1px dashed color-mix(in srgb, var(--gold) 50%, var(--line));}
 
+  /* ---------- Quotes of the saints ---------- */
+  .quotes{max-width:1000px;}
+  .quote-today{margin-bottom:22px;}
+  .quote-today .daily-kicker{margin-bottom:8px;}
+  .quote-tools{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:10px;}
+  .quote-tools .sf-patron-search{flex:1 1 260px; margin:0;}
+  .quote-tools select{font-family:'Source Serif 4', serif; font-size:0.92rem; padding:9px 12px; border-radius:20px; border:1px solid var(--line); background:var(--parchment); color:var(--ink); max-width:100%;}
+  .quote-themes{margin-bottom:10px;}
+  .quote-grid{columns:2 320px; column-gap:14px;}
+  .quote-card{
+    break-inside:avoid; margin:0 0 14px; padding:20px 22px 14px; border-radius:18px; position:relative;
+    border:1px solid var(--line); background:var(--parchment-light);
+  }
+  .quote-card::before{content:'“'; position:absolute; top:-6px; left:14px; font-family:'Cormorant Garamond', serif; font-size:4rem; line-height:1; color:color-mix(in srgb, var(--gold) 55%, transparent);}
+  .quote-card blockquote{margin:0; font-family:'Cormorant Garamond', serif; font-size:1.3rem; line-height:1.4; font-style:italic; position:relative;}
+  .quote-card figcaption{display:flex; flex-direction:column; gap:2px; margin-top:12px;}
+  .quote-who{align-self:flex-start; background:none; border:none; padding:0; cursor:pointer; font-family:'Source Serif 4', serif; font-weight:700; font-size:0.95rem; color:var(--wine);}
+  span.quote-who{cursor:default;}
+  button.quote-who:hover{text-decoration:underline;}
+  .quote-src{font-size:0.78rem; color:var(--ink-soft);}
+  .quote-actions{display:flex; align-items:center; gap:6px; margin-top:10px;}
+  .quote-btn{font-family:'Source Serif 4', serif; font-size:0.78rem; padding:4px 12px; border-radius:12px; cursor:pointer; border:1px solid var(--line); background:var(--parchment); color:var(--ink-soft);}
+  .quote-btn:hover{border-color:var(--gold); color:var(--ink);}
+  .quote-flag{margin-left:auto; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; color:var(--ink-soft); padding:2px 8px; border-radius:8px; border:1px dashed var(--line);}
+  .quote-hero{padding:34px 36px 20px; border-color:color-mix(in srgb, var(--gold) 45%, var(--line));
+    background:linear-gradient(135deg, color-mix(in srgb, var(--gold) 12%, var(--parchment-light)), var(--parchment-light) 70%);}
+  .quote-hero::before{font-size:6rem; top:-14px; left:20px;}
+  .quote-hero blockquote{font-size:clamp(1.5rem, 3vw, 2.1rem);}
+  .read-quotes{margin:22px 0 0; padding:18px 20px; border-radius:14px; background:color-mix(in srgb, var(--gold) 9%, transparent);}
+  .read-quotes h3{margin:0 0 10px; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);}
+  .read-quotes blockquote{margin:0 0 14px; font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-style:italic; line-height:1.4;}
+  .read-quotes cite{display:block; margin-top:4px; font-family:'Source Serif 4', serif; font-size:0.78rem; font-style:normal; color:var(--ink-soft);}
+  .home-quote{margin:22px 0; padding:24px 26px; border-radius:20px; border:1px solid var(--line); text-align:center;
+    background:linear-gradient(180deg, color-mix(in srgb, var(--gold) 8%, var(--parchment-light)), var(--parchment-light));}
+  .home-quote blockquote{margin:8px auto 14px; max-width:720px; font-family:'Cormorant Garamond', serif; font-size:clamp(1.35rem, 2.6vw, 1.75rem); font-style:italic; line-height:1.35;}
+  .home-quote-foot{display:flex; justify-content:center; align-items:center; gap:18px; flex-wrap:wrap;}
+  @media (max-width:600px){ .quote-hero{padding:28px 20px 16px;} }
   /* ---------- Saint finder ---------- */
   .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
   .sf-section{padding-bottom:14px;}
@@ -1985,6 +2022,7 @@
       <ul>
         <li><button class="navlink" data-route="library/saints" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
         <li><button class="navlink" data-route="library/saints/patron-finder" data-cat="patronfinder">Find Your Patron Saint</button></li>
+        <li><button class="navlink" data-route="library/quotes" data-cat="quotes">Quotes of the Saints</button></li>
         <li><button class="navlink" data-route="library/books" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
         <li><button class="navlink" data-route="library/bible" data-cat="bible">The Bible <span class="count" id="count-bible"></span></button></li>
         <li><button class="navlink" data-route="library/all" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
@@ -2034,7 +2072,7 @@
         <button data-route="pray/prayers">Prayers</button><button data-route="pray/rosary">Rosary</button><button data-route="pray/stations">Stations of the Cross</button>
         <button data-route="pray/chaplet">Divine Mercy Chaplet</button><button data-route="pray/examination">Examination of Conscience</button><button data-route="pray/timer">Prayer Timer</button><button data-route="pray/examen">Daily Examen</button><button data-route="pray/angelus">Angelus</button><button data-route="pray/lectio">Lectio Divina</button><button data-route="pray/tracker">Prayer Tracker</button></div>
       <div><h4>Library</h4>
-        <button data-route="library/saints">Saints</button><button data-route="library/saints/patron-finder">Find Your Patron Saint</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
+        <button data-route="library/saints">Saints</button><button data-route="library/saints/patron-finder">Find Your Patron Saint</button><button data-route="library/quotes">Quotes of the Saints</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
         <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
       <div><h4>Learn</h4>
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
@@ -2086,6 +2124,7 @@ const CAT_DESC = {
   tracker: 'Keep a private record of your daily prayer, build a steady habit, and see your faithfulness over the weeks.',
   mass: 'Every part of the Mass in order, with when to stand, sit, and kneel, and what each moment means. Follow along on your phone at Mass.',
   glossary: 'Clear, short definitions of the words of the Catholic faith, from Absolution to the Vulgate.',
+  quotes: 'The words of the saints, from the Church Fathers to our own day, each with its source. Search them, browse by theme, and share your favorites.',
   patronfinder: 'A few quick questions to suggest saints for your birthday, your work, and the needs on your heart.',
   resources: 'Trusted places to keep learning about the faith: Church documents, Scripture and prayer, podcasts, video, courses, and more.',
   community: 'Share prayer requests, ask questions about the faith, and talk about the saints and good books with other Sanctify members.',
@@ -3159,6 +3198,219 @@ const SEED_DATA = [
   { id:'s316', category:'saint', title:'St. Peter To Rot', author:'1912–1945, feast day July 7', tags:['martyr','catechists','papua new guinea'],
     content:'Peter was a married lay catechist in Papua New Guinea. When Japanese forces occupied the island during the Second World War and imprisoned the missionaries, he kept the Church alive, leading prayer, baptizing, and preparing couples for marriage.\n\nWhen the occupiers legalized polygamy, he openly defended Christian marriage. He was arrested and killed in prison by lethal injection. He was canonized in 2025.',
     intercession:'St. Peter To Rot, pray for us. Bless catechists and married couples, and give us courage to defend the dignity of marriage. Amen.' },
+  { id:'s317', category:'saint', title:'St. Papias of Hierapolis', author:'c. 60–c. 130, feast day February 22', tags:['apostolic fathers','bishop','gospels'],
+    content:'Papias was bishop of Hierapolis in Asia Minor and, according to St. Irenaeus, a hearer of the apostle John and a companion of St. Polycarp. He made it his task to gather everything he could from those who had known the apostles.\n\nHis five books, the Expositions of the Sayings of the Lord, are lost, but fragments preserved by Eusebius give some of the earliest testimony about how the Gospels of Mark and Matthew were written.',
+    intercession:'St. Papias, pray for us. Help us to treasure the faith handed down from the apostles. Amen.' },
+  { id:'s318', category:'saint', title:'St. Melito of Sardis', author:'d. c. 180, feast day April 1', tags:['church father','bishop','easter'],
+    content:'Melito was bishop of Sardis in Asia Minor and one of the most respected Christian writers of the 2nd century. He traveled to the Holy Land to learn which books belonged to the Old Testament and made the earliest surviving Christian list of them.\n\nHis Easter homily, On the Pascha, lost for centuries and rediscovered in the 20th century, is a poetic meditation on Christ as the true Passover Lamb.',
+    intercession:'St. Melito, pray for us. Help us to see Christ in all the Scriptures and to celebrate His Passover with joy. Amen.' },
+  { id:'s319', category:'saint', title:'Sts. Pothinus, Blandina, and the Martyrs of Lyon', author:'d. 177, feast day June 2', tags:['martyr','gaul','early church'],
+    content:'In 177, a mob in Lyon and Vienne in Gaul turned on the Christians. Pothinus, the city’s first bishop, more than ninety years old, was beaten and died in prison. Dozens of others were tortured and thrown to wild beasts in the amphitheater.\n\nBlandina, a slave girl, astonished her torturers by her endurance, repeating, "I am a Christian, and there is nothing vile done by us." Their story survives in a moving letter preserved by Eusebius.',
+    intercession:'Holy martyrs of Lyon, pray for us. Give us courage to confess Christ whatever the cost. Amen.' },
+  { id:'s320', category:'saint', title:'St. Theophilus of Antioch', author:'d. c. 183, feast day October 13', tags:['church father','bishop','apologist'],
+    content:'Theophilus was a pagan convert who became bishop of Antioch, the city where the disciples were first called Christians. His defense of the faith, To Autolycus, was written to a pagan friend.\n\nIn it he became the first known writer to use the Greek word for "triad" of God, His Word, and His Wisdom, an early step toward the Church’s language of the Trinity.',
+    intercession:'St. Theophilus, pray for us. Help us to explain our faith to our friends with patience and love. Amen.' },
+  { id:'s321', category:'saint', title:'Pope St. Callixtus I', author:'d. 222, feast day October 14', tags:['pope','martyr','mercy'],
+    content:'Callixtus began life as a slave. After a troubled youth and a sentence to the mines of Sardinia, he became a deacon in charge of the Christian burial ground on the Appian Way, which still bears his name: the Catacomb of St. Callixtus.\n\nAs pope he welcomed repentant sinners back to communion, to the anger of rigorists like Hippolytus. He was killed during a riot and is honored as a martyr.',
+    intercession:'Pope St. Callixtus, pray for us. Teach the Church to welcome sinners home with mercy. Amen.' },
+  { id:'s322', category:'saint', title:'Pope St. Pontian', author:'d. 235, feast day August 13', tags:['pope','martyr','exile'],
+    content:'Pontian was bishop of Rome when the Emperor Maximinus Thrax exiled him, along with the theologian Hippolytus, to the deadly mines of Sardinia.\n\nKnowing he would not return, he resigned his office so that the Church of Rome would not be left without a shepherd, the first pope known to do so. He died there of harsh treatment, and is honored with Hippolytus, with whom he was reconciled.',
+    intercession:'Pope St. Pontian, pray for us. Teach us to put the good of the Church before ourselves. Amen.' },
+  { id:'s323', category:'saint', title:'St. Gregory Thaumaturgus', author:'c. 213–c. 270, feast day November 17', tags:['bishop','miracles','pontus'],
+    content:'Gregory was a young lawyer who came under the spell of the great teacher Origen in Caesarea and was converted to Christ. He became bishop of his home city of Neocaesarea in Pontus.\n\nSo many miracles were reported of him that he was called "the Wonderworker." Tradition says that when he became bishop there were only seventeen Christians in the city, and at his death only seventeen pagans.',
+    intercession:'St. Gregory the Wonderworker, pray for us. Intercede for us in desperate situations, and help us to win others for Christ. Amen.' },
+  { id:'s324', category:'saint', title:'St. Dionysius of Alexandria', author:'d. 265, feast day November 17', tags:['church father','bishop','plague'],
+    content:'Dionysius, called "the Great," headed the famous catechetical school of Alexandria and then served as its bishop for seventeen years. He survived the persecutions of Decius and Valerian, escaping arrest and enduring exile.\n\nHis letters describe how Christians in Alexandria nursed the sick during a terrible plague, caring even for pagans who had fled their own families, and often dying themselves.',
+    intercession:'St. Dionysius, pray for us. Make us generous and brave in caring for the sick. Amen.' },
+  { id:'s325', category:'saint', title:'St. Peter of Alexandria', author:'d. 311, feast day November 26', tags:['bishop','martyr','egypt'],
+    content:'Peter was bishop of Alexandria during the Great Persecution under Diocletian. He wrote rules for welcoming back Christians who had lapsed under torture, and excommunicated Arius, then a young deacon, for joining a schism.\n\nHe was beheaded in 311, one of the last victims of the persecution, and the Coptic Church calls him "the Seal of the Martyrs."',
+    intercession:'St. Peter of Alexandria, pray for us. Strengthen persecuted Christians, and keep the Church faithful to the truth. Amen.' },
+  { id:'s326', category:'saint', title:'St. Methodius of Olympus', author:'d. c. 311, feast day June 20', tags:['church father','bishop','martyr'],
+    content:'Methodius was a bishop and writer in Lycia, in Asia Minor. His best-known work, the Symposium, imitates Plato’s famous dialogue: ten virgins in a garden each give a speech in praise of chastity, ending with a hymn to Christ the Bridegroom.\n\nHe defended the resurrection of the body against some ideas of Origen, and tradition says he died a martyr at the end of the Great Persecution.',
+    intercession:'St. Methodius, pray for us. Help us to honor our bodies as temples of the Holy Spirit. Amen.' },
+  { id:'s327', category:'saint', title:'St. Gregory the Illuminator', author:'c. 257–c. 331, feast day September 30', tags:['bishop','armenia','missionary'],
+    content:'Gregory brought the faith to Armenia. According to tradition, King Tiridates III had him thrown into a deep pit at Khor Virap, where he survived for thirteen years.\n\nReleased to heal the king of a terrible illness, he baptized him around 301, making Armenia the first nation to adopt Christianity as its official religion. He became the first head of the Armenian Church.',
+    intercession:'St. Gregory the Illuminator, pray for us. Bless the Armenian people, and help us to remain faithful in long trials. Amen.' },
+  { id:'s328', category:'saint', title:'Pope St. Sylvester I', author:'d. 335, feast day December 31', tags:['pope','constantine','peace'],
+    content:'Sylvester became bishop of Rome in 314, just after the Emperor Constantine ended the persecution of Christians. During his long reign the great basilicas of St. John Lateran and St. Peter’s were built, and the Council of Nicaea was held in 325.\n\nMany legends grew up around him, including the forged "Donation of Constantine." His feast falls on New Year’s Eve, which in many countries is still called "Silvester."',
+    intercession:'Pope St. Sylvester, pray for us. Help the Church to use times of peace well, for the glory of God. Amen.' },
+  { id:'s329', category:'saint', title:'St. Alexander of Alexandria', author:'d. 326, feast day February 26', tags:['bishop','nicaea','trinity'],
+    content:'Alexander was bishop of Alexandria when one of his priests, Arius, began teaching that the Son of God was a creature who had not always existed. Alexander condemned him after patient attempts to correct him.\n\nAt the Council of Nicaea in 325 he led the defense of Christ’s full divinity, accompanied by his young deacon and secretary, St. Athanasius, who succeeded him.',
+    intercession:'St. Alexander, pray for us. Keep us faithful to the true faith in Christ, God from God, Light from Light. Amen.' },
+  { id:'s330', category:'saint', title:'St. Eustathius of Antioch', author:'d. c. 337, feast day July 16', tags:['bishop','nicaea','exile'],
+    content:'Eustathius was bishop of Antioch and one of the leading defenders of the faith at the Council of Nicaea in 325.\n\nAfter the council, Arian bishops took revenge by accusing him of misconduct and having him deposed and exiled to Thrace, where he died. His loyal followers in Antioch, the "Eustathians," kept the Nicene faith for decades.',
+    intercession:'St. Eustathius, pray for us. Strengthen all who are falsely accused for their faithfulness. Amen.' },
+  { id:'s331', category:'saint', title:'St. Spyridon', author:'c. 270–348, feast day December 12', tags:['bishop','cyprus','shepherds'],
+    content:'Spyridon was a married shepherd on Cyprus who became bishop of Trimythous while keeping his simple life and his flocks. Tradition places him among the bishops at the Council of Nicaea.\n\nA beloved legend tells that he explained the Trinity to a philosopher by squeezing a brick, which burst into flame, released water, and left clay in his hand: three, yet one. His relics are venerated on the island of Corfu.',
+    intercession:'St. Spyridon, pray for us. Help us to explain the mysteries of faith simply, and keep us humble in every honor. Amen.' },
+  { id:'s332', category:'saint', title:'St. Jacob of Nisibis', author:'d. 338, feast day July 15', tags:['bishop','mesopotamia','nicaea'],
+    content:'Jacob was the first bishop of Nisibis, a frontier city between the Roman and Persian empires in today’s Turkey. He attended the Council of Nicaea and founded a famous school in his city.\n\nHe was the teacher of St. Ephrem the Syrian. Tradition credits his prayers with saving Nisibis from a Persian siege.',
+    intercession:'St. Jacob, pray for us. Bless teachers of the faith and all Christians who live on dangerous frontiers. Amen.' },
+  { id:'s333', category:'saint', title:'St. Paul the First Hermit', author:'c. 228–c. 341, feast day January 15', tags:['hermit','desert fathers','egypt'],
+    content:'Paul of Thebes fled into the Egyptian desert as a young man to escape the persecution of Decius, and stayed there in a cave for nearly ninety years, living on dates and water. St. Jerome wrote his life.\n\nAccording to Jerome, St. Anthony the Great was led to visit him near the end of his life, and a raven that had brought Paul half a loaf each day brought a whole loaf for the two of them.',
+    intercession:'St. Paul the Hermit, pray for us. Teach us to find our joy in God alone. Amen.' },
+  { id:'s334', category:'saint', title:'St. Macarius the Great', author:'c. 300–391, feast day January 19', tags:['desert fathers','monk','egypt'],
+    content:'Macarius was a camel driver who became a disciple of St. Anthony and then a monk and priest in the desert of Scetis in Egypt, where communities of monks gathered around him.\n\nHe was famous for his humility and gentleness. Asked how to pray, he answered that there is no need for many words: just stretch out your hands and say, "Lord, as you will and as you know, have mercy on me."',
+    intercession:'St. Macarius, pray for us. Teach us humility and the simple prayer of the heart. Amen.' },
+  { id:'s335', category:'saint', title:'St. Hilarion', author:'c. 291–371, feast day October 21', tags:['hermit','palestine','monasticism'],
+    content:'Hilarion was born near Gaza and converted to Christianity as a student in Alexandria. After visiting St. Anthony in the desert, he returned home to live as a hermit and became the founder of monastic life in Palestine.\n\nCrowds seeking healing kept him on the move: to Egypt, Sicily, Dalmatia, and finally Cyprus, where he died. St. Jerome wrote his life.',
+    intercession:'St. Hilarion, pray for us. Help us to seek silence and prayer amid the noise of the world. Amen.' },
+  { id:'s336', category:'saint', title:'St. Frumentius', author:'d. c. 383, feast day October 27', tags:['bishop','ethiopia','missionary'],
+    content:'Frumentius was a boy from Tyre who, with his brother, was captured after their ship was attacked on the Red Sea. Brought to the court of Aksum in Ethiopia, he became the king’s secretary and tutor to the young prince.\n\nHe went to Alexandria to ask St. Athanasius for a bishop for Ethiopia, and Athanasius consecrated Frumentius himself. Ethiopians call him Abba Salama, "Father of Peace."',
+    intercession:'St. Frumentius, pray for us. Bless the Church in Ethiopia, and help us to serve God wherever life takes us. Amen.' },
+  { id:'s337', category:'saint', title:'St. Nino', author:'d. c. 338, feast day January 14', tags:['missionary','georgia','women'],
+    content:'Nino was a Christian woman, probably from Cappadocia, who brought the faith to the kingdom of Iberia, in today’s Georgia. According to tradition, she healed the queen through prayer.\n\nWhen King Mirian was saved from darkness after praying to "Nino’s God," he and his people became Christian. Her cross of grapevine branches bound with her own hair is a symbol of the Georgian Church.',
+    intercession:'St. Nino, pray for us. Bless the people of Georgia, and help women who share the faith in their families and communities. Amen.' },
+  { id:'s338', category:'saint', title:'Pope St. Julius I', author:'d. 352, feast day April 12', tags:['pope','athanasius','nicaea'],
+    content:'Julius was bishop of Rome during the bitter years after Nicaea, when Arian emperors and bishops drove the defenders of the Creed from their sees.\n\nHe welcomed the exiled St. Athanasius to Rome, declared him innocent at a synod, and firmly upheld the Nicene faith. He also built several churches in Rome.',
+    intercession:'Pope St. Julius, pray for us. Help the Church to defend those who suffer for the truth. Amen.' },
+  { id:'s339', category:'saint', title:'St. Eusebius of Vercelli', author:'c. 283–371, feast day August 2', tags:['bishop','exile','italy'],
+    content:'Eusebius was the first bishop of Vercelli in northern Italy, and the first Western bishop known to have his clergy live together in community under a common rule of prayer.\n\nAt a council in Milan in 355, he refused to condemn St. Athanasius and was exiled by the Arian emperor to Palestine and Egypt. He returned to work for the Nicene faith in Italy.',
+    intercession:'St. Eusebius, pray for us. Give priests a love of common prayer and the courage to stand for the truth. Amen.' },
+  { id:'s340', category:'saint', title:'St. Zeno of Verona', author:'d. c. 371, feast day April 12', tags:['bishop','preacher','verona'],
+    content:'Zeno, probably born in North Africa, was bishop of Verona in Italy. About ninety of his sermons survive, among the oldest Latin sermons we have, many of them preached to those preparing for Baptism at Easter.\n\nHe was known for his charity and his love of fishing, and the beautiful Romanesque basilica of San Zeno in Verona stands over his tomb.',
+    intercession:'St. Zeno, pray for us. Bless the city of Verona, and help us to live the grace of our Baptism. Amen.' },
+  { id:'s341', category:'saint', title:'St. Meletius of Antioch', author:'d. 381, feast day February 12', tags:['bishop','antioch','councils'],
+    content:'Meletius was bishop of Antioch during the Arian crisis and was sent into exile three times. A gentle and holy man, he ordained St. John Chrysostom a deacon.\n\nHe presided over the Council of Constantinople in 381, which completed the Nicene Creed, but died during the council. St. Gregory of Nyssa preached at his funeral.',
+    intercession:'St. Meletius, pray for us. Bring peace to divided communities, and keep us faithful in times of confusion. Amen.' },
+  { id:'s342', category:'saint', title:'St. Optatus of Milevis', author:'d. c. 387, feast day June 4', tags:['bishop','unity','north africa'],
+    content:'Optatus was bishop of Milevis in North Africa when the Church there was torn by the Donatist schism, which held that sacraments given by unworthy clergy were invalid.\n\nIn his work against the Donatists, he argued that the sacraments belong to Christ, not to the minister, and that unity with the See of Peter in Rome is the mark of the true Church. St. Augustine admired him.',
+    intercession:'St. Optatus, pray for us. Heal divisions in the Church and keep us united with the successor of Peter. Amen.' },
+  { id:'s343', category:'saint', title:'St. Amphilochius of Iconium', author:'c. 340–c. 395, feast day November 23', tags:['bishop','cappadocia','trinity'],
+    content:'Amphilochius was a lawyer and the cousin of St. Gregory of Nazianzus, and a close friend of St. Basil. He became bishop of Iconium and attended the Council of Constantinople in 381.\n\nA famous story tells that he greeted the Emperor Theodosius but ignored the young prince at his side. When the emperor took offense, he replied that God the Father is offended too when men honor Him but not His Son.',
+    intercession:'St. Amphilochius, pray for us. Help us to honor the Son as we honor the Father. Amen.' },
+  { id:'s344', category:'saint', title:'St. Peter of Sebaste', author:'c. 340–c. 391, feast day January 9', tags:['bishop','cappadocia','family of saints'],
+    content:'Peter was the youngest of ten children in a remarkable family of saints, brother of Basil the Great, Gregory of Nyssa, and Macrina, who largely raised him.\n\nHe lived for years as a monk and became bishop of Sebaste in Armenia, where he worked against Arianism and attended the Council of Constantinople in 381.',
+    intercession:'St. Peter of Sebaste, pray for us. Bless families who help one another toward holiness. Amen.' },
+  { id:'s345', category:'saint', title:'St. Pacian of Barcelona', author:'c. 310–c. 390, feast day March 9', tags:['bishop','penance','spain'],
+    content:'Pacian was bishop of Barcelona and a married man before his ordination. St. Jerome praised his eloquence and holy life.\n\nIn his letters he defended the Church’s power to forgive sins through penance, against those who said some sins could never be forgiven. He is remembered for the line, "Christian is my name, Catholic my surname."',
+    intercession:'St. Pacian, pray for us. Help us to bear the name of Christian and Catholic with joy, and to trust in God’s forgiveness. Amen.' },
+  { id:'s346', category:'saint', title:'St. Epiphanius of Salamis', author:'c. 310–403, feast day May 12', tags:['bishop','cyprus','theologian'],
+    content:'Epiphanius was born in Palestine, became a monk, and later was bishop of Salamis on Cyprus for nearly forty years. He was said to know Hebrew, Syriac, Egyptian, Greek, and Latin.\n\nHis Panarion, or "Medicine Chest," describes and refutes eighty heresies, preserving information about many ancient groups that would otherwise be lost.',
+    intercession:'St. Epiphanius, pray for us. Give us a love for the truth and the wisdom to recognize error. Amen.' },
+  { id:'s347', category:'saint', title:'St. Chromatius of Aquileia', author:'d. 407, feast day December 2', tags:['bishop','preacher','italy'],
+    content:'Chromatius was bishop of Aquileia, a great city at the head of the Adriatic. A friend of St. Jerome, he encouraged Jerome’s translation of the Bible and tried to reconcile him with his former friend Rufinus.\n\nHe defended St. John Chrysostom when Chrysostom was exiled. Many of his sermons were rediscovered only in the 20th century.',
+    intercession:'St. Chromatius, pray for us. Make us peacemakers between friends who are divided. Amen.' },
+  { id:'s348', category:'saint', title:'St. Gaudentius of Brescia', author:'d. c. 410, feast day October 25', tags:['bishop','preacher','italy'],
+    content:'Gaudentius was on pilgrimage in the East when the people of Brescia chose him as their bishop. Only when the bishops of the region threatened to refuse him communion did he return to accept.\n\nHe was later sent to Constantinople to defend St. John Chrysostom and was imprisoned on the way. Twenty-one of his sermons survive.',
+    intercession:'St. Gaudentius, pray for us. Help us to accept God’s call with humility, and to defend the innocent. Amen.' },
+  { id:'s349', category:'saint', title:'St. Niceta of Remesiana', author:'c. 335–c. 414, feast day June 22', tags:['bishop','missionary','hymns'],
+    content:'Niceta was bishop of Remesiana, in today’s Serbia, and a tireless missionary among the tribes of the Balkans. His friend St. Paulinus of Nola praised him for teaching barbarians to sing hymns to Christ.\n\nHe wrote instructions for those preparing for Baptism and encouraged singing in church. Many scholars think he may have written the Te Deum.',
+    intercession:'St. Niceta, pray for us. Teach us to praise God with joy, and bless missionaries to every people. Amen.' },
+  { id:'s350', category:'saint', title:'Pope St. Innocent I', author:'d. 417, feast day July 28', tags:['pope','rome','authority'],
+    content:'Innocent was pope during the collapse of the Western Empire, and Alaric’s Goths sacked Rome in 410 while he was away pleading for peace in Ravenna.\n\nHe strengthened the authority of the Roman see, supported the exiled St. John Chrysostom, and wrote an important letter on the liturgy and the sacraments, including the anointing of the sick.',
+    intercession:'Pope St. Innocent, pray for us. Guide the Church in times of upheaval and fear. Amen.' },
+  { id:'s351', category:'saint', title:'St. Maximus of Turin', author:'d. c. 420, feast day June 25', tags:['bishop','preacher','charity'],
+    content:'Maximus was the first known bishop of Turin, serving during the barbarian invasions of northern Italy. About a hundred of his sermons survive.\n\nHe urged his people to stay and defend their city, to welcome refugees, and to share their goods with the poor, and he gently rebuked those who clung to pagan customs.',
+    intercession:'St. Maximus, pray for us. Make us generous to refugees and to all who are in need. Amen.' },
+  { id:'s352', category:'saint', title:'St. Ninian', author:'d. c. 432, feast day September 16', tags:['bishop','scotland','missionary'],
+    content:'Ninian was a Briton who, according to St. Bede, was trained in Rome and returned to evangelize the southern Picts. At Whithorn in Galloway he built a stone church called Candida Casa, "the White House."\n\nWhithorn became a center of learning and pilgrimage. Ninian is honored as one of the first missionaries to the land that became Scotland.',
+    intercession:'St. Ninian, pray for us. Bless the people of Scotland, and give us zeal to share the Gospel. Amen.' },
+  { id:'s353', category:'saint', title:'Pope St. Celestine I', author:'d. 432, feast day April 6', tags:['pope','ephesus','ireland'],
+    content:'Celestine was pope when the patriarch Nestorius denied that Mary could be called Mother of God. He sent legates to the Council of Ephesus in 431, which proclaimed Mary Theotokos, "God-bearer."\n\nHe also sent the deacon Palladius as the first bishop to the Christians of Ireland, preparing the way for St. Patrick.',
+    intercession:'Pope St. Celestine, pray for us. Help us to honor Mary as the Mother of God. Amen.' },
+  { id:'s354', category:'saint', title:'St. John Cassian', author:'c. 360–c. 435, feast day July 23', tags:['monk','desert fathers','monasticism'],
+    content:'John Cassian spent years among the monks of Egypt, listening to the great desert fathers. He later founded two monasteries in Marseille, in Gaul.\n\nHis Institutes and Conferences carried the wisdom of the Egyptian desert to the West. St. Benedict told his monks to read them, and they shaped Western monastic life for centuries.',
+    intercession:'St. John Cassian, pray for us. Teach us to pray without ceasing and to guard our hearts. Amen.' },
+  { id:'s355', category:'saint', title:'St. Possidius', author:'d. c. 437, feast day May 16', tags:['bishop','augustine','biographer'],
+    content:'Possidius was a member of St. Augustine’s community in Hippo for forty years, then bishop of nearby Calama. He shared Augustine’s battles against the Donatists and Pelagians.\n\nHe was at Augustine’s bedside in 430 as the Vandals besieged Hippo, and soon after wrote his Life of Augustine, the first biography of the great saint. The Vandals later drove him into exile.',
+    intercession:'St. Possidius, pray for us. Bless faithful friends, and help us to learn from the saints we love. Amen.' },
+  { id:'s356', category:'saint', title:'St. Vincent of Lérins', author:'d. c. 445, feast day May 24', tags:['monk','tradition','theologian'],
+    content:'Vincent was a monk on the island of Lérins, off the coast of Provence. In his Commonitorium, written in 434, he asked how to tell true teaching from error.\n\nHis answer became famous: hold to what has been believed everywhere, always, and by all. He also explained that doctrine truly develops, but like a body growing from childhood to adulthood, never changing into something else.',
+    intercession:'St. Vincent of Lérins, pray for us. Keep us faithful to the faith of the whole Church, in every age. Amen.' },
+  { id:'s357', category:'saint', title:'St. Proclus of Constantinople', author:'d. 446, feast day October 24', tags:['bishop','theotokos','preacher'],
+    content:'Proclus was a disciple of St. John Chrysostom. In 428, preaching in Constantinople in front of the patriarch Nestorius, he delivered a famous sermon defending Mary’s title Mother of God.\n\nAs archbishop of Constantinople, he brought the relics of St. John Chrysostom back to the city in 438, and was known for his gentleness toward those who disagreed with him.',
+    intercession:'St. Proclus, pray for us. Help us to honor Mary as the Mother of God, and to be gentle with those who disagree with us. Amen.' },
+  { id:'s358', category:'saint', title:'St. Germanus of Auxerre', author:'c. 378–448, feast day July 31', tags:['bishop','britain','gaul'],
+    content:'Germanus was a Roman lawyer and provincial governor who was chosen bishop of Auxerre in Gaul. He gave away his wealth and lived austerely.\n\nIn 429 he was sent to Britain to combat Pelagianism. According to tradition, he led the Britons to victory over invading Picts and Saxons by having them shout "Alleluia!" so loudly that the enemy fled.',
+    intercession:'St. Germanus, pray for us. Defend the true faith, and give us confidence in the power of praise. Amen.' },
+  { id:'s359', category:'saint', title:'St. Flavian of Constantinople', author:'d. 449, feast day February 18', tags:['bishop','martyr','chalcedon'],
+    content:'Flavian, archbishop of Constantinople, condemned the monk Eutyches for teaching that Christ had only one nature after the Incarnation. Pope St. Leo the Great wrote his famous Tome to Flavian supporting him.\n\nAt the violent "Robber Council" of Ephesus in 449, Flavian was beaten and died of his injuries in exile. The Council of Chalcedon honored him as a martyr two years later.',
+    intercession:'St. Flavian, pray for us. Give us courage to confess Christ, true God and true man. Amen.' },
+  { id:'s360', category:'saint', title:'St. Hilary of Arles', author:'c. 401–449, feast day May 5', tags:['bishop','lérins','charity'],
+    content:'Hilary was a young nobleman persuaded by his relative St. Honoratus to become a monk at Lérins. He succeeded Honoratus as bishop of Arles before he was thirty.\n\nHe lived austerely, worked with his own hands, and sold the church’s silver vessels to ransom captives. He clashed with Pope St. Leo over his authority in Gaul but is honored for his holy life.',
+    intercession:'St. Hilary of Arles, pray for us. Help us to value people above possessions. Amen.' },
+  { id:'s361', category:'saint', title:'St. Prosper of Aquitaine', author:'c. 390–c. 455, feast day June 25', tags:['theologian','laity','grace'],
+    content:'Prosper was a layman and theologian from Aquitaine in Gaul who became the great defender of St. Augustine’s teaching on grace after Augustine’s death. He later worked in Rome, probably for Pope St. Leo the Great.\n\nHe gave the Church a famous principle: the law of prayer establishes the law of belief, meaning that how the Church prays shows what she believes.',
+    intercession:'St. Prosper, pray for us. Help us to depend on God’s grace in everything. Amen.' },
+  { id:'s362', category:'saint', title:'St. Mesrop Mashtots', author:'362–440, feast day February 19', tags:['monk','armenia','translators'],
+    content:'Mesrop was an Armenian royal secretary who became a monk and missionary. Frustrated that his people had no written language, he created the Armenian alphabet around 405.\n\nWith the Catholicos St. Sahak, he translated the Bible into Armenian, and he founded schools across the country. Armenian literature begins with him.',
+    intercession:'St. Mesrop, pray for us. Bless translators and teachers who bring God’s word to every people. Amen.' },
+  { id:'s363', category:'saint', title:'St. Severinus of Noricum', author:'c. 410–482, feast day January 8', tags:['monk','austria','refugees'],
+    content:'Severinus was a mysterious monk who appeared in Noricum, along the Danube in today’s Austria, as Roman rule collapsed. He never spoke of his origins.\n\nHe organized food for the starving, ransomed captives, negotiated with barbarian kings, and led the Roman population to safety. He founded monasteries and was revered as a prophet.',
+    intercession:'St. Severinus, pray for us. Protect refugees and all who live through the collapse of their world. Amen.' },
+  { id:'s364', category:'saint', title:'Pope St. Gelasius I', author:'d. 496, feast day November 21', tags:['pope','africa','liturgy'],
+    content:'Gelasius, a pope of African descent, was known for his learning, his austerity, and his generosity to the poor during famine.\n\nIn a famous letter to the Emperor Anastasius, he taught that the world is governed by two powers: the sacred authority of bishops and the royal power of rulers, each with its own sphere. The idea shaped Western thought on Church and state.',
+    intercession:'Pope St. Gelasius, pray for us. Help leaders of Church and state to serve God and the common good. Amen.' },
+  { id:'s365', category:'saint', title:'St. Remigius of Reims', author:'c. 437–533, feast day January 13', tags:['bishop','france','baptism'],
+    content:'Remigius was made bishop of Reims at about twenty-two and served for more than seventy years. On Christmas Day around 496 he baptized Clovis, king of the Franks, together with thousands of his warriors.\n\nAccording to Gregory of Tours, he said to the king at the font: "Bow your head, proud Sicambrian. Adore what you have burned, and burn what you have adored."',
+    intercession:'St. Remigius, pray for us. Bless France, and help all who are converted to give themselves wholly to Christ. Amen.' },
+  { id:'s366', category:'saint', title:'St. Fulgentius of Ruspe', author:'c. 465–533, feast day January 1', tags:['bishop','theologian','north africa'],
+    content:'Fulgentius was a Roman tax official in North Africa who left his career after reading St. Augustine and became a monk. Chosen bishop of Ruspe, he was soon exiled to Sardinia by the Arian Vandal king, along with many other bishops.\n\nIn exile he wrote many works defending the Trinity and Augustine’s teaching on grace. He is often called "the pocket Augustine."',
+    intercession:'St. Fulgentius, pray for us. Strengthen Christians in exile, and help us to love the truth about God. Amen.' },
+  { id:'s367', category:'saint', title:'St. Caesarius of Arles', author:'c. 470–542, feast day August 27', tags:['bishop','preacher','gaul'],
+    content:'Caesarius was a monk of Lérins who served as archbishop of Arles for forty years. He was the most popular preacher of his day, keeping his sermons short and practical so ordinary people could understand, and he had them copied and sent to other priests.\n\nHe founded a convent for his sister, St. Caesaria, and wrote one of the first rules for nuns. He presided over the Second Council of Orange in 529.',
+    intercession:'St. Caesarius, pray for us. Bless preachers, and help them speak the Gospel plainly. Amen.' },
+  { id:'s368', category:'saint', title:'St. Finnian of Clonard', author:'c. 470–549, feast day December 12', tags:['abbot','ireland','teacher'],
+    content:'Finnian founded the monastery of Clonard in Ireland, which drew thousands of students. He is called "the Teacher of the Saints of Ireland."\n\nAmong his disciples were the "Twelve Apostles of Ireland," including St. Columba and St. Brendan the Navigator, who went on to found monasteries across Ireland and beyond. He died of plague.',
+    intercession:'St. Finnian, pray for us. Bless all who teach, that their students may become saints. Amen.' },
+  { id:'s369', category:'saint', title:'St. Germanus of Paris', author:'c. 496–576, feast day May 28', tags:['bishop','paris','charity'],
+    content:'Germanus was an abbot near Autun before becoming bishop of Paris. He gave so generously to the poor and to ransom captives that he was called "the Father of the Poor."\n\nHe confronted the violent Merovingian kings over their crimes. The famous church of Saint-Germain-des-Prés in Paris, where he was buried, is named for him.',
+    intercession:'St. Germanus of Paris, pray for us. Make us fathers and mothers to the poor. Amen.' },
+  { id:'s370', category:'saint', title:'St. Martin of Braga', author:'c. 520–580, feast day March 20', tags:['bishop','portugal','missionary'],
+    content:'Martin came from Pannonia, in today’s Hungary, and after a pilgrimage to the Holy Land went to Galicia in the far west of Spain. There he won the Suebi people from Arianism to the Catholic faith.\n\nAs archbishop of Braga, in today’s Portugal, he wrote On the Correction of Peasants, a practical guide to rooting out pagan superstitions among country people.',
+    intercession:'St. Martin of Braga, pray for us. Bless the people of Portugal and Spain, and free us from every superstition. Amen.' },
+  { id:'s371', category:'saint', title:'St. Gregory of Tours', author:'c. 538–594, feast day November 17', tags:['bishop','historian','france'],
+    content:'Gregory came from a noble Gallo-Roman family full of bishops and became bishop of Tours, the great shrine of St. Martin. He protected his people and stood up to the violent Frankish kings.\n\nHis History of the Franks, in ten books, is our main source for the history of Gaul in the 6th century, and he wrote many lives of the saints.',
+    intercession:'St. Gregory of Tours, pray for us. Bless historians, and help us to see God’s hand in history. Amen.' },
+  { id:'s372', category:'saint', title:'St. Leander of Seville', author:'c. 534–600, feast day March 13', tags:['bishop','spain','conversion'],
+    content:'Leander was the eldest brother of St. Isidore, St. Fulgentius of Cartagena, and St. Florentina. As archbishop of Seville he befriended the future Pope St. Gregory the Great in Constantinople.\n\nHe led the Visigothic king Reccared and his people from Arianism to the Catholic faith at the Third Council of Toledo in 589, and introduced the Creed into the Mass in Spain.',
+    intercession:'St. Leander, pray for us. Bless Spain, and bring all who are separated into the unity of the faith. Amen.' },
+  { id:'s373', category:'saint', title:'St. Venantius Fortunatus', author:'c. 530–c. 609, feast day December 14', tags:['bishop','poet','hymns'],
+    content:'Venantius was an Italian poet who traveled to Gaul, where he became a friend and adviser of St. Radegund and her nuns in Poitiers. He later became bishop of Poitiers.\n\nHe wrote two of the greatest hymns of the Church, sung in Holy Week to this day: the "Vexilla Regis" ("The royal banners forward go") and the "Pange Lingua Gloriosi" on the triumph of the Cross.',
+    intercession:'St. Venantius, pray for us. Teach us to glory in the Cross of Christ and to praise God in song. Amen.' },
+  { id:'s374', category:'saint', title:'St. Kentigern', author:'c. 518–614, feast day January 13', tags:['bishop','scotland','glasgow'],
+    content:'Kentigern, affectionately called Mungo ("dear one"), was the apostle of the Britons of Strathclyde and founded the church at Glasgow, where his tomb lies in the cathedral.\n\nA legend tells that he recovered a queen’s lost ring from the belly of a salmon, saving her life. The fish and ring still appear on the coat of arms of Glasgow.',
+    intercession:'St. Kentigern, pray for us. Bless the city of Glasgow and all who seek God’s mercy. Amen.' },
+  { id:'s375', category:'saint', title:'St. Sophronius of Jerusalem', author:'c. 560–638, feast day March 11', tags:['bishop','jerusalem','theologian'],
+    content:'Sophronius was a monk and scholar who became patriarch of Jerusalem. He led the defense of the teaching that Christ has two wills, human and divine, against the Monothelite heresy.\n\nWhen the Arab armies besieged Jerusalem in 637, he negotiated the city’s surrender to Caliph Umar, protecting its churches and Christians. He died soon after.',
+    intercession:'St. Sophronius, pray for us. Protect the Christians of the Holy Land, and help us to unite our will with God’s. Amen.' },
+  { id:'s376', category:'saint', title:'St. Maximus the Confessor', author:'c. 580–662, feast day August 13', tags:['monk','theologian','martyr'],
+    content:'Maximus was a high official at the Byzantine court who became a monk. He was the greatest defender of the truth that Christ has a fully human will, freely united with His divine will.\n\nHe supported Pope St. Martin I at the Lateran Synod of 649. Arrested by the emperor, he had his tongue cut out and his right hand cut off so he could no longer speak or write, and he died in exile in Georgia.',
+    intercession:'St. Maximus, pray for us. Help us to unite our will with Christ’s, and to confess the truth fearlessly. Amen.' },
+  { id:'s377', category:'saint', title:'St. Ildephonsus of Toledo', author:'c. 607–667, feast day January 23', tags:['bishop','spain','mary'],
+    content:'Ildephonsus was a monk and abbot who became archbishop of Toledo. He wrote a celebrated treatise defending the perpetual virginity of Mary.\n\nAccording to a beloved legend, Our Lady appeared to him in the cathedral and gave him a chasuble as a sign of her gratitude, a scene painted by El Greco, Velázquez, and many others.',
+    intercession:'St. Ildephonsus, pray for us. Give us a tender love for the Virgin Mary. Amen.' },
+  { id:'s378', category:'saint', title:'St. Germanus of Constantinople', author:'c. 634–c. 733, feast day May 12', tags:['bishop','icons','mary'],
+    content:'Germanus was patriarch of Constantinople when the Emperor Leo III began the destruction of holy images in 726. He refused to support iconoclasm, saying he could not change the faith without an ecumenical council, and was forced from office.\n\nHe wrote beautiful homilies on the Virgin Mary and a commentary on the Divine Liturgy.',
+    intercession:'St. Germanus, pray for us. Help us to honor the holy images that lead us to Christ and His saints. Amen.' },
+  { id:'s379', category:'saint', title:'St. Andrew of Crete', author:'c. 660–740, feast day July 4', tags:['bishop','hymns','lent'],
+    content:'Andrew was born in Damascus, became a monk in Jerusalem, and later archbishop of Gortyna in Crete. He was one of the great hymn writers of the Byzantine Church.\n\nHis Great Canon of Repentance, with 250 stanzas, is still sung in Eastern churches during Lent. It walks through the whole Bible, calling the soul to repentance.',
+    intercession:'St. Andrew of Crete, pray for us. Give us true repentance and a love of the Scriptures. Amen.' },
+  { id:'s380', category:'saint', title:'St. Theodore the Studite', author:'759–826, feast day November 11', tags:['monk','icons','reform'],
+    content:'Theodore was abbot of the great monastery of Stoudios in Constantinople, which he made a model of monastic reform with about a thousand monks.\n\nDuring the second wave of iconoclasm he defended the veneration of holy images and was exiled, imprisoned, and beaten. He appealed to the pope in Rome for support.',
+    intercession:'St. Theodore, pray for us. Help us to persevere in faith through persecution. Amen.' },
+  { id:'s381', category:'saint', title:'St. Anskar', author:'801–865, feast day February 3', tags:['bishop','missionary','scandinavia'],
+    content:'Anskar was a Benedictine monk from Corbie in France who volunteered for the mission to Denmark and Sweden, where he built the first churches.\n\nAs archbishop of Hamburg-Bremen he persevered through Viking raids that burned his cathedral and destroyed much of his work. He is called the "Apostle of the North."',
+    intercession:'St. Anskar, pray for us. Bless the peoples of Scandinavia, and give us perseverance when our work seems to fail. Amen.' },
+  { id:'s382', category:'saint', title:'St. Ulrich of Augsburg', author:'890–973, feast day July 4', tags:['bishop','germany','canonization'],
+    content:'Ulrich was bishop of Augsburg for fifty years. He visited every parish, cared for the poor and sick, and helped rebuild after the Magyar invasions, defending the city during the siege of 955.\n\nIn 993 Pope John XV declared him a saint, the first known canonization by a pope.',
+    intercession:'St. Ulrich, pray for us. Bless bishops who care for every part of their flock. Amen.' },
+  { id:'s383', category:'saint', title:'St. Wolfgang of Regensburg', author:'c. 924–994, feast day October 31', tags:['bishop','germany','education'],
+    content:'Wolfgang was a teacher and Benedictine monk who went as a missionary to the Hungarians before becoming bishop of Regensburg in Bavaria.\n\nHe reformed monasteries, cared for the poor, and was tutor to the future Emperor St. Henry II. He is especially loved in Austria and Bavaria.',
+    intercession:'St. Wolfgang, pray for us. Bless teachers and those who form the leaders of tomorrow. Amen.' },
+  { id:'s384', category:'saint', title:'St. Stanislaus of Kraków', author:'1030–1079, feast day April 11', tags:['bishop','martyr','poland'],
+    content:'Stanislaus was bishop of Kraków when he rebuked King Bolesław II for his cruelty and immorality, and finally excommunicated him.\n\nAccording to tradition, the king killed Stanislaus with his own hand while the bishop was celebrating Mass. He is a patron of Poland, and Pope St. John Paul II, his successor in Kraków, called him a patron of moral order.',
+    intercession:'St. Stanislaus, pray for us. Give shepherds the courage to speak the truth to the powerful. Amen.' },
+  { id:'s385', category:'saint', title:'St. Malachy', author:'1094–1148, feast day November 3', tags:['bishop','ireland','reform'],
+    content:'Malachy was archbishop of Armagh and the great reformer of the Church in Ireland. He restored the sacraments, built stone churches, and brought the Cistercians to Ireland, founding Mellifont Abbey.\n\nHe was a close friend of St. Bernard of Clairvaux, in whose arms he died, and Bernard wrote his life. The "Prophecy of the Popes" attributed to him is a later forgery.',
+    intercession:'St. Malachy, pray for us. Renew the Church in Ireland and everywhere in holiness. Amen.' },
+  { id:'s386', category:'saint', title:'St. Lawrence O’Toole', author:'1128–1180, feast day November 14', tags:['bishop','ireland','peacemaker'],
+    content:'Lawrence was a king’s son, given as a hostage as a boy, who became abbot of Glendalough and then archbishop of Dublin. He fed the poor during famine and lived simply.\n\nDuring the Norman invasion of Ireland he negotiated for peace and protected his people. He died in Normandy while seeking peace with King Henry II.',
+    intercession:'St. Lawrence O’Toole, pray for us. Bless Dublin, and make us peacemakers. Amen.' },
+  { id:'s387', category:'saint', title:'St. Thomas of Villanova', author:'1488–1555, feast day September 22', tags:['bishop','charity','augustinian'],
+    content:'Thomas was a Spanish Augustinian friar and university professor who became archbishop of Valencia. He gave nearly all his income to the poor, so that he was called "the Almsgiver" and "the Father of the Poor."\n\nHe even gave away his own bed shortly before his death. He was a great preacher and a reformer of his diocese.',
+    intercession:'St. Thomas of Villanova, pray for us. Make us generous to the poor, holding nothing back. Amen.' },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'325', year:325, era:'early', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -4445,7 +4697,19 @@ const SAINT_META = {
   s293:'reform 1619 pr mo dr', s294:'reform 1648 pr fo te', s295:'reform 1645 my yo la', s296:'reform 1682 pr my', s297:'reform 1681 bi ma', s298:'revolution 1751 pr mo',
   s299:'revolution 1820 pr mi', s300:'revolution 1865 nu fo te', s301:'revolution 1850 pr fo', s302:'revolution 1860 pr te', s303:'revolution 1868 pr fo', s304:'revolution 1881 nu fo te',
   s305:'revolution 1894 mo wo', s306:'revolution 1842 pr fo me', s307:'revolution 1840 pr fo te', s308:'modern 1909 pr fo mi', s309:'modern 1940 pr fo', s310:'modern 1938 bi',
-  s311:'modern 1939 nu fo', s312:'modern 1938 mo yo', s313:'modern 1952 pr', s314:'modern 1919 me la', s315:'modern 1926 la fo pa', s316:'modern 1945 ma la pa te'
+  s311:'modern 1939 nu fo', s312:'modern 1938 mo yo', s313:'modern 1952 pr', s314:'modern 1919 me la', s315:'modern 1926 la fo pa', s316:'modern 1945 ma la pa te',
+  s317:'martyrs 130 bi sc', s318:'martyrs 180 bi sc', s319:'martyrs 177 ma bi la', s320:'martyrs 183 bi sc', s321:'martyrs 222 po ma', s322:'martyrs 235 po ma',
+  s323:'martyrs 270 bi', s324:'martyrs 265 bi sc', s325:'martyrs 311 bi ma', s326:'martyrs 311 bi sc ma', s327:'fathers 331 bi mi', s328:'fathers 335 po',
+  s329:'fathers 326 bi', s330:'fathers 337 bi', s331:'fathers 348 bi pa wo', s332:'fathers 338 bi te', s333:'fathers 341 mo', s334:'fathers 391 mo pr',
+  s335:'fathers 371 mo fo', s336:'fathers 383 bi mi', s337:'fathers 338 mi la', s338:'fathers 352 po', s339:'fathers 371 bi', s340:'fathers 371 bi',
+  s341:'fathers 381 bi', s342:'fathers 387 bi sc', s343:'fathers 395 bi', s344:'fathers 391 bi mo', s345:'fathers 390 bi sc pa', s346:'fathers 403 bi sc mo',
+  s347:'fathers 407 bi', s348:'fathers 410 bi', s349:'fathers 414 bi mi', s350:'fathers 417 po', s351:'fathers 420 bi', s352:'fathers 432 bi mi',
+  s353:'fathers 432 po', s354:'fathers 435 mo sc fo', s355:'fathers 437 bi sc', s356:'fathers 445 mo sc', s357:'fathers 446 bi', s358:'fathers 448 bi',
+  s359:'fathers 449 bi ma', s360:'fathers 449 bi mo', s361:'fathers 455 la sc', s362:'fathers 440 mo sc mi', s363:'fathers 482 mo', s364:'fathers 496 po',
+  s365:'fathers 533 bi mi', s366:'fathers 533 bi sc', s367:'fathers 542 bi', s368:'fathers 549 mo te fo', s369:'fathers 576 bi', s370:'fathers 580 bi mi',
+  s371:'fathers 594 bi sc', s372:'early 600 bi', s373:'early 609 bi sc', s374:'early 614 bi mi', s375:'early 638 bi sc', s376:'early 662 mo sc ma',
+  s377:'early 667 bi sc', s378:'early 733 bi sc', s379:'early 740 bi sc', s380:'early 826 mo', s381:'early 865 bi mi mo', s382:'early 973 bi',
+  s383:'early 994 bi mo mi te', s384:'medieval 1079 bi ma', s385:'medieval 1148 bi', s386:'medieval 1180 bi mo', s387:'reform 1555 bi mo'
 };
 // What each saint is a patron of (traditional and official patronages; not every saint has one)
 const SAINT_PATRONS = {
@@ -4538,7 +4802,12 @@ const SAINT_PATRONS = {
   s292:'Ukraine, Christian unity', s293:'Brindisi', s294:'Christian schools, schoolchildren, teachers', s295:'Ecuador, Quito',
   s297:'peace and reconciliation in Ireland', s298:'parish missions', s299:'Vienna, bakers', s302:'prisoners, prison chaplains, those condemned to death',
   s305:'porters, receptionists', s312:'young people, people with diabetes', s313:'Chile, the poor, social workers',
-  s314:'physicians, the sick, Venezuela', s316:'Papua New Guinea, catechists, married couples'
+  s314:'physicians, the sick, Venezuela', s316:'Papua New Guinea, catechists, married couples',
+  s323:'desperate situations, protection from floods and earthquakes', s327:'Armenia', s331:'potters, Corfu, Cyprus', s333:'weavers',
+  s336:'Ethiopia', s337:'Georgia', s339:'Piedmont', s340:'Verona, fishermen', s351:'Turin', s352:'Scotland', s362:'translators, Armenia',
+  s363:'Austria', s365:'France, Reims', s369:'Paris', s370:'Braga', s372:'Seville', s374:'Glasgow', s377:'Toledo',
+  s381:'Denmark, Scandinavia', s382:'Augsburg', s383:'Regensburg, carpenters, woodcarvers', s384:'Poland, Kraków', s385:'Armagh',
+  s386:'Dublin', s387:'Valencia, the poor'
 };
 SEED_DATA.forEach(e => { if(SAINT_PATRONS[e.id]) e.patron = SAINT_PATRONS[e.id]; });
 const SAINT_ERAS = [
@@ -4777,7 +5046,7 @@ function render(){
       mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan,
       community:renderCommunity, resources:renderResources,
       examen:() => renderGuided('examen'), angelus:() => renderGuided('angelus'), lectio:() => renderGuided('lectio'),
-      tracker:renderTracker, mass:renderMass, glossary:renderGlossary, patronfinder:renderPatronFinder, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
+      tracker:renderTracker, mass:renderMass, glossary:renderGlossary, patronfinder:renderPatronFinder, quotes:renderQuotes, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
       'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
@@ -5868,7 +6137,11 @@ const SAINT_WIKI = {
   'St. Alban':'Saint Alban',
   'St. Vitus':'Saint Vitus',
   'St. Dismas':'Penitent thief',
-  'Sts. Priscilla and Aquila':'Priscilla and Aquila'
+  'Sts. Priscilla and Aquila':'Priscilla and Aquila',
+  'Sts. Pothinus, Blandina, and the Martyrs of Lyon':'Blandina',
+  'St. Alexander of Alexandria':'Pope Alexander I of Alexandria',
+  'St. Germanus of Constantinople':'Germanus I of Constantinople',
+  'St. Lawrence O’Toole':"Laurence O'Toole"
 };
 // Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
 const ENTRY_WIKI = {
@@ -8256,6 +8529,205 @@ function watchReadOverlay(){
 }
 
 /* =========================================================
+   QUOTES OF THE SAINTS
+   ---------------------------------------------------------
+   Only well-attested sayings, each with its source. Sayings known
+   only from witnesses are marked "attributed." Well-known
+   misattributions (such as "Preach the Gospel at all times; use words
+   if necessary") are deliberately left out.
+   ========================================================= */
+const QUOTE_THEMES = {
+  prayer:'Prayer', love:'Love & charity', faith:'Faith & reason', christ:'Christ & the Eucharist', church:'The Church',
+  mary:'Mary', cross:'Suffering & the Cross', humility:'Humility', holiness:'Holiness', trust:'Joy & trust',
+  mercy:'Mercy & repentance', heaven:'Death & heaven', poor:'The poor', courage:'Courage'
+};
+const QUOTES = [
+  { saint:'Pope St. Clement I', text:'Let us fix our eyes on the blood of Christ and understand how precious it is to his Father.', source:'Letter to the Corinthians, 7', themes:['christ', 'mercy'] },
+  { saint:'St. Ignatius of Antioch', text:'I am the wheat of God, and am ground by the teeth of wild beasts, that I may be found the pure bread of Christ.', source:'Letter to the Romans, 4', themes:['courage', 'christ'] },
+  { saint:'St. Ignatius of Antioch', text:'Wherever the bishop shall appear, there let the multitude also be; even as, wherever Jesus Christ is, there is the Catholic Church.', source:'Letter to the Smyrnaeans, 8', themes:['church'] },
+  { saint:'St. Polycarp', text:'Eighty and six years have I served him, and he never did me any injury: how then can I blaspheme my King and my Saviour?', source:'The Martyrdom of Polycarp, 9', themes:['courage', 'faith'] },
+  { saint:'St. Irenaeus of Lyon', text:'For the glory of God is a living man; and the life of man consists in beholding God.', source:'Against Heresies, IV.20.7', themes:['holiness', 'heaven'] },
+  { saint:'St. Cyprian of Carthage', text:'He can no longer have God for his Father, who has not the Church for his mother.', source:'On the Unity of the Church, 6', themes:['church'] },
+  { saint:'St. Athanasius', text:'He was made man that we might be made God.', source:'On the Incarnation, 54', themes:['christ', 'holiness'] },
+  { saint:'St. Anthony the Great', text:'I saw the snares that the enemy spreads out over the world, and I said, groaning, “What can get through from such snares?” Then I heard a voice saying to me, “Humility.”', source:'Sayings of the Desert Fathers, Antony 7', themes:['humility'] },
+  { saint:'St. Macarius the Great', text:'There is no need at all to make long discourses; it is enough to stretch out one’s hands and say, “Lord, as you will, and as you know, have mercy on me.”', source:'Sayings of the Desert Fathers, Macarius 19', themes:['prayer', 'mercy'] },
+  { saint:'St. Cyril of Jerusalem', text:'Consider therefore the Bread and the Wine not as bare elements, for they are, according to the Lord’s declaration, the Body and Blood of Christ.', source:'Catechetical Lectures, 22.6', themes:['christ'] },
+  { saint:'St. Basil the Great', text:'The bread which you keep belongs to the hungry; the coat which you preserve in your wardrobe, to the naked.', source:'Homily on “I will pull down my barns”', themes:['poor', 'love'] },
+  { saint:'St. Gregory of Nazianzus', text:'For that which He has not assumed He has not healed.', source:'Letter 101, to Cledonius', themes:['christ'] },
+  { saint:'St. Pacian of Barcelona', text:'Christian is my name, but Catholic my surname.', source:'Letter 1, to Sympronian', themes:['church', 'faith'] },
+  { saint:'St. Ambrose', text:'Where Peter is, there is the Church.', source:'Commentary on Psalm 40', themes:['church'] },
+  { saint:'St. John Chrysostom', text:'Do you wish to honor the body of Christ? Do not ignore him when he is naked. Do not pay him homage in the temple clad in silk, only then to neglect him outside where he is cold and ill-clad.', source:'Homily 50 on Matthew', themes:['poor', 'christ', 'love'] },
+  { saint:'St. John Chrysostom', text:'Not to enable the poor to share in our goods is to steal from them and deprive them of life. The goods we possess are not ours, but theirs.', source:'On Lazarus, Homily 2 (quoted in the Catechism, 2446)', themes:['poor'] },
+  { saint:'St. Jerome', text:'Ignorance of Scripture is ignorance of Christ.', source:'Commentary on Isaiah, Prologue', themes:['faith', 'christ'] },
+  { saint:'St. Augustine of Hippo', text:'You have made us for yourself, O Lord, and our heart is restless until it rests in you.', source:'Confessions, I.1', themes:['prayer', 'heaven'] },
+  { saint:'St. Augustine of Hippo', text:'Late have I loved you, O Beauty ever ancient, ever new, late have I loved you!', source:'Confessions, X.27', themes:['love', 'mercy'] },
+  { saint:'St. Augustine of Hippo', text:'Love, and do what you will.', source:'Homilies on the First Letter of John, 7.8', themes:['love'] },
+  { saint:'St. Augustine of Hippo', text:'Seek not to understand that you may believe, but believe that you may understand.', source:'Tractates on the Gospel of John, 29.6', themes:['faith'] },
+  { saint:'St. Augustine of Hippo', text:'Be what you see, and receive what you are.', source:'Sermon 272, on the Eucharist', themes:['christ', 'church'] },
+  { saint:'St. Vincent of Lérins', text:'In the Catholic Church itself, all possible care must be taken that we hold that faith which has been believed everywhere, always, by all.', source:'Commonitorium, 2', themes:['church', 'faith'] },
+  { saint:'Pope St. Leo the Great', text:'Christian, recognize your dignity and, now that you share in God’s own nature, do not return by sin to your former base condition.', source:'Sermon 21, on the Nativity (quoted in the Catechism, 1691)', themes:['holiness'] },
+  { saint:'St. Patrick', text:'Christ with me, Christ before me, Christ behind me, Christ in me, Christ beneath me, Christ above me.', source:'The Breastplate of St. Patrick (attributed)', themes:['prayer', 'trust'], attributed:true },
+  { saint:'St. Patrick', text:'I, Patrick, a sinner, very rustic and the least of all the faithful, and contemptible in the eyes of very many.', source:'Confession, 1', themes:['humility'] },
+  { saint:'St. Remigius of Reims', text:'Bow your head, proud Sicambrian. Adore what you have burned, and burn what you have adored.', source:'Gregory of Tours, History of the Franks, II.31', themes:['mercy', 'faith'] },
+  { saint:'St. Benedict of Nursia', text:'Listen carefully, my son, to the master’s instructions, and attend to them with the ear of your heart.', source:'Rule of St. Benedict, Prologue', themes:['prayer', 'humility'] },
+  { saint:'St. Benedict of Nursia', text:'Let all guests who arrive be received like Christ.', source:'Rule of St. Benedict, 53', themes:['love', 'poor'] },
+  { saint:'St. Benedict of Nursia', text:'Idleness is the enemy of the soul.', source:'Rule of St. Benedict, 48', themes:['holiness'] },
+  { saint:'Pope St. Gregory the Great', text:'The proof of love is in the works.', source:'Homily 30 on the Gospels', themes:['love'] },
+  { saint:'St. John Damascene', text:'I do not worship matter, I worship the Creator of matter who became matter for my sake.', source:'On the Divine Images, I.16', themes:['christ'] },
+  { saint:'St. Anselm of Canterbury', text:'I do not seek to understand in order to believe, but I believe in order to understand.', source:'Proslogion, 1', themes:['faith'] },
+  { saint:'St. Bernard of Clairvaux', text:'The reason for loving God is God himself; the measure of love is to love without measure.', source:'On Loving God, 1', themes:['love'] },
+  { saint:'St. Francis of Assisi', text:'Praised be You, my Lord, with all Your creatures, especially Sir Brother Sun, who is the day, and through whom You give us light.', source:'Canticle of the Creatures', themes:['prayer', 'trust'] },
+  { saint:'St. Francis of Assisi', text:'Let us begin, brothers, to serve the Lord God, for up until now we have done little or nothing.', source:'St. Bonaventure, Major Legend, 14.1', themes:['holiness', 'humility'] },
+  { saint:'St. Clare of Assisi', text:'Totally love Him who gave Himself totally for your love.', source:'Third Letter to St. Agnes of Prague', themes:['love'] },
+  { saint:'St. Thomas Aquinas', text:'Grace does not destroy nature, but perfects it.', source:'Summa Theologiae, I, q. 1, a. 8', themes:['faith', 'holiness'] },
+  { saint:'St. Thomas Aquinas', text:'All that I have written seems like straw to me compared to what has now been revealed to me.', source:'Reported by Reginald of Piperno, 1273', themes:['humility', 'heaven'], attributed:true },
+  { saint:'St. Catherine of Siena', text:'If you are what you ought to be, you will set fire to all Italy.', source:'Letter to Stefano Maconi', themes:['holiness', 'courage'] },
+  { saint:'St. Joan of Arc', text:'If I am not, may God put me there; and if I am, may God so keep me.', source:'Her answer at trial when asked whether she was in God’s grace, 1431', themes:['trust', 'humility'] },
+  { saint:'St. Thomas More', text:'I die the King’s good servant, but God’s first.', source:'Reported words on the scaffold, 1535', themes:['courage', 'faith'], attributed:true },
+  { saint:'St. Ignatius of Loyola', text:'Take, Lord, and receive all my liberty, my memory, my understanding, and my entire will, all I have and possess. You have given all to me; to you, O Lord, I return it.', source:'Spiritual Exercises, 234 (the Suscipe)', themes:['prayer', 'trust'] },
+  { saint:'St. Teresa of Ávila', text:'Let nothing disturb you, let nothing frighten you. All things pass away; God never changes. Patience obtains all things. Whoever has God lacks nothing. God alone suffices.', source:'Found in her breviary', themes:['trust'] },
+  { saint:'St. John of the Cross', text:'At the evening of life, we shall be judged on our love.', source:'Sayings of Light and Love, 59 (quoted in the Catechism, 1022)', themes:['love', 'heaven'] },
+  { saint:'St. Rose of Lima', text:'Apart from the cross there is no other ladder by which we may get to heaven.', source:'Her writings, read in the Liturgy of the Hours on her feast', themes:['cross', 'heaven'] },
+  { saint:'St. Francis de Sales', text:'It is an error, or rather a heresy, to wish to banish the devout life from the regiment of soldiers, the mechanic’s shop, the court of princes, or the home of married folk.', source:'Introduction to the Devout Life, I.3', themes:['holiness'] },
+  { saint:'St. Kateri Tekakwitha', text:'Who will teach me what is most pleasing to God, that I may do it?', source:'Recorded by her early biographers', themes:['holiness', 'prayer'], attributed:true },
+  { saint:'St. Louis de Montfort', text:'It was through the most holy Virgin Mary that Jesus came into the world, and it is also through her that he must reign in the world.', source:'True Devotion to Mary, 1', themes:['mary'] },
+  { saint:'St. Alphonsus Liguori', text:'He who prays is certainly saved; he who does not pray is certainly damned.', source:'The Great Means of Salvation (quoted in the Catechism, 2744)', themes:['prayer'] },
+  { saint:'St. John Vianney', text:'The priesthood is the love of the heart of Jesus.', source:'Quoted in the Catechism, 1589', themes:['church', 'christ'] },
+  { saint:'St. John Henry Newman', text:'To live is to change, and to be perfect is to have changed often.', source:'An Essay on the Development of Christian Doctrine, I.1', themes:['holiness'] },
+  { saint:'St. Dominic Savio', text:'Death rather than sin.', source:'His resolution on the day of his First Communion', themes:['holiness', 'courage'] },
+  { saint:'St. Bernadette Soubirous', text:'I am not charged to make you believe; I am charged to tell you.', source:'Her words to questioners about the apparitions', themes:['humility', 'mary'], attributed:true },
+  { saint:'St. Thérèse of Lisieux', text:'For me, prayer is a surge of the heart; it is a simple look turned toward heaven, it is a cry of recognition and of love, embracing both trial and joy.', source:'Story of a Soul, Manuscript C (quoted in the Catechism, 2558)', themes:['prayer'] },
+  { saint:'St. Thérèse of Lisieux', text:'My vocation is love!', source:'Story of a Soul, Manuscript B', themes:['love', 'holiness'] },
+  { saint:'St. Thérèse of Lisieux', text:'I want to spend my heaven doing good on earth.', source:'Last Conversations, July 17, 1897', themes:['heaven', 'love'] },
+  { saint:'St. Maria Goretti', text:'I forgive him, and I want him to be with me in heaven.', source:'Her words before her death, about her attacker', themes:['mercy', 'heaven'], attributed:true },
+  { saint:'St. Elizabeth of the Trinity', text:'I have found my heaven on earth, since heaven is God, and God is in my soul.', source:'Letter 122', themes:['prayer', 'heaven'] },
+  { saint:'St. Charles de Foucauld', text:'Father, I abandon myself into your hands; do with me what you will. Whatever you may do, I thank you.', source:'Prayer of Abandonment', themes:['trust', 'prayer'] },
+  { saint:'St. Josephine Bakhita', text:'If I were to meet the slave traders who kidnapped me, and even those who tortured me, I would kneel and kiss their hands, for if that did not happen, I would not be a Christian and a religious today.', source:'Recorded by her sisters', themes:['mercy', 'trust'], attributed:true },
+  { saint:'St. Pier Giorgio Frassati', text:'Verso l’alto! To the heights!', source:'Written on a photograph of his last climb, 1925', themes:['holiness', 'courage'] },
+  { saint:'St. Teresa Benedicta of the Cross (Edith Stein)', text:'Do not accept anything as the truth if it lacks love. And do not accept anything as love which lacks truth.', source:'Quoted by Pope St. John Paul II at her canonization, 1998', themes:['love', 'faith'] },
+  { saint:'St. Maximilian Kolbe', text:'Hatred is not creative. Only love is creative.', source:'Recalled by fellow prisoners at Auschwitz', themes:['love', 'courage'], attributed:true },
+  { saint:'St. Faustina Kowalska', text:'Jesus, I trust in You.', source:'Diary, 47 (the words of the Divine Mercy image)', themes:['trust', 'mercy'] },
+  { saint:'St. Padre Pio', text:'Pray, hope, and don’t worry.', source:'His well-known counsel', themes:['trust', 'prayer'] },
+  { saint:'St. Alberto Hurtado', text:'Content, Lord, content.', source:'His words during his final illness, 1952', themes:['trust', 'cross'] },
+  { saint:'St. Teresa of Calcutta', text:'Let us always meet each other with a smile, for the smile is the beginning of love.', source:'Nobel Peace Prize lecture, 1979', themes:['love', 'trust'] },
+  { saint:'St. John Paul II', text:'Do not be afraid! Open wide the doors for Christ!', source:'Homily at the inauguration of his pontificate, October 22, 1978', themes:['courage', 'christ'] },
+  { saint:'Pope St. Paul VI', text:'Modern man listens more willingly to witnesses than to teachers, and if he does listen to teachers, it is because they are witnesses.', source:'Evangelii Nuntiandi, 41', themes:['holiness', 'church'] },
+  { saint:'St. Carlo Acutis', text:'The Eucharist is my highway to heaven.', source:'His own words', themes:['christ', 'heaven'] },
+  { saint:'St. Carlo Acutis', text:'All people are born as originals, but many die as photocopies.', source:'His own words', themes:['holiness'] }
+];
+// Link each saying to its saint's entry in the library
+QUOTES.forEach(q => { const e = library.find(x => x.title === q.saint); q.id = e ? e.id : null; });
+let quoteTheme = 'all';
+let quoteSaint = '';
+let quoteQuery = '';
+let quoteOffset = 0;   // "Another quote" on the quote of the day
+
+function quoteOfDay(offset){
+  const base = QUOTES.indexOf(dailyPick(QUOTES, 101, startOfToday()));
+  return QUOTES[(base + (offset || 0)) % QUOTES.length];
+}
+function quoteText(q){ return `“${q.text}” — ${q.saint}${q.source ? ` (${q.source})` : ''}`; }
+async function shareQuote(q){
+  if(navigator.share){
+    try{ await navigator.share({ text:quoteText(q) }); return; }catch(err){ if(err && err.name === 'AbortError') return; }
+  }
+  toast(await copyText(quoteText(q)) ? 'Quote copied' : 'Could not copy');
+}
+
+function quoteCard(q, i, big){
+  return `<figure class="quote-card${big ? ' quote-hero' : ''}">
+    <blockquote>${escapeHtml(q.text)}</blockquote>
+    <figcaption>
+      ${q.id ? `<button class="quote-who" data-open="${q.id}">${escapeHtml(q.saint)}</button>` : `<span class="quote-who">${escapeHtml(q.saint)}</span>`}
+      <span class="quote-src">${escapeHtml(q.source)}</span>
+    </figcaption>
+    <div class="quote-actions">
+      <button class="quote-btn" data-copy="${i}" aria-label="Copy quote">Copy</button>
+      <button class="quote-btn" data-share="${i}" aria-label="Share quote">Share</button>
+      ${q.attributed ? '<span class="quote-flag" title="Known from witnesses or tradition rather than the saint’s own writings">Attributed</span>' : ''}
+    </div>
+  </figure>`;
+}
+
+function renderQuotes(){
+  const today = quoteOfDay(quoteOffset);
+  const q = quoteQuery.trim().toLowerCase();
+  const order = x => { const info = x.id ? saintInfo(x.id) : null; return info && info.year !== null ? info.year : 9999; };
+  const shown = QUOTES
+    .filter(x => quoteTheme === 'all' || x.themes.includes(quoteTheme))
+    .filter(x => !quoteSaint || x.saint === quoteSaint)
+    .filter(x => !q || x.text.toLowerCase().includes(q) || x.saint.toLowerCase().includes(q))
+    .sort((a, b) => order(a) - order(b));
+  const saints = [...new Set(QUOTES.map(x => x.saint))].sort((a, b) => order(QUOTES.find(x => x.saint === a)) - order(QUOTES.find(x => x.saint === b)));
+  entryListEl.innerHTML = `
+    <div class="quotes">
+      <section class="quote-today">
+        <div class="daily-kicker">Quote of the day</div>
+        ${quoteCard(today, QUOTES.indexOf(today), true)}
+        <button class="text-link" data-act="another">Show another →</button>
+      </section>
+      <div class="quote-tools">
+        <div class="sf-patron-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input id="quoteSearch" type="search" placeholder="Search the quotes…" aria-label="Search the quotes" value="${escapeHtml(quoteQuery)}" autocomplete="off"></div>
+        <select id="quoteSaint" aria-label="Filter by saint"><option value="">All saints</option>${saints.map(s => `<option${s === quoteSaint ? ' selected' : ''}>${escapeHtml(s)}</option>`).join('')}</select>
+      </div>
+      <div class="patron-filters-row quote-themes" role="group" aria-label="Themes">
+        <button class="patron-chip${quoteTheme === 'all' ? ' active' : ''}" data-qtheme="all" aria-pressed="${quoteTheme === 'all'}">All themes</button>
+        ${Object.entries(QUOTE_THEMES).map(([k, name]) => `<button class="patron-chip${quoteTheme === k ? ' active' : ''}" data-qtheme="${k}" aria-pressed="${quoteTheme === k}">${escapeHtml(name)}</button>`).join('')}
+      </div>
+      <p class="view-count">${plural(shown.length, 'quote', 'quotes')}, oldest first${quoteTheme !== 'all' || quoteSaint || q ? ' · <button class="text-link" data-act="clear">Show all</button>' : ''}</p>
+      <div class="quote-grid">${shown.length ? shown.map(x => quoteCard(x, QUOTES.indexOf(x))).join('') : '<div class="empty-state">No quotes match.</div>'}</div>
+    </div>`;
+
+  const root = entryListEl.querySelector('.quotes');
+  root.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openReadModal(b.dataset.open)));
+  root.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => toast(await copyText(quoteText(QUOTES[b.dataset.copy])) ? 'Quote copied' : 'Could not copy')));
+  root.querySelectorAll('[data-share]').forEach(b => b.addEventListener('click', () => shareQuote(QUOTES[b.dataset.share])));
+  root.querySelector('[data-act="another"]').addEventListener('click', () => { quoteOffset++; renderQuotes(); });
+  root.querySelectorAll('[data-qtheme]').forEach(b => b.addEventListener('click', () => { quoteTheme = b.dataset.qtheme; renderQuotes(); }));
+  root.querySelector('#quoteSaint').addEventListener('change', ev => { quoteSaint = ev.target.value; renderQuotes(); });
+  const clear = root.querySelector('[data-act="clear"]');
+  if(clear) clear.addEventListener('click', () => { quoteTheme = 'all'; quoteSaint = ''; quoteQuery = ''; renderQuotes(); });
+  const box = root.querySelector('#quoteSearch');
+  let t = null;
+  box.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      quoteQuery = box.value;
+      renderQuotes();
+      const again = document.getElementById('quoteSearch');
+      again.focus({ preventScroll:true });
+      again.setSelectionRange(again.value.length, again.value.length);
+    }, 200);
+  });
+}
+
+// A saint's own words, shown in their reading window
+function saintQuotesBlock(e){
+  const mine = QUOTES.filter(q => q.id === e.id);
+  if(!mine.length) return null;
+  const el = document.createElement('div');
+  el.id = 'readQuotes';
+  el.className = 'read-quotes';
+  el.innerHTML = `<h3>In Their Own Words</h3>${mine.map(q => `<blockquote>${escapeHtml(q.text)}<cite>${escapeHtml(q.source)}${q.attributed ? ' · attributed' : ''}</cite></blockquote>`).join('')}
+    <button class="text-link" data-route="library/quotes">More quotes of the saints →</button>`;
+  return el;
+}
+
+// The quote of the day on the home page
+function homeQuoteHtml(){
+  const q = quoteOfDay(0);
+  return `<section class="home-quote">
+    <div class="daily-kicker">From the saints</div>
+    <blockquote>${escapeHtml(q.text)}</blockquote>
+    <div class="home-quote-foot">
+      ${q.id ? `<button class="quote-who" data-open="${q.id}">${escapeHtml(q.saint)}</button>` : `<span class="quote-who">${escapeHtml(q.saint)}</span>`}
+      <button class="text-link" data-route="library/quotes">More quotes →</button>
+    </div>
+  </section>`;
+}
+
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -8279,6 +8751,7 @@ const NAV_ICONS = {
   quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".7" fill="currentColor"/>',
   shop:'<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  quote:'<path d="M4 11.5C4 8 6 6 9 5.5M4 11.5h4.5V17H4zM13.5 11.5c0-3.5 2-5.5 5-6M13.5 11.5H18V17h-4.5z"/>',
   angelus:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0M12 3v2"/>',
   examen:'<path d="M12 3c-1.5 2-2.5 3.3-2.5 4.7a2.5 2.5 0 0 0 5 0C14.5 6.3 13.5 5 12 3z"/><rect x="9" y="11.5" width="6" height="9.5" rx="1"/><path d="M6.5 21h11"/>',
   lectio:'<path d="M2.5 5.5h7a2.5 2.5 0 0 1 2.5 2.5v12a2 2 0 0 0-2-2H2.5z"/><path d="M21.5 5.5h-7A2.5 2.5 0 0 0 12 8v12a2 2 0 0 1 2-2h7.5z"/><path d="M16 9.5c1.5.3 2.5 1.2 2.5 2.5"/>',
@@ -8325,6 +8798,7 @@ const SECTIONS = {
   mass:{ name:'The Mass Explained', group:'Learn', icon:'mass', color:'var(--wine)' },
   glossary:{ name:'Catholic Glossary', group:'Learn', icon:'glossary', color:'var(--purple)' },
   patronfinder:{ name:'Find Your Patron Saint', group:'Library', icon:'patronfinder', color:'var(--gold)' },
+  quotes:{ name:'Quotes of the Saints', group:'Library', icon:'quote', color:'var(--wine)' },
   calendar:{ name:'Calendar of Feasts & Observances', group:'Explore', icon:'calendar', color:'var(--purple)' },
   plan:{ name:'Bible Reading Plans', group:'Explore', icon:'plan', color:'var(--teal)' },
   quiz:{ name:'Quiz', group:'Explore', icon:'quiz', color:'var(--amber)' },
@@ -8394,6 +8868,7 @@ const HUBS = {
           meta:`${countOf('saint')} saints`, cta:'Browse the saints' },
         { route:'library/books', desc:'Spiritual classics, Church documents, and great Catholic literature, with summaries and links to read.', meta:`${countOf('book')} books` },
         { route:'library/saints/patron-finder', desc:'Answer a few questions to find saints for your birthday, your work, and your needs.', meta:'A short quiz' },
+        { route:'library/quotes', desc:'The words of the saints, from the Church Fathers to our own day, with their sources.', meta:`${QUOTES.length} quotes` },
         { route:'library/bible', desc:'All 73 books of the Catholic canon, grouped by section, with study notes and links to the full text.', meta:'73 books' },
         { route:'library/all', desc:'Every prayer, saint, book, event, and teaching in one searchable list.', meta:`${library.length} entries` },
         { action:'surprise', title:'Surprise Me', icon:'all', color:'var(--gold)', desc:'Open a random prayer, saint, book, event, or teaching, and discover something new.', meta:'A little serendipity', cta:'Surprise me' },
@@ -8630,6 +9105,8 @@ function renderHome(){
 
     ${homePrayerHtml()}
 
+    ${homeQuoteHtml()}
+
     <section class="home-continue" id="homeContinue"></section>
 
     <section class="home-section home-split">
@@ -8721,6 +9198,7 @@ const ROUTES = {
   'library':                     { cat:'hub-library' },
   'library/saints':              { cat:'saint', parent:'library' },
   'library/saints/patron-finder':{ cat:'patronfinder', parent:'library/saints' },
+  'library/quotes':              { cat:'quotes', parent:'library' },
   'library/books':               { cat:'book', parent:'library' },
   'library/bible':               { cat:'bible', parent:'library' },
   'library/all':                 { cat:'all', parent:'library' },
@@ -8858,6 +9336,13 @@ function openReadModal(id){
     intercessionEl.className = 'intercession-block';
     intercessionEl.innerHTML = `<h3>Prayer of Intercession</h3><p>${escapeHtml(e.intercession)}</p>`;
     bodyEl.insertAdjacentElement('afterend', intercessionEl);
+  }
+  const staleQuotes = document.getElementById('readQuotes');
+  if(staleQuotes) staleQuotes.remove();
+  const quotesEl = e.category === 'saint' ? saintQuotesBlock(e) : null;
+  if(quotesEl){
+    (document.getElementById('readIntercession') || bodyEl).insertAdjacentElement('afterend', quotesEl);
+    quotesEl.querySelector('[data-route]').addEventListener('click', () => readOverlay.classList.remove('open'));
   }
   if(e.notable){
     const notableEl = document.createElement('div');
