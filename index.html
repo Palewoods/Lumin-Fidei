@@ -909,6 +909,38 @@
   .home-quote blockquote{margin:8px auto 14px; max-width:720px; font-family:'Cormorant Garamond', serif; font-size:clamp(1.35rem, 2.6vw, 1.75rem); font-style:italic; line-height:1.35;}
   .home-quote-foot{display:flex; justify-content:center; align-items:center; gap:18px; flex-wrap:wrap;}
   @media (max-width:600px){ .quote-hero{padding:28px 20px 16px;} }
+  /* ---------- Eastern Catholic edition ---------- */
+  :root[data-rite="eastern"]{ --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'/%3E%3C/svg%3E"); }
+  .rite-toggle svg{width:20px; height:20px;}
+  .brand-rite{display:none; font-family:'Source Serif 4', serif; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-left:-4px; align-self:flex-end; padding-bottom:6px;}
+  :root[data-rite="eastern"] .brand-rite{display:inline;}
+  .rite-pill{display:inline-block; margin-left:8px; padding:3px 10px; border-radius:12px; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; color:var(--parchment-light); background:var(--wine); vertical-align:2px;}
+  .rite-banner{display:flex; align-items:center; gap:14px 18px; flex-wrap:wrap; margin:18px 0; padding:14px 18px; border-radius:16px; border:1px dashed color-mix(in srgb, var(--wine) 40%, var(--line)); background:var(--parchment-light);}
+  .rite-banner > div{flex:1 1 300px; font-size:0.95rem;}
+  .rite-banner-cross{flex:0 0 38px; width:38px; height:38px; padding:6px; border-radius:50%; color:var(--wine); background:color-mix(in srgb, var(--wine) 10%, transparent);}
+  .rite-banner-cross svg{width:100%; height:100%; display:block;}
+  .rite-banner .btn{flex:0 0 auto;}
+  .footer-rite{color:var(--wine) !important; font-weight:600;}
+  .devo-rubric{font-size:0.88rem; font-style:italic; color:var(--wine); margin-top:10px !important;}
+  .posture-bow{color:var(--purple); background:color-mix(in srgb, var(--purple) 12%, transparent);}
+  .rope-svg{display:block; width:100%; height:auto; max-height:calc(100vh - 150px);}
+  .rope-cord{fill:none; stroke:color-mix(in srgb, var(--devo) 35%, var(--line)); stroke-width:1.4;}
+  .rope-knot{fill:var(--parchment); stroke:color-mix(in srgb, var(--devo) 65%, var(--line)); stroke-width:1.3; transition:fill 0.2s ease;}
+  .rope-knot.marker{stroke-width:2;}
+  .rope-knot.done{fill:var(--devo); stroke:var(--devo);}
+  .rope-knot.current{fill:var(--gold); stroke:var(--ink); stroke-width:1.6;}
+  .rope-cross path{fill:color-mix(in srgb, var(--devo) 75%, var(--ink));}
+  .rope-tassel{fill:none; stroke:color-mix(in srgb, var(--devo) 75%, var(--ink)); stroke-width:1.6; stroke-linecap:round;}
+  .rope-prayer{font-family:'Cormorant Garamond', serif; font-size:clamp(1.5rem, 3.2vw, 2rem); font-style:italic; line-height:1.3; margin:0 auto 10px; max-width:520px;}
+  .rope-prayer.small{font-size:1.3rem; text-align:left; margin:8px 0 14px;}
+  .rope-count{font-size:0.95rem; color:var(--ink-soft); margin:18px 0 10px;}
+  .rope-count strong{font-family:'Cormorant Garamond', serif; font-size:2.4rem; color:var(--devo); margin-right:4px;}
+  .rope-pray{font-size:1.1rem; padding:14px 40px; background:var(--devo) !important; border-color:var(--devo) !important;}
+  .rope-sizes{display:flex; justify-content:center; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .rope-about p{color:var(--ink-soft); margin:0 0 12px;}
+  .devo-rope .devo-aside{display:block;}
+  @media (max-width:900px){ .devo-rope .devo-layout.has-aside{grid-template-columns:1fr;} .devo-rope .devo-aside{position:static; max-width:280px; margin:0 auto;} }
+  @media (max-width:600px){ .brand-rite{display:none !important;} }
   /* ---------- Saint finder ---------- */
   .sf{padding:18px 20px 6px; margin-bottom:20px; border-radius:20px; border:1px solid var(--line); background:var(--parchment-light);}
   .sf-section{padding-bottom:14px;}
@@ -1947,6 +1979,9 @@
     if(['dark','candlelight','liturgical-dark','midnight','stained-glass','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian'].indexOf(t) >= 0) document.documentElement.setAttribute('data-mode', 'dark');
     var size = JSON.parse(localStorage.getItem('sanctify.textsize') || '"md"');
     if(size === 'lg' || size === 'xl') document.documentElement.setAttribute('data-textsize', size);
+    var rite = new URLSearchParams(location.search).get('rite');
+    if(rite === 'eastern' || rite === 'latin') localStorage.setItem('sanctify.rite', JSON.stringify(rite));
+    if(JSON.parse(localStorage.getItem('sanctify.rite') || '"latin"') === 'eastern') document.documentElement.setAttribute('data-rite', 'eastern');
   }catch(e){}
 </script>
 </head>
@@ -1962,6 +1997,7 @@
     <button class="brand" id="brandHome" aria-label="Sanctify home">
       <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
       <span>Sanctify</span>
+      <small class="brand-rite">Eastern Catholic</small>
     </button>
     <nav class="topnav" id="topnav" aria-label="Main">
       <button class="topnav-link" data-route="today">Today</button>
@@ -1981,6 +2017,7 @@
     <div class="top-actions">
       <button class="icon-btn top-action" data-route="mine" aria-label="My Sanctify" title="My Sanctify" id="topSaved"><span class="top-badge" id="topSavedCount" hidden></span></button>
       <button class="icon-btn top-action" data-route="account" aria-label="Sign in" title="Sign in" id="topAccount"></button>
+      <button class="icon-btn top-action rite-toggle" id="riteToggle" aria-label="Switch to the Eastern Catholic edition" title="Switch to the Eastern Catholic edition"></button>
       <button id="themeToggle" class="theme-toggle icon-btn" aria-label="Appearance" title="Appearance" aria-haspopup="menu" aria-expanded="false"></button>
     </div>
   </div>
@@ -2042,7 +2079,8 @@
       </ul>
     </div>
     <div class="nav-group">
-      <ul><li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li></ul>
+      <ul><li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li>
+        <li><button class="navlink rite-switch-link" type="button"><span class="nl-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z"/></svg></span><span data-rite-switch>Switch to the Eastern Catholic edition</span></button></li></ul>
     </div>
   </div>
 </nav>
@@ -2078,7 +2116,7 @@
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
         <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="resources">Learning Resources</button></div>
       <div><h4>Sanctify</h4>
-        <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button></div>
+        <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button><button class="footer-rite" data-rite-switch>Switch to the Eastern Catholic edition</button></div>
     </div>
   </div>
   <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Revised Standard Version of the Bible: Catholic Edition, copyright © 1965, 1966 the Division of Christian Education of the National Council of the Churches of Christ in the United States of America. Used by permission. All rights reserved. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
@@ -2249,6 +2287,39 @@ const SEED_DATA = [
   { id:'p50', category:'prayer', title:'Prayer for the Sick', author:'', tags:['the sick','healing','intercession'],
     content:'Lord Jesus, who went about doing good and healing every sickness, look with compassion on all who are ill, especially those I now name before you. Give them patience in their suffering, strength in their weakness, and, if it be your will, the gift of health.\n\nBless the doctors, nurses, and caregivers who tend them, and let all who suffer know that they are not alone, for you have carried our infirmities. Amen.' },
 
+  // ---- Prayers of the Byzantine tradition (shown in the Eastern Catholic edition) ----
+  { id:'pe1', category:'prayer', rite:'eastern', title:'O Heavenly King', author:'Byzantine tradition; begins nearly every service', tags:['eastern','holy spirit','daily'],
+    content:'O Heavenly King, Comforter, Spirit of Truth, everywhere present and filling all things, Treasury of blessings and Giver of life: come and abide in us, cleanse us from every stain, and save our souls, O Good One.' },
+  { id:'pe2', category:'prayer', rite:'eastern', title:'The Trisagion (Thrice-Holy Hymn)', author:'Byzantine tradition, 5th century', tags:['eastern','daily','trinity'],
+    content:'Holy God, Holy Mighty, Holy Immortal, have mercy on us. (three times)\n\nGlory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.\n\nHoly Immortal, have mercy on us.\n\nHoly God, Holy Mighty, Holy Immortal, have mercy on us.' },
+  { id:'pe3', category:'prayer', rite:'eastern', title:'Glory to the Father… Now and Ever', author:'The Byzantine doxology', tags:['eastern','daily','trinity'],
+    content:'Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.' },
+  { id:'pe4', category:'prayer', rite:'eastern', title:'O Most Holy Trinity', author:'Byzantine tradition', tags:['eastern','daily','trinity'],
+    content:'O Most Holy Trinity, have mercy on us. O Lord, cleanse us from our sins. O Master, pardon our transgressions. O Holy One, visit and heal our infirmities, for your name’s sake.\n\nLord, have mercy. Lord, have mercy. Lord, have mercy.' },
+  { id:'pe5', category:'prayer', rite:'eastern', title:'Rejoice, O Virgin Theotokos', author:'The Byzantine Angelic Salutation', tags:['eastern','marian','daily'],
+    content:'Rejoice, O Virgin Theotokos, Mary full of grace, the Lord is with you. Blessed are you among women, and blessed is the fruit of your womb, for you have borne the Savior of our souls.' },
+  { id:'pe6', category:'prayer', rite:'eastern', title:'It Is Truly Right (Axion Estin)', author:'Hymn to the Theotokos from the Divine Liturgy', tags:['eastern','marian','hymn'],
+    content:'It is truly right to bless you, O Theotokos, ever-blessed and most pure, and the Mother of our God. More honorable than the Cherubim, and beyond compare more glorious than the Seraphim, without corruption you gave birth to God the Word: true Theotokos, we magnify you.' },
+  { id:'pe7', category:'prayer', rite:'eastern', title:'Prayer of St. Ephrem', author:'St. Ephrem the Syrian, 4th century; prayed throughout Great Lent', tags:['eastern','lent','penance'],
+    content:'O Lord and Master of my life, take from me the spirit of sloth, despair, lust of power, and idle talk.\n\nBut give rather the spirit of chastity, humility, patience, and love to your servant.\n\nYes, O Lord and King, grant me to see my own transgressions and not to judge my brother, for you are blessed unto ages of ages. Amen.\n\nOn the weekdays of Great Lent it is prayed with a prostration after each of its three parts, then twelve bows with the words "O God, cleanse me, a sinner," and the whole prayer once more with a final prostration.' },
+  { id:'pe8', category:'prayer', rite:'eastern', title:'Troparion of Pascha', author:'Sung throughout the Paschal season', tags:['eastern','pascha','hymn'],
+    content:'Christ is risen from the dead, trampling down death by death, and upon those in the tombs bestowing life!\n\nThe Paschal greeting, exchanged for forty days: "Christ is risen!" "Indeed he is risen!"' },
+  { id:'pe9', category:'prayer', rite:'eastern', title:'The Nicene Creed (Byzantine)', author:'Councils of Nicaea (325) and Constantinople (381), as prayed in the Divine Liturgy', tags:['eastern','creed'],
+    content:'I believe in one God, the Father almighty, Creator of heaven and earth, and of all things visible and invisible.\n\nAnd in one Lord Jesus Christ, the only-begotten Son of God, born of the Father before all ages; Light of Light, true God of true God; begotten, not made, one in essence with the Father; through him all things were made. For us and for our salvation he came down from heaven and was incarnate of the Holy Spirit and the Virgin Mary, and became man. He was crucified for us under Pontius Pilate, and he suffered and was buried. He rose on the third day according to the Scriptures. He ascended into heaven and is seated at the right hand of the Father; and he will come again with glory to judge the living and the dead, and his kingdom will have no end.\n\nAnd in the Holy Spirit, the Lord, the Giver of Life, who proceeds from the Father, who together with the Father and the Son is worshipped and glorified, who spoke through the prophets.\n\nIn one, holy, catholic, and apostolic Church. I confess one baptism for the forgiveness of sins. I expect the resurrection of the dead and the life of the world to come. Amen.\n\nMany Eastern Catholic Churches pray the Creed in its original form, without the words "and the Son," as the Catholic Church permits.' },
+  { id:'pe10', category:'prayer', rite:'eastern', title:'Prayer Before Holy Communion', author:'St. John Chrysostom; prayed before receiving the Holy Mysteries', tags:['eastern','eucharist','communion'],
+    content:'I believe, O Lord, and I confess that you are truly the Christ, the Son of the living God, who came into the world to save sinners, of whom I am the first. I also believe that this is truly your most pure Body and that this is truly your precious Blood. Therefore I pray to you: have mercy on me and forgive me my transgressions, voluntary and involuntary, in word and in deed, in knowledge and in ignorance; and make me worthy to partake without condemnation of your most pure Mysteries, for the forgiveness of sins and for life everlasting. Amen.\n\nOf your mystical supper, O Son of God, accept me today as a communicant; for I will not reveal your mystery to your enemies, nor will I give you a kiss as did Judas, but like the thief I confess you: Remember me, O Lord, in your kingdom.' },
+  { id:'pe11', category:'prayer', rite:'eastern', title:'Morning Prayer (Having Arisen from Sleep)', author:'From the Byzantine morning prayers', tags:['eastern','morning','daily'],
+    content:'Having arisen from sleep, we fall down before you, O Blessed One, and sing to you, O Mighty One, the angelic hymn: Holy, Holy, Holy are you, O God; through the Theotokos, have mercy on us.\n\nGlory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.' },
+  { id:'pe12', category:'prayer', rite:'eastern', title:'Prayer Before Meals (Byzantine)', author:'Byzantine tradition', tags:['eastern','meals','daily'],
+    content:'O Christ God, bless the food and drink of your servants, for you are holy, always, now and ever and unto ages of ages. Amen.' },
+  { id:'pe13', category:'prayer', rite:'eastern', title:'Prayer After Meals (Byzantine)', author:'Byzantine tradition', tags:['eastern','meals','daily'],
+    content:'We thank you, O Christ our God, that you have satisfied us with your earthly gifts; do not deprive us of your heavenly kingdom. As you came among your disciples, O Savior, and gave them peace, come to us also and save us. Amen.' },
+  { id:'pe14', category:'prayer', rite:'eastern', title:'For the Departed (With the Saints Give Rest)', author:'Kontakion for the departed', tags:['eastern','the dead'],
+    content:'With the saints give rest, O Christ, to the soul of your servant, where there is neither sickness, nor sorrow, nor sighing, but life everlasting.\n\nMemory eternal! Memory eternal! Memory eternal!' },
+  { id:'pe15', category:'prayer', rite:'eastern', title:'Prayer of the Hours', author:'Prayed at each of the Byzantine Hours', tags:['eastern','daily','evening'],
+    content:'O Christ our God, who at all times and in every hour, in heaven and on earth, are worshipped and glorified; who are long-suffering, merciful, and compassionate; who love the just and show mercy to sinners; who call all to salvation through the promise of blessings to come: O Lord, in this hour receive our supplications and direct our lives according to your commandments. Sanctify our souls, purify our bodies, correct our thoughts, cleanse our intentions, and deliver us from all tribulation, evil, and distress. Surround us with your holy angels, that, guarded and guided by them, we may attain to the unity of the faith and to the knowledge of your unapproachable glory, for you are blessed unto ages of ages. Amen.' },
+  { id:'pe16', category:'prayer', rite:'eastern', title:'We Have Seen the True Light', author:'Sung after Holy Communion in the Divine Liturgy', tags:['eastern','eucharist','communion'],
+    content:'We have seen the true Light; we have received the heavenly Spirit; we have found the true faith, worshipping the undivided Trinity, who has saved us.' },
   { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226, feast day October 4', tags:['founder','poverty','nature'],
     content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.',
     intercession:'St. Francis of Assisi, who found God in poverty and in every creature, teach us to hold this world lightly and to love it truly. Pray for us, that we may walk humbly, live simply, and see the hand of the Creator in all things. Amen.' },
@@ -3411,6 +3482,55 @@ const SEED_DATA = [
   { id:'s387', category:'saint', title:'St. Thomas of Villanova', author:'1488–1555, feast day September 22', tags:['bishop','charity','augustinian'],
     content:'Thomas was a Spanish Augustinian friar and university professor who became archbishop of Valencia. He gave nearly all his income to the poor, so that he was called "the Almsgiver" and "the Father of the Poor."\n\nHe even gave away his own bed shortly before his death. He was a great preacher and a reformer of his diocese.',
     intercession:'St. Thomas of Villanova, pray for us. Make us generous to the poor, holding nothing back. Amen.' },
+  { id:'s388', category:'saint', title:'St. John Climacus', author:'c. 579–649, feast day March 30', tags:['eastern','desert fathers','sinai'],
+    content:'John entered the monastery at the foot of Mount Sinai as a teenager and spent decades as a hermit before being made abbot. At the request of another abbot, he wrote The Ladder of Divine Ascent, describing the spiritual life as thirty rungs, from renouncing the world to faith, hope, and love.\n\nThe Ladder is read in Eastern monasteries every Lent, and the fourth Sunday of Great Lent is dedicated to him. His name, Climacus, means "of the Ladder."',
+    intercession:'St. John of the Ladder, pray for us. Help us to climb toward God step by step, and never to give up. Amen.' },
+  { id:'s389', category:'saint', title:'St. Romanos the Melodist', author:'c. 490–c. 556, feast day October 1', tags:['eastern','hymns','deacon'],
+    content:'Romanos was a deacon from Syria who served in Constantinople. According to tradition, he had no gift for singing until the Theotokos appeared to him in a dream on Christmas Eve and gave him a scroll to eat. The next morning he sang his famous Christmas kontakion, "Today the Virgin gives birth to the One above all being."\n\nHe is said to have written about a thousand hymns, and is honored as the greatest hymn writer of the Byzantine Church.',
+    intercession:'St. Romanos, pray for us. Teach us to praise God with joyful song. Amen.' },
+  { id:'s390', category:'saint', title:'St. Symeon the New Theologian', author:'949–1022, feast day March 12', tags:['eastern','mystic','monk'],
+    content:'Symeon was a young official at the Byzantine court who became a monk and later abbot of the monastery of St. Mamas in Constantinople. He wrote with burning conviction about his experiences of the divine light and taught that every Christian is called to a living, conscious experience of God.\n\nHis hymns and discourses deeply shaped Eastern spirituality. He is one of only three saints the East calls "Theologian," alongside St. John the Evangelist and St. Gregory of Nazianzus.',
+    intercession:'St. Symeon, pray for us. Kindle in us a living love for God. Amen.' },
+  { id:'s391', category:'saint', title:'St. Kuriakose Elias Chavara', author:'1805–1871, feast day January 3', tags:['eastern','syro-malabar','education'],
+    content:'Kuriakose was a priest of the Syro-Malabar Church in Kerala, India. He co-founded the first Indian religious congregation for men, the Carmelites of Mary Immaculate, and a congregation for women.\n\nHe set up a seminary and a printing press, and asked that a school be opened beside every church, bringing education to the poor of every caste. He was canonized in 2014.',
+    intercession:'St. Kuriakose Elias, pray for us. Bless Christian families and all who teach the young. Amen.' },
+  { id:'s392', category:'saint', title:'St. Alphonsa Muttathupadathu', author:'1910–1946, feast day July 28', tags:['eastern','syro-malabar','suffering'],
+    content:'Alphonsa was a Franciscan Clarist sister of the Syro-Malabar Church in Kerala. As a young girl she burned her feet in a fire pit to escape an arranged marriage, and she suffered almost constant illness for the rest of her short life.\n\nShe accepted her pain with peace and offered it for others, and many visitors found comfort at her bedside. In 2008 she became the first woman of Indian origin to be canonized.',
+    intercession:'St. Alphonsa, pray for us. Help the sick to unite their sufferings with Christ in peace. Amen.' },
+  { id:'s393', category:'saint', title:'St. Euphrasia Eluvathingal', author:'1877–1952, feast day August 29', tags:['eastern','syro-malabar','carmelite'],
+    content:'Euphrasia was a Carmelite sister of the Syro-Malabar Church who spent much of her life as superior of a convent in Ollur, Kerala. She spent long hours before the Blessed Sacrament.\n\nThe people of the town called her "the Praying Mother," and came to her for prayers and counsel. She was canonized in 2014.',
+    intercession:'St. Euphrasia, praying mother, pray for us. Teach us to stay close to Jesus in prayer. Amen.' },
+  { id:'s394', category:'saint', title:'St. Nimatullah Kassab Al-Hardini', author:'1808–1858, feast day December 14', tags:['eastern','maronite','lebanon'],
+    content:'Nimatullah was a Maronite monk and priest of the Lebanese Maronite Order. He taught theology for many years, and among his students was St. Charbel Makhlouf.\n\nHe was known for his humility, his devotion to the Blessed Sacrament and the Virgin Mary, and his love of manual work, binding books for the monastery. He was canonized in 2004.',
+    intercession:'St. Nimatullah, pray for us. Bless teachers, and help us to seek holiness in our daily work. Amen.' },
+  { id:'s395', category:'saint', title:'St. Ignatius Maloyan', author:'1869–1915, feast day June 11', tags:['eastern','armenian catholic','martyr'],
+    content:'Ignatius was the Armenian Catholic archbishop of Mardin in today’s Turkey. During the Armenian Genocide in 1915, he was arrested with hundreds of his people and ordered to convert to Islam.\n\nHe refused, encouraged his flock to remain faithful, and was shot after celebrating a last Eucharist with them. He was beatified in 2001 and canonized in 2025.',
+    intercession:'St. Ignatius Maloyan, pray for us. Strengthen persecuted Christians, and bless the Armenian people. Amen.' },
+  { id:'s396', category:'saint', title:'Bl. Leonid Feodorov', author:'1879–1935, feast day March 7', tags:['eastern','russian greek catholic','martyr'],
+    content:'Leonid was a Russian Orthodox seminarian who became Catholic and was ordained a priest of the Byzantine rite. In 1917 he was named the first exarch of the Russian Greek Catholic Church.\n\nUnder the Soviets he was imprisoned for years, including in the Solovki labor camp, where he ministered to fellow prisoners. He died in exile, worn out by suffering, and was beatified as a martyr in 2001.',
+    intercession:'Blessed Leonid, pray for us. Work for the unity of Christians of East and West. Amen.' },
+  { id:'s397', category:'saint', title:'Bl. Emilian Kovch', author:'1884–1944, feast day March 25', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Emilian was a married Ukrainian Greek Catholic priest and the father of six children. During the Nazi occupation he gave hundreds of Jews baptismal certificates to protect them, and he was arrested for helping them.\n\nIn the Majdanek concentration camp he served the prisoners of every faith as a priest until he died in 1944. He was beatified in 2001, and has been recognized as Righteous of Ukraine.',
+    intercession:'Blessed Emilian, pray for us. Give us courage to protect the persecuted and to serve all people. Amen.' },
+  { id:'s398', category:'saint', title:'Bl. Theodore Romzha', author:'1911–1947, feast day November 1', tags:['eastern','ruthenian','martyr'],
+    content:'Theodore was the young bishop of Mukachevo for the Ruthenian Greek Catholic Church when the Soviets took over the region after the Second World War. He refused to separate his Church from Rome.\n\nIn 1947 his carriage was rammed by a truck in a staged accident. He survived, but was poisoned in the hospital and died at thirty-six. He was beatified in 2001.',
+    intercession:'Blessed Theodore, pray for us. Strengthen the Church in her loyalty to the successor of Peter. Amen.' },
+  { id:'s399', category:'saint', title:'Bl. Vasyl Velychkovsky', author:'1903–1973, feast day June 30', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Vasyl was a Ukrainian Greek Catholic Redemptorist priest who was secretly ordained a bishop while the Soviet Union had outlawed his Church. He spent years in Soviet prisons and labor camps.\n\nReleased and expelled, he died in Winnipeg, Canada, where his relics are honored today. He was beatified as a martyr in 2001.',
+    intercession:'Blessed Vasyl, pray for us. Strengthen all who suffer for the faith under persecution. Amen.' },
+  { id:'t58', category:'theology', group:'belief', art:'eastcross', title:'The Eastern Catholic Churches', author:'Catechism of the Catholic Church 1200–1209; Second Vatican Council, Orientalium Ecclesiarum', ccc:'1200–1209', tags:['eastern','church','liturgy'],
+    content:'The Catholic Church is a communion of twenty-four Churches “of their own law” (sui iuris): the Latin Church and twenty-three Eastern Catholic Churches, each with its own liturgy, theology, spirituality, and discipline, all in full communion with the Bishop of Rome.\n\nThey belong to five great traditions: the Byzantine (fourteen Churches, including the Ukrainian, Ruthenian, Melkite, and Romanian), the Alexandrian (Coptic, Ethiopian, Eritrean), the Antiochene (Maronite, Syriac, Syro-Malankara), the Armenian, and the Chaldean or East Syriac (Chaldean and Syro-Malabar). The Second Vatican Council taught that their traditions are the heritage of the whole Church and must be preserved and treasured.',
+    scripture:['John 17:20–21', 'Ephesians 4:4–6'],
+    points:['All the Churches share one faith, the same seven sacraments, and communion with the pope.', 'Eastern Catholics celebrate the Holy Mysteries of Baptism, Chrismation, and the Eucharist together, even for infants.', 'Many Eastern Catholic Churches ordain married men to the priesthood.', 'Catholics may attend the liturgy of any Catholic Church and fulfill their Sunday obligation there.'] },
+  { id:'t59', category:'theology', group:'belief', art:'rays', title:'Theosis: Sharing in the Divine Nature', author:'Catechism of the Catholic Church 460, 1988', ccc:'460, 1988', tags:['eastern','grace','salvation'],
+    content:'The Fathers of the East describe salvation as theosis, or deification: by grace, God makes us “partakers of the divine nature.” St. Athanasius summed it up: the Son of God became man so that we might become God.\n\nThis does not mean we stop being creatures, or become God by nature. It means that through Baptism, the Holy Mysteries, prayer, and a life of love, the Holy Spirit transforms us more and more into the likeness of Christ, until we share in God’s own life forever.',
+    scripture:['2 Peter 1:4', 'John 17:22–23', '2 Corinthians 3:18'],
+    points:['We become by grace what God is by nature.', 'Theosis is the Eastern way of speaking of sanctifying grace and holiness.', 'It begins in this life and is completed in the vision of God.'] },
+  { id:'t60', category:'theology', group:'defense', art:'candle', title:'Holy Icons', author:'Catechism of the Catholic Church 1159–1162, 2129–2132; Second Council of Nicaea (787)', ccc:'1159–1162, 2129–2132', tags:['eastern','icons','images'],
+    content:'Because the invisible God became visible in Jesus Christ, he can be depicted. The Second Council of Nicaea in 787 defended the veneration of holy icons against the iconoclasts, who wished to destroy them.\n\nThe honor given to an icon passes to the one it represents. Christians do not worship wood and paint; they venerate the saints and adore Christ through these windows onto heaven. In Eastern churches the iconostasis, a screen of icons, stands before the altar.',
+    scripture:['John 1:14', 'Colossians 1:15', 'Exodus 25:18–22'],
+    points:['The Incarnation makes images of Christ possible.', 'Veneration (honor) is different from worship, which belongs to God alone.', 'God himself commanded images of cherubim for the Ark of the Covenant.'],
+    objections:[{ q:'Doesn’t the Bible forbid images?', a:'The commandment forbids making idols to worship. God himself commanded images of cherubim for the Ark (Exodus 25:18–22) and the bronze serpent (Numbers 21:8–9). Since God became man in Christ, he can be shown in images, as the Second Council of Nicaea taught.' }] },
 
   { id:'h1', category:'history', title:'The Council of Nicaea (325)', author:'325', year:325, era:'early', tags:['councils','early church','creed'],
     content:'Convened by the Emperor Constantine, the First Council of Nicaea was the first ecumenical council of the Christian Church. It was called primarily to address the Arian controversy, which questioned the divinity of Christ, and produced the original Nicene Creed affirming that the Son is "of one substance" with the Father.\n\nThe council also addressed questions of Church discipline and the dating of Easter, setting a precedent for resolving doctrinal disputes through gathered councils of bishops.' },
@@ -4709,7 +4829,8 @@ const SAINT_META = {
   s365:'fathers 533 bi mi', s366:'fathers 533 bi sc', s367:'fathers 542 bi', s368:'fathers 549 mo te fo', s369:'fathers 576 bi', s370:'fathers 580 bi mi',
   s371:'fathers 594 bi sc', s372:'early 600 bi', s373:'early 609 bi sc', s374:'early 614 bi mi', s375:'early 638 bi sc', s376:'early 662 mo sc ma',
   s377:'early 667 bi sc', s378:'early 733 bi sc', s379:'early 740 bi sc', s380:'early 826 mo', s381:'early 865 bi mi mo', s382:'early 973 bi',
-  s383:'early 994 bi mo mi te', s384:'medieval 1079 bi ma', s385:'medieval 1148 bi', s386:'medieval 1180 bi mo', s387:'reform 1555 bi mo'
+  s383:'early 994 bi mo mi te', s384:'medieval 1079 bi ma', s385:'medieval 1148 bi', s386:'medieval 1180 bi mo', s387:'reform 1555 bi mo',
+  s388:'early 649 mo sc', s389:'fathers 556 pr sc', s390:'medieval 1022 mo my sc', s391:'revolution 1871 pr fo te', s392:'modern 1946 nu my', s393:'modern 1952 nu my', s394:'revolution 1858 mo pr te', s395:'modern 1915 bi ma', s396:'modern 1935 pr ma', s397:'modern 1944 pr ma pa', s398:'modern 1947 bi ma', s399:'modern 1973 bi ma mo'
 };
 // What each saint is a patron of (traditional and official patronages; not every saint has one)
 const SAINT_PATRONS = {
@@ -5045,7 +5166,7 @@ function render(){
       chaplet:renderChaplet, history:renderHistory, daily:renderDaily, theology:renderTheology,
       mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan,
       community:renderCommunity, resources:renderResources,
-      examen:() => renderGuided('examen'), angelus:() => renderGuided('angelus'), lectio:() => renderGuided('lectio'),
+      examen:() => renderGuided(isEastern() ? 'evening' : 'examen'), angelus:() => renderGuided(isEastern() ? 'theotokos' : 'angelus'), lectio:() => renderGuided('lectio'),
       tracker:renderTracker, mass:renderMass, glossary:renderGlossary, patronfinder:renderPatronFinder, quotes:renderQuotes, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
       'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
@@ -5221,13 +5342,14 @@ const PRAYER_TOPICS = [
   ['mercy', 'Penance & mercy', ['confession', 'penance', 'mercy', 'humility', 'passion']],
   ['dead', 'For the dead', ['the dead', 'purgatory']],
   ['night', 'Evening & night', ['night prayer', 'evening']],
+  ['eastern', 'Byzantine', ['eastern']],
   ['latin', 'Latin', ['latin']]
 ];
 let prayerTopic = 'all';
 function renderPrayers(entries){
   const chips = document.createElement('div');
   chips.className = 'patron-filters-row prayer-topics';
-  chips.innerHTML = PRAYER_TOPICS.map(([k, label]) => `<button class="patron-chip${prayerTopic === k ? ' active' : ''}" data-topic="${k}">${label}</button>`).join('');
+  chips.innerHTML = PRAYER_TOPICS.filter(t => !t[2] || library.some(e => e.category === 'prayer' && (e.tags || []).some(tag => t[2].includes(tag)))).map(([k, label]) => `<button class="patron-chip${prayerTopic === k ? ' active' : ''}" data-topic="${k}">${label}</button>`).join('');
   chips.querySelectorAll('[data-topic]').forEach(b => b.addEventListener('click', () => {
     prayerTopic = b.dataset.topic;
     const y = window.scrollY;
@@ -5319,6 +5441,7 @@ const SEASON_INFO = {
 };
 
 function liturgicalSeason(d){
+  if(isEastern()) return easternSeason(d);
   const y = d.getFullYear();
   const t = new Date(y, d.getMonth(), d.getDate()).getTime();
   const E = easterDate(y);
@@ -5354,6 +5477,7 @@ function saintCore(title){
 }
 
 function observancesFor(d){
+  if(isEastern()) return easternObservancesFor(d);
   const m = d.getMonth() + 1, day = d.getDate();
   const list = CALENDAR_DATA.filter(e => e.month === m && e.day === day).map(e => ({ ...e }));
   moveableFor(d.getFullYear()).forEach(e => { if(sameDay(e.date, d)) list.push({ ...e }); });
@@ -5368,6 +5492,7 @@ function observancesFor(d){
 }
 
 function dayNotes(d, obs){
+  if(isEastern()) return easternDayNotes(d, obs);
   const E = easterDate(d.getFullYear());
   if(sameDay(d, addDays(E, -46)) || sameDay(d, addDays(E, -2))) return ['A day of fasting and abstinence.'];
   if(d.getDay() === 5 && !obs.some(o => o.type === 'Solemnity')){
@@ -5697,6 +5822,12 @@ const CARD_ART = (() => {
 
 const PRAYER_CARDS = {
   p1:{ art:'cross', accent:'var(--wine)' },
+  pe1:{ art:'dove', accent:'var(--teal)' }, pe2:{ art:'trinity', accent:'var(--gold)' }, pe3:{ art:'rays', accent:'var(--gold)' },
+  pe4:{ art:'trinity', accent:'var(--gold)' }, pe5:{ art:'lily', accent:'var(--indigo)' }, pe6:{ art:'crown', accent:'var(--indigo)' },
+  pe7:{ art:'eastcross', accent:'var(--purple)' }, pe8:{ art:'sunrise', accent:'var(--wine)' }, pe9:{ art:'eastcross', accent:'var(--wine)' },
+  pe10:{ art:'chalice', accent:'var(--wine)' }, pe11:{ art:'sunrise', accent:'var(--gold)' }, pe12:{ art:'wheat', accent:'var(--green)' },
+  pe13:{ art:'wheat', accent:'var(--green)' }, pe14:{ art:'candle', accent:'var(--purple)' }, pe15:{ art:'lantern', accent:'var(--indigo)' },
+  pe16:{ art:'rays', accent:'var(--gold)' },
   p2:{ art:'rays', accent:'var(--gold)' },
   p3:{ art:'lily', accent:'var(--indigo)' },
   p4:{ art:'trinity', accent:'var(--gold)' },
@@ -5749,6 +5880,7 @@ const PRAYER_CARDS = {
 };
 
 function cardArt(key){
+  if(isEastern() && (key === 'budcross' || key === 'cross')) key = 'eastcross';
   return `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CARD_ART[key] || ''}</svg>`;
 }
 
@@ -5769,7 +5901,7 @@ function buildPrayerCards(list){
         <span class="pc-corner tl"></span><span class="pc-corner tr"></span><span class="pc-corner bl"></span><span class="pc-corner br"></span>
         <span class="pc-art">${cardArt(c.art)}</span>
         <span class="pc-title">${escapeHtml(e.title)}</span>
-        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg></span>
+        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${crossPath()}"/></svg></span>
         <span class="pc-line">${escapeHtml(excerptOf(e.content, 90))}</span>
       </span>`;
     card.addEventListener('click', () => openReadModal(id));
@@ -5912,9 +6044,10 @@ function renderDaily(){
       : `<div class="daily-feast-item">A weekday in ${escapeHtml(season.name)}.</div>`}
     ${dayNotes(d, obs).map(n => `<div class="cal-daynote">${escapeHtml(n)}</div>`).join('')}
     <div class="daily-links">
+      ${isEastern() ? `<a class="daily-link" href="https://masstimes.org/" target="_blank" rel="noopener">Find a Divine Liturgy near you (MassTimes.org lists Eastern Catholic parishes) ↗</a>` : `
       <a class="daily-link" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Read the Mass readings for this day (USCCB) ↗</a>
       <a class="daily-link" href="https://universalis.com/" target="_blank" rel="noopener">Pray the Liturgy of the Hours (Universalis) ↗</a>
-      <a class="daily-link" href="https://masstimes.org/" target="_blank" rel="noopener">Find Mass and Confession times near you ↗</a>
+      <a class="daily-link" href="https://masstimes.org/" target="_blank" rel="noopener">Find Mass and Confession times near you ↗</a>`}
     </div>`;
   entryListEl.appendChild(feast);
 
@@ -5937,7 +6070,7 @@ function renderDaily(){
       <div class="daily-kicker">Verse of the Day</div>
       <blockquote>“${escapeHtml(verse.text)}”</blockquote>
       <cite>${escapeHtml(verse.ref)} · RSV-CE</cite>
-      <a class="daily-more" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Today’s full readings ↗</a>
+      ${isEastern() ? '' : `<a class="daily-more" href="${massReadingsUrl(d)}" target="_blank" rel="noopener">Today’s full readings ↗</a>`}
     </article>
 
     <article class="daily-card daily-prayer" data-open="${prayer.id}" tabindex="0" style="--accent:${card.accent}">
@@ -5948,12 +6081,17 @@ function renderDaily(){
       <span class="daily-more">Pray it in full →</span>
     </article>
 
-    <article class="daily-card daily-rosary">
+    ${isEastern() ? `<article class="daily-card daily-rosary">
+      <div class="daily-kicker">The prayer of the heart</div>
+      <h3>The Jesus Prayer</h3>
+      <p class="rope-prayer small">${escapeHtml(JESUS_PRAYER)}</p>
+      <button class="btn primary" id="dailyRosaryBtn">Pray with the prayer rope</button>
+    </article>` : `<article class="daily-card daily-rosary">
       <div class="daily-kicker">The Rosary · ${WEEKDAY_NAMES[d.getDay()]}</div>
       <h3>${escapeHtml(mysteries.name)}</h3>
       <ol>${mysteries.list.map(m => `<li>${escapeHtml(m.name)}</li>`).join('')}</ol>
       <button class="btn primary" id="dailyRosaryBtn">Pray the ${escapeHtml(mysteries.name)}</button>
-    </article>
+    </article>`}
 
     <article class="daily-card daily-book" data-open="${book.id}" tabindex="0">
       <div class="saint-portrait shape-book" data-sid="${book.id}">${portraitPlaceholder(book.title)}</div>
@@ -6141,7 +6279,13 @@ const SAINT_WIKI = {
   'Sts. Pothinus, Blandina, and the Martyrs of Lyon':'Blandina',
   'St. Alexander of Alexandria':'Pope Alexander I of Alexandria',
   'St. Germanus of Constantinople':'Germanus I of Constantinople',
-  'St. Lawrence O’Toole':"Laurence O'Toole"
+  'St. Lawrence O’Toole':"Laurence O'Toole",
+  'St. Alphonsa Muttathupadathu':'Alphonsa Muttathupadathu',
+  'St. Nimatullah Kassab Al-Hardini':'Nimatullah Kassab',
+  'Bl. Leonid Feodorov':'Leonid Feodorov',
+  'Bl. Emilian Kovch':'Emilian Kovch',
+  'Bl. Theodore Romzha':'Theodore Romzha',
+  'Bl. Vasyl Velychkovsky':'Vasyl Velychkovsky'
 };
 // Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
 const ENTRY_WIKI = {
@@ -7875,10 +8019,10 @@ function renderTracker(){
             <div class="habit${done.has(h.key) ? ' done' : ''}">
               <button class="habit-check" data-habit="${h.key}" aria-pressed="${done.has(h.key)}">
                 <span class="habit-icon">${navIcon(h.icon)}</span>
-                <span class="habit-text"><strong>${escapeHtml(h.name)}</strong><small>${escapeHtml(h.note)}</small></span>
+                <span class="habit-text"><strong>${escapeHtml(habitName(h))}</strong><small>${escapeHtml(habitNote(h))}</small></span>
                 <span class="habit-tick" aria-hidden="true">${done.has(h.key) ? '✓' : ''}</span>
               </button>
-              ${isToday && (h.route || h.open) && !done.has(h.key) ? `<button class="habit-go" ${h.route ? `data-route="${h.route}"` : `data-open="${h.open}"`}>${h.key === 'mass' ? 'About the Mass' : 'Pray now'} →</button>` : ''}
+              ${isToday && (h.route || habitOpen(h)) && !done.has(h.key) ? `<button class="habit-go" ${h.route ? `data-route="${h.route}"` : `data-open="${habitOpen(h)}"`}>${h.key === 'mass' ? (isEastern() ? 'About the Liturgy' : 'About the Mass') : 'Pray now'} →</button>` : ''}
             </div>`).join('')}
         </div>
       </section>
@@ -7887,12 +8031,12 @@ function renderTracker(){
         <div class="td-head"><h3>The last ${weeks} weeks</h3>
           <span class="hm-legend">Less <span class="hm-cell l0"></span><span class="hm-cell l1"></span><span class="hm-cell l2"></span><span class="hm-cell l3"></span><span class="hm-cell l4"></span> More</span></div>
         <div class="heatmap">${cells}</div>
-        <p class="tracker-note">Select any day to see or change what you prayed. Finishing the Rosary, Chaplet, Stations, Examen, Angelus, Lectio Divina, or a prayer timer marks it automatically.</p>
+        <p class="tracker-note">Select any day to see or change what you prayed. ${isEastern() ? 'Finishing the Jesus Prayer, the Trisagion Prayers, the Prayer of St. Ephrem, Evening Prayer, the Hymns to the Theotokos, Lectio Divina, or a prayer timer marks it automatically.' : 'Finishing the Rosary, Chaplet, Stations, Examen, Angelus, Lectio Divina, or a prayer timer marks it automatically.'}</p>
       </section>
 
       <details class="tracker-settings">
         <summary>Choose what to track</summary>
-        <div class="sf-chips">${HABITS.map(h => `<button class="patron-chip${enabled.includes(h.key) ? ' active' : ''}" data-toggle-habit="${h.key}" aria-pressed="${enabled.includes(h.key)}">${escapeHtml(h.name)}</button>`).join('')}</div>
+        <div class="sf-chips">${HABITS.map(h => `<button class="patron-chip${enabled.includes(h.key) ? ' active' : ''}" data-toggle-habit="${h.key}" aria-pressed="${enabled.includes(h.key)}">${escapeHtml(habitName(h))}</button>`).join('')}</div>
         <p class="tracker-note">Your prayer log is private. It is kept only in this browser and is never sent anywhere.</p>
       </details>
     </div>`;
@@ -8081,7 +8225,7 @@ function homePrayerHtml(){
   const streak = prayerStats().current;
   return `<section class="home-prayer" id="homePrayer" aria-label="Your prayer today">
     <span class="home-prayer-streak">${cardArt('flame')}${streak ? plural(streak, 'day', 'days') + ' of prayer' : 'Your prayer today'}</span>
-    <div class="home-prayer-chips">${HABITS.filter(h => enabled.includes(h.key)).map(h => `<button class="patron-chip${done.has(h.key) ? ' active' : ''}" data-home-habit="${h.key}" aria-pressed="${done.has(h.key)}">${escapeHtml(h.name)}</button>`).join('')}</div>
+    <div class="home-prayer-chips">${HABITS.filter(h => enabled.includes(h.key)).map(h => `<button class="patron-chip${done.has(h.key) ? ' active' : ''}" data-home-habit="${h.key}" aria-pressed="${done.has(h.key)}">${escapeHtml(habitName(h))}</button>`).join('')}</div>
     <button class="text-link" data-route="pray/tracker">Prayer tracker →</button>
   </section>`;
 }
@@ -8201,7 +8345,8 @@ function postureBadge(p, note){
 }
 
 function renderMass(){
-  const flat = MASS_PARTS.flatMap((s, si) => s.parts.map(p => ({ ...p, section:s.section, si })));
+  const PARTS = isEastern() ? LITURGY_PARTS : MASS_PARTS;
+  const flat = PARTS.flatMap((s, si) => s.parts.map(p => ({ ...p, section:s.section, si })));
   if(massStep !== null){
     if(massStep >= flat.length){
       logPrayer('mass');
@@ -8214,7 +8359,7 @@ function renderMass(){
       emblem:postureBadge(p.posture, p.note), kicker:escapeHtml(p.section), title:p.name,
       body:`<p>${escapeHtml(p.what)}</p>${p.note ? `<p class="devo-small">${escapeHtml(p.note)}</p>` : ''}`,
       extra:`<p class="mass-why">${escapeHtml(p.why)}</p>${p.ref ? `<div class="devo-meta">${scriptureLink(p.ref)}</div>` : ''}`,
-      track:`<div class="devo-pips always" aria-hidden="true">${MASS_PARTS.map((s, i) => `<span class="${i < p.si ? 'done' : i === p.si ? 'current' : ''}">${ROMAN[i]}</span>`).join('')}</div>`,
+      track:`<div class="devo-pips always" aria-hidden="true">${PARTS.map((s, i) => `<span class="${i < p.si ? 'done' : i === p.si ? 'current' : ''}">${ROMAN[i]}</span>`).join('')}</div>`,
       go:i => { massStep = Math.max(0, Math.min(i, flat.length)); renderMass(); window.scrollTo({ top:0 }); },
       exit:() => { massStep = null; renderMass(); }, exitLabel:'Back to the overview'
     });
@@ -8225,13 +8370,13 @@ function renderMass(){
     <div class="mass-page">
       <section class="mass-intro">
         <div>
-          <p>The Mass is the source and summit of the Christian life: the one sacrifice of Christ on the Cross made present, and the banquet in which He gives us His Body and Blood. Here is every part of the Mass, in order, with what to do and why it matters.</p>
-          <div class="mass-legend">${Object.keys(POSTURE_NAME).map(p => postureBadge(p)).join('')}<span class="mass-legend-note">Postures are those customary in the United States, and vary a little from country to country.</span></div>
+          <p>${massIntroText()}</p>
+          <div class="mass-legend">${Object.keys(POSTURE_NAME).filter(p => isEastern() || p !== 'bow').map(p => postureBadge(p)).join('')}<span class="mass-legend-note">${massPostureNote()}</span></div>
         </div>
-        <button class="btn primary pill" id="massFollow">Follow along at Mass</button>
+        <button class="btn primary pill" id="massFollow">Follow along at ${isEastern() ? 'the Divine Liturgy' : 'Mass'}</button>
       </section>
-      <nav class="mass-strip" aria-label="Parts of the Mass">${MASS_PARTS.map((s, i) => `<a href="#mass-${i}" class="mass-strip-seg" style="flex:${s.parts.length}"><span>${ROMAN[i]}</span>${escapeHtml(s.section)}</a>`).join('')}</nav>
-      ${MASS_PARTS.map((s, si) => `
+      <nav class="mass-strip" aria-label="Parts of the Mass">${PARTS.map((s, i) => `<a href="#mass-${i}" class="mass-strip-seg" style="flex:${s.parts.length}"><span>${ROMAN[i]}</span>${escapeHtml(s.section)}</a>`).join('')}</nav>
+      ${PARTS.map((s, si) => `
         <section class="mass-section" id="mass-${si}">
           <h3 class="mass-section-title"><span class="mass-roman">${ROMAN[si]}</span>${escapeHtml(s.section)}</h3>
           <ol class="mass-list">${s.parts.map(p => { n++; return `
@@ -8247,7 +8392,7 @@ function renderMass(){
               </div>
             </li>`; }).join('')}</ol>
         </section>`).join('')}
-      <p class="shop-note">Find Mass times near you at <a href="https://masstimes.org/" target="_blank" rel="noopener">MassTimes.org</a>, and the readings for any day in the Calendar.</p>
+      <p class="shop-note">${isEastern() ? 'Find a Divine Liturgy near you at <a href="https://masstimes.org/" target="_blank" rel="noopener">MassTimes.org</a>, which also lists Eastern Catholic parishes.' : 'Find Mass times near you at <a href="https://masstimes.org/" target="_blank" rel="noopener">MassTimes.org</a>, and the readings for any day in the Calendar.'}</p>
     </div>`;
   document.getElementById('massFollow').addEventListener('click', () => { massStep = 0; renderMass(); window.scrollTo({ top:0 }); });
   entryListEl.querySelectorAll('.mass-strip-seg').forEach(a => a.addEventListener('click', ev => {
@@ -8615,6 +8760,69 @@ const QUOTES = [
   { saint:'St. Carlo Acutis', text:'The Eucharist is my highway to heaven.', source:'His own words', themes:['christ', 'heaven'] },
   { saint:'St. Carlo Acutis', text:'All people are born as originals, but many die as photocopies.', source:'His own words', themes:['holiness'] }
 ];
+QUOTES.push(
+  { saint:'St. Ignatius of Antioch', text:'It is better for me to die in behalf of Jesus Christ, than to reign over all the ends of the earth.', source:'Letter to the Romans, 6', themes:['courage', 'heaven'] },
+  { saint:'St. Ignatius of Antioch', text:'Permit me to be an imitator of the passion of my God.', source:'Letter to the Romans, 6', themes:['cross', 'courage'] },
+  { saint:'St. Justin Martyr', text:'For not as common bread and common drink do we receive these; but… the food which is blessed by the prayer of His word… is the flesh and blood of that Jesus who was made flesh.', source:'First Apology, 66', themes:['christ'] },
+  { saint:'St. Irenaeus of Lyon', text:'Our opinion is in accordance with the Eucharist, and the Eucharist in turn establishes our opinion.', source:'Against Heresies, IV.18.5', themes:['christ', 'faith'] },
+  { saint:'St. Irenaeus of Lyon', text:'The Word of God, our Lord Jesus Christ, who did, through His transcendent love, become what we are, that He might bring us to be even what He is Himself.', source:'Against Heresies, V, Preface', themes:['christ', 'holiness'] },
+  { saint:'Sts. Perpetua and Felicity', text:'Can that vessel be called by any other name than what it is? Neither can I call myself anything else than what I am, a Christian.', source:'The Passion of Perpetua and Felicity, 3 (St. Perpetua)', themes:['courage', 'faith'] },
+  { saint:'St. Cyprian of Carthage', text:'Thanks be to God.', source:'His words on hearing his sentence of death, 258', themes:['courage', 'trust'] },
+  { saint:'St. Lawrence', text:'Turn me over; I am done on this side.', source:'As told by St. Ambrose, On the Duties of the Clergy, I.41', themes:['courage', 'trust'], attributed:true },
+  { saint:'St. Anthony the Great', text:'I no longer fear God, but I love Him. For love casts out fear.', source:'Sayings of the Desert Fathers, Antony 32', themes:['love'] },
+  { saint:'St. Basil the Great', text:'The honor paid to the image passes to the original.', source:'On the Holy Spirit, 18.45 (quoted in the Catechism, 2132)', themes:['christ', 'church'] },
+  { saint:'St. Gregory of Nazianzus', text:'We ought to think of God even more often than we draw our breath.', source:'Oration 27, 4', themes:['prayer'] },
+  { saint:'St. Gregory of Nyssa', text:'This truly is the vision of God: never to be satisfied in the desire to see him.', source:'The Life of Moses, II.239', themes:['heaven', 'prayer'] },
+  { saint:'St. John Chrysostom', text:'I have taken you in my arms, and I love you, and I prefer you to my life itself.', source:'Homily 20 on Ephesians (counsel to husbands)', themes:['love'] },
+  { saint:'St. Ambrose', text:'You are not making a gift of your possessions to the poor person. You are handing over to him what is his.', source:'On Naboth (quoted by St. Paul VI, Populorum Progressio, 23)', themes:['poor'] },
+  { saint:'St. Jerome', text:'Love the Holy Scriptures, and wisdom will love you.', source:'Letter 130, to Demetrias', themes:['faith'] },
+  { saint:'St. Augustine of Hippo', text:'Our whole business in this life is to restore to health the eye of the heart whereby God may be seen.', source:'Sermon 88, 5', themes:['holiness', 'heaven'] },
+  { saint:'St. Augustine of Hippo', text:'The New Testament lies hidden in the Old, and the Old is unveiled in the New.', source:'Questions on the Heptateuch, 2.73 (quoted in the Catechism, 129)', themes:['faith'] },
+  { saint:'St. Augustine of Hippo', text:'Your desire is your prayer; if your desire is without ceasing, your prayer will also be without ceasing.', source:'Exposition on Psalm 38, 14', themes:['prayer'] },
+  { saint:'Pope St. Leo the Great', text:'What was visible in our Redeemer has passed over into the sacraments.', source:'Sermon 74, 2 (quoted in the Catechism, 1115)', themes:['christ', 'church'] },
+  { saint:'St. Benedict of Nursia', text:'Prefer nothing whatever to Christ.', source:'Rule of St. Benedict, 72', themes:['holiness', 'christ'] },
+  { saint:'St. Benedict of Nursia', text:'Never despair of God’s mercy.', source:'Rule of St. Benedict, 4', themes:['mercy', 'trust'] },
+  { saint:'Pope St. Gregory the Great', text:'Holy Scripture is like a river, both shallow and deep, in which the lamb may wade and the elephant may swim.', source:'Moralia on Job, Letter to Leander, 4', themes:['faith'] },
+  { saint:'St. Isidore of Seville', text:'Prayer purifies us, reading instructs us. Both are good when both are possible.', source:'Sentences, III.8', themes:['prayer', 'faith'] },
+  { saint:'St. John Climacus', text:'Let the remembrance of Jesus be present with each breath, and then you will know the value of stillness.', source:'The Ladder of Divine Ascent, Step 27', themes:['prayer'] },
+  { saint:'St. John Damascene', text:'Prayer is the raising of one’s mind and heart to God or the requesting of good things from God.', source:'On the Orthodox Faith, III.24 (quoted in the Catechism, 2559)', themes:['prayer'] },
+  { saint:'St. Anselm of Canterbury', text:'Teach me to seek you, and reveal yourself to me as I seek; for I cannot seek you unless you teach me, nor find you unless you reveal yourself.', source:'Proslogion, 1', themes:['prayer', 'faith'] },
+  { saint:'St. Bernard of Clairvaux', text:'Look to the star, call upon Mary.', source:'Homily 2 on “Missus est,” 17', themes:['mary', 'trust'] },
+  { saint:'St. Thomas Becket', text:'I am ready to die for my Lord, that in my blood the Church may obtain liberty and peace.', source:'Recorded by Edward Grim, an eyewitness, 1170', themes:['courage', 'church'], attributed:true },
+  { saint:'St. Francis of Assisi', text:'Where there is charity and wisdom, there is neither fear nor ignorance.', source:'Admonitions, 27', themes:['love', 'trust'] },
+  { saint:'St. Clare of Assisi', text:'Place your mind before the mirror of eternity!', source:'Third Letter to St. Agnes of Prague', themes:['prayer', 'heaven'] },
+  { saint:'St. Elizabeth of Hungary', text:'How could I wear a crown of gold when the Lord wears a crown of thorns?', source:'Traditional', themes:['humility', 'cross'], attributed:true },
+  { saint:'St. Louis IX', text:'Have a tender, pitiful heart for the poor and the unfortunate, and comfort and help them as much as you can.', source:'Instructions to his son Philip', themes:['poor', 'love'] },
+  { saint:'St. Thomas Aquinas', text:'Three things are necessary for the salvation of man: to know what he ought to believe; to know what he ought to desire; and to know what he ought to do.', source:'On the Two Commandments of Love, Prologue', themes:['faith', 'holiness'] },
+  { saint:'St. Catherine of Siena', text:'You, eternal Trinity, are a deep sea: the more I enter you, the more I find, and the more I find, the more I seek.', source:'The Dialogue, 167', themes:['prayer', 'love'] },
+  { saint:'St. Teresa of Ávila', text:'Prayer is nothing else than an intimate sharing between friends; it means taking time frequently to be alone with him who we know loves us.', source:'The Book of Her Life, 8.5 (quoted in the Catechism, 2709)', themes:['prayer'] },
+  { saint:'St. John of the Cross', text:'Where there is no love, put love, and you will find love.', source:'Letter to Mother María de la Encarnación, 1591', themes:['love'] },
+  { saint:'St. Ignatius of Loyola', text:'Love ought to show itself in deeds more than in words.', source:'Spiritual Exercises, 230', themes:['love'] },
+  { saint:'St. Edmund Campion', text:'The expense is reckoned, the enterprise is begun; it is of God; it cannot be withstood.', source:'Letter to the Privy Council (“Campion’s Brag”), 1580', themes:['courage', 'faith'] },
+  { saint:'St. Aloysius Gonzaga', text:'It is better to be a child of God than king of the whole world.', source:'Traditional', themes:['holiness'], attributed:true },
+  { saint:'St. Stanislaus Kostka', text:'I was born for greater things.', source:'Traditional', themes:['holiness', 'courage'], attributed:true },
+  { saint:'St. Peter Claver', text:'We must speak to them with our hands before we speak to them with our lips.', source:'Recorded by his companions', themes:['poor', 'love'], attributed:true },
+  { saint:'St. Elizabeth Ann Seton', text:'The first end I propose in our daily work is to do the will of God; secondly, to do it in the manner he wills it; and thirdly, to do it because it is his will.', source:'Conference to her sisters', themes:['holiness', 'trust'] },
+  { saint:'St. John Vianney', text:'My little children, your hearts are small, but prayer stretches them and makes them capable of loving God.', source:'His catechism on prayer', themes:['prayer', 'love'], attributed:true },
+  { saint:'St. John Bosco', text:'Run, jump, shout, but do not sin.', source:'His advice to his boys', themes:['holiness', 'trust'], attributed:true },
+  { saint:'St. John Henry Newman', text:'God has created me to do Him some definite service; He has committed some work to me which He has not committed to another.', source:'Meditations and Devotions, March 7, 1848', themes:['holiness', 'trust'] },
+  { saint:'St. Thérèse of Lisieux', text:'I understood that Love comprised all vocations, that Love was everything, that it embraced all times and places; in a word, that it was eternal!', source:'Story of a Soul, Manuscript B', themes:['love'] },
+  { saint:'St. Charles de Foucauld', text:'As soon as I believed that there was a God, I understood that I could not do otherwise than to live for Him alone.', source:'Letter to Henry de Castries, 1901', themes:['faith', 'holiness'] },
+  { saint:'Pope St. Pius X', text:'Holy Communion is the shortest and safest way to heaven.', source:'Traditional', themes:['christ', 'heaven'], attributed:true },
+  { saint:'St. Mary MacKillop', text:'Never see a need without doing something about it.', source:'Traditional', themes:['poor', 'love'], attributed:true },
+  { saint:'St. Faustina Kowalska', text:'O my Jesus, each of your saints reflects one of your virtues; I desire to reflect your compassionate heart, full of mercy.', source:'Diary, 1242', themes:['mercy', 'holiness'] },
+  { saint:'St. Padre Pio', text:'Prayer is the best weapon we possess, the key that opens the heart of God.', source:'Traditional', themes:['prayer'], attributed:true },
+  { saint:'St. Maximilian Kolbe', text:'The most deadly poison of our times is indifference.', source:'Traditional', themes:['courage', 'love'], attributed:true },
+  { saint:'St. Gianna Beretta Molla', text:'One cannot love without suffering or suffer without loving.', source:'From her letters', themes:['love', 'cross'], attributed:true },
+  { saint:'St. José Sánchez del Río', text:'¡Viva Cristo Rey! Long live Christ the King!', source:'His cry on the way to his martyrdom, 1928', themes:['courage', 'christ'] },
+  { saint:'St. Pier Giorgio Frassati', text:'To live without faith, without a heritage to defend, without a struggle for truth, is not to live but to exist.', source:'From his letters', themes:['faith', 'courage'], attributed:true },
+  { saint:'Pope St. John XXIII', text:'See everything; overlook a great deal; correct a little.', source:'Traditional', themes:['humility', 'holiness'], attributed:true },
+  { saint:'Pope St. Paul VI', text:'If you want peace, work for justice.', source:'Message for the World Day of Peace, 1972', themes:['poor', 'love'] },
+  { saint:'St. John Paul II', text:'Man cannot live without love.', source:'Redemptor Hominis, 10', themes:['love'] },
+  { saint:'St. John Paul II', text:'Faith and reason are like two wings on which the human spirit rises to the contemplation of truth.', source:'Fides et Ratio, opening words', themes:['faith'] },
+  { saint:'St. Josemaría Escrivá', text:'Don’t let your life be barren. Be useful. Make yourself felt.', source:'The Way, 1', themes:['holiness', 'courage'] },
+  { saint:'St. Kuriakose Elias Chavara', text:'A good Christian family is the image of heaven.', source:'Testament of a Loving Father', themes:['love', 'heaven'], attributed:true }
+);
 // Link each saying to its saint's entry in the library
 QUOTES.forEach(q => { const e = library.find(x => x.title === q.saint); q.id = e ? e.id : null; });
 let quoteTheme = 'all';
@@ -8728,6 +8936,567 @@ function homeQuoteHtml(){
 }
 
 /* =========================================================
+   EASTERN CATHOLIC EDITION
+   ---------------------------------------------------------
+   One switch turns Sanctify into an edition for Eastern Catholics of
+   the Byzantine tradition (Ukrainian, Ruthenian, Melkite, Romanian,
+   and the other Greek Catholic Churches). Things that belong only to
+   the Latin Church are replaced: the Rosary by the Jesus Prayer, the
+   Mass by the Divine Liturgy, the Roman calendar by the Byzantine
+   one, Latin devotions by Byzantine prayers, and the Latin cross by
+   the three-bar Eastern cross. Everything shared stays the same.
+   ========================================================= */
+const CROSS_PATHS = {
+  latin:document.querySelector('.brand .mark path').getAttribute('d'),
+  eastern:'M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'
+};
+function isEastern(){ return document.documentElement.dataset.rite === 'eastern'; }
+function crossPath(){ return CROSS_PATHS[isEastern() ? 'eastern' : 'latin']; }
+CARD_ART.eastcross = '<circle cx="32" cy="32" r="25"/><path d="M32 12v40M26.5 17.5h11M21 25h22M25.5 40.5l13 4"/>';
+CARD_ART.rope = (() => {
+  let d = '';
+  for(let i = 0; i < 18; i++){
+    const a = (i / 18) * Math.PI * 2 + Math.PI / 2;
+    if(Math.abs(Math.sin(a) - 1) < 0.05) continue;
+    d += `<circle cx="${(32 + 17 * Math.cos(a)).toFixed(1)}" cy="${(27 + 17 * Math.sin(a)).toFixed(1)}" r="2.2"/>`;
+  }
+  return d + '<path d="M32 44v14M29 47.5h6M27.5 51.5h9M29.5 56l5 1.5"/>';
+})();
+
+// Latin-only prayers, replaced in the Eastern edition by their Byzantine counterparts
+const LATIN_ONLY = new Set(['p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20',
+  'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p30', 'p32', 'p33', 'p34', 'p35', 'p37', 'p38', 'p39', 'p40', 'p41', 'p43', 'p44',
+  'p45', 'p46', 'p47', 'p48']);
+// Saints shown on the Byzantine calendar: everyone before 1054, plus these Eastern saints and blesseds
+const EASTERN_SAINTS = new Set(['s139', 's216', 's231', 's292', 's388', 's389', 's390', 's391', 's392', 's393', 's394', 's395', 's396', 's397', 's398', 's399']);
+const LIBRARY_ALL = library.slice();
+
+// Names that change between the editions: [Latin, Eastern]
+const RITE_SECTIONS = {
+  rosary:{ name:['The Holy Rosary', 'The Jesus Prayer'], icon:['rosary', 'rope'] },
+  stations:{ name:['Stations of the Cross', 'Prayer of St. Ephrem'], icon:['stations', 'eastcross'] },
+  chaplet:{ name:['Divine Mercy Chaplet', 'The Trisagion Prayers'], icon:['chaplet', 'theology'] },
+  angelus:{ name:['The Angelus', 'Hymns to the Theotokos'] },
+  examen:{ name:['The Daily Examen', 'Evening Prayer'] },
+  exam:{ name:['Examination of Conscience', 'Preparing for Confession'] },
+  mass:{ name:['The Mass Explained', 'The Divine Liturgy Explained'] }
+};
+const RITE_DESC = {
+  rosary:'Pray the Jesus Prayer on a prayer rope, knot by knot: the ancient prayer of the heart of the Eastern Churches.',
+  stations:'The great Lenten prayer of St. Ephrem the Syrian, prayed with prostrations on the weekdays of Great Lent.',
+  chaplet:'The “usual beginning” of Byzantine prayer: O Heavenly King, the Thrice-Holy Hymn, and the Lord’s Prayer.',
+  angelus:'Honor the Mother of God with the beloved hymns of the East: Rejoice, O Virgin; It Is Truly Right; and Beneath Your Compassion.',
+  examen:'Close the day with God in stillness, thanksgiving, watchfulness over the heart, and repentance.',
+  exam:'A guided examination of conscience to prepare for the Holy Mystery of Repentance.',
+  mass:'Every part of the Divine Liturgy of St. John Chrysostom in order, with what happens and what it means. Follow along on your phone at the Liturgy.'
+};
+const RITE_NAV = {
+  'pray/rosary':'Jesus Prayer', 'pray/stations':'Prayer of St. Ephrem', 'pray/chaplet':'Trisagion Prayers', 'pray/angelus':'Hymns to the Theotokos',
+  'pray/examen':'Evening Prayer', 'pray/examination':'Preparing for Confession', 'learn/mass':'The Divine Liturgy Explained'
+};
+const latinDesc = {};
+
+/* ---------- Byzantine calendar ---------- */
+const EAST_SEASON_INFO = {
+  nativityfast:{ name:'Nativity Fast', color:'var(--wine)', colorName:'red', blurb:'Forty days of fasting and joyful preparation for the Nativity of Christ, from November 15 to December 24.' },
+  nativity:{ name:'Nativity and Theophany', color:'var(--gold)', colorName:'gold or white', blurb:'The feasts of the birth of Christ and of his baptism in the Jordan, from December 25 to the leave-taking of Theophany.' },
+  triodion:{ name:'Pre-Lenten Sundays', color:'var(--purple)', colorName:'dark', blurb:'The weeks of the Triodion that prepare for Great Lent, from the Sunday of the Publican and the Pharisee to Forgiveness Sunday.' },
+  greatlent:{ name:'Great Lent', color:'var(--purple)', colorName:'purple or dark', blurb:'Forty days of fasting, prayer, and almsgiving, beginning on Clean Monday.' },
+  holyweek:{ name:'Holy Week', color:'var(--ink-soft)', colorName:'dark', blurb:'From Lazarus Saturday and the Entry into Jerusalem through the Passion of Christ to Great and Holy Saturday.' },
+  pascha:{ name:'Paschal Season', color:'var(--wine)', colorName:'red or white', blurb:'Christ is risen! Forty days of Paschal joy, followed by the Ascension and Pentecost.' },
+  apostlesfast:{ name:'Apostles’ Fast', color:'var(--gold)', colorName:'gold', blurb:'A fast from the Monday after All Saints Sunday until the feast of Sts. Peter and Paul on June 29.' },
+  dormitionfast:{ name:'Dormition Fast', color:'var(--indigo)', colorName:'blue', blurb:'Two weeks of fasting in honor of the Theotokos, from August 1 to 14, before her Dormition.' },
+  ordinary:{ name:'Season after Pentecost', color:'var(--green)', colorName:'gold or green', blurb:'The Sundays after Pentecost, when the Church follows the public ministry of Christ.' }
+};
+function easternSeason(d){
+  const y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
+  const t = new Date(y, d.getMonth(), day).getTime();
+  const P = easterDate(y);
+  const between = (a, b) => t >= a.getTime() && t <= b.getTime();
+  let key = 'ordinary';
+  if((m === 11 && day >= 15) || (m === 12 && day <= 24)) key = 'nativityfast';
+  else if((m === 12 && day >= 25) || (m === 1 && day <= 14)) key = 'nativity';
+  else if(between(addDays(P, -70), addDays(P, -49))) key = 'triodion';
+  else if(between(addDays(P, -48), addDays(P, -9))) key = 'greatlent';
+  else if(between(addDays(P, -8), addDays(P, -1))) key = 'holyweek';
+  else if(between(P, addDays(P, 49))) key = 'pascha';
+  else if(between(addDays(P, 57), new Date(y, 5, 28))) key = 'apostlesfast';
+  else if(m === 8 && day <= 14) key = 'dormitionfast';
+  return { key, ...EAST_SEASON_INFO[key] };
+}
+const EAST_FIXED = [
+  { month:9, day:1, name:'Church New Year (Indiction)', type:'Feast', note:'The beginning of the Byzantine liturgical year.' },
+  { month:9, day:8, name:'Nativity of the Most Holy Theotokos', type:'Great Feast', note:'The birth of the Virgin Mary to Sts. Joachim and Anne. The first of the Twelve Great Feasts in the Church year.' },
+  { month:9, day:14, name:'Exaltation of the Precious and Life-giving Cross', type:'Great Feast', note:'Commemorates the finding of the True Cross and its lifting up for veneration. A day of strict fasting.' },
+  { month:10, day:1, name:'Protection of the Most Holy Theotokos', type:'Feast', note:'Recalls the vision in Constantinople of the Theotokos spreading her veil over the faithful in prayer.' },
+  { month:10, day:26, name:'St. Demetrius the Great-Martyr', type:'Commemoration', note:'The beloved soldier-martyr of Thessalonica.' },
+  { month:11, day:8, name:'Synaxis of the Archangel Michael and All the Bodiless Powers', type:'Feast', note:'The Church honors the archangels and all the angels of heaven.' },
+  { month:11, day:12, name:'St. Josaphat, Hieromartyr', type:'Commemoration', note:'Archbishop of Polotsk and martyr for the unity of the Church.' },
+  { month:11, day:13, name:'St. John Chrysostom', type:'Commemoration', note:'Archbishop of Constantinople, whose Divine Liturgy is celebrated on most days of the year.' },
+  { month:11, day:15, name:'The Nativity Fast begins', type:'Fast', note:'Forty days of preparation for the Nativity of Christ.' },
+  { month:11, day:21, name:'Entry of the Most Holy Theotokos into the Temple', type:'Great Feast', note:'The child Mary is brought to the Temple and dedicated to God.' },
+  { month:11, day:30, name:'St. Andrew the First-Called Apostle', type:'Feast', note:'The first apostle called by Christ, brother of St. Peter.' },
+  { month:12, day:6, name:'St. Nicholas the Wonderworker', type:'Feast', note:'Archbishop of Myra, one of the most beloved saints of the East.' },
+  { month:12, day:9, name:'Maternity of St. Anne', type:'Feast', note:'The conception of the Most Holy Theotokos by Sts. Joachim and Anne.' },
+  { month:12, day:25, name:'Nativity of Our Lord God and Savior Jesus Christ', type:'Great Feast', note:'The birth of Christ in the flesh. Christ is born! Glorify him!' },
+  { month:12, day:26, name:'Synaxis of the Most Holy Theotokos', type:'Feast', note:'The day after the Nativity, the Church gathers to honor the Mother of God.' },
+  { month:12, day:27, name:'St. Stephen the Protomartyr', type:'Commemoration', note:'The first martyr and first deacon.' },
+  { month:1, day:1, name:'Circumcision of Our Lord, and St. Basil the Great', type:'Feast', note:'On this day the Divine Liturgy of St. Basil is celebrated.' },
+  { month:1, day:5, name:'Eve of Theophany', type:'Fast', note:'A day of strict fasting before the feast.' },
+  { month:1, day:6, name:'Holy Theophany of Our Lord', type:'Great Feast', note:'The baptism of Christ in the Jordan and the revelation of the Holy Trinity. The waters are solemnly blessed.' },
+  { month:1, day:7, name:'Synaxis of St. John the Baptist', type:'Feast', note:'The Church honors the Forerunner who baptized the Lord.' },
+  { month:1, day:30, name:'The Three Holy Hierarchs', type:'Feast', note:'Sts. Basil the Great, Gregory the Theologian, and John Chrysostom, honored together.' },
+  { month:2, day:2, name:'Encounter of Our Lord in the Temple', type:'Great Feast', note:'The infant Christ is brought to the Temple and received by the elder Simeon.' },
+  { month:3, day:25, name:'Annunciation of the Most Holy Theotokos', type:'Great Feast', note:'The Archangel Gabriel announces the Incarnation, and the Virgin says yes.' },
+  { month:4, day:23, name:'St. George the Great-Martyr', type:'Commemoration', note:'The soldier-martyr, one of the most honored saints of the East.' },
+  { month:5, day:11, name:'Sts. Cyril and Methodius, Equal to the Apostles', type:'Commemoration', note:'The apostles to the Slavs.' },
+  { month:5, day:21, name:'Sts. Constantine and Helen, Equal to the Apostles', type:'Commemoration', note:'The first Christian emperor and his mother, who found the True Cross.' },
+  { month:6, day:24, name:'Nativity of the Holy Forerunner John the Baptist', type:'Feast', note:'The birth of the prophet who prepared the way of the Lord.' },
+  { month:6, day:29, name:'Sts. Peter and Paul, the Chief Apostles', type:'Feast', note:'The end of the Apostles’ Fast.' },
+  { month:7, day:20, name:'The Holy Prophet Elijah', type:'Commemoration', note:'The great prophet taken up into heaven in a fiery chariot.' },
+  { month:8, day:1, name:'The Dormition Fast begins', type:'Fast', note:'Two weeks of fasting in honor of the Theotokos.' },
+  { month:8, day:6, name:'Holy Transfiguration of Our Lord', type:'Great Feast', note:'Christ reveals his glory on Mount Tabor. Fruits are blessed in church.' },
+  { month:8, day:15, name:'Dormition of the Most Holy Theotokos', type:'Great Feast', note:'The falling asleep of the Mother of God and her passing into heavenly glory.' },
+  { month:8, day:29, name:'Beheading of St. John the Baptist', type:'Feast', note:'A day of strict fasting.' }
+];
+const eastMoveableCache = {};
+function easternMoveable(y){
+  if(eastMoveableCache[y]) return eastMoveableCache[y];
+  const P = easterDate(y);
+  const at = (n, name, type, note) => ({ date:addDays(P, n), name, type, note });
+  return eastMoveableCache[y] = [
+    at(-70, 'Sunday of the Publican and the Pharisee', 'Commemoration', 'The Lenten Triodion opens with a lesson in humility.'),
+    at(-63, 'Sunday of the Prodigal Son', 'Commemoration', 'The Father’s mercy awaits every sinner who returns.'),
+    at(-56, 'Meatfare Sunday (Last Judgment)', 'Commemoration', 'The last day to eat meat before Pascha.'),
+    at(-49, 'Cheesefare Sunday (Forgiveness Sunday)', 'Commemoration', 'Everyone asks and gives forgiveness before Lent begins at Forgiveness Vespers.'),
+    at(-48, 'Clean Monday: Great Lent begins', 'Fast', 'The first day of the Great Fast. A day of strict fasting.'),
+    at(-42, 'Sunday of Orthodoxy', 'Commemoration', 'Celebrates the restoration of the holy icons in 843.'),
+    at(-35, 'Second Sunday of Great Lent', 'Commemoration', 'In many Byzantine Churches, the commemoration of St. Gregory Palamas.'),
+    at(-28, 'Sunday of the Holy Cross', 'Commemoration', 'The Cross is brought out for veneration at the midpoint of the Fast.'),
+    at(-21, 'Sunday of St. John Climacus', 'Commemoration', 'Honors the author of The Ladder of Divine Ascent.'),
+    at(-14, 'Sunday of St. Mary of Egypt', 'Commemoration', 'Honors the great penitent of the desert.'),
+    at(-8, 'Lazarus Saturday', 'Feast', 'Christ raises Lazarus, a sign of the coming Resurrection.'),
+    at(-7, 'Entry of Our Lord into Jerusalem (Palm Sunday)', 'Great Feast', 'Christ enters Jerusalem as King, and willow or palm branches are blessed.'),
+    at(-3, 'Great and Holy Thursday', 'Fast', 'The Mystical Supper and the washing of the feet.'),
+    at(-2, 'Great and Holy Friday', 'Fast', 'The Passion and death of Christ. The burial shroud (plashchanytsia or epitaphios) is laid out. A day of strict fasting.'),
+    at(-1, 'Great and Holy Saturday', 'Fast', 'Christ rests in the tomb and descends to free the dead.'),
+    at(0, 'Holy Pascha: the Resurrection of Our Lord', 'Great Feast', 'The Feast of Feasts. Christ is risen! Indeed he is risen!'),
+    at(7, 'Thomas Sunday', 'Feast', 'The risen Christ appears to the apostle Thomas.'),
+    at(14, 'Sunday of the Myrrh-bearing Women', 'Commemoration', 'Honors the women who came to the tomb.'),
+    at(24, 'Mid-Pentecost', 'Feast', 'The midpoint between Pascha and Pentecost.'),
+    at(39, 'Ascension of Our Lord', 'Great Feast', 'Christ ascends into heaven forty days after Pascha.'),
+    at(49, 'Holy Pentecost', 'Great Feast', 'The descent of the Holy Spirit upon the apostles.'),
+    at(50, 'Monday of the Holy Spirit', 'Feast', 'The day after Pentecost is dedicated to the Holy Spirit.'),
+    at(56, 'Sunday of All Saints', 'Feast', 'The Church honors all the saints, known and unknown.'),
+    at(57, 'The Apostles’ Fast begins', 'Fast', 'A fast until the feast of Sts. Peter and Paul.')
+  ];
+}
+function isEasternSaint(s){
+  const info = SAINT_INFO[s.id];
+  return EASTERN_SAINTS.has(s.id) || !info || info.year === null || info.year < 1054;
+}
+function easternObservancesFor(d){
+  const m = d.getMonth() + 1, day = d.getDate();
+  const list = EAST_FIXED.filter(e => e.month === m && e.day === day).map(e => ({ ...e }));
+  easternMoveable(d.getFullYear()).forEach(e => { if(sameDay(e.date, d)) list.push({ ...e }); });
+  (SAINT_FEASTS[m + '-' + day] || []).filter(isEasternSaint).forEach(s => {
+    const core = saintCore(s.title).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('(^|[^a-z])' + core + '([^a-z]|$)', 'i');
+    const hit = list.find(o => o.type !== 'Saint' && re.test(o.name));
+    if(hit) (hit.saints = hit.saints || []).push(s.id);
+    else list.push({ name:s.title, type:'Saint', note:excerptOf(s.content, 160), saints:[s.id] });
+  });
+  return list.sort((a, b) => (CAL_TYPE_RANK[a.type] ?? 9) - (CAL_TYPE_RANK[b.type] ?? 9));
+}
+function easternDayNotes(d, obs){
+  const P = easterDate(d.getFullYear());
+  const season = easternSeason(d).key;
+  const notes = [];
+  if(obs.some(o => /strict fast/i.test(o.note || ''))) notes.push('A day of strict fasting.');
+  else if(season === 'greatlent' || season === 'holyweek') notes.push('A day of the Great Fast: traditionally, abstain from meat and dairy as you are able and as your Church directs.');
+  else if((d.getDay() === 3 || d.getDay() === 5) && season !== 'pascha' && season !== 'nativity') notes.push('Wednesdays and Fridays are traditional days of fasting.');
+  if(d.getDay() === 0) notes.push('The Lord’s Day: Catholics are bound to take part in the Divine Liturgy.');
+  if(sameDay(d, P) || sameDay(d, addDays(P, -2))) notes.push('Some Eastern Catholic Churches keep Pascha on the Julian date with the Orthodox; check with your parish.');
+  return notes;
+}
+const CAL_TYPES_LATIN = { color:{ ...CAL_TYPE_COLOR }, rank:{ ...CAL_TYPE_RANK }, plural:{ ...CAL_TYPE_PLURAL } };
+const CAL_TYPES_EASTERN = {
+  color:{ 'Great Feast':'var(--gold)', Feast:'var(--green)', Commemoration:'var(--indigo)', Saint:'var(--teal)', Fast:'var(--purple)' },
+  rank:{ 'Great Feast':0, Feast:1, Commemoration:2, Saint:3, Fast:4 },
+  plural:{ 'Great Feast':'Great Feasts', Feast:'Feasts', Commemoration:'Commemorations', Saint:'Saints', Fast:'Fasts & seasons' }
+};
+function swapObject(target, source){ Object.keys(target).forEach(k => delete target[k]); Object.assign(target, source); }
+
+/* ---------- Switching editions ---------- */
+function applyRite(){
+  const east = isEastern();
+  // Which prayers are shown
+  const keep = LIBRARY_ALL.filter(e => east ? !LATIN_ONLY.has(e.id) : e.rite !== 'eastern');
+  library.length = 0;
+  keep.forEach(e => library.push(e));
+  // Page names, icons, and descriptions
+  Object.entries(RITE_SECTIONS).forEach(([cat, v]) => {
+    if(!SECTIONS[cat]) return;
+    SECTIONS[cat].name = v.name[east ? 1 : 0];
+    if(v.icon) SECTIONS[cat].icon = v.icon[east ? 1 : 0];
+  });
+  Object.entries(RITE_DESC).forEach(([cat, text]) => {
+    if(!(cat in latinDesc)) latinDesc[cat] = CAT_DESC[cat];
+    CAT_DESC[cat] = east ? text : latinDesc[cat];
+  });
+  document.querySelectorAll('.navlink[data-route], .footer-cols [data-route]').forEach(el => {
+    if(!RITE_NAV[el.dataset.route]) return;
+    const node = [...el.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+    if(!node) return;
+    if(!el.dataset.latin) el.dataset.latin = node.textContent.trim();
+    node.textContent = (east ? RITE_NAV[el.dataset.route] : el.dataset.latin) + (el.classList.contains('navlink') ? ' ' : '');
+  });
+  document.querySelectorAll('.navlink[data-cat]').forEach(b => {
+    const sec = SECTIONS[b.dataset.cat], ic = b.querySelector('.nl-icon');
+    if(sec && ic && !ic.classList.contains('nl-spark')) ic.innerHTML = navIcon(sec.icon);
+  });
+  // Calendar
+  const types = east ? CAL_TYPES_EASTERN : CAL_TYPES_LATIN;
+  swapObject(CAL_TYPE_COLOR, types.color);
+  swapObject(CAL_TYPE_RANK, types.rank);
+  swapObject(CAL_TYPE_PLURAL, types.plural);
+  calHidden.clear();
+  // Crosses
+  document.querySelectorAll('svg.mark path').forEach(p => p.setAttribute('d', crossPath()));
+  const icon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+  if(icon){
+    if(!icon.dataset.latin) icon.dataset.latin = icon.getAttribute('href');
+    icon.setAttribute('href', east
+      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#f3e9d2"/><path fill="#7a1f2b" d="${CROSS_PATHS.eastern}"/></svg>`)
+      : icon.dataset.latin);
+  }
+  // The switch itself
+  const btn = document.getElementById('riteToggle');
+  if(btn){
+    btn.innerHTML = `<svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${east ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg>`;
+    btn.title = east ? 'Switch to the Roman Catholic edition' : 'Switch to the Eastern Catholic edition';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  document.querySelectorAll('[data-rite-switch]').forEach(b => { b.textContent = east ? 'Switch to the Roman Catholic edition' : 'Switch to the Eastern Catholic edition'; });
+  // Reset guided prayers that differ between editions
+  rosarySequence = null; stationsStep = null; chapletSequence = null; massStep = null;
+  Object.keys(guidedState).forEach(k => { guidedState[k] = null; });
+}
+
+function setRite(rite){
+  if(rite === 'eastern') document.documentElement.dataset.rite = 'eastern';
+  else delete document.documentElement.dataset.rite;
+  store.set('rite', rite);
+  applyRite();
+  applyRoute(currentPath);
+  toast(rite === 'eastern' ? 'Eastern Catholic edition: Byzantine prayers, calendar, and Divine Liturgy' : 'Roman Catholic edition');
+}
+function toggleRite(){ setRite(isEastern() ? 'latin' : 'eastern'); }
+
+/* ---------- The Jesus Prayer on a prayer rope ---------- */
+const JESUS_PRAYER = 'Lord Jesus Christ, Son of God, have mercy on me, a sinner.';
+let ropeCount = 0;
+
+function ropeSvg(size, count){
+  const cx = 150, cy = 140, r = 112, gap = 18;
+  const knotR = size <= 33 ? 6.6 : size <= 50 ? 5.2 : 3.3;
+  let knots = '';
+  for(let i = 0; i < size; i++){
+    const a = (90 + gap + (360 - 2 * gap) * (i + 0.5) / size) * Math.PI / 180;
+    const marker = size > 33 && (i + 1) % (size === 100 ? 25 : 10) === 0 && i < size - 1;
+    const cls = i < count ? ' done' : i === count ? ' current' : '';
+    knots += `<circle class="rope-knot${cls}${marker ? ' marker' : ''}" cx="${(cx + r * Math.cos(a)).toFixed(1)}" cy="${(cy + r * Math.sin(a)).toFixed(1)}" r="${marker ? knotR + 2.4 : knotR}"/>`;
+  }
+  return `<svg class="rope-svg" viewBox="0 0 300 330" role="img" aria-label="Prayer rope, ${count} of ${size} knots prayed">
+    <circle class="rope-cord" cx="${cx}" cy="${cy}" r="${r}"/>
+    <path class="rope-cord" d="M150 ${cy + r}V262"/>
+    ${knots}
+    <g class="rope-cross" transform="translate(130 252) scale(0.62)"><path d="${CROSS_PATHS.eastern}"/></g>
+    <path class="rope-tassel" d="M150 290v30M144 291l-6 28M156 291l6 28M147 291l-3 29M153 291l3 29"/>
+  </svg>`;
+}
+
+function renderJesusPrayer(){
+  const size = store.get('ropeSize', 33);
+  const color = 'var(--wine)';
+  if(ropeCount >= size){
+    logPrayer('rosary');
+    return renderDevotionDone({ kind:'rope', color, emblem:devoMedal(cardArt('rope')), title:`You have prayed ${size} Jesus Prayers`,
+      text:'Glory to you, O Lord, glory to you.', againLabel:'Pray another rope', again:() => { ropeCount = 0; renderJesusPrayer(); } });
+  }
+  const pray = () => { ropeCount++; renderJesusPrayer(); };
+  const undo = () => { if(ropeCount > 0){ ropeCount--; renderJesusPrayer(); } };
+  devoKeys = { next:pray, back:undo };
+  const hadFocus = document.activeElement && document.activeElement.id === 'ropePray';
+  entryListEl.innerHTML = `
+    <div class="devo devo-rope" style="--devo:${color}">
+      <div class="devo-progress"><span style="width:${(ropeCount / size * 100).toFixed(1)}%"></span></div>
+      <div class="devo-layout has-aside">
+        <aside class="devo-aside rope-aside">${ropeSvg(size, ropeCount)}</aside>
+        <div class="devo-main">
+          <article class="devo-card">
+            <div class="devo-emblem">${devoMedal(cardArt('rope'))}</div>
+            <div class="devo-kicker">The prayer of the heart</div>
+            <h3 class="devo-title">The Jesus Prayer</h3>
+            <div class="devo-rule" aria-hidden="true"></div>
+            <p class="rope-prayer">${escapeHtml(JESUS_PRAYER)}</p>
+            <p class="devo-small">Pray slowly. Many breathe in with “Lord Jesus Christ, Son of God,” and out with “have mercy on me, a sinner.”</p>
+            <div class="rope-count"><strong>${ropeCount}</strong> of ${size}</div>
+            <button class="btn primary pill rope-pray" id="ropePray">Pray a knot</button>
+            <div class="rope-sizes" role="group" aria-label="Knots on the rope">
+              ${[33, 50, 100].map(n => `<button class="patron-chip${n === size ? ' active' : ''}" data-size="${n}" aria-pressed="${n === size}">${n} knots</button>`).join('')}
+            </div>
+          </article>
+          <div class="devo-foot">
+            <button class="text-link" data-act="undo" ${ropeCount ? '' : 'disabled'}>Back one knot</button>
+            <button class="text-link" data-act="reset" ${ropeCount ? '' : 'disabled'}>Start over</button>
+            <span class="devo-keys">Tip: press → or the space bar for each prayer</span>
+          </div>
+          <details class="devo-howto rope-about">
+            <summary>About the Jesus Prayer</summary>
+            <p>The Jesus Prayer comes from the monks of the Egyptian desert and was treasured by the Byzantine Fathers. It joins the plea of the blind man and the tax collector in the Gospels with the holy Name of Jesus. Prayed again and again, it gathers the mind into the heart and teaches us to “pray without ceasing.”</p>
+            <p>A prayer rope (chotki or komboskini) has knots of wool, each tied with seven crossings, and is used to count the prayers. Those who wish to pray it at length are traditionally advised to do so under the guidance of a spiritual father or mother.</p>
+          </details>
+        </div>
+      </div>
+    </div>`;
+  const root = entryListEl.querySelector('.devo');
+  root.querySelector('#ropePray').addEventListener('click', pray);
+  root.querySelector('[data-act="undo"]').addEventListener('click', undo);
+  root.querySelector('[data-act="reset"]').addEventListener('click', () => { ropeCount = 0; renderJesusPrayer(); });
+  root.querySelectorAll('[data-size]').forEach(b => b.addEventListener('click', () => { store.set('ropeSize', Number(b.dataset.size)); ropeCount = Math.min(ropeCount, Number(b.dataset.size) - 1); renderJesusPrayer(); }));
+  root.addEventListener('keydown', ev => { if(ev.key === ' ' && ev.target.id !== 'ropePray' && !ev.target.closest('button, summary')){ ev.preventDefault(); pray(); } });
+  if(hadFocus) root.querySelector('#ropePray').focus({ preventScroll:true });
+}
+
+/* ---------- Byzantine guided prayers ---------- */
+const BYZ_OUR_FATHER = 'Our Father, who art in heaven, hallowed be thy name; thy kingdom come; thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from the evil one.\n\nFor yours is the kingdom, and the power, and the glory, of the Father, and of the Son, and of the Holy Spirit, now and ever and unto ages of ages. Amen.';
+const BYZ_GLORY = 'Glory to the Father, and to the Son, and to the Holy Spirit, now and ever and unto ages of ages. Amen.';
+const prayerText = id => (LIBRARY_ALL.find(e => e.id === id) || {}).content || '';
+const firstPara = id => prayerText(id).split(/\n\s*\n/)[0];
+const EPHREM = ['O Lord and Master of my life, take from me the spirit of sloth, despair, lust of power, and idle talk.',
+  'But give rather the spirit of chastity, humility, patience, and love to your servant.',
+  'Yes, O Lord and King, grant me to see my own transgressions and not to judge my brother, for you are blessed unto ages of ages. Amen.'];
+const rubric = text => `<p class="devo-rubric">${escapeHtml(text)}</p>`;
+
+Object.assign(GUIDED, {
+  trisagion:{
+    color:'var(--gold)', art:'trinity', habit:'chaplet', kicker:'The usual beginning', title:'The Trisagion Prayers',
+    intro:'Nearly every Byzantine service, and the prayers of the faithful at home, begin with these ancient prayers: the call upon the Holy Spirit, the Thrice-Holy Hymn of the angels, and the Lord’s Prayer.',
+    small:'About 5 minutes', begin:'Begin the prayers',
+    steps:() => [
+      { kicker:'Beginning', title:'In the name of the Father', body:`<p>In the name of the Father, and of the Son, and of the Holy Spirit. Amen.</p><p>Glory to you, our God, glory to you!</p>${rubric('In the Byzantine tradition the Sign of the Cross is made from right to left, with the thumb and first two fingers joined in honor of the Trinity.')}` },
+      { kicker:'To the Holy Spirit', title:'O Heavenly King', body:devoParas(firstPara('pe1')) },
+      { kicker:'The Thrice-Holy Hymn', title:'Holy God', body:`<p>Holy God, Holy Mighty, Holy Immortal, have mercy on us.</p>${rubric('Pray it three times, making the Sign of the Cross and bowing each time.')}`, extra:devoBeadRow(3, 0, 'Three times') },
+      { kicker:'To the Holy Trinity', title:'Glory… O Most Holy Trinity', body:devoParas(BYZ_GLORY + '\n\n' + prayerText('pe4')) },
+      { kicker:'The Lord’s Prayer', title:'Our Father', body:devoParas(BYZ_GLORY + '\n\n' + BYZ_OUR_FATHER) },
+      { kicker:'Conclusion', title:'Lord, have mercy', body:`<p>Lord, have mercy.</p>${rubric('Pray it twelve times.')}<p>Through the prayers of our holy fathers, Lord Jesus Christ our God, have mercy on us and save us. Amen.</p>` }
+    ],
+    doneTitle:'You have prayed the Trisagion Prayers', doneText:'Through the prayers of our holy fathers, Lord Jesus Christ our God, have mercy on us and save us. Amen.', again:'Pray again'
+  },
+  theotokos:{
+    color:'var(--indigo)', art:'lily', habit:'angelus', kicker:'The Mother of God', title:'Hymns to the Theotokos',
+    intro:'The Eastern Churches honor the Virgin Mary above all as the Theotokos, the one who gave birth to God. These three hymns are among the best loved in the Byzantine tradition, and may be prayed at any hour.',
+    small:'About 3 minutes', begin:'Begin',
+    steps:() => [
+      { kicker:'The Angelic Salutation', title:'Rejoice, O Virgin Theotokos', body:devoParas(prayerText('pe5')) },
+      { kicker:'Axion Estin', title:'It Is Truly Right', body:devoParas(prayerText('pe6')) },
+      { kicker:'The oldest Marian prayer', title:'Beneath Your Compassion', body:'<p>Beneath your compassion we take refuge, O Theotokos. Do not despise our prayers in our need, but deliver us from danger, O only pure, only blessed one.</p>' },
+      { kicker:'Conclusion', title:'Most Holy Theotokos, save us', body:'<p>Most holy Theotokos, save us.</p><p>Through the prayers of the Theotokos, O Savior, save us.</p>' }
+    ],
+    doneTitle:'You have honored the Theotokos', doneText:'More honorable than the Cherubim, and beyond compare more glorious than the Seraphim.', again:'Pray again'
+  },
+  ephrem:{
+    color:'var(--purple)', art:'eastcross', habit:'stations', kicker:'Great Lent', title:'The Prayer of St. Ephrem',
+    intro:'This short prayer of St. Ephrem the Syrian is the heart of Byzantine Lenten prayer. On the weekdays of Great Lent it is prayed with full prostrations, the whole body bowing to the ground in repentance, and it can be prayed in this way at home.',
+    small:'About 5 minutes · Prostrations are not made on Saturdays, Sundays, or during the Paschal season', begin:'Begin the prayer',
+    steps:() => [
+      { kicker:'First part', title:'O Lord and Master of my life', body:`<p>${escapeHtml(EPHREM[0])}</p>${rubric('Make a prostration.')}` },
+      { kicker:'Second part', title:'But give rather', body:`<p>${escapeHtml(EPHREM[1])}</p>${rubric('Make a prostration.')}` },
+      { kicker:'Third part', title:'Yes, O Lord and King', body:`<p>${escapeHtml(EPHREM[2])}</p>${rubric('Make a prostration.')}` },
+      { kicker:'Twelve bows', title:'O God, cleanse me, a sinner', body:`<p>O God, cleanse me, a sinner.</p>${rubric('Bow from the waist twelve times, praying these words each time.')}`, extra:devoBeadRow(12, 0, 'Twelve bows') },
+      { kicker:'Once more', title:'The whole prayer', body:devoParas(EPHREM.join('\n')) + rubric('Pray the whole prayer again, and make one final prostration.') }
+    ],
+    doneTitle:'You have prayed the Prayer of St. Ephrem', doneText:'Grant me to see my own transgressions, and not to judge my brother.', again:'Pray again'
+  },
+  evening:{
+    color:'var(--indigo)', art:'lantern', habit:'examen', kicker:'Before sleep', title:'Evening Prayer',
+    intro:'The Eastern Fathers taught “watchfulness” of the heart. Before sleep, place yourself before God, thank him for the day, look honestly at your thoughts and actions, ask his mercy, and entrust the night to him.',
+    small:'About 10 minutes', begin:'Begin',
+    steps:() => [
+      { kicker:'Stillness', title:'Come before God', body:`<p>Be still, make the Sign of the Cross, and remember that God is present and sees you with love.</p><p class="devo-pray">${escapeHtml(firstPara('pe1'))}</p>` },
+      { kicker:'Thanksgiving', title:'Give thanks', body:`<p>Thank God for the gifts of this day, naming them one by one.</p>${promptList(['For whom am I grateful today?', 'Where did I see God’s goodness?', 'What grace carried me through a hard moment?'])}` },
+      { kicker:'Watchfulness', title:'Look into your heart', body:`<p>Go back over the day and watch your thoughts, words, and actions as God would show them to you.</p>${promptList(['Which thoughts did I welcome that led me away from God?', 'Where did I judge my brother or sister?', 'Where did I love, forgive, or serve?'])}` },
+      { kicker:'Repentance', title:'Ask for mercy', body:`<p>Bring your sins to the merciful Lord without despair. If you know of a serious sin, resolve to approach the Holy Mystery of Repentance soon.</p><p class="devo-pray">${escapeHtml(JESUS_PRAYER)}</p>${rubric('Pray the Jesus Prayer slowly, several times.')}` },
+      { kicker:'Entrust the night', title:'Into God’s keeping', body:`<p>Entrust yourself, your family, and all whom you love to God for the night.</p><p class="devo-pray">${escapeHtml(BYZ_GLORY)}</p><p class="devo-pray">Through the prayers of our holy fathers, Lord Jesus Christ our God, have mercy on us and save us. Amen.</p>` }
+    ],
+    doneTitle:'Good night, in the peace of Christ', doneText:'Glory to you, O Lord, glory to you.', again:'Pray again'
+  }
+});
+Object.assign(guidedState, { trisagion:null, theotokos:null, ephrem:null, evening:null });
+
+/* ---------- The Divine Liturgy explained ---------- */
+POSTURE_ICONS.bow = '<circle cx="15" cy="5.5" r="2.2"/><path d="M13.5 8 8 12.5l3 1.5M8 12.5V21M8 21h5"/>';
+POSTURE_NAME.bow = 'Bow';
+const LITURGY_PARTS = [
+  { section:'Preparation', parts:[
+    { name:'Proskomedia', posture:'stand', note:'Usually done before the Liturgy begins, often while the Hours are read',
+      what:'At a side table, the priest prepares the bread and wine. From a loaf of leavened bread (prosphora) he cuts the “Lamb,” a square stamped IC XC NIKA, “Jesus Christ conquers,” and places small particles beside it for the Theotokos, the saints, and the living and the departed.',
+      why:'The whole Church, in heaven and on earth, is gathered around Christ on the diskos.' }
+  ]},
+  { section:'Liturgy of the Word', parts:[
+    { name:'Opening Blessing', posture:'stand',
+      what:'The priest lifts the Gospel book and proclaims: “Blessed is the Kingdom of the Father, and of the Son, and of the Holy Spirit, now and ever and unto ages of ages.” All answer “Amen,” making the Sign of the Cross.',
+      why:'The Liturgy begins by announcing the Kingdom: our worship on earth joins the worship of heaven.' },
+    { name:'Great Litany', posture:'stand',
+      what:'“In peace let us pray to the Lord.” The deacon or priest prays for peace, for the Church, the city, travelers, the sick, and all in need, and the people answer each petition, “Lord, have mercy.”',
+      why:'The whole people of God intercede for the whole world.' },
+    { name:'Antiphons', posture:'stand',
+      what:'Three antiphons are sung, usually psalms, and on Sundays often the Beatitudes. After the second, all sing the ancient hymn “Only-begotten Son and Word of God.”',
+      why:'We prepare our hearts with the psalms, as the Church has done since the beginning.' },
+    { name:'Little Entrance', posture:'stand',
+      what:'The clergy carry the Gospel book in procession and back through the Royal Doors. The deacon proclaims, “Wisdom! Be attentive!” and all sing, “Come, let us worship and fall down before Christ.”',
+      why:'Christ comes among his people to teach them; the Gospel book represents Christ himself.' },
+    { name:'Troparia and Kontakia', posture:'stand',
+      what:'The short hymns of the day are sung: the troparion and kontakion of the Resurrection or of the feast, of the saint of the day, and of the church’s patron.',
+      why:'Each day’s hymns teach the faith through poetry and song.' },
+    { name:'The Trisagion', posture:'stand',
+      what:'“Holy God, Holy Mighty, Holy Immortal, have mercy on us,” sung three times and more. On some great feasts another hymn takes its place.',
+      why:'The Thrice-Holy Hymn joins our voices to the angels who praise God without ceasing.' },
+    { name:'Prokeimenon and Epistle', posture:'sit', note:'In many parishes the people sit for the Epistle; in others all stand',
+      what:'A verse from the psalms, the prokeimenon, is sung. Then a reader proclaims the Epistle, usually from the letters of the apostles.',
+      why:'The apostles teach us how to live in Christ.' },
+    { name:'Alleluia', posture:'stand',
+      what:'“Alleluia” is sung three times with psalm verses while the priest incenses the altar and the people.',
+      why:'The Church rejoices as the Gospel is about to be proclaimed.' },
+    { name:'Holy Gospel', posture:'stand',
+      what:'“Wisdom! Let us stand aright! Let us listen to the Holy Gospel.” Before and after the reading, the people sing, “Glory to you, O Lord, glory to you.”',
+      why:'Christ himself speaks to us in the Gospel.' },
+    { name:'Homily', posture:'sit',
+      what:'The priest or deacon preaches on the Scriptures of the day.',
+      why:'The word of God is meant to be understood and lived.' },
+    { name:'Litany of Fervent Supplication', posture:'stand',
+      what:'Petitions are sung for the Church, its pastors, civil authorities, the sick, and the departed, with a threefold “Lord, have mercy.” Litanies for the departed and for the catechumens may follow.',
+      why:'Our prayer grows more fervent as we prepare to approach the altar.' }
+  ]},
+  { section:'Liturgy of the Faithful', parts:[
+    { name:'Cherubic Hymn and Great Entrance', posture:'bow', note:'Bow as the gifts pass by',
+      what:'“Let us, who mystically represent the Cherubim…” is sung slowly while the priest incenses the church. The gifts of bread and wine are carried in solemn procession, with prayers for the Church, and placed on the altar.',
+      why:'We lay aside all earthly cares to receive the King of all, escorted by the angels.' },
+    { name:'Kiss of Peace', posture:'stand',
+      what:'After a litany, the priest blesses all: “Peace be to all.” The deacon calls, “Let us love one another, that with one mind we may confess…” and the people complete it: “Father, Son, and Holy Spirit, the Trinity one in essence and undivided.”',
+      why:'Love for one another comes before the confession of faith.' },
+    { name:'The Creed', posture:'stand',
+      what:'“The doors! The doors! In wisdom let us be attentive!” All profess the Nicene Creed together.',
+      why:'In ancient times the doors were closed here, and only the baptized remained for the Holy Mysteries.' },
+    { name:'The Anaphora', posture:'stand',
+      what:'“Let us stand well; let us stand with fear; let us be attentive to offer the holy oblation in peace.” “A mercy of peace, a sacrifice of praise.” The priest gives thanks, all sing “Holy, holy, holy, Lord of hosts,” and he recalls Christ’s words at the Mystical Supper over the bread and the cup. The people answer, “Amen.”',
+      why:'The great prayer of thanksgiving offers to the Father the one sacrifice of Christ.' },
+    { name:'The Epiclesis', posture:'bow', note:'A deep bow or prostration; prostrations are not made on Sundays or in the Paschal season',
+      what:'The priest asks the Father to send down the Holy Spirit “upon us and upon these gifts,” making the bread the precious Body of Christ and the cup his precious Blood.',
+      why:'The Eastern Churches give special emphasis to the Holy Spirit, by whose power the gifts become the Body and Blood of Christ.' },
+    { name:'It Is Truly Right', posture:'stand',
+      what:'The priest commemorates the Theotokos, and the people sing the hymn to her, “It is truly right to bless you, O Theotokos…” (on great feasts, a special hymn). The commemorations of the saints, the living, and the departed follow.',
+      why:'Mary, first among the saints, stands at the heart of the Church’s prayer.' },
+    { name:'The Lord’s Prayer', posture:'stand',
+      what:'After another litany, all sing the Our Father, and the priest concludes: “For yours is the kingdom, and the power, and the glory…”',
+      why:'We dare to call God our Father before we receive his Son.' },
+    { name:'Holy Things for the Holy', posture:'bow',
+      what:'The priest lifts up the Holy Bread: “Let us be attentive! Holy Things for the holy!” The people answer: “One is holy, one is Lord, Jesus Christ, to the glory of God the Father. Amen.”',
+      why:'Only God is holy, and he makes us holy by giving us himself.' },
+    { name:'Holy Communion', posture:'stand',
+      what:'The faithful approach with arms crossed over the chest. The priest gives Communion under both kinds from a spoon, naming each communicant. In the Byzantine Churches, infants receive Communion from the day of their Baptism and Chrismation.',
+      why:'Christ gives himself whole and entire to his people, young and old.' },
+    { name:'Thanksgiving', posture:'stand',
+      what:'The people sing, “We have seen the true Light; we have received the heavenly Spirit; we have found the true faith, worshipping the undivided Trinity, who has saved us.”',
+      why:'Having received Christ, we become witnesses to the Light.' }
+  ]},
+  { section:'Dismissal', parts:[
+    { name:'Prayer behind the Ambo and Dismissal', posture:'stand',
+      what:'The priest prays for the people, then dismisses all, calling on the prayers of the Theotokos and the saints. All come forward to venerate the cross and receive the antidoron, blessed bread.',
+      why:'“Let us go forth in peace”: we carry what we have received into the world.' }
+  ]}
+];
+// The page title and intro change with the edition
+function massIntroText(){
+  return isEastern()
+    ? 'The Divine Liturgy is heaven on earth: the one sacrifice of Christ made present and the banquet of his Body and Blood. Here is every part of the Divine Liturgy of St. John Chrysostom, the Liturgy celebrated on most days in the Byzantine Churches, in order, with what happens and why it matters.'
+    : 'The Mass is the source and summit of the Christian life: the one sacrifice of Christ on the Cross made present, and the banquet in which He gives us His Body and Blood. Here is every part of the Mass, in order, with what to do and why it matters.';
+}
+function massPostureNote(){
+  return isEastern()
+    ? 'In the Byzantine tradition the faithful mostly stand, bow, and make the Sign of the Cross often; customs for sitting vary from parish to parish.'
+    : 'Postures are those customary in the United States, and vary a little from country to country.';
+}
+
+/* ---------- Eastern Catholic glossary terms ---------- */
+GLOSSARY.push(
+  ['Antidoron', 'Blessed bread from the prosphora, given to all at the end of the Divine Liturgy. The name means “instead of the gift.”'],
+  ['Akathist', 'A long hymn of praise sung standing, especially the Akathist to the Theotokos sung during Great Lent.'],
+  ['Byzantine Rite', 'The liturgical tradition of the Church of Constantinople, used by the Eastern Orthodox and by fourteen Eastern Catholic Churches.'],
+  ['Chotki', 'A prayer rope of knotted wool used to pray the Jesus Prayer; called komboskini in Greek.'],
+  ['Chrismation', 'The Eastern name for Confirmation. In the Eastern Churches it is given together with Baptism and the Eucharist, even to infants.'],
+  ['Divine Liturgy', 'The Eastern name for the Eucharistic celebration, the Mass. The most common form is the Liturgy of St. John Chrysostom.'],
+  ['Eastern Catholic Churches', 'The twenty-three Churches in full communion with the pope that keep the liturgy, spirituality, and law of the Christian East.'],
+  ['Eparchy', 'The Eastern name for a diocese. It is led by an eparch, or bishop.'],
+  ['Epiclesis', 'The prayer in the Eucharistic Prayer asking the Father to send the Holy Spirit upon the gifts.'],
+  ['Hesychasm', 'The tradition of inner stillness (hesychia) and unceasing prayer, especially through the Jesus Prayer.'],
+  ['Holy Mysteries', 'The Eastern name for the sacraments.'],
+  ['Iconostasis', 'The wall of icons between the nave and the altar in an Eastern church, with the Royal Doors in the center.'],
+  ['Kontakion', 'A short hymn summarizing the meaning of a feast or the life of a saint.'],
+  ['Major Archbishop', 'The head of certain Eastern Catholic Churches, such as the Ukrainian Greek Catholic Church, with authority similar to a patriarch.'],
+  ['Pascha', 'The Eastern name for Easter, from the Hebrew word for Passover.'],
+  ['Prosphora', 'The leavened bread offered for the Divine Liturgy, stamped with a cross and the letters IC XC NIKA.'],
+  ['Proskomedia', 'The preparation of the bread and wine at the side table before the Divine Liturgy.'],
+  ['Prostration', 'A full bow to the ground, made in repentance and adoration, especially during Great Lent.'],
+  ['Royal Doors', 'The central doors of the iconostasis, through which the Gospel and the gifts are carried.'],
+  ['Sui iuris Church', 'A Church “of its own law”: one of the twenty-four Churches, Latin and Eastern, that together make up the Catholic Church.'],
+  ['Theosis', 'Deification: the transformation of the human person by grace into a sharer of the divine nature.'],
+  ['Theotokos', 'Greek for “God-bearer,” the title of the Virgin Mary affirmed by the Council of Ephesus in 431.'],
+  ['Troparion', 'A short hymn of a feast or a saint, sung at the services of the day.'],
+  ['Typikon', 'The book that gives the order of services for each day of the Byzantine liturgical year.'],
+  ['Vespers', 'The evening service of prayer, with which each liturgical day begins in the Eastern tradition.']
+);
+GLOSSARY.sort((a, b) => a[0].localeCompare(b[0]));
+
+/* ---------- Edition-aware labels and cards ---------- */
+const HABIT_EAST = {
+  morning:['Morning Prayers', 'Begin the day with God', 'pe11'], angelus:['Hymns to the Theotokos', 'Honor the Mother of God'],
+  rosary:['Jesus Prayer', 'On the prayer rope'], mass:['Divine Liturgy', 'Sunday or weekday Liturgy'], chaplet:['Trisagion Prayers', 'The usual beginning'],
+  examen:['Evening Prayer', 'Look back on the day with God'], stations:['Prayer of St. Ephrem', 'Especially in Great Lent'],
+  adoration:['Akathist', 'A hymn of praise'], confession:['Holy Confession', 'The Mystery of Repentance']
+};
+function habitName(h){ return isEastern() && HABIT_EAST[h.key] ? HABIT_EAST[h.key][0] : h.name; }
+function habitNote(h){ return isEastern() && HABIT_EAST[h.key] ? HABIT_EAST[h.key][1] : h.note; }
+function habitOpen(h){ return isEastern() && HABIT_EAST[h.key] && HABIT_EAST[h.key][2] ? HABIT_EAST[h.key][2] : h.open; }
+
+function easternPrayCards(){
+  const novenas = store.get('novenas', []).filter(n => n.done.filter(Boolean).length < 9).length;
+  const streak = prayerStats().current;
+  return [
+    { route:'pray/rosary', big:true, kicker:'The prayer of the heart', title:'The Jesus Prayer',
+      desc:'Pray the ancient Jesus Prayer on a prayer rope, knot by knot, gathering the mind into the heart.',
+      extra:`<p class="rope-prayer small">${escapeHtml(JESUS_PRAYER)}</p>`, meta:'33, 50, or 100 knots', cta:'Begin praying' },
+    { route:'pray/prayers', desc:'The prayers of the Byzantine tradition as illustrated cards, from O Heavenly King to It Is Truly Right.', meta:`${countOf('prayer')} prayer cards` },
+    { route:'pray/chaplet', desc:'The “usual beginning” of Byzantine prayer: O Heavenly King, the Thrice-Holy Hymn, and the Lord’s Prayer.', meta:'About 5 minutes' },
+    { route:'pray/angelus', desc:'Honor the Mother of God with the beloved hymns of the East.', meta:'About 3 minutes' },
+    { route:'pray/stations', desc:'The great Lenten prayer of St. Ephrem the Syrian, prayed with prostrations.', meta:'About 5 minutes' },
+    { route:'pray/examen', desc:'Close the day with God in stillness, thanksgiving, watchfulness, and repentance.', meta:'About 10 minutes' },
+    { route:'pray/lectio', desc:'Pray slowly with a passage of Scripture: read, reflect, respond, and rest.', meta:'About 15 minutes' },
+    { route:'pray/examination', desc:'Prepare for the Holy Mystery of Repentance with a guided examination of conscience.', meta:'Private: nothing is saved' },
+    { route:'pray/timer', desc:'Set aside time for silent prayer, with a gentle bell to begin and end.', meta:'5 minutes to an hour' },
+    { route:'pray/tracker', desc:'A private record of your daily prayer, with streaks and a calendar of your faithfulness.', meta:streak ? `${streak}-day streak` : 'Stored only on this device' },
+    { route:'mine', title:'Novenas & Intentions', icon:'mine', desc:'Keep a list of your prayer intentions, and pray a nine-day novena with any saint.', meta:novenas ? `${novenas} novena${novenas > 1 ? 's' : ''} in progress` : 'Stored only on this device' }
+  ];
+}
+
+function riteBannerHtml(){
+  const cross = `<span class="rite-banner-cross"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${isEastern() ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg></span>`;
+  return isEastern()
+    ? `<section class="rite-banner">${cross}<div><strong>The Eastern Catholic edition</strong> follows the Byzantine tradition, shared by the Ukrainian, Ruthenian, Melkite, Romanian, and other Greek Catholic Churches. The Maronite, Syro-Malabar, Chaldean, Armenian, Coptic, and other Eastern Catholic Churches have their own liturgies. <button class="text-link" data-open="t58">About the Eastern Catholic Churches →</button></div><button class="btn quiet" data-rite-switch>Switch to the Roman Catholic edition</button></section>`
+    : `<section class="rite-banner">${cross}<div><strong>Eastern Catholic?</strong> Switch to the edition for the Byzantine tradition, with the Divine Liturgy, the Jesus Prayer, Byzantine prayers, and the Byzantine calendar.</div><button class="btn quiet" data-rite-switch>Switch to the Eastern Catholic edition</button></section>`;
+}
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -8751,6 +9520,8 @@ const NAV_ICONS = {
   quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".7" fill="currentColor"/>',
   shop:'<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
   search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+  rope:'<circle cx="12" cy="9.5" r="6.5" stroke-dasharray="1.4 2"/><path d="M12 16v5.5M10 18.5h4M10.5 20.7l3 .8"/>',
+  eastcross:'<path d="M12 2.5v19M9.5 5.5h5M7 9h10M9 16.4l6 1.9"/>',
   quote:'<path d="M4 11.5C4 8 6 6 9 5.5M4 11.5h4.5V17H4zM13.5 11.5c0-3.5 2-5.5 5-6M13.5 11.5H18V17h-4.5z"/>',
   angelus:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0M12 3v2"/>',
   examen:'<path d="M12 3c-1.5 2-2.5 3.3-2.5 4.7a2.5 2.5 0 0 0 5 0C14.5 6.3 13.5 5 12 3z"/><rect x="9" y="11.5" width="6" height="9.5" rx="1"/><path d="M6.5 21h11"/>',
@@ -8835,6 +9606,7 @@ const HUBS = {
     eyebrow:'Prayer & devotion', title:'Pray',
     intro:'Pray with the whole Church: the prayers of the saints, the Rosary, the Way of the Cross, and quiet time alone with God.',
     cards:() => {
+      if(isEastern()) return easternPrayCards();
       const m = MYSTERIES[mysterySetFor(startOfToday())];
       const novenas = store.get('novenas', []).filter(n => n.done.filter(Boolean).length < 9).length;
       return [
@@ -8888,7 +9660,7 @@ const HUBS = {
         links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions']], meta:`${countOf('history')} events` },
       { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
       { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
-      { route:'learn/mass', desc:'Every part of the Mass, with when to stand, sit, and kneel, and why. Follow along on your phone.', meta:`${MASS_PARTS.reduce((n, s) => n + s.parts.length, 0)} parts` },
+      { route:'learn/mass', desc:isEastern() ? 'Every part of the Divine Liturgy of St. John Chrysostom, with what happens and why. Follow along on your phone.' : 'Every part of the Mass, with when to stand, sit, and kneel, and why. Follow along on your phone.', meta:`${(isEastern() ? LITURGY_PARTS : MASS_PARTS).reduce((n, s) => n + s.parts.length, 0)} parts` },
       { route:'learn/glossary', desc:'Short, clear definitions of the words of the faith, from Absolution to the Vulgate.', meta:`${GLOSSARY.length} terms` },
       { route:'resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
       { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
@@ -9001,17 +9773,18 @@ function renderHome(){
     <section class="home-hero" style="--season:${season.color}">
       <div class="hero-text">
         <div class="hero-date">${WEEKDAY_NAMES[d.getDay()]}, ${MONTH_NAMES[d.getMonth()]} ${d.getDate()}
-          <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)}</span></div>
+          <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)}</span>${isEastern() ? '<span class="rite-pill">Eastern Catholic edition</span>' : ''}</div>
         <h1>Pray with the Church.<br>Know the faith.<br>Walk with the saints.</h1>
         <p class="hero-tagline">Prayers, saints, Scripture, and two thousand years of Church history, gathered in one place. Free, with no ads, and no account needed to read or pray.</p>
         <div class="hero-actions">
           <button class="btn primary pill" data-route="today">Open today</button>
-          <button class="text-link hero-link" data-route="pray/rosary">Pray the ${escapeHtml(mysteries.name)} →</button>
+          <button class="text-link hero-link" data-route="pray/rosary">${isEastern() ? 'Pray the Jesus Prayer' : 'Pray the ' + escapeHtml(mysteries.name)} →</button>
         </div>
         <p class="hero-feast">${feastLine}</p>
       </div>
       ${heroRosette()}
     </section>
+    ${riteBannerHtml()}
 
     <section class="home-section">
       <div class="section-eyebrow">Today in the Church</div>
@@ -9041,10 +9814,10 @@ function renderHome(){
       <div class="section-eyebrow">What's inside</div>
       <h2 class="section-title">Four ways in.</h2>
       <div class="pillars">
-        ${pillar('prayer', 'var(--wine)', 'Pray', `${byCat('prayer').length} prayers as illustrated cards, the Rosary, the Stations of the Cross, and the Divine Mercy Chaplet.`, 'pray')}
+        ${pillar('prayer', 'var(--wine)', 'Pray', isEastern() ? `${byCat('prayer').length} prayers as illustrated cards, the Jesus Prayer on a prayer rope, the Trisagion Prayers, and the Prayer of St. Ephrem.` : `${byCat('prayer').length} prayers as illustrated cards, the Rosary, the Stations of the Cross, and the Divine Mercy Chaplet.`, 'pray')}
         ${pillar('saint', 'var(--gold)', 'The Saints', `${byCat('saint').length} saints with their lives, feast days, patronages, and prayers of intercession.`, 'library/saints')}
         ${pillar('theology', 'var(--purple)', 'Learn the Faith', `${byCat('theology').length} teachings with Scripture, the Catechism, and answers to objections, plus ${byCat('history').length} events of Church history.`, 'learn')}
-        ${pillar('calendar', 'var(--green)', 'The Church’s Year', 'Every feast and season, with the saint of the day, the liturgical color, and today’s readings.', 'calendar')}
+        ${pillar('calendar', 'var(--green)', 'The Church’s Year', isEastern() ? 'The Byzantine year of feasts and fasts, with the saints of each day.' : 'Every feast and season, with the saint of the day, the liturgical color, and today’s readings.', 'calendar')}
       </div>
     </section>
 
@@ -9053,9 +9826,7 @@ function renderHome(){
       <h2 class="section-title">Begin where you stand.</h2>
       <div class="begin-chips">
         <button class="hub-chip" data-open="p2">The Our Father</button>
-        <button class="hub-chip" data-open="p3">The Hail Mary</button>
-        <button class="hub-chip" data-open="p5">The Apostles’ Creed</button>
-        <button class="hub-chip" data-route="pray/rosary">The Rosary</button>
+        ${isEastern() ? '<button class="hub-chip" data-open="pe1">O Heavenly King</button><button class="hub-chip" data-open="pe5">Rejoice, O Virgin Theotokos</button><button class="hub-chip" data-open="pe9">The Nicene Creed</button><button class="hub-chip" data-route="pray/rosary">The Jesus Prayer</button>' : '<button class="hub-chip" data-open="p3">The Hail Mary</button><button class="hub-chip" data-open="p5">The Apostles’ Creed</button><button class="hub-chip" data-route="pray/rosary">The Rosary</button>'}
         <button class="hub-chip" data-route="today">Saint of the day</button>
         <button class="hub-chip" data-route="pray/examination">Examination of Conscience</button>
         <button class="hub-chip" data-route="learn/theology/beliefs">Core Catholic Beliefs</button>
@@ -9147,7 +9918,7 @@ function renderHome(){
   const up = [];
   for(let i = 1; i <= 40 && up.length < 5; i++){
     const day = addDays(d, i);
-    observancesFor(day).filter(o => ['Solemnity', 'Feast', 'Memorial'].includes(o.type)).forEach(o => { if(up.length < 5) up.push({ day, o }); });
+    observancesFor(day).filter(o => ['Solemnity', 'Great Feast', 'Feast', 'Memorial', 'Commemoration'].includes(o.type)).forEach(o => { if(up.length < 5) up.push({ day, o }); });
   }
   wrap.querySelector('#homeUpcoming').innerHTML = up.map((u, i) => `
     <button class="upcoming-item" data-i="${i}">
@@ -10335,6 +11106,7 @@ function renderRosaryStart(){
 
 function renderRosary(){
   entryListEl.innerHTML = '';
+  if(isEastern()) return renderJesusPrayer();
   if(!rosarySequence) return renderRosaryStart();
   const set = MYSTERIES[rosarySet], style = MYSTERY_STYLE[rosarySet];
   const setShort = set.name.replace(' Mysteries', '');
@@ -10505,6 +11277,7 @@ function renderStationsStart(){
 
 function renderStations(){
   entryListEl.innerHTML = '';
+  if(isEastern()) return renderGuided('ephrem');
   if(stationsStep === null) return renderStationsStart();
   const total = STATIONS_DATA.length;
   const again = () => { stationsStep = null; renderStations(); };
@@ -10617,6 +11390,7 @@ function renderChapletStart(){
 
 function renderChaplet(){
   entryListEl.innerHTML = '';
+  if(isEastern()) return renderGuided('trisagion');
   if(!chapletSequence) return renderChapletStart();
   const total = chapletSequence.length;
   const again = () => { chapletSequence = null; chapletStep = 0; renderChaplet(); };
@@ -10648,6 +11422,13 @@ function renderChaplet(){
    INIT
    ========================================================= */
 // Deep links: #/library/saints opens a page (older #saint links still work); ?q=joseph runs a search
+applyRite();
+document.addEventListener('click', e => {
+  if(!e.target.closest('#riteToggle, .rite-switch-link, [data-rite-switch]')) return;
+  e.preventDefault();
+  setNavOpen(false);
+  toggleRite();
+});
 (function startRoute(){
   const shared = /^#read=/.test(location.hash);
   const route = shared ? 'home' : routeFromHash();
