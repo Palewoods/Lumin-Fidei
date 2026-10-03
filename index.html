@@ -1018,6 +1018,8 @@
   .read-quotes h3{margin:0 0 10px; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);}
   .read-quotes blockquote{margin:0 0 14px; font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-style:italic; line-height:1.4;}
   .read-quotes cite{display:block; margin-top:4px; font-family:'Source Serif 4', serif; font-size:0.78rem; font-style:normal; color:var(--ink-soft);}
+  .daily-cal-link{display:inline-flex; align-items:center; gap:6px; margin-left:auto;}
+  .daily-cal-link svg{width:16px; height:16px;}
   .home-quote{margin:22px 0; padding:24px 26px; border-radius:20px; border:1px solid var(--line); text-align:center;
     background:linear-gradient(180deg, color-mix(in srgb, var(--gold) 8%, var(--parchment-light)), var(--parchment-light));}
   .home-quote blockquote{margin:8px auto 14px; max-width:720px; font-family:'Cormorant Garamond', serif; font-size:clamp(1.35rem, 2.6vw, 1.75rem); font-style:italic; line-height:1.35;}
@@ -1886,7 +1888,7 @@
   .hero-rosette{max-width:380px; justify-self:center;}
 
   /* ---------- Four ways in ---------- */
-  .pillars{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px;}
+  .pillars{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px;}
   .pillar{
     display:flex; flex-direction:column; align-items:flex-start; gap:10px; text-align:left; cursor:pointer;
     padding:26px 22px; border-radius:18px; border:1px solid var(--line); background:var(--parchment-light);
@@ -2116,11 +2118,11 @@
     <nav class="topnav" id="topnav" aria-label="Main">
       <button class="topnav-link" data-route="today">Today</button>
       <button class="topnav-link" data-route="pray">Pray</button>
+      <button class="topnav-link" data-route="saints">Saints</button>
       <button class="topnav-link" data-route="library">Library</button>
       <button class="topnav-link" data-route="learn">Learn</button>
-      <button class="topnav-link" data-route="calendar">Calendar</button>
+      <button class="topnav-link" data-route="church">Church</button>
       <button class="topnav-link" data-route="community">Community</button>
-      <button class="topnav-link" data-route="resources">Resources</button>
     </nav>
     <div class="searchbar" role="search">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
@@ -2170,31 +2172,41 @@
       </ul>
     </div>
     <div class="nav-group">
+      <button class="group-label group-link" data-route="saints">Saints ›</button>
+      <ul>
+        <li><button class="navlink" data-route="saints/all" data-cat="saint">All Saints <span class="count" id="count-saint"></span></button></li>
+        <li><button class="navlink" data-route="saints/patron-finder" data-cat="patronfinder">Find Your Patron Saint</button></li>
+        <li><button class="navlink" data-route="saints/quotes" data-cat="quotes">Quotes of the Saints</button></li>
+        <li><button class="navlink" data-route="saints/icons" data-cat="icons">Famous Icons</button></li>
+      </ul>
+    </div>
+    <div class="nav-group">
       <button class="group-label group-link" data-route="library">Library ›</button>
       <ul>
-        <li><button class="navlink" data-route="library/saints" data-cat="saint">Saints <span class="count" id="count-saint"></span></button></li>
-        <li><button class="navlink" data-route="library/saints/patron-finder" data-cat="patronfinder">Find Your Patron Saint</button></li>
-        <li><button class="navlink" data-route="library/quotes" data-cat="quotes">Quotes of the Saints</button></li>
-        <li><button class="navlink" data-route="library/books" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
         <li><button class="navlink" data-route="library/bible" data-cat="bible">The Bible <span class="count" id="count-bible"></span></button></li>
-        <li><button class="navlink" data-route="library/all" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
+        <li><button class="navlink" data-route="library/books" data-cat="book">Books <span class="count" id="count-book"></span></button></li>
+        <li><button class="navlink" data-route="library/plans" data-cat="plan">Bible Reading Plans</button></li>
+        <li><button class="navlink" data-route="library/resources" data-cat="resources">Learning Resources</button></li>
         <li><button class="navlink" data-route="library/shop" data-cat="shop">Shop</button></li>
+        <li><button class="navlink" data-route="library/all" data-cat="all">Browse everything <span class="count" id="count-all"></span></button></li>
       </ul>
     </div>
     <div class="nav-group">
       <button class="group-label group-link" data-route="learn">Learn ›</button>
       <ul>
         <li><button class="navlink" data-route="learn/theology" data-cat="theology">Theology <span class="count" id="count-theology"></span></button></li>
-        <li><button class="navlink" data-route="learn/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
-        <li><button class="navlink" data-route="learn/plans" data-cat="plan">Bible Reading Plans</button></li>
-        <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
         <li><button class="navlink" data-route="learn/mass" data-cat="mass">The Mass Explained</button></li>
         <li><button class="navlink" data-route="learn/glossary" data-cat="glossary">Catholic Glossary</button></li>
-        <li><button class="navlink" data-route="learn/icons" data-cat="icons">Famous Icons</button></li>
-        <li><button class="navlink" data-route="learn/history/popes" data-cat="popes">The Popes</button></li>
-        <li><button class="navlink" data-route="learn/orders" data-cat="orders">Religious Orders</button></li>
-        <li><button class="navlink" data-route="learn/eastern-churches" data-cat="easternchurches">The Eastern Catholic Churches</button></li>
-        <li><button class="navlink" data-route="resources" data-cat="resources">Learning Resources</button></li>
+        <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <button class="group-label group-link" data-route="church">The Church ›</button>
+      <ul>
+        <li><button class="navlink" data-route="church/history" data-cat="history">Church History <span class="count" id="count-history"></span></button></li>
+        <li><button class="navlink" data-route="church/popes" data-cat="popes">The Popes</button></li>
+        <li><button class="navlink" data-route="church/orders" data-cat="orders">Religious Orders</button></li>
+        <li><button class="navlink" data-route="church/eastern-churches" data-cat="easternchurches">The Eastern Catholic Churches</button></li>
       </ul>
     </div>
     <div class="nav-group">
@@ -2231,14 +2243,16 @@
       <div><h4>Pray</h4>
         <button data-route="pray/prayers">Prayers</button><button data-route="pray/rosary">Rosary</button><button data-route="pray/stations">Stations of the Cross</button>
         <button data-route="pray/chaplet">Divine Mercy Chaplet</button><button data-route="pray/examination">Examination of Conscience</button><button data-route="pray/timer">Prayer Timer</button><button data-route="pray/examen">Daily Examen</button><button data-route="pray/angelus">Angelus</button><button data-route="pray/lectio">Lectio Divina</button><button data-route="pray/tracker">Prayer Tracker</button></div>
+      <div><h4>Saints</h4>
+        <button data-route="saints/all">All Saints</button><button data-route="saints/patron-finder">Find Your Patron Saint</button><button data-route="saints/quotes">Quotes of the Saints</button><button data-route="saints/icons">Famous Icons</button></div>
       <div><h4>Library</h4>
-        <button data-route="library/saints">Saints</button><button data-route="library/saints/patron-finder">Find Your Patron Saint</button><button data-route="library/quotes">Quotes of the Saints</button><button data-route="library/books">Books</button><button data-route="library/bible">The Bible</button>
-        <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
+        <button data-route="library/bible">The Bible</button><button data-route="library/books">Books</button><button data-route="library/plans">Reading Plans</button><button data-route="library/shop">Shop</button><button data-route="library/all">Browse everything</button></div>
       <div><h4>Learn</h4>
-        <button data-route="learn/theology">Theology</button><button data-route="learn/theology/fathers">The Faith of the Fathers</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
-        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="learn/icons">Famous Icons</button><button data-route="learn/history/popes">The Popes</button><button data-route="learn/orders">Religious Orders</button><button data-route="learn/history/crusades">The Crusades</button><button data-route="learn/eastern-churches">Eastern Catholic Churches</button><button data-route="resources">Learning Resources</button></div>
+        <button data-route="learn/theology">Theology</button><button data-route="learn/theology/fathers">The Faith of the Fathers</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="learn/quiz">Quiz</button></div>
+      <div><h4>The Church</h4>
+        <button data-route="church/history">Church History</button><button data-route="church/history/apparitions">Marian Apparitions</button><button data-route="church/history/crusades">The Crusades</button><button data-route="church/popes">The Popes</button><button data-route="church/orders">Religious Orders</button><button data-route="church/eastern-churches">Eastern Catholic Churches</button></div>
       <div><h4>Sanctify</h4>
-        <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button><button class="footer-rite" data-rite-switch>Switch to the Eastern Catholic edition</button></div>
+        <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="library/resources">Resources</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button><button class="footer-rite" data-rite-switch>Switch to the Eastern Catholic edition</button></div>
     </div>
   </div>
   <p class="footer-note">Ad maiorem Dei gloriam. Scripture quotations are from the Revised Standard Version of the Bible: Catholic Edition, copyright © 1965, 1966 the Division of Christian Education of the National Council of the Churches of Christ in the United States of America. Used by permission. All rights reserved. Saint and book images come from Wikipedia and Wikimedia Commons.</p>
@@ -5805,7 +5819,7 @@ function renderSaintFinder(everyone){
         return `<button class="patron-chip sf-chip${saintPatron === f.term ? ' active' : ''}" data-term="${escapeHtml(f.term)}" aria-pressed="${saintPatron === f.term}"${n || saintPatron === f.term ? '' : ' disabled'}>${escapeHtml(f.label)}<span class="sf-n">${n}</span></button>`;
       }).join('')}</div>
     </div>`;
-  entryListEl.insertAdjacentHTML('beforeend', `<div class="sf-quiz-link"><span>Not sure where to start? Answer a few questions and get suggestions.</span><button class="btn quiet" data-route="library/saints/patron-finder">Find your patron saint →</button></div>`);
+  entryListEl.insertAdjacentHTML('beforeend', `<div class="sf-quiz-link"><span>Not sure where to start? Answer a few questions and get suggestions.</span><button class="btn quiet" data-route="saints/patron-finder">Find your patron saint →</button></div>`);
   entryListEl.appendChild(panel);
   entryListEl.appendChild(buildFeastFinder());
 
@@ -5956,7 +5970,7 @@ function render(){
       community:renderCommunity, resources:renderResources,
       examen:() => renderGuided(isEastern() ? 'evening' : 'examen'), angelus:() => renderGuided(isEastern() ? 'theotokos' : 'angelus'), lectio:() => renderGuided('lectio'),
       tracker:renderTracker, mass:renderMass, glossary:renderGlossary, icons:renderFamousIcons, popes:renderPopes, orders:renderOrders, easternchurches:renderEasternChurches, patronfinder:renderPatronFinder, quotes:renderQuotes, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
-      'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
+      'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn'), 'hub-saints':() => renderHub('saints'), 'hub-church':() => renderHub('church')
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
     if(special[activeCategory] && !(searching && needsNoSearch.has(activeCategory))){
@@ -6823,7 +6837,8 @@ function renderDaily(){
       <button class="cal-nav-btn" data-step="1" aria-label="Next day">›</button>
       ${isToday ? '' : '<button class="cal-nav-btn cal-today-btn" data-step="0">Today</button>'}
     </div>
-    <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)} · ${escapeHtml(season.colorName)}</span>`;
+    <span class="cal-pill"><span class="dot" style="background:${season.color}"></span>${escapeHtml(season.name)} · ${escapeHtml(season.colorName)}</span>
+    <button class="btn quiet pill daily-cal-link" data-route="calendar">${navIcon('calendar')}Full calendar</button>`;
   head.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => {
     const step = Number(b.dataset.step);
     dailyDate = step === 0 ? startOfToday() : addDays(dailyDate, step);
@@ -7739,14 +7754,14 @@ function renderHistory(){
     <div class="patron-filters-row">
       <button class="patron-chip${historyMarianOnly ? ' active' : ''}" id="marianToggle" aria-pressed="${historyMarianOnly}">✦ Marian apparitions only</button>
       <button class="patron-chip${historyCrusadesOnly ? ' active' : ''}" id="crusadesToggle" aria-pressed="${historyCrusadesOnly}">✠ The Crusades & military orders</button>
-      <button class="patron-chip" data-route="learn/history/popes">The Popes</button>
-      <button class="patron-chip" data-route="learn/orders">Religious Orders</button>
+      <button class="patron-chip" data-route="church/popes">The Popes</button>
+      <button class="patron-chip" data-route="church/orders">Religious Orders</button>
     </div>`;
   chips.querySelectorAll('.patron-chip[data-era]').forEach(btn => {
     btn.addEventListener('click', () => { activeEra = btn.dataset.era; renderHistory(); });
   });
-  chips.querySelector('#marianToggle').addEventListener('click', () => navigate(historyMarianOnly ? 'learn/history' : 'learn/history/apparitions'));
-  chips.querySelector('#crusadesToggle').addEventListener('click', () => navigate(historyCrusadesOnly ? 'learn/history' : 'learn/history/crusades'));
+  chips.querySelector('#marianToggle').addEventListener('click', () => navigate(historyMarianOnly ? 'church/history' : 'church/history/apparitions'));
+  chips.querySelector('#crusadesToggle').addEventListener('click', () => navigate(historyCrusadesOnly ? 'church/history' : 'church/history/crusades'));
   entryListEl.appendChild(chips);
 
   const eras = HISTORY_ERAS.filter(er => activeEra === 'all' || er.key === activeEra);
@@ -10028,7 +10043,7 @@ function saintQuotesBlock(e){
   el.id = 'readQuotes';
   el.className = 'read-quotes';
   el.innerHTML = `<h3>In Their Own Words</h3>${mine.map(q => `<blockquote>${escapeHtml(q.text)}<cite>${escapeHtml(q.source)}${q.attributed ? ' · attributed' : ''}</cite></blockquote>`).join('')}
-    <button class="text-link" data-route="library/quotes">More quotes of the saints →</button>`;
+    <button class="text-link" data-route="saints/quotes">More quotes of the saints →</button>`;
   return el;
 }
 
@@ -10040,7 +10055,7 @@ function homeQuoteHtml(){
     <blockquote>${escapeHtml(q.text)}</blockquote>
     <div class="home-quote-foot">
       ${q.id ? `<button class="quote-who" data-open="${q.id}">${escapeHtml(q.saint)}</button>` : `<span class="quote-who">${escapeHtml(q.saint)}</span>`}
-      <button class="text-link" data-route="library/quotes">More quotes →</button>
+      <button class="text-link" data-route="saints/quotes">More quotes →</button>
     </div>
   </section>`;
 }
@@ -11117,7 +11132,7 @@ function renderOrders(){
             ${o.saints && o.saints !== '—' ? `<p class="order-saints"><strong>Saints:</strong> ${escapeHtml(o.saints)}</p>` : ''}
           </article>`).join('')}</div>
       </section>`).join('')}
-    <p class="fi-note">See also <button class="text-link" data-route="learn/history/crusades">the Crusades and the military orders</button> in Church History, and <button class="text-link" data-open="t76">Consecrated Life</button> in Theology.</p>`;
+    <p class="fi-note">See also <button class="text-link" data-route="church/history/crusades">the Crusades and the military orders</button> in Church History, and <button class="text-link" data-open="t76">Consecrated Life</button> in Theology.</p>`;
   wrap.querySelectorAll('[data-og]').forEach(b => b.addEventListener('click', () => { orderGroup = b.dataset.og; renderOrders(); }));
   entryListEl.appendChild(wrap);
 }
@@ -11258,8 +11273,10 @@ const SECTIONS = {
   'hub-pray':{ name:'Pray', icon:'prayer', color:'var(--wine)' },
   'hub-library':{ name:'Library', icon:'book', color:'var(--indigo)' },
   'hub-learn':{ name:'Learn', icon:'theology', color:'var(--purple)' },
+  'hub-saints':{ name:'Saints', icon:'saint', color:'var(--gold)' },
+  'hub-church':{ name:'The Church', icon:'history', color:'var(--green)' },
   prayer:{ name:'Prayers', group:'Library', icon:'prayer', color:'var(--wine)' },
-  saint:{ name:'Saints', group:'Library', icon:'saint', color:'var(--gold)' },
+  saint:{ name:'All Saints', group:'Saints', icon:'saint', color:'var(--gold)' },
   theology:{ name:'Theology', group:'Library', icon:'theology', color:'var(--purple)' },
   history:{ name:'Church History', group:'Library', icon:'history', color:'var(--green)' },
   book:{ name:'Books', group:'Library', icon:'book', color:'var(--indigo)' },
@@ -11338,52 +11355,70 @@ const HUBS = {
       ];
     }
   },
-  library:{
-    eyebrow:'The whole library', title:'Library',
-    intro:'The saints and their lives, the books that formed them, and all 73 books of the Catholic Bible.',
+  saints:{
+    eyebrow:'The communion of saints', title:'Saints',
+    intro:'The holy men and women of every age and land: their lives, their words, their patronages, and the icons that show them in glory.',
     cards:() => {
       const d = startOfToday();
       const feastIds = observancesFor(d).flatMap(o => o.saints || []);
       const saint = feastIds.length ? library.find(x => x.id === feastIds[0]) : dailyPick(library.filter(e => e.category === 'saint'), 11, d);
       return [
-        { route:'library/saints', big:true, kicker:'The communion of saints', title:'Saints',
-          desc:'Lives, feast days, patronages, and prayers of intercession, from the apostles to saints of our own time. Find a patron for any need, or the saint of any day.',
-          extra:`<button class="bento-feature" data-open="${saint.id}"><span class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</span><span><span class="daily-kicker">${feastIds.length ? 'Feast today' : 'Saint of the day'}</span><strong>${escapeHtml(saint.title)}</strong></span></button>`,
+        { route:'saints/all', big:true, kicker:'From the apostles to our own day', title:'All Saints',
+          desc:'Lives, feast days, patronages, and prayers of intercession. Browse by era and walk of life, or look up a patron for any need.',
+          extra:`<button class="bento-feature" data-open="${saint.id}"><span class="saint-portrait" data-sid="${saint.id}">${portraitPlaceholder(saint.title)}</span><span><span class="daily-kicker">${feastIds.length ? 'Feast of the day' : 'Saint of the day'}</span><strong>${escapeHtml(saint.title)}</strong></span></button>`,
           meta:`${countOf('saint')} saints`, cta:'Browse the saints' },
-        { route:'library/books', desc:'Spiritual classics, Church documents, and great Catholic literature, with summaries and links to read.', meta:`${countOf('book')} books` },
-        { route:'library/saints/patron-finder', desc:'Answer a few questions to find saints for your birthday, your work, and your needs.', meta:'A short quiz' },
-        { route:'library/quotes', desc:'The words of the saints, from the Church Fathers to our own day, with their sources.', meta:`${QUOTES.length} quotes` },
-        { route:'library/bible', desc:'All 73 books of the Catholic canon, grouped by section, with study notes and links to the full text.', meta:'73 books' },
-        { route:'library/all', desc:'Every prayer, saint, book, event, and teaching in one searchable list.', meta:`${library.length} entries` },
-        { action:'surprise', title:'Surprise Me', icon:'all', color:'var(--gold)', desc:'Open a random prayer, saint, book, event, or teaching, and discover something new.', meta:'A little serendipity', cta:'Surprise me' },
-        { route:'library/shop', desc:'A few reputable retailers for rosaries, icons, statues, and other Catholic goods.', meta:'Trusted shops' }
+        { route:'saints/patron-finder', desc:'Answer a few questions to find saints for your birthday, your work, and your needs.', meta:'A short quiz' },
+        { route:'saints/quotes', desc:'The words of the saints, from the Church Fathers to our own day, with their sources.', meta:`${QUOTES.length} quotes` },
+        { route:'saints/icons', desc:'The great icons of East and West, from the Sinai Pantocrator to Rublev’s Trinity, and what to look for in each.', meta:`${FAMOUS_ICONS.length} icons` },
+        { route:'mine', title:'Novenas & Intentions', icon:'mine', desc:'Pray a nine-day novena with any saint, and keep a list of your intentions.', meta:'Saved on this device' }
       ];
     }
   },
+  library:{
+    eyebrow:'Read and explore', title:'Library',
+    intro:'All 73 books of the Catholic Bible, the books that formed the saints, plans for reading Scripture, and trusted places to go deeper.',
+    cards:() => [
+      { route:'library/bible', big:true, kicker:'The Word of God', title:'The Bible',
+        desc:'All 73 books of the Catholic canon, grouped by section, with study notes and links to the full text.',
+        links:[['Reading Plans', 'library/plans']], meta:'73 books', cta:'Open the Bible' },
+      { route:'library/books', desc:'Spiritual classics, the Church Fathers, Church documents, and great Catholic literature, with summaries and links to read.', meta:`${countOf('book')} books` },
+      { route:'library/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
+      { route:'library/resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
+      { route:'library/shop', desc:'Reputable shops for icons, rosaries, books, and other Catholic goods.', meta:'Trusted shops' },
+      { route:'library/all', desc:'Every prayer, saint, book, event, and teaching in one searchable list.', meta:`${library.length} entries` },
+      { action:'surprise', title:'Surprise Me', icon:'all', color:'var(--gold)', desc:'Open a random prayer, saint, book, event, or teaching, and discover something new.', meta:'A little serendipity', cta:'Surprise me' }
+    ]
+  },
   learn:{
     eyebrow:'Study the faith', title:'Learn',
-    intro:'What the Church believes and why, two thousand years of her history, and ways to grow in knowledge of the faith.',
+    intro:'What the Church believes and why: her teaching, her worship, and the words of the faith.',
     cards:() => [
       { route:'learn/theology', big:true, kicker:'Doctrine & apologetics', title:'Theology',
-        desc:'The core teachings of the Catholic faith, each with the Scripture passages and Catechism paragraphs behind it, and charitable answers to the objections Catholics most often hear.',
+        desc:'The core teachings of the Catholic faith, each with the Scripture passages and Catechism paragraphs behind it, the witness of the Church Fathers, and charitable answers to the objections Catholics most often hear.',
         links:[['Core Catholic Beliefs', 'learn/theology/beliefs'], ['The Faith of the Fathers', 'learn/theology/fathers'], ['Defending the Faith', 'learn/theology/apologetics']],
         meta:`${countOf('theology')} topics`, cta:'Start learning' },
-      { route:'learn/history', desc:'Two thousand years on one timeline, from Pentecost to the present day.',
-        links:[['Timeline', 'learn/history'], ['Marian Apparitions', 'learn/history/apparitions'], ['The Crusades', 'learn/history/crusades'], ['The Popes', 'learn/history/popes']], meta:`${countOf('history')} events` },
-      { route:'learn/orders', desc:'Benedictines, Carmelites, Franciscans, Jesuits, Basilians, the Knights of Malta, and more: who they are and where they came from.', meta:`${ORDER_GROUPS.reduce((n, g) => n + g.list.length, 0)} orders` },
-      { route:'learn/plans', desc:'Read the Gospels in 30 days, the New Testament in 90, or the whole Bible in a year.', meta:'4 plans' },
-      { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
-      { route:'learn/mass', desc:isEastern() ? 'Every part of the Divine Liturgy of St. John Chrysostom, with what happens and why. Follow along on your phone.' : 'Every part of the Mass, with when to stand, sit, and kneel, and why. Follow along on your phone.', meta:`${(isEastern() ? LITURGY_PARTS : MASS_PARTS).reduce((n, s) => n + s.parts.length, 0)} parts` },
+      { route:'learn/mass', desc:isEastern() ? 'Every part of the Divine Liturgy of St. John Chrysostom, with what happens and why. Follow along on your phone.' : 'Every part of the Mass, with when to stand, sit, and kneel and what each moment means. Follow along on your phone.', meta:isEastern() ? 'The Divine Liturgy' : 'The Order of Mass' },
       { route:'learn/glossary', desc:'Short, clear definitions of the words of the faith, from Absolution to the Vulgate.', meta:`${GLOSSARY.length} terms` },
-      { route:'learn/icons', desc:'The great icons of East and West, from the Sinai Pantocrator to Rublev’s Trinity, and what to look for in each.', meta:`${FAMOUS_ICONS.length} icons` },
-      { route:'learn/eastern-churches', desc:'The twenty-three Eastern Catholic Churches in communion with Rome: Byzantine, Syriac, Chaldean, Armenian, and Alexandrian.', meta:'23 Churches' },
-      { route:'resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
-      { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
+      { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
       (() => {
         const t = dailyPick(library.filter(e => e.category === 'theology'), 79, startOfToday());
         return { open:t.id, icon:t.art && NAV_ICONS[t.art] ? t.art : 'theology', color:'var(--purple)', kicker:'Topic of the day', title:t.title,
-          desc:excerptOf(t.content, 130), meta:t.group === 'belief' ? 'Core belief' : 'Defending the faith', cta:'Read' };
+          desc:excerptOf(t.content, 130), meta:t.group === 'belief' ? 'Core belief' : t.group === 'fathers' ? 'The Faith of the Fathers' : 'Defending the faith', cta:'Read' };
       })()
+    ]
+  },
+  church:{
+    eyebrow:'Two thousand years', title:'The Church',
+    intro:'Her history from Pentecost to today, the successors of St. Peter, the religious orders, and the Eastern Catholic Churches in communion with Rome.',
+    cards:() => [
+      { route:'church/history', big:true, kicker:'From Pentecost to the present', title:'Church History',
+        desc:'Two thousand years on one timeline: councils, saints, schisms, missions, martyrs, and the apparitions of Our Lady.',
+        links:[['Marian Apparitions', 'church/history/apparitions'], ['The Crusades', 'church/history/crusades']], meta:`${countOf('history')} events`, cta:'Open the timeline' },
+      { route:'church/popes', desc:'Every pope from St. Peter to Leo XIV, century by century, with notes on the most important.', meta:`${POPES.length} popes` },
+      { route:'church/orders', desc:'Benedictines, Carmelites, Franciscans, Jesuits, Basilians, the Knights of Malta, and more.', meta:`${ORDER_GROUPS.reduce((n, g) => n + g.list.length, 0)} orders` },
+      { route:'church/eastern-churches', desc:'The twenty-three Eastern Catholic Churches in communion with Rome: Byzantine, Syriac, Chaldean, Armenian, and Alexandrian.', meta:'23 Churches' },
+      { route:'church/history/apparitions', desc:'The appearances of the Virgin Mary that the Church has recognized, and how she discerns them.', meta:'Guadalupe to Kibeho' },
+      { route:'church/history/crusades', desc:'The crusades and the knightly orders they created, told honestly, with how the Church remembers them today.', meta:'1095 to 1683' }
     ]
   }
 };
@@ -11393,7 +11428,7 @@ function renderHub(key){
   const hub = HUBS[key];
   const cards = hub.cards();
   const sec = SECTIONS['hub-' + key];
-  const verse = dailyPick(DAILY_VERSES, { pray:61, library:73, learn:89 }[key], startOfToday());
+  const verse = dailyPick(DAILY_VERSES, { pray:61, library:73, learn:89, saints:97, church:103 }[key], startOfToday());
   const wrap = document.createElement('div');
   wrap.className = 'hub';
   wrap.style.setProperty('--hub-color', sec.color);
@@ -11403,9 +11438,6 @@ function renderHub(key){
       <div class="hub-eyebrow">${escapeHtml(hub.eyebrow)}</div>
       <h1 class="hub-title">${escapeHtml(hub.title)}<span>.</span></h1>
       <p class="hub-intro">${escapeHtml(hub.intro)}</p>
-      <div class="hub-chips">${cards.filter(c => !c.open).map(c => c.route
-        ? `<button class="hub-chip" data-route="${c.route}">${escapeHtml(c.big ? routeName(c.route) : cardTitle(c))}</button>`
-        : `<button class="hub-chip" data-action="${c.action}">${escapeHtml(cardTitle(c))}</button>`).join('')}</div>
     </section>
     <div class="hub-label">Where to begin</div>
     <div class="bento">${cards.map(c => {
@@ -11468,7 +11500,6 @@ function renderHome(){
   const saint = feastIds.length ? library.find(x => x.id === feastIds[0]) : dailyPick(byCat('saint'), 11, d);
   const prayer = dailyPick(byCat('prayer').filter(p => p.id !== 'p10'), 23, d);
   const verse = dailyPick(DAILY_VERSES, 37, d);
-  const closing = dailyPick(DAILY_VERSES, 97, d);
   const card = PRAYER_CARDS[prayer.id] || { art:'cross', accent:'var(--wine)' };
   const mysteries = MYSTERIES[mysterySetFor(d)];
   const feastLine = obs.length
@@ -11499,7 +11530,9 @@ function renderHome(){
       </div>
       ${heroRosette()}
     </section>
-    ${riteBannerHtml()}
+    ${homePrayerHtml()}
+
+    <section class="home-continue" id="homeContinue"></section>
 
     <section class="home-section">
       <div class="section-eyebrow">Today in the Church</div>
@@ -11527,27 +11560,14 @@ function renderHome(){
 
     <section class="home-section home-pillars">
       <div class="section-eyebrow">What's inside</div>
-      <h2 class="section-title">Four ways in.</h2>
+      <h2 class="section-title">Find your way in.</h2>
       <div class="pillars">
         ${pillar('prayer', 'var(--wine)', 'Pray', isEastern() ? `${byCat('prayer').length} prayers as illustrated cards, the Jesus Prayer on a prayer rope, the Trisagion Prayers, and the Prayer of St. Ephrem.` : `${byCat('prayer').length} prayers as illustrated cards, the Rosary, the Stations of the Cross, and the Divine Mercy Chaplet.`, 'pray')}
-        ${pillar('saint', 'var(--gold)', 'The Saints', `${byCat('saint').length} saints with their lives, feast days, patronages, and prayers of intercession.`, 'library/saints')}
-        ${pillar('theology', 'var(--purple)', 'Learn the Faith', `${byCat('theology').length} teachings with Scripture, the Catechism, and answers to objections, plus ${byCat('history').length} events of Church history.`, 'learn')}
-        ${pillar('calendar', 'var(--green)', 'The Church’s Year', isEastern() ? 'The Byzantine year of feasts and fasts, with the saints of each day.' : 'Every feast and season, with the saint of the day, the liturgical color, and today’s readings.', 'calendar')}
-      </div>
-    </section>
-
-    <section class="home-section home-begin">
-      <div class="section-eyebrow">Where to begin</div>
-      <h2 class="section-title">Begin where you stand.</h2>
-      <div class="begin-chips">
-        <button class="hub-chip" data-open="p2">The Our Father</button>
-        ${isEastern() ? '<button class="hub-chip" data-open="pe1">O Heavenly King</button><button class="hub-chip" data-open="pe5">Rejoice, O Virgin Theotokos</button><button class="hub-chip" data-open="pe9">The Nicene Creed</button><button class="hub-chip" data-route="pray/rosary">The Jesus Prayer</button>' : '<button class="hub-chip" data-open="p3">The Hail Mary</button><button class="hub-chip" data-open="p5">The Apostles’ Creed</button><button class="hub-chip" data-route="pray/rosary">The Rosary</button>'}
-        <button class="hub-chip" data-route="today">Saint of the day</button>
-        <button class="hub-chip" data-route="pray/examination">Examination of Conscience</button>
-        <button class="hub-chip" data-route="learn/theology/beliefs">Core Catholic Beliefs</button>
-        <button class="hub-chip" data-route="learn/theology/apologetics">Defending the Faith</button>
-        <button class="hub-chip" data-route="learn/history/apparitions">Marian Apparitions</button>
-        <button class="hub-chip" data-action="surprise">✦ Surprise me</button>
+        ${pillar('saint', 'var(--gold)', 'Saints', `${byCat('saint').length} saints with their lives and patronages, quotes of the saints, and the great icons.`, 'saints')}
+        ${pillar('book', 'var(--indigo)', 'Library', `The whole Bible, ${byCat('book').length} books from the Church Fathers to today, and reading plans.`, 'library')}
+        ${pillar('theology', 'var(--purple)', 'Learn', `${byCat('theology').length} teachings with Scripture and the Catechism, ${isEastern() ? 'the Divine Liturgy' : 'the Mass'} explained, and a glossary.`, 'learn')}
+        ${pillar('history', 'var(--green)', 'The Church', `${byCat('history').length} events of Church history, every pope, the religious orders, and the Eastern Churches.`, 'church')}
+        ${pillar('community', 'var(--teal)', 'Community', 'Share prayer requests and talk about the faith with other members, here and on Discord.', 'community')}
       </div>
     </section>
 
@@ -11555,7 +11575,7 @@ function renderHome(){
       <div class="section-eyebrow">Paths to walk</div>
       <h2 class="section-title">Where would you like to begin?</h2>
       <div class="paths">
-        <article class="path-card" data-route="learn/plans" tabindex="0" style="--tile-color:var(--teal)">
+        <article class="path-card" data-route="library/plans" tabindex="0" style="--tile-color:var(--teal)">
           <div class="daily-kicker">30-day journey</div>
           <h3>Read the four Gospels</h3>
           <p>Walk with Jesus through Matthew, Mark, Luke, and John in a month, about three chapters a day, with your progress saved.</p>
@@ -11567,7 +11587,7 @@ function renderHome(){
           <p>A gentle, private guide through the Ten Commandments, with the steps of Confession and an Act of Contrition.</p>
           <span class="bento-cta">Begin →</span>
         </article>
-        <article class="path-card" data-route="library/saints" tabindex="0" style="--tile-color:var(--gold)">
+        <article class="path-card" data-route="saints/all" tabindex="0" style="--tile-color:var(--gold)">
           <div class="daily-kicker">Nine days of prayer</div>
           <h3>Pray a novena with a saint</h3>
           <p>Choose a patron from the saints, open their page, and start a novena. Sanctify keeps track of all nine days.</p>
@@ -11589,30 +11609,15 @@ function renderHome(){
       <div class="home-community-posts" id="homeCommunity"></div>
     </section>
 
-    ${homePrayerHtml()}
-
-    ${homeQuoteHtml()}
-
-    <section class="home-continue" id="homeContinue"></section>
-
     <section class="home-section home-split">
       <div>
         <div class="home-heading"><h3>Coming Up</h3><button class="text-link" data-route="calendar">Full calendar →</button></div>
         <div class="home-upcoming" id="homeUpcoming"></div>
       </div>
-      <div class="home-quiz">
-        <span class="tile-icon" style="--tile-color:var(--amber)">${navIcon('quiz')}</span>
-        <h3>Test your knowledge</h3>
-        <p>Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.</p>
-        <button class="btn" data-route="learn/quiz">Take the quiz</button>
-      </div>
+      ${homeQuoteHtml()}
     </section>
 
-    <section class="home-verse">
-      <blockquote>“${escapeHtml(closing.text)}”</blockquote>
-      <cite>${escapeHtml(closing.ref)}</cite>
-      <button class="btn primary pill" data-route="today">Open today</button>
-    </section>`;
+    ${riteBannerHtml()}`;
   entryListEl.appendChild(wrap);
 
   // Continue where you left off
@@ -11664,7 +11669,7 @@ function renderHome(){
 const ROUTES = {
   'home':                        { cat:'home' },
   'today':                       { cat:'daily' },
-  'calendar':                    { cat:'calendar' },
+  'calendar':                    { cat:'calendar', parent:'today' },
   'mine':                        { cat:'mine' },
   'community':                   { cat:'community' },
   'community/new':               { cat:'forum-new', parent:'community' },
@@ -11681,14 +11686,18 @@ const ROUTES = {
   'pray/angelus':                { cat:'angelus', parent:'pray' },
   'pray/lectio':                 { cat:'lectio', parent:'pray' },
   'pray/tracker':                { cat:'tracker', parent:'pray' },
+  'saints':                      { cat:'hub-saints' },
+  'saints/all':                  { cat:'saint', parent:'saints' },
+  'saints/patron-finder':        { cat:'patronfinder', parent:'saints' },
+  'saints/quotes':               { cat:'quotes', parent:'saints' },
+  'saints/icons':                { cat:'icons', parent:'saints' },
   'library':                     { cat:'hub-library' },
-  'library/saints':              { cat:'saint', parent:'library' },
-  'library/saints/patron-finder':{ cat:'patronfinder', parent:'library/saints' },
-  'library/quotes':              { cat:'quotes', parent:'library' },
-  'library/books':               { cat:'book', parent:'library' },
   'library/bible':               { cat:'bible', parent:'library' },
-  'library/all':                 { cat:'all', parent:'library' },
+  'library/books':               { cat:'book', parent:'library' },
+  'library/plans':               { cat:'plan', parent:'library' },
+  'library/resources':           { cat:'resources', parent:'library' },
   'library/shop':                { cat:'shop', parent:'library' },
+  'library/all':                 { cat:'all', parent:'library' },
   'learn':                       { cat:'hub-learn' },
   'learn/theology':              { cat:'theology', parent:'learn' },
   'learn/theology/beliefs':      { cat:'theology', parent:'learn/theology', group:'belief', name:'Core Catholic Beliefs',
@@ -11697,22 +11706,21 @@ const ROUTES = {
                                    desc:'What the Church Fathers of the first centuries believed and taught, in their own words, with the sources so you can read them in full.' },
   'learn/theology/apologetics':  { cat:'theology', parent:'learn/theology', group:'defense', name:'Defending the Faith',
                                    desc:'The reasons behind the faith, and charitable answers to the questions and objections Catholics most often hear.' },
-  'learn/history':               { cat:'history', parent:'learn' },
-  'learn/history/apparitions':   { cat:'history', parent:'learn/history', marian:true, name:'Marian Apparitions',
-                                   desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
-  'learn/history/crusades':      { cat:'history', parent:'learn/history', crusades:true, name:'The Crusades & Military Orders',
-                                   desc:'From the Council of Clermont to the Siege of Malta: the crusades, the knightly orders they created, and how the Church remembers them today.' },
-  'learn/history/popes':         { cat:'popes', parent:'learn/history' },
-  'learn/orders':                { cat:'orders', parent:'learn' },
-  'learn/plans':                 { cat:'plan', parent:'learn' },
-  'learn/quiz':                  { cat:'quiz', parent:'learn' },
   'learn/mass':                  { cat:'mass', parent:'learn' },
   'learn/glossary':              { cat:'glossary', parent:'learn' },
-  'learn/icons':                 { cat:'icons', parent:'learn' },
-  'learn/eastern-churches':      { cat:'easternchurches', parent:'learn' },
-  'learn/resources':             { cat:'resources', parent:'learn' },
-  'resources':                   { cat:'resources' }
+  'learn/quiz':                  { cat:'quiz', parent:'learn' },
+  'church':                      { cat:'hub-church' },
+  'church/history':              { cat:'history', parent:'church' },
+  'church/history/apparitions':  { cat:'history', parent:'church/history', marian:true, name:'Marian Apparitions',
+                                   desc:'The appearances of the Virgin Mary that the Church has recognized, from Guadalupe to Kibeho, and how the Church discerns them.' },
+  'church/history/crusades':     { cat:'history', parent:'church/history', crusades:true, name:'The Crusades & Military Orders',
+                                   desc:'From the Council of Clermont to the Siege of Malta: the crusades, the knightly orders they created, and how the Church remembers them today.' },
+  'church/popes':                { cat:'popes', parent:'church' },
+  'church/orders':               { cat:'orders', parent:'church' },
+  'church/eastern-churches':     { cat:'easternchurches', parent:'church' }
 };
+// Older addresses keep working: they open the page at its new address
+const ROUTE_ALIASES = {'library/saints/patron-finder':'saints/patron-finder', 'library/saints':'saints/all', 'library/quotes':'saints/quotes', 'learn/icons':'saints/icons', 'learn/history/popes':'church/popes', 'learn/history/apparitions':'church/history/apparitions', 'learn/history/crusades':'church/history/crusades', 'learn/history':'church/history', 'learn/orders':'church/orders', 'learn/eastern-churches':'church/eastern-churches', 'learn/plans':'library/plans', 'learn/resources':'library/resources', 'resources':'library/resources' };
 const CAT_ROUTE = {};
 Object.entries(ROUTES).forEach(([route, r]) => { if(!(r.cat in CAT_ROUTE)) CAT_ROUTE[r.cat] = route; });
 let currentRoute = 'home';   // the ROUTES key, e.g. 'community/post'
@@ -11728,12 +11736,17 @@ function routeName(route){
 function routeFromHash(){
   const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
   if(ROUTES[h] || POST_ROUTE.test(h)) return h;
+  if(ROUTE_ALIASES[h]) return h;   // applyRoute moves it to the new address
   if(CAT_ROUTE[h]) return CAT_ROUTE[h];
   return 'home';
 }
 
 function applyRoute(path){
   stopSpeaking();
+  if(ROUTE_ALIASES[path]){
+    path = ROUTE_ALIASES[path];
+    history.replaceState(null, '', location.pathname + '#/' + path);
+  }
   const post = POST_ROUTE.exec(path);
   forumThreadId = post ? Number(post[1]) : null;
   let route = post ? 'community/post' : path;
