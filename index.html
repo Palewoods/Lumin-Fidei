@@ -300,19 +300,14 @@
   .pope-facts strong{display:block; font-family:'Cormorant Garamond', Georgia, serif; font-size:1.35rem; color:var(--wine-dark); line-height:1.2;}
   .pope-facts span{font-size:0.8rem; color:var(--ink-soft);}
   .pope-badge{margin-left:auto; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold); white-space:nowrap;}
-  /* A gentle entrance whenever a page opens */
-  @keyframes pageIn{
-    0%{opacity:0; transform:translateY(-26px);}
-    60%{opacity:1; transform:translateY(3px);}
+  /* Page entrance: each element on screen drops into place on its own, top to bottom */
+  @keyframes dropIn{
+    0%{opacity:0; transform:translateY(-18px);}
+    70%{opacity:1; transform:translateY(2px);}
     100%{opacity:1; transform:none;}
   }
-  #main.page-in > .main-head:not([hidden]), #main.page-in > .entry-list > *{animation:pageIn 0.75s cubic-bezier(0.25, 0.8, 0.3, 1) both;}
-  #main.page-in > .entry-list > :nth-child(1){animation-delay:0.12s;}
-  #main.page-in > .entry-list > :nth-child(2){animation-delay:0.22s;}
-  #main.page-in > .entry-list > :nth-child(3){animation-delay:0.32s;}
-  #main.page-in > .entry-list > :nth-child(4){animation-delay:0.42s;}
-  #main.page-in > .entry-list > :nth-child(n+5){animation-delay:0.5s;}
-  @media (prefers-reduced-motion: reduce){ #main.page-in > *, #main.page-in > .entry-list > *{animation:none !important;} }
+  .drop-in{animation:dropIn 0.6s cubic-bezier(0.25, 0.8, 0.3, 1) both !important;}
+  @media (prefers-reduced-motion: reduce){ .drop-in{animation:none !important;} }
   /* Profile pictures */
   .forum-avatar, .top-avatar{position:relative; overflow:hidden;}
   .av-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:inherit;}
@@ -11739,12 +11734,6 @@ function routeFromHash(){
 
 function applyRoute(path){
   stopSpeaking();
-  const mainEl = document.getElementById('main');
-  mainEl.classList.remove('page-in');
-  void mainEl.offsetWidth;   // restart the entrance animation
-  mainEl.classList.add('page-in');
-  clearTimeout(applyRoute.animTimer);   // stop animating once the page has settled, so filters don't replay it
-  applyRoute.animTimer = setTimeout(() => mainEl.classList.remove('page-in'), 1500);
   const post = POST_ROUTE.exec(path);
   forumThreadId = post ? Number(post[1]) : null;
   let route = post ? 'community/post' : path;
@@ -11770,7 +11759,52 @@ function applyRoute(path){
   document.title = route === 'home' ? 'Sanctify — A Catholic Repository' : `${routeName(route)} — Sanctify`;
   window.scrollTo({ top:0 });
   render();
+  startDropIn();
 }
+
+/* ---------- Page entrance: each element drops in on its own ---------- */
+// Headings, paragraphs, buttons, and cards are animated as single pieces; larger containers are opened up
+const DROP_ATOMIC = /^(H1|H2|H3|H4|H5|H6|P|LI|IMG|FIGURE|BLOCKQUOTE|BUTTON|A|INPUT|SELECT|TEXTAREA|LABEL|DT|DD|svg|CANVAS|DETAILS|TABLE|FORM|ARTICLE)$/;
+const DROP_CARD = /(^|[\s-])(card|entry-row|history-row|cal-row|chip|pope|tile|btn|banner|avatar|search|facts|panel|hero-art|rosette)\b/;
+let dropDone = new WeakSet();
+let dropUntil = 0;
+function dropTargets(root, out){
+  for(const el of root.children){
+    if(out.length >= 70) break;
+    if(el.hidden || dropDone.has(el) || /^(SCRIPT|STYLE|TEMPLATE)$/.test(el.tagName)) continue;
+    const cls = typeof el.className === 'string' ? el.className : '';
+    if(DROP_ATOMIC.test(el.tagName) || DROP_CARD.test(cls) || !el.firstElementChild) out.push(el);
+    else dropTargets(el, out);
+  }
+  return out;
+}
+function dropIn(roots){
+  const limit = window.innerHeight + 40;
+  const items = [];
+  roots.forEach(r => dropTargets(r, items));
+  let n = 0;
+  for(const el of items){
+    dropDone.add(el);
+    const box = el.getBoundingClientRect();
+    if(!box.height || box.top > limit || box.bottom < 0) continue;   // only what's on screen
+    el.style.animationDelay = Math.min(n++ * 55, 1300) + 'ms';
+    el.classList.add('drop-in');
+    const done = ev => {
+      if(ev.target !== el) return;
+      el.classList.remove('drop-in');
+      el.style.animationDelay = '';
+      el.removeEventListener('animationend', done);
+    };
+    el.addEventListener('animationend', done);
+  }
+}
+function startDropIn(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  dropDone = new WeakSet();   // the page header is reused, so forget what was animated on the last page
+  dropUntil = Date.now() + 2500;   // content that arrives a moment later (the Community, an account) drops in too
+  dropIn([document.getElementById('mainHead'), entryListEl]);
+}
+new MutationObserver(() => { if(Date.now() < dropUntil) dropIn([entryListEl]); }).observe(entryListEl, { childList:true, subtree:true });
 
 function navigate(route){
   const target = '#/' + route;
