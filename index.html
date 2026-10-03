@@ -217,6 +217,66 @@
   :root[data-theme="vyshyvanka"]{ --parchment:#f6f3ec; --parchment-light:#fffdf8; --parchment-dark:#eae3d5; --ink:#161210; --ink-soft:#57504a; --wine:#bf141c; --wine-dark:#8e0d13; --gold:#2a2522; --gold-light:#8a817a; --green:#2f5a35; --indigo:#2a3550; --purple:#5a2f5e; --teal:#244e4e; --rose:#a0203d; --amber:#a3521b; --ink-rgb:22,18,16; --line:rgba(22,18,16,0.17); --shadow:0 2px 14px rgba(22,18,16,0.12); }
   :root[data-theme="athos"]{ --parchment:#13140d; --parchment-light:#1b1c13; --parchment-dark:#27281c; --ink:#ece5cf; --ink-soft:#a9a185; --wine:#d8a948; --wine-dark:#ecc878; --gold:#c79a45; --gold-light:#e2c07a; --green:#9cb07a; --indigo:#8fa3c0; --purple:#b19bc4; --teal:#7ab2a8; --rose:#d08f9e; --amber:#e0a85a; --ink-rgb:236,229,207; --line:rgba(236,229,207,0.13); --shadow:0 2px 20px rgba(0,0,0,0.6); }
   :root[data-theme="lapis"]{ --parchment:#0b1330; --parchment-light:#111b40; --parchment-dark:#1a2652; --ink:#e8ecf8; --ink-soft:#9ca7c8; --wine:#e3bd5f; --wine-dark:#f0d48e; --gold:#e3bd5f; --gold-light:#f0d48e; --green:#8cc49a; --indigo:#9db4f0; --purple:#b8a2e8; --teal:#79c4cc; --rose:#e59bb5; --amber:#e8ab62; --ink-rgb:232,236,248; --line:rgba(232,236,248,0.14); --shadow:0 2px 20px rgba(0,0,0,0.6); }
+  /* Famous icons */
+  .fi-kinds{margin:4px 0 18px;}
+  .fi-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); gap:18px;}
+  .fi-card{display:flex; flex-direction:column; gap:6px; padding:12px; text-align:left; cursor:pointer; font:inherit; color:var(--ink);
+    background:var(--parchment-light); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); transition:transform 0.15s ease, border-color 0.15s ease;}
+  .fi-card:hover, .fi-card:focus-visible{transform:translateY(-2px); border-color:var(--gold); outline:none;}
+  .fi-thumb{display:block; aspect-ratio:3/4; overflow:hidden; border-radius:999px 999px 8px 8px / 120px 120px 8px 8px; background:var(--parchment-dark);
+    box-shadow:inset 0 0 0 1px var(--line);}
+  .fi-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .fi-title{font-family:'Cormorant Garamond', Georgia, serif; font-size:1.18rem; font-weight:700; line-height:1.2;}
+  .fi-date{font-size:0.82rem; color:var(--ink-soft);}
+  .fi-note{margin-top:26px; color:var(--ink-soft); max-width:70ch;}
+  .fi-back{margin-bottom:14px;}
+  .fi-detail{display:grid; grid-template-columns:minmax(0, 360px) minmax(0, 1fr); gap:32px; align-items:start;}
+  .fi-figure{margin:0; position:sticky; top:84px;}
+  .fi-figure img{width:100%; display:block; border-radius:12px; box-shadow:var(--shadow), 0 0 0 1px var(--line);}
+  .fi-figure figcaption{margin-top:8px; font-size:0.8rem;}
+  .fi-figure figcaption a{color:var(--ink-soft);}
+  .fi-body h2{font-family:'Cormorant Garamond', Georgia, serif; font-size:2rem; margin:0 0 10px; color:var(--ink);}
+  .fi-body h3{font-family:'Cormorant Garamond', Georgia, serif; font-size:1.35rem; margin:22px 0 8px; color:var(--wine-dark);}
+  .fi-body p{line-height:1.7;}
+  .fi-facts{display:grid; gap:6px; margin:0 0 16px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--parchment-light);}
+  .fi-facts div{display:grid; grid-template-columns:96px 1fr; gap:10px;}
+  .fi-facts dt{font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); padding-top:2px;}
+  .fi-facts dd{margin:0;}
+  .fi-look{margin:0; padding-left:20px; line-height:1.7;}
+  .fi-look li{margin-bottom:4px;}
+  @media (max-width:760px){ .fi-detail{grid-template-columns:1fr;} .fi-figure{position:static; max-width:380px;} .fi-grid{grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px;} }
+  /* The Eastern Catholic Churches */
+  .ec-intro{max-width:72ch; line-height:1.7; margin:0 0 10px;}
+  .ec-group{margin-top:26px;}
+  .ec-count{font-size:0.9rem; color:var(--ink-soft); font-weight:400;}
+  .ec-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; margin-top:10px;}
+  .ec-card{padding:16px 18px; background:var(--parchment-light); border:1px solid var(--line); border-top:3px solid var(--wine); border-radius:12px;}
+  .ec-card h4{margin:0 0 8px; font-family:'Cormorant Garamond', Georgia, serif; font-size:1.25rem;}
+  .ec-card dl{margin:0 0 8px; display:grid; gap:4px; font-size:0.88rem;}
+  .ec-card dl div{display:grid; grid-template-columns:88px 1fr; gap:8px;}
+  .ec-card dt{color:var(--ink-soft); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; padding-top:2px;}
+  .ec-card dd{margin:0;}
+  .ec-card p{margin:0; font-size:0.92rem; line-height:1.6; color:var(--ink-soft);}
+  /* Shops */
+  .shop-heading{margin:22px 0 10px;}
+  .shop-heading:first-child{margin-top:4px;}
+  /* Discord */
+  .top-actions .discord-top{color:#5865f2;}
+  .discord-top svg{width:20px; height:20px;}
+  :root[data-theme="mono"] .discord-top, :root[data-theme="gray"] .discord-top, :root[data-theme="mono-dark"] .discord-top, :root[data-theme="graphite"] .discord-top{color:var(--ink);}
+  .discord-card{display:flex; align-items:center; gap:14px; margin:0 0 18px; padding:14px 18px; border-radius:14px; text-decoration:none; color:#fff;
+    background:#5865f2; box-shadow:var(--shadow); transition:filter 0.15s ease;}
+  .discord-card:hover{filter:brightness(1.08);}
+  .discord-card .discord-logo svg{width:38px; height:38px; display:block;}
+  .discord-card strong{display:block; font-size:1.05rem;}
+  .discord-card span span{display:block; font-size:0.9rem; opacity:0.9;}
+  .discord-go{margin-left:auto; white-space:nowrap; font-weight:700; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,0.18);}
+  .footer-discord{display:flex; width:fit-content; align-items:center; gap:8px; margin-top:12px; padding:7px 14px; border-radius:999px; text-decoration:none; font-weight:600;
+    color:#fff !important; background:#5865f2; font-size:0.9rem;}
+  .footer-discord svg{width:18px; height:18px;}
+  .nav-discord{text-decoration:none;}
+  .nav-discord .nl-icon svg{width:18px; height:18px; color:#5865f2;}
+  @media (max-width:600px){ #topDiscord{display:none;} .discord-go{display:none;} }
   :root[data-mode="dark"]{ color-scheme:dark; }
   :root[data-mode="dark"] ::selection{ color: var(--parchment); }
 
@@ -2031,6 +2091,7 @@
       <button class="icon-btn top-action" data-route="mine" aria-label="My Sanctify" title="My Sanctify" id="topSaved"><span class="top-badge" id="topSavedCount" hidden></span></button>
       <button class="icon-btn top-action" data-route="account" aria-label="Sign in" title="Sign in" id="topAccount"></button>
       <button class="icon-btn top-action rite-toggle" id="riteToggle" aria-label="Switch to the Eastern Catholic edition" title="Switch to the Eastern Catholic edition"></button>
+      <a class="icon-btn top-action discord-top" id="topDiscord" href="https://discord.gg/QAcdHxc4" target="_blank" rel="noopener" aria-label="Join the Sanctify Discord" title="Join the Sanctify Discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.11 13.11 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
       <button id="themeToggle" class="theme-toggle icon-btn" aria-label="Appearance" title="Appearance" aria-haspopup="menu" aria-expanded="false"></button>
     </div>
   </div>
@@ -2088,11 +2149,14 @@
         <li><button class="navlink" data-route="learn/quiz" data-cat="quiz">Quiz</button></li>
         <li><button class="navlink" data-route="learn/mass" data-cat="mass">The Mass Explained</button></li>
         <li><button class="navlink" data-route="learn/glossary" data-cat="glossary">Catholic Glossary</button></li>
+        <li><button class="navlink" data-route="learn/icons" data-cat="icons">Famous Icons</button></li>
+        <li><button class="navlink" data-route="learn/eastern-churches" data-cat="easternchurches">The Eastern Catholic Churches</button></li>
         <li><button class="navlink" data-route="resources" data-cat="resources">Learning Resources</button></li>
       </ul>
     </div>
     <div class="nav-group">
-      <ul><li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li>
+      <ul><li><a class="navlink nav-discord" href="https://discord.gg/QAcdHxc4" target="_blank" rel="noopener"><span class="nl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#discordGlyph"/></svg></span>Join our Discord</a></li>
+        <li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li>
         <li><button class="navlink rite-switch-link" type="button"><span class="nl-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path fill-rule="evenodd" d="M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z"/></svg></span><span data-rite-switch>Switch to the Eastern Catholic edition</span></button></li></ul>
     </div>
   </div>
@@ -2112,11 +2176,13 @@
   </main>
 </div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="discordGlyph" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.11 13.11 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol></svg>
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M28.5 3h7v14h-7zM12 17h40v7H12zM28.5 24h7v37h-7z"/></svg>
-      <div><strong>Sanctify</strong><span>Prayers, saints, Scripture, and two thousand years of the Church, gathered in one place. Free, with no ads, and no account needed to read or pray.</span></div>
+      <div><strong>Sanctify</strong><span>Prayers, saints, Scripture, and two thousand years of the Church, gathered in one place. Free, with no ads, and no account needed to read or pray.</span>
+        <a class="footer-discord" href="https://discord.gg/QAcdHxc4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#discordGlyph"/></svg>Join our Discord</a></div>
     </div>
     <div class="footer-cols">
       <div><h4>Pray</h4>
@@ -2127,7 +2193,7 @@
         <button data-route="library/all">Browse everything</button><button data-route="library/shop">Shop</button></div>
       <div><h4>Learn</h4>
         <button data-route="learn/theology">Theology</button><button data-route="learn/theology/fathers">The Faith of the Fathers</button><button data-route="learn/theology/apologetics">Defending the Faith</button><button data-route="learn/history">Church History</button>
-        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="resources">Learning Resources</button></div>
+        <button data-route="learn/history/apparitions">Marian Apparitions</button><button data-route="learn/plans">Reading Plans</button><button data-route="learn/quiz">Quiz</button><button data-route="learn/mass">The Mass Explained</button><button data-route="learn/glossary">Glossary</button><button data-route="learn/icons">Famous Icons</button><button data-route="learn/eastern-churches">Eastern Catholic Churches</button><button data-route="resources">Learning Resources</button></div>
       <div><h4>Sanctify</h4>
         <button data-route="today">Today</button><button data-route="calendar">Calendar</button><button data-route="mine">My Sanctify</button><button data-route="community">Community</button><button data-route="account">Account</button><button class="footer-rite" data-rite-switch>Switch to the Eastern Catholic edition</button></div>
     </div>
@@ -2174,6 +2240,8 @@ const CAT_DESC = {
   lectio: 'Pray with a passage of Scripture the way the monks did: read, reflect, respond, and rest in God.',
   tracker: 'Keep a private record of your daily prayer, build a steady habit, and see your faithfulness over the weeks.',
   mass: 'Every part of the Mass in order, with when to stand, sit, and kneel, and what each moment means. Follow along on your phone at Mass.',
+  icons: 'The most famous icons of East and West, what they show, and the stories behind them.',
+  easternchurches: 'The twenty-three Eastern Catholic Churches, in full communion with Rome: their traditions, leaders, and lands.',
   glossary: 'Clear, short definitions of the words of the Catholic faith, from Absolution to the Vulgate.',
   quotes: 'The words of the saints, from the Church Fathers to our own day, each with its source. Search them, browse by theme, and share your favorites.',
   patronfinder: 'A few quick questions to suggest saints for your birthday, your work, and the needs on your heart.',
@@ -2373,6 +2441,18 @@ const SEED_DATA = [
     content:'Lord, now lettest thou thy servant depart in peace, according to thy word;\nfor mine eyes have seen thy salvation\nwhich thou hast prepared in the presence of all peoples,\na light for revelation to the Gentiles,\nand for glory to thy people Israel.' },
   { id:'pe36', category:'prayer', rite:'eastern', title:'Prayer of St. Basil the Great', author:'Attributed to St. Basil the Great; from the Byzantine Midnight Office', tags:['eastern','night prayer','evening'],
     content:'We bless you, O God most high and Lord of mercy, who always do great and unsearchable things with us, glorious and wonderful, without number. You give us sleep for rest from our weakness, and repose from the labors of our much-toiling flesh.\n\nWe thank you that you have not destroyed us with our sins, but in your love for mankind you have raised us up. Enlighten the eyes of our understanding, raise our minds from the heavy sleep of sloth, open our mouths and fill them with your praise, that we may unceasingly sing and confess you, the God glorified in all and by all, the Father without beginning, with your only-begotten Son and your all-holy, good, and life-giving Spirit, now and ever and unto ages of ages. Amen.' },
+  { id:'pe37', category:'prayer', rite:'eastern', title:'Beneath Your Compassion', author:'The oldest known prayer to the Theotokos, c. 3rd century', tags:['eastern','marian'],
+    content:'Beneath your compassion we take refuge, O Theotokos. Do not despise our petitions in time of trouble, but deliver us from dangers, O only pure, only blessed one.' },
+  { id:'pe38', category:'prayer', rite:'eastern', title:'Troparion of the Protection of the Theotokos', author:'Sung on the feast of the Protection, October 1', tags:['eastern','marian','feasts'],
+    content:'Today the faithful celebrate the feast with joy, overshadowed by your coming, O Mother of God. Beholding your most pure image, we fervently cry to you:\n\nEncompass us beneath the precious veil of your protection; deliver us from every form of evil by entreating Christ, your Son and our God, that he may save our souls.' },
+  { id:'pe39', category:'prayer', rite:'eastern', title:'Troparion of St. Nicholas', author:'Sung on December 6 and on Thursdays', tags:['eastern','saints','feasts'],
+    content:'The truth of your deeds has revealed you to your flock as a rule of faith, an image of meekness, and a teacher of abstinence. Therefore you have achieved the heights by humility, riches by poverty.\n\nHoly Father Nicholas, intercede with Christ God that our souls may be saved.' },
+  { id:'pe40', category:'prayer', rite:'eastern', title:'Troparion of Sts. Peter and Paul', author:'Sung on June 29', tags:['eastern','saints','feasts'],
+    content:'O foremost among the apostles and teachers of the world, intercede with the Master of all to grant peace to the world and great mercy to our souls.' },
+  { id:'pe41', category:'prayer', rite:'eastern', title:'Troparion of St. John the Baptist', author:'Sung on the feasts of the Forerunner and on Tuesdays', tags:['eastern','saints','feasts'],
+    content:'The memory of the just is celebrated with hymns of praise, but the Lord’s testimony is sufficient for you, O Forerunner. You have proved to be truly even more venerable than the prophets, since you were granted to baptize in the running waters him whom they proclaimed.\n\nTherefore, having contended for the truth, you rejoiced to announce even to those in Hades the God who appeared in the flesh, who takes away the sin of the world and grants us great mercy.' },
+  { id:'pe42', category:'prayer', rite:'eastern', title:'Evening Prayer of St. Macarius the Great', author:'From the Byzantine prayers before sleep', tags:['eastern','evening','night prayer'],
+    content:'O eternal God and King of all creation, who have granted me to arrive at this hour, forgive me the sins I have committed this day in thought, word, and deed, and cleanse, O Lord, my humble soul from every stain of flesh and spirit.\n\nGrant me, O Lord, to pass the sleep of this night in peace, that rising from my lowly bed I may please your most holy name all the days of my life, and conquer the enemies, both bodily and bodiless, that war against me. Deliver me, O Lord, from vain thoughts and from evil desires which defile me.\n\nFor yours is the kingdom, the power, and the glory, of the Father and of the Son and of the Holy Spirit, now and ever and unto ages of ages. Amen.' },
   { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226, feast day October 4', tags:['founder','poverty','nature'],
     content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.',
     intercession:'St. Francis of Assisi, who found God in poverty and in every creature, teach us to hold this world lightly and to love it truly. Pray for us, that we may walk humbly, live simply, and see the hand of the Creator in all things. Amen.' },
@@ -5717,7 +5797,7 @@ function render(){
       mine:renderMine, timer:renderTimer, quiz:renderQuiz, exam:renderExam, plan:renderPlan,
       community:renderCommunity, resources:renderResources,
       examen:() => renderGuided(isEastern() ? 'evening' : 'examen'), angelus:() => renderGuided(isEastern() ? 'theotokos' : 'angelus'), lectio:() => renderGuided('lectio'),
-      tracker:renderTracker, mass:renderMass, glossary:renderGlossary, patronfinder:renderPatronFinder, quotes:renderQuotes, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
+      tracker:renderTracker, mass:renderMass, glossary:renderGlossary, icons:renderFamousIcons, easternchurches:renderEasternChurches, patronfinder:renderPatronFinder, quotes:renderQuotes, thread:renderThread, 'forum-new':renderForumNew, account:renderAccount,
       'hub-pray':() => renderHub('pray'), 'hub-library':() => renderHub('library'), 'hub-learn':() => renderHub('learn')
     };
     const needsNoSearch = new Set(['home', 'daily', 'theology', 'hub-pray', 'hub-library', 'hub-learn']);
@@ -6385,6 +6465,8 @@ const PRAYER_CARDS = {
   pe28:{ art:'rays', accent:'var(--gold)' }, pe29:{ art:'crown', accent:'var(--purple)' }, pe30:{ art:'eastcross', accent:'var(--wine)' },
   pe31:{ art:'wings', accent:'var(--teal)' }, pe32:{ art:'moon', accent:'var(--indigo)' }, pe33:{ art:'sunrise', accent:'var(--green)' },
   pe34:{ art:'candle', accent:'var(--purple)' }, pe35:{ art:'lantern', accent:'var(--indigo)' }, pe36:{ art:'moon', accent:'var(--purple)' },
+  pe37:{ art:'crown', accent:'var(--indigo)' }, pe38:{ art:'stars', accent:'var(--indigo)' }, pe39:{ art:'anchor', accent:'var(--teal)' },
+  pe40:{ art:'keys', accent:'var(--wine)' }, pe41:{ art:'dove', accent:'var(--teal)' }, pe42:{ art:'moon', accent:'var(--indigo)' },
   p2:{ art:'rays', accent:'var(--gold)' },
   p3:{ art:'lily', accent:'var(--indigo)' },
   p4:{ art:'trinity', accent:'var(--gold)' },
@@ -8079,12 +8161,12 @@ async function renderCommunity(){
   entryListEl.innerHTML = '<div class="forum-loading">Loading the Community…</div>';
   await ensureAccount();
   if(!stillShowing(seq, 'community')) return;
-  if(!Community.available){ showProblem(entryListEl, Community.problem); return; }
+  if(!Community.available){ showProblem(entryListEl, Community.problem); entryListEl.insertAdjacentHTML('afterbegin', discordCardHtml()); return; }
   const u = Community.user;
   const wrap = document.createElement('div');
   wrap.className = 'forum';
   const chips = [['all', 'All posts'], ...Object.entries(FORUM_CATS).map(([k, c]) => [k, c.name])];
-  wrap.innerHTML = `
+  wrap.innerHTML = `${discordCardHtml()}
     <div class="forum-bar">
       <p class="forum-status">${u
         ? `Signed in as <button class="text-link" data-route="account">${escapeHtml(u.username)}</button>`
@@ -9829,7 +9911,26 @@ const EAST_FIXED = [
   { month:7, day:5, name:'St. Athanasius of Athos', type:'Commemoration', note:'Founder of the Great Lavra on the Holy Mountain.' },
   { month:7, day:10, name:'St. Anthony of the Kyiv Caves', type:'Commemoration', note:'Father of monasticism in the lands of Rus’.' },
   { month:7, day:24, name:'Sts. Boris and Gleb, Passion-Bearers', type:'Commemoration', note:'Princes of Kyiv who would not shed their brother’s blood.' },
-  { month:7, day:27, name:'St. Panteleimon the Great-Martyr and Healer', type:'Commemoration', note:'Physician and martyr, one of the Unmercenary Healers.' }
+  { month:7, day:27, name:'St. Panteleimon the Great-Martyr and Healer', type:'Commemoration', note:'Physician and martyr, one of the Unmercenary Healers.' },
+  { month:1, day:12, name:'St. Tatiana of Rome', type:'Commemoration', note:'Deaconess and martyr, patron of students.' },
+  { month:1, day:17, name:'St. Anthony the Great', type:'Commemoration', note:'The father of monks.' },
+  { month:1, day:25, name:'St. Gregory the Theologian', type:'Commemoration', note:'Archbishop of Constantinople, one of the Three Holy Hierarchs.' },
+  { month:2, day:3, name:'Holy Righteous Simeon the God-Receiver and Anna the Prophetess', type:'Commemoration', note:'The day after the Encounter, honoring the elder who took Christ in his arms.' },
+  { month:2, day:10, name:'St. Charalampus the Hieromartyr', type:'Commemoration', note:'Aged priest and martyr of Magnesia.' },
+  { month:2, day:17, name:'St. Theodore Tyro the Great-Martyr', type:'Commemoration', note:'Soldier and martyr of Amasea.' },
+  { month:3, day:9, name:'The Forty Holy Martyrs of Sebaste', type:'Commemoration', note:'Soldiers who froze to death on a lake rather than deny Christ. The Presanctified Liturgy is celebrated if it falls on a Lenten weekday.' },
+  { month:5, day:9, name:'The Holy Prophet Isaiah; Translation of the Relics of St. Nicholas', type:'Commemoration', note:'The prophet of the Incarnation, and the arrival of St. Nicholas’s relics in Bari in 1087.' },
+  { month:6, day:12, name:'St. Onuphrius the Great', type:'Commemoration', note:'Hermit of the Egyptian desert.' },
+  { month:7, day:22, name:'St. Mary Magdalene, Myrrh-bearer and Equal to the Apostles', type:'Commemoration', note:'The first witness of the Resurrection.' },
+  { month:8, day:16, name:'The Holy Image of Christ Not Made by Hands', type:'Feast', note:'The translation of the Image of Edessa (the Mandylion) to Constantinople in 944.' },
+  { month:9, day:4, name:'The Holy Prophet Moses', type:'Commemoration', note:'The lawgiver who saw God at the burning bush.' },
+  { month:9, day:16, name:'St. Euphemia the All-Praised', type:'Commemoration', note:'Virgin martyr of Chalcedon.' },
+  { month:10, day:7, name:'Sts. Sergius and Bacchus', type:'Commemoration', note:'Soldier martyrs of Syria.' },
+  { month:11, day:11, name:'St. Menas the Great-Martyr', type:'Commemoration', note:'Soldier martyr of Egypt.' },
+  { month:11, day:24, name:'St. Catherine the Great-Martyr', type:'Commemoration', note:'Virgin and martyr of Alexandria.' },
+  { month:11, day:25, name:'St. Mercurius the Great-Martyr', type:'Commemoration', note:'Soldier martyr of Caesarea in Cappadocia.' },
+  { month:12, day:4, name:'St. Barbara the Great-Martyr and St. John of Damascus', type:'Commemoration', note:'The virgin martyr and the great defender of the holy icons.' },
+  { month:12, day:12, name:'St. Spyridon the Wonderworker', type:'Commemoration', note:'Bishop of Trimythous in Cyprus, present at Nicaea.' }
 ];
 const eastMoveableCache = {};
 function easternMoveable(y){
@@ -10204,6 +10305,27 @@ function massPostureNote(){
 
 /* ---------- Eastern Catholic glossary terms ---------- */
 GLOSSARY.push(
+  ['Antimension', 'A cloth signed by the bishop, often with relics sewn into it, which is unfolded on the altar for the Divine Liturgy. No Liturgy is celebrated without it.'],
+  ['Ambo', 'In a Byzantine church, the raised place in front of the iconostasis from which the Gospel is proclaimed and the homily preached.'],
+  ['Analogion', 'A tall slanted stand on which an icon or the Gospel book is placed for the faithful to venerate.'],
+  ['Apodosis', 'The "leave-taking" of a great feast: its last day, when the hymns of the feast are sung for the last time.'],
+  ['Archimandrite', 'A title of honor for a senior priest-monk; in some Eastern Catholic Churches it is also given to celibate priests.'],
+  ['Epitrachelion', 'The stole of a Byzantine priest, worn around the neck and hanging down in front. A priest wears it whenever he celebrates a Holy Mystery.'],
+  ['Exarchy', 'A territory of an Eastern Church that is not yet a full eparchy, governed by an exarch on behalf of the Pope or a patriarch.'],
+  ['Forefeast and Afterfeast', 'Days before a great feast that prepare for it, and days after it that prolong its celebration, until the apodosis.'],
+  ['Hieromonk', 'A monk who has also been ordained a priest.'],
+  ['Kamilavka', 'The cylindrical hat worn by Byzantine clergy and monastics, often with a veil for monks.'],
+  ['Kollyva', 'Boiled wheat sweetened with honey, blessed at memorial services as a sign of the resurrection: "unless a grain of wheat falls into the earth and dies" (John 12:24).'],
+  ['Lampada', 'An oil lamp kept burning before the icons, in church or in the icon corner of a home.'],
+  ['Megalynarion', 'A hymn that "magnifies" the Theotokos or the mystery of a feast, such as "It is truly right" (Axion Estin).'],
+  ['Moleben', 'A short service of petition or thanksgiving, addressed to Christ, the Theotokos, or a saint.'],
+  ['Myrrh-bearers', 'The holy women who came to anoint the body of Jesus and were the first witnesses of the Resurrection. They are honored on the third Sunday of Pascha.'],
+  ['Omophorion', 'The broad band a bishop wears over his shoulders, recalling the lost sheep the Good Shepherd carries home on his shoulders.'],
+  ['Panakhida', 'The memorial service for the departed, sung especially on the third, ninth, and fortieth days after death and on anniversaries. Also called the Parastas.'],
+  ['Panagia', '"All-Holy," a title of the Theotokos. Also the small round icon of her that Eastern bishops wear on the breast.'],
+  ['Phelonion', 'The large outer vestment of a Byzantine priest, worn over the other vestments for the Divine Liturgy, like the Latin chasuble.'],
+  ['Prokeimenon', 'A psalm verse with refrain, sung before the reading of the Epistle and at other services.'],
+  ['Synaxis', 'An assembly. In the calendar, the day after some great feasts, honoring the persons who served in the mystery celebrated, such as the Synaxis of the Theotokos on December 26.'],
   ['Antidoron', 'Blessed bread from the prosphora, given to all at the end of the Divine Liturgy. The name means “instead of the gift.”'],
   ['Akathist', 'A long hymn of praise sung standing, especially the Akathist to the Theotokos sung during Great Lent.'],
   ['Byzantine Rite', 'The liturgical tradition of the Church of Constantinople, used by the Eastern Orthodox and by fourteen Eastern Catholic Churches.'],
@@ -10270,6 +10392,269 @@ function riteBannerHtml(){
     : `<section class="rite-banner">${cross}<div><strong>Eastern Catholic?</strong> Switch to the edition for the Byzantine tradition, with the Divine Liturgy, the Jesus Prayer, Byzantine prayers, and the Byzantine calendar.</div><button class="btn quiet" data-rite-switch>Switch to the Eastern Catholic edition</button></section>`;
 }
 /* =========================================================
+   FAMOUS ICONS
+   ========================================================= */
+const FAMOUS_ICONS = [
+  { key:'pantocrator', kind:'christ', title:'Christ Pantocrator of Sinai', date:'6th century', place:'St. Catherine’s Monastery, Mount Sinai, Egypt', medium:'Encaustic (hot wax) on wood',
+    text:'One of the oldest surviving icons in the world. It was probably painted in Constantinople, and it survived the destruction of icons in the eighth and ninth centuries because Sinai lay outside the reach of the Byzantine emperors.\n\n"Pantocrator" means "Ruler of all." Christ looks straight at the viewer, holding the Gospel and blessing. Many have noticed that the two halves of his face are different: one gentle and one stern. It is often read as a picture of his two natures, divine and human, or of Christ as both merciful Savior and just Judge.',
+    look:['The two sides of the face, one calm and one searching.','The cross within the halo, which in icons belongs only to Christ.','His right hand blessing, with the fingers shaping the letters of his name.','The jeweled Gospel book: the Word of God holding the word of God.'] },
+  { key:'deesis', kind:'christ', title:'The Deësis Mosaic of Hagia Sophia', date:'c. 1261', place:'Hagia Sophia, Istanbul (Constantinople)', medium:'Glass and stone mosaic',
+    text:'Made soon after the Byzantines recaptured Constantinople from the Latin crusaders, this mosaic in the upper gallery of Hagia Sophia is considered a masterpiece of late Byzantine art. Much of the lower part is lost, but the faces survive.\n\n"Deësis" means "supplication." Christ is in the center, with the Mother of God on one side and St. John the Baptist on the other, both turning to him in prayer for the human race. The same group stands at the center of the iconostasis in many Eastern churches.',
+    look:['The soft, almost living modeling of Christ’s face, made from tiny pieces of glass.','Mary and John bowing slightly toward Christ, interceding for us.','The gold background, which in icons stands for the light of heaven, not for a place on earth.'] },
+  { key:'cefalu', kind:'christ', title:'Christ Pantocrator of Cefalù', date:'1148', place:'Cefalù Cathedral, Sicily', medium:'Mosaic in the apse',
+    text:'The Norman king Roger II built Cefalù Cathedral and brought Byzantine craftsmen to decorate it. The great Christ in the half-dome above the altar is one of the finest Byzantine mosaics anywhere, made in the Latin West.\n\nChrist holds an open book with his words from the Gospel of John, "I am the light of the world," written in both Greek and Latin: a sign of a time when East and West still worshipped together.',
+    look:['The open Gospel with the same verse in Greek and Latin.','The long, elegant fingers of the blessing hand.','The way the figure fills the curved apse, embracing everyone in the church.'] },
+  { key:'edessa', kind:'christ', title:'The Image of Edessa (Mandylion)', date:'10th-century panel', place:'St. Catherine’s Monastery, Mount Sinai', medium:'Tempera on wood',
+    text:'According to an ancient tradition, King Abgar of Edessa wrote to Jesus asking to be healed. Jesus pressed a cloth to his face and sent it to the king, leaving his features miraculously on it. The cloth, called the Mandylion, was brought to Constantinople in 944 and lost after the city was sacked in 1204.\n\nIcons of the Holy Face "not made by hands" became a reminder that the Incarnation itself is the reason we can picture Christ. This Sinai panel shows King Abgar receiving the cloth. The Byzantine Churches celebrate the feast of the Holy Face on August 16.',
+    look:['King Abgar holding the cloth with the face of Christ.','The idea of an image "not made by hands," which answers those who said Christ cannot be depicted.'] },
+  { key:'vladimir', kind:'mary', title:'Theotokos of Vladimir', date:'early 12th century', place:'Painted in Constantinople; long kept at the Tretyakov Gallery, Moscow', medium:'Tempera on wood',
+    text:'Painted in Constantinople and sent as a gift to Kyiv around 1131, this icon was taken to the city of Vladimir in 1155 and to Moscow in 1395, when the army of Tamerlane turned back from the city. It became the most beloved icon of Russia.\n\nIt is the most famous example of the Eleousa, or "Tenderness," type: the Child presses his cheek to his mother’s and puts his arm around her neck, while Mary looks out at us with a sorrowful gaze, already foreseeing the Passion.',
+    look:['The Child’s cheek pressed against his mother’s.','Mary’s eyes looking past her Son, toward us, full of sorrow and love.','The Child’s small foot turned so that the sole shows, a detail repeated in many later copies.'] },
+  { key:'hodegetria', kind:'mary', title:'The Hodegetria', date:'type from the 5th–6th century; shown: Smolensk Hodegetria by Dionisius, 1482', place:'Original once in Constantinople', medium:'Tempera on wood',
+    text:'"Hodegetria" means "She who shows the way." Mary holds the Child on one arm and points to him with her other hand: Christ is the Way. The original icon, said to have been painted by St. Luke, was kept in the Hodegon monastery in Constantinople and carried in processions around the city walls. It was destroyed when the city fell in 1453.\n\nCountless famous icons follow its pattern, including Our Lady of Częstochowa, Smolensk, and Kazan. The copy shown here was painted by the Russian master Dionisius.',
+    look:['Mary’s right hand gesturing toward Christ.','The Child blessing with one hand and holding a scroll with the other, like a teacher.','The letters ΜΡ ΘΥ (Mother of God) and IC XC (Jesus Christ).'] },
+  { key:'perpetual', kind:'mary', title:'Our Lady of Perpetual Help', date:'probably 15th century', place:'Church of St. Alphonsus, Rome', medium:'Tempera on wood, Cretan school',
+    text:'This Cretan icon was brought to Rome in the late fifteenth century and venerated in the church of St. Matthew until the church was destroyed during the French occupation of 1798. Rediscovered decades later, it was given by Blessed Pius IX to the Redemptorists in 1866 with the charge to "make her known to the world."\n\nThe archangels Michael and Gabriel carry the instruments of the Passion. The Child has run to his mother in fright, so quickly that one sandal is falling off, and she holds his hands in hers. Copies of this icon hang in Catholic churches and homes all over the world.',
+    look:['St. Michael (left) with the lance and the sponge; St. Gabriel (right) with the cross and nails.','The dangling sandal of the frightened Child.','Mary’s gaze toward us, not toward the Child: she points us to him.','The Greek abbreviations naming each figure.'] },
+  { key:'salus', kind:'mary', title:'Salus Populi Romani', date:'date debated, perhaps 6th–13th century', place:'Basilica of St. Mary Major, Rome', medium:'Tempera on wood',
+    text:'The name means "Protectress of the Roman people." Tradition attributes the icon to St. Luke, and it has been carried through the streets of Rome in times of plague and danger. Pope Gregory XVI crowned it in 1838.\n\nPope Francis prayed before it before and after every journey, and in March 2020 he brought it to St. Peter’s Square to pray for the end of the pandemic. He chose to be buried in this basilica, near the icon he loved.',
+    look:['The Child holding a Gospel book and blessing.','Mary’s crossed hands, holding a white cloth (mappa), a sign of high rank in the Roman world.','The cross on Mary’s forehead covering.'] },
+  { key:'czestochowa', kind:'mary', title:'Our Lady of Częstochowa', date:'origins debated; at Jasna Góra since 1382', place:'Jasna Góra Monastery, Częstochowa, Poland', medium:'Tempera on wood',
+    text:'Known as the Black Madonna, this Hodegetria icon is the spiritual heart of Poland. In 1430 robbers attacked the shrine and slashed the face of the Virgin; the two scars on her right cheek were left visible when the icon was restored.\n\nIn 1655 the monastery held out against a Swedish siege, and in 1656 King John Casimir proclaimed the Mother of God Queen of Poland. Millions of pilgrims come every year, and Pope St. John Paul II visited it many times.',
+    look:['The two parallel scars on Mary’s right cheek.','The dark complexion darkened by centuries of candle smoke.','Jeweled robes and crowns added by pilgrims and kings over the centuries.'] },
+  { key:'kazan', kind:'mary', title:'Our Lady of Kazan', date:'found 1579', place:'Kazan and Moscow, Russia', medium:'Tempera on wood',
+    text:'In 1579, after a fire in Kazan, the Virgin appeared in dreams to a young girl named Matrona and told her where an icon lay buried. The icon was found in the ashes, and it became one of the most venerated in Russia. The original was stolen in 1904 and probably destroyed.\n\nA venerable copy hung for years in the study of Pope St. John Paul II, who prayed for the reconciliation of Catholics and Orthodox. In 2004 he sent it back to Russia as a gift, and it is now in Kazan.',
+    look:['A close half-figure of Mary with the Child standing before her, a version of the Hodegetria.','The Child blessing with his right hand.','Mary’s head inclined toward her Son.'] },
+  { key:'sign', kind:'mary', title:'Our Lady of the Sign', date:'shown: the Great Panagia of Yaroslavl, early 13th century', place:'Tretyakov Gallery, Moscow', medium:'Tempera on wood',
+    text:'The Virgin stands with her hands raised in prayer, and Christ appears in a medallion on her breast, as the child Emmanuel. The name comes from the prophecy of Isaiah: "The Lord himself will give you a sign." In the East this image is also called the Platytera, "wider than the heavens," because the Creator of all was contained in her womb.\n\nIn Novgorod, tradition says an icon of this type saved the city during a siege in 1170. The image is painted in the apse above the altar in many Byzantine churches.',
+    look:['Mary’s arms raised in the ancient Christian posture of prayer (orans).','Christ as a young child within a circle on her breast.','Angels in medallions at her sides.'] },
+  { key:'zarvanytsia', kind:'mary', title:'Our Lady of Zarvanytsia', date:'shrine tradition from 1240', place:'Zarvanytsia, Ternopil region, Ukraine', medium:'Tempera on wood',
+    text:'According to tradition, in 1240 a monk fleeing the Mongol destruction of Kyiv fell asleep exhausted by a spring and saw the Virgin in a dream. When he awoke he found an icon of the Mother of God by the water and built a chapel there.\n\nZarvanytsia is the great Marian shrine of the Ukrainian Greek Catholic Church. Even when the Soviet regime outlawed that Church, the faithful kept coming in secret, and today hundreds of thousands make pilgrimage there each summer.',
+    look:['Mary and the Child, both crowned, holding each other close.','Mary’s raised right hand, a gesture of blessing and protection.'] },
+  { key:'nicopeia', kind:'mary', title:'Madonna Nicopeia', date:'probably 12th century', place:'St. Mark’s Basilica, Venice', medium:'Tempera on wood with a jeweled frame',
+    text:'"Nicopeia" means "Bringer of Victory." Byzantine emperors carried icons like this one before their armies. After the crusaders sacked Constantinople in 1204, it was taken to Venice, where it has been venerated for eight centuries as the city’s protector.\n\nIt shows the Virgin facing forward, holding the Christ Child in front of her like a living throne.',
+    look:['The Child held directly in front of Mary, facing outward.','The rich frame of enamels and jewels added in Venice.'] },
+  { key:'trinity', kind:'feast', title:'The Holy Trinity (Rublev)', date:'c. 1411 or 1425–1427', place:'Painted for the Trinity Lavra of St. Sergius; long kept at the Tretyakov Gallery, Moscow', medium:'Tempera on wood',
+    text:'Andrei Rublev’s icon is often called the most beautiful icon ever painted. It shows the three angels who visited Abraham at the oak of Mamre (Genesis 18), whom the Fathers saw as a revelation of the Trinity. Rublev left out Abraham and Sarah, leaving only the three, seated around a table in silent communion.\n\nIn 1551 a council in Moscow held it up as the model for how the Trinity should be depicted. The three figures form a circle, and the open place at the front of the table seems to invite the viewer in.',
+    look:['The chalice on the table, with the sacrificial calf: a sign of the Eucharist.','The three figures bowing toward one another in a circle of love.','The house, the tree, and the mountain behind them.','The empty space at the front of the table, left open for us.'] },
+  { key:'nativity', kind:'feast', title:'The Nativity of Christ', date:'early 15th century, attributed to Andrei Rublev', place:'Annunciation Cathedral, Moscow Kremlin', medium:'Tempera on wood',
+    text:'The Byzantine icon of the Nativity tells the whole story at once. At the center the Mother of God rests beside the manger in a dark cave, and the Child lies swaddled in a box that looks like a tomb: he was born to die for us.\n\nAround them, angels give glory, the shepherds hear the news, and the magi follow a ray of light from heaven. Below, the midwives bathe the newborn, showing he is truly human, and Joseph sits apart, troubled, while an old shepherd speaks to him, often understood as the tempter sowing doubt.',
+    look:['The ox and the donkey (Isaiah 1:3) at the manger.','The dark cave, a sign of the world in darkness into which the Light is born.','The swaddling bands that recall burial cloths.','Joseph lost in thought in the corner.'] },
+  { key:'transfiguration', kind:'feast', title:'The Transfiguration', date:'c. 1403, attributed to Theophanes the Greek', place:'From Pereslavl-Zalessky; Tretyakov Gallery, Moscow', medium:'Tempera on wood',
+    text:'On Mount Tabor, Christ shone with divine light before Peter, James, and John, while Moses and Elijah spoke with him. This icon, attributed to the Byzantine master Theophanes the Greek, who worked alongside Andrei Rublev, shows the light striking the apostles to the ground.\n\nFor Eastern Christians the light of Tabor is the uncreated light of God, which the saints may share. The feast is kept on August 6.',
+    look:['Christ in white within circles of light, with rays reaching the apostles.','Moses with the tablets of the Law and Elijah the prophet on either side.','The apostles thrown down, one hiding his face.','Small scenes of Christ climbing and descending the mountain.'] },
+  { key:'anastasis', kind:'feast', title:'The Anastasis (Resurrection)', date:'c. 1315–1321', place:'Chora Church, Istanbul (Constantinople)', medium:'Fresco',
+    text:'The Byzantine icon of the Resurrection does not show the empty tomb. It shows what Christ did after his death: descending to the dead, breaking down the gates of Hades, and raising Adam and Eve, and with them all humanity.\n\nThis fresco in the funeral chapel of the Chora Church is one of the most powerful images in Christian art. Christ, clothed in dazzling white, pulls Adam and Eve from their tombs by the wrists, as if they could not rise by their own strength.',
+    look:['Christ standing on the broken doors of Hades, arranged in the shape of a cross.','Locks, keys, and nails scattered in the darkness, and Satan bound below.','Adam and Eve pulled up by the wrist.','Kings, prophets, and John the Baptist waiting on either side.'] },
+  { key:'dormition', kind:'feast', title:'The Dormition (El Greco)', date:'before 1567', place:'Church of the Dormition, Ermoupoli, Syros, Greece', medium:'Tempera and gold on wood',
+    text:'Before he went to Venice and Spain and became famous as El Greco, Domenikos Theotokopoulos was an icon painter in Crete. This icon of the Dormition, the "falling asleep" of the Mother of God, was identified as his work in 1983.\n\nIn every Dormition icon the apostles gather around Mary’s bed, and Christ stands behind her holding her soul, shown as a small child wrapped in white: the Son who was once carried by his mother now carries her into glory.',
+    look:['Christ holding Mary’s soul as an infant.','The apostles mourning around her bed.','The mixture of Byzantine forms with Venetian light and color that would mark El Greco’s later work.'] },
+  { key:'ladder', kind:'saints', title:'The Ladder of Divine Ascent', date:'12th century', place:'St. Catherine’s Monastery, Mount Sinai', medium:'Tempera on wood',
+    text:'This icon illustrates the book by St. John Climacus, abbot of Sinai, which describes the spiritual life as thirty steps leading to God. Monks climb a ladder toward Christ, who reaches out to welcome them at the top.\n\nSmall black demons shoot arrows and pull some climbers off with hooks, while angels watch and the monks below raise their hands in prayer for those who are climbing. It is a vivid picture of the struggle, and the help, that every Christian knows.',
+    look:['St. John Climacus leading the way near the top.','Christ reaching down to take the hand of the climber.','The demons pulling monks down, and the praying monks below.'] },
+  { key:'damiano', kind:'saints', title:'The San Damiano Cross', date:'12th century', place:'Basilica of St. Clare, Assisi', medium:'Tempera on wood',
+    text:'In the little ruined church of San Damiano outside Assisi, the young Francis was praying before this painted cross when, according to his early biographers, the figure of Christ spoke to him, telling him to go and repair his house, which was falling into ruin. Francis began by rebuilding the chapel with his own hands, and only later understood that Christ meant the whole Church.\n\nPainted by an unknown Umbrian artist in an icon-like style, the cross shows the crucified Christ alive and serene, surrounded by the witnesses of the Passion. It was moved to the Basilica of St. Clare when the Poor Clares left San Damiano.',
+    look:['Christ with open eyes: crucified, yet victorious.','Mary, John, Mary Magdalene, Mary of Clopas, and the centurion beside him.','Christ ascending into heaven at the top, and the hand of the Father blessing.'] }
+];
+const FAMOUS_IMG = {
+ "pantocrator": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/500px-Spas_vsederzhitel_sinay.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Spas_vsederzhitel_sinay.jpg"
+ },
+ "trinity": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Angelsatmamre-trinity-rublev-1410.jpg/500px-Angelsatmamre-trinity-rublev-1410.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Angelsatmamre-trinity-rublev-1410.jpg"
+ },
+ "vladimir": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Virgin_of_Vladimir.jpg/500px-Virgin_of_Vladimir.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Virgin_of_Vladimir.jpg"
+ },
+ "perpetual": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/2/26/Perpetual_help_original_icon.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Perpetual_help_original_icon.jpg"
+ },
+ "salus": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Salus_Populi_Romani_after_restoration.jpg/500px-Salus_Populi_Romani_after_restoration.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Salus_Populi_Romani_after_restoration.jpg"
+ },
+ "czestochowa": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Czestochowa_MB_Czestochowska.jpg/500px-Czestochowa_MB_Czestochowska.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Czestochowa_MB_Czestochowska.jpg"
+ },
+ "kazan": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%B8%D0%BA%D0%BE%D0%BD%D0%B0.jpg/500px-%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%B8%D0%BA%D0%BE%D0%BD%D0%B0.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%B8%D0%BA%D0%BE%D0%BD%D0%B0.jpg"
+ },
+ "hodegetria": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Odigitriya_Smolenskaya_Dionisiy.jpg/500px-Odigitriya_Smolenskaya_Dionisiy.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Odigitriya_Smolenskaya_Dionisiy.jpg"
+ },
+ "deesis": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Jesus-Christ-from-Hagia-Sophia.jpg/500px-Jesus-Christ-from-Hagia-Sophia.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Jesus-Christ-from-Hagia-Sophia.jpg"
+ },
+ "anastasis": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Chora_Anastasis.jpg/500px-Chora_Anastasis.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Chora_Anastasis.jpg"
+ },
+ "edessa": {
+  "img": "https://upload.wikimedia.org/wikipedia/commons/1/15/Abgarwithimageofedessa10thcentury.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Abgarwithimageofedessa10thcentury.jpg"
+ },
+ "sign": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Oranta.jpg/500px-Oranta.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Oranta.jpg"
+ },
+ "ladder": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/The_Ladder_of_Divine_Ascent_Monastery_of_St_Catherine_Sinai_12th_century.jpg/500px-The_Ladder_of_Divine_Ascent_Monastery_of_St_Catherine_Sinai_12th_century.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Ladder_of_Divine_Ascent_Monastery_of_St_Catherine_Sinai_12th_century.jpg"
+ },
+ "zarvanytsia": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Matka_Bo%C5%BCa_Zarwanicka.jpg/500px-Matka_Bo%C5%BCa_Zarwanicka.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Matka_Bo%C5%BCa_Zarwanicka.jpg"
+ },
+ "cefalu": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Cefal%C3%B9_Pantocrator_retouched.jpg/500px-Cefal%C3%B9_Pantocrator_retouched.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cefal%C3%B9_Pantocrator_retouched.jpg"
+ },
+ "nicopeia": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Madonna_Nicopeia_San_Marco_interior.png/500px-Madonna_Nicopeia_San_Marco_interior.png",
+  "page": "https://commons.wikimedia.org/wiki/File:Madonna_Nicopeia_San_Marco_interior.png"
+ },
+ "transfiguration": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Transfiguration_by_Feofan_Grek_from_Spaso-Preobrazhensky_Cathedral_in_Pereslavl-Zalessky_%2815th_c%2C_Tretyakov_gallery%29.jpeg/500px-Transfiguration_by_Feofan_Grek_from_Spaso-Preobrazhensky_Cathedral_in_Pereslavl-Zalessky_%2815th_c%2C_Tretyakov_gallery%29.jpeg",
+  "page": "https://commons.wikimedia.org/wiki/File:Transfiguration_by_Feofan_Grek_from_Spaso-Preobrazhensky_Cathedral_in_Pereslavl-Zalessky_(15th_c,_Tretyakov_gallery).jpeg"
+ },
+ "dormition": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Dormition_El_Greco.jpg/500px-Dormition_El_Greco.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Dormition_El_Greco.jpg"
+ },
+ "damiano": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Kruis_san_damiano.gif/500px-Kruis_san_damiano.gif",
+  "page": "https://commons.wikimedia.org/wiki/File:Kruis_san_damiano.gif"
+ },
+ "nativity": {
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nativity_%2815th_c.%2C_Annunciation_Cathedral_in_Moscow%29.jpg/500px-Nativity_%2815th_c.%2C_Annunciation_Cathedral_in_Moscow%29.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Nativity_(15th_c.,_Annunciation_Cathedral_in_Moscow).jpg"
+ }
+};
+const FAMOUS_KINDS = [['all', 'All icons'], ['christ', 'Christ'], ['mary', 'The Mother of God'], ['feast', 'Feasts'], ['saints', 'Saints & others']];
+let famousKind = 'all';
+let famousOpen = null;
+
+function renderFamousIcons(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'famous-icons';
+  if(famousOpen){
+    const ic = FAMOUS_ICONS.find(x => x.key === famousOpen);
+    const img = FAMOUS_IMG[ic.key];
+    wrap.innerHTML = `
+      <button class="text-link fi-back" type="button">← All famous icons</button>
+      <article class="fi-detail">
+        <figure class="fi-figure">${img ? `<img src="${escapeHtml(img.img)}" alt="${escapeHtml(ic.title)}" decoding="async"><figcaption><a href="${escapeHtml(img.page)}" target="_blank" rel="noopener">Image via Wikimedia Commons ↗</a></figcaption>` : ''}</figure>
+        <div class="fi-body">
+          <h2>${escapeHtml(ic.title)}</h2>
+          <dl class="fi-facts"><div><dt>Date</dt><dd>${escapeHtml(ic.date)}</dd></div><div><dt>Where</dt><dd>${escapeHtml(ic.place)}</dd></div><div><dt>Made with</dt><dd>${escapeHtml(ic.medium)}</dd></div></dl>
+          ${ic.text.split('\n\n').map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+          <h3>What to look for</h3>
+          <ul class="fi-look">${ic.look.map(l => `<li>${escapeHtml(l)}</li>`).join('')}</ul>
+        </div>
+      </article>`;
+    wrap.querySelector('.fi-back').addEventListener('click', () => { famousOpen = null; renderFamousIcons(); window.scrollTo({ top:0 }); });
+  } else {
+    const list = FAMOUS_ICONS.filter(ic => famousKind === 'all' || ic.kind === famousKind);
+    wrap.innerHTML = `
+      <div class="patron-filters-row fi-kinds" role="group" aria-label="Kinds of icons">
+        ${FAMOUS_KINDS.map(([k, n]) => `<button class="patron-chip${famousKind === k ? ' active' : ''}" data-kind="${k}" aria-pressed="${famousKind === k}">${n}</button>`).join('')}
+      </div>
+      <div class="fi-grid">${list.map(ic => {
+        const img = FAMOUS_IMG[ic.key];
+        return `<button class="fi-card" type="button" data-icon="${ic.key}">
+          <span class="fi-thumb">${img ? `<img src="${escapeHtml(img.img)}" alt="" loading="lazy" decoding="async">` : ''}</span>
+          <span class="fi-title">${escapeHtml(ic.title)}</span>
+          <span class="fi-date">${escapeHtml(ic.date)}</span>
+        </button>`;
+      }).join('')}</div>
+      <p class="fi-note">An icon is not simply a picture of a holy person but, as the Eastern Churches say, a window onto heaven: what Scripture says in words, the icon shows in color. See also <button class="text-link" data-open="t60">Holy Icons</button> in Theology.</p>`;
+    wrap.querySelectorAll('[data-kind]').forEach(b => b.addEventListener('click', () => { famousKind = b.dataset.kind; renderFamousIcons(); }));
+    wrap.querySelectorAll('[data-icon]').forEach(b => b.addEventListener('click', () => { famousOpen = b.dataset.icon; renderFamousIcons(); window.scrollTo({ top:0 }); }));
+  }
+  entryListEl.appendChild(wrap);
+}
+
+/* =========================================================
+   THE EASTERN CATHOLIC CHURCHES
+   ========================================================= */
+const EASTERN_CHURCHES = [
+  { trad:'Byzantine (Constantinopolitan) tradition', desc:'The tradition of Constantinople, with the Divine Liturgies of St. John Chrysostom and St. Basil the Great. Fourteen Eastern Catholic Churches follow it.', list:[
+    ['Ukrainian Greek Catholic Church', 'Major Archbishop of Kyiv-Halych', 'Ukraine and a worldwide diaspora', 'Ukrainian, Church Slavonic', 'One of the largest Eastern Catholic Churches. It entered full communion with Rome at the Union of Brest (1596), survived as an underground Church under Soviet rule, and returned to public life in 1989.'],
+    ['Ruthenian Greek Catholic Church', 'Eparchy of Mukachevo; Byzantine Catholic Metropolia of Pittsburgh (USA)', 'Ukraine (Transcarpathia), United States', 'Church Slavonic, English', 'Joined Rome at the Union of Uzhhorod (1646). Its American branch is known simply as the Byzantine Catholic Church.'],
+    ['Melkite Greek Catholic Church', 'Patriarch of Antioch', 'Syria, Lebanon, Israel, Egypt, Jordan, the Americas', 'Arabic, Greek', 'Byzantine Christians of the Middle East in communion with Rome since 1724. "Melkite" comes from the Syriac word for "king," because they followed the emperor’s Council of Chalcedon.'],
+    ['Romanian Greek Catholic Church', 'Major Archbishop of Făgăraș and Alba Iulia (Blaj)', 'Romania', 'Romanian', 'United with Rome around 1700 in Transylvania. Outlawed by the communists in 1948; its seven martyred bishops were beatified in 2019.'],
+    ['Slovak Greek Catholic Church', 'Metropolitan of Prešov', 'Slovakia', 'Church Slavonic, Slovak', 'Suppressed by the communists in 1950 and restored in 1968. Its martyred bishops Pavol Gojdič and Vasil Hopko are beatified.'],
+    ['Hungarian Greek Catholic Church', 'Metropolitan of Hajdúdorog', 'Hungary', 'Hungarian', 'Its great shrine is Máriapócs, where an icon of the Mother of God was seen weeping in 1696, 1715, and 1905.'],
+    ['Greek Catholic Church of Croatia and Serbia', 'Eparchies of Križevci and Ruski Krstur', 'Croatia, Serbia', 'Church Slavonic, Croatian, Rusyn', 'Byzantine Catholics of the former Yugoslavia, including Rusyn communities in Serbia.'],
+    ['Macedonian Greek Catholic Church', 'Eparchy of the Assumption in Strumica-Skopje', 'North Macedonia', 'Macedonian', 'A small Church that grew out of a nineteenth-century movement of Bulgarian and Macedonian Christians toward union with Rome.'],
+    ['Bulgarian Greek Catholic Church', 'Eparchy of St. John XXIII in Sofia', 'Bulgaria', 'Bulgarian', 'Pope St. John XXIII served in Bulgaria as apostolic delegate from 1925 to 1934 and loved these faithful.'],
+    ['Italo-Albanian Catholic Church', 'Eparchies of Lungro and Piana degli Albanesi; Abbey of Grottaferrata', 'Southern Italy and Sicily', 'Greek, Albanian, Italian', 'Descendants of Albanians who fled to Italy in the fifteenth century, together with the ancient Greek-rite abbey founded by St. Nilus. They were never separated from Rome.'],
+    ['Greek Byzantine Catholic Church', 'Apostolic Exarchate in Greece', 'Greece, Turkey', 'Greek', 'A small community of Greek Catholics, mostly in Athens.'],
+    ['Belarusian Greek Catholic Church', 'No bishop of its own at present', 'Belarus and the diaspora', 'Belarusian', 'Heir of the Union of Brest in Belarus, almost destroyed in the nineteenth and twentieth centuries and slowly rebuilding.'],
+    ['Russian Greek Catholic Church', 'Two apostolic exarchates (Russia and Harbin), long without a bishop', 'Russia and the diaspora', 'Church Slavonic, Russian', 'Founded at the beginning of the twentieth century. Its first exarch, Bl. Leonid Feodorov, died a martyr for the faith.'],
+    ['Albanian Greek Catholic Church', 'Apostolic Administration of Southern Albania', 'Albania', 'Albanian', 'A very small Church that survived the harsh atheist regime of communist Albania.']
+  ]},
+  { trad:'Antiochene (West Syriac) tradition', desc:'The tradition of ancient Antioch, using the Syriac language of the early Church and the Liturgy of St. James.', list:[
+    ['Maronite Church', 'Patriarch of Antioch (Bkerke, Lebanon)', 'Lebanon, Syria, Cyprus, the Americas, Australia', 'Syriac, Arabic', 'Named after the hermit St. Maron (d. 410). The Maronites hold that they have always been in communion with Rome. Their saints include St. Charbel, St. Rafqa, and St. Nimatullah.'],
+    ['Syriac Catholic Church', 'Patriarch of Antioch (Beirut)', 'Syria, Iraq, Lebanon', 'Syriac, Arabic', 'Syriac Christians who entered communion with Rome, with their patriarchate stable since 1783. Many were driven from their homes in Iraq and Syria in recent years.'],
+    ['Syro-Malankara Catholic Church', 'Major Archbishop of Trivandrum', 'Kerala, India', 'Malayalam, Syriac', 'Formed in 1930 when Mar Ivanios and other bishops of the Malankara Church entered communion with Rome.']
+  ]},
+  { trad:'Chaldean (East Syriac) tradition', desc:'The tradition of the ancient Church of the East in Mesopotamia and Persia, which carried the Gospel as far as India and China.', list:[
+    ['Chaldean Catholic Church', 'Patriarch of Babylon of the Chaldeans (Baghdad)', 'Iraq, Iran, Syria, and a large diaspora', 'Syriac (Aramaic), Arabic', 'Entered communion with Rome in 1553. It has suffered greatly from war and persecution in Iraq.'],
+    ['Syro-Malabar Catholic Church', 'Major Archbishop of Ernakulam-Angamaly', 'Kerala, India, and the diaspora', 'Malayalam, Syriac', 'The St. Thomas Christians of India, who trace their faith to the apostle Thomas. One of the largest Eastern Catholic Churches, rich in vocations.']
+  ]},
+  { trad:'Armenian tradition', desc:'The tradition of Armenia, the first nation to adopt Christianity, around 301.', list:[
+    ['Armenian Catholic Church', 'Patriarch of Cilicia (Beirut)', 'Lebanon, Syria, Armenia, and the diaspora', 'Classical Armenian', 'Its patriarchate was established in 1742. Its martyrs include St. Ignatius Maloyan, killed in the genocide of 1915.']
+  ]},
+  { trad:'Alexandrian tradition', desc:'The tradition of Alexandria, founded according to tradition by St. Mark the Evangelist.', list:[
+    ['Coptic Catholic Church', 'Patriarch of Alexandria (Cairo)', 'Egypt', 'Coptic, Arabic', 'Its patriarchate was restored in 1895. It runs many schools and hospitals in Egypt.'],
+    ['Ethiopian Catholic Church', 'Metropolitan Archbishop of Addis Ababa', 'Ethiopia', 'Ge’ez, Amharic', 'Its roots include the mission of St. Justin de Jacobis, who adopted the ancient Ge’ez liturgy in the nineteenth century.'],
+    ['Eritrean Catholic Church', 'Metropolitan Archbishop of Asmara', 'Eritrea', 'Ge’ez, Tigrinya', 'Became a Church sui iuris in its own right in 2015.']
+  ]}
+];
+
+function renderEasternChurches(){
+  entryListEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'ec-page';
+  const total = EASTERN_CHURCHES.reduce((n, g) => n + g.list.length, 0);
+  wrap.innerHTML = `
+    <p class="ec-intro">The Catholic Church is a communion of ${total + 1} Churches: the Latin Church and ${total} Eastern Catholic Churches, each with its own liturgy, spirituality, and laws, all in full communion with the Bishop of Rome. Catholics may attend the liturgy of any of them and receive the sacraments there. <button class="text-link" data-open="t58">Read more</button></p>
+    ${EASTERN_CHURCHES.map(g => `
+      <section class="ec-group">
+        <h3 class="list-heading">${escapeHtml(g.trad)} <span class="ec-count">${g.list.length}</span></h3>
+        <p class="theology-group-desc">${escapeHtml(g.desc)}</p>
+        <div class="ec-grid">${g.list.map(([name, head, where, lang, note]) => `
+          <article class="ec-card">
+            <h4>${escapeHtml(name)}</h4>
+            <dl><div><dt>Head</dt><dd>${escapeHtml(head)}</dd></div><div><dt>Where</dt><dd>${escapeHtml(where)}</dd></div><div><dt>Liturgical languages</dt><dd>${escapeHtml(lang)}</dd></div></dl>
+            <p>${escapeHtml(note)}</p>
+          </article>`).join('')}</div>
+      </section>`).join('')}`;
+  entryListEl.appendChild(wrap);
+}
+
+/* ---------- Discord ---------- */
+const DISCORD_URL = 'https://discord.gg/QAcdHxc4';
+const DISCORD_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.11 13.11 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>';
+function discordCardHtml(){
+  return `<a class="discord-card" href="${DISCORD_URL}" target="_blank" rel="noopener">
+    <span class="discord-logo">${DISCORD_SVG}</span>
+    <span><strong>Join the Sanctify Discord</strong><span>Chat, pray, and talk about the faith with others who use Sanctify.</span></span>
+    <span class="discord-go">Join ↗</span>
+  </a>`;
+}
+
+/* =========================================================
    SITE SHELL: sections, icons, menu
    ========================================================= */
 const NAV_ICONS = {
@@ -10302,6 +10687,7 @@ const NAV_ICONS = {
   tracker:'<rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/>',
   mass:'<circle cx="12" cy="5" r="2.5"/><path d="M6.5 9.5h11c0 3.5-2.5 5.5-5.5 5.5s-5.5-2-5.5-5.5zM12 15v4.5M8.5 20.5h7"/>',
   glossary:'<path d="M3 19l4.5-12L12 19M4.7 14.5h5.6"/><circle cx="17" cy="15.5" r="3"/><path d="M20 12.5V19"/>',
+  icons:'<path d="M6 21V9a6 6 0 0 1 12 0v12z"/><circle cx="12" cy="10" r="2.6"/><path d="M8.5 21v-3.5a3.5 3.5 0 0 1 7 0V21"/>',
   patronfinder:'<ellipse cx="11" cy="4.5" rx="4" ry="1.4"/><circle cx="11" cy="10" r="3"/><path d="M4.5 20.5c.8-3.6 3.3-5.8 6.5-5.8 1.4 0 2.6.4 3.6 1.1"/><path d="M18.5 13.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/>',
   resources:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
   community:'<circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M2.8 20c.6-3.8 3.1-5.9 6.2-5.9s5.6 2.1 6.2 5.9"/><path d="M15.4 14.4c.5-.2 1-.3 1.6-.3 2.3 0 4 1.5 4.4 4.4"/>',
@@ -10341,6 +10727,8 @@ const SECTIONS = {
   tracker:{ name:'Prayer Tracker', group:'Pray', icon:'tracker', color:'var(--gold)' },
   mass:{ name:'The Mass Explained', group:'Learn', icon:'mass', color:'var(--wine)' },
   glossary:{ name:'Catholic Glossary', group:'Learn', icon:'glossary', color:'var(--purple)' },
+  icons:{ name:'Famous Icons', group:'Learn', icon:'icons', color:'var(--gold)' },
+  easternchurches:{ name:'The Eastern Catholic Churches', group:'Learn', icon:'eastcross', color:'var(--wine)' },
   patronfinder:{ name:'Find Your Patron Saint', group:'Library', icon:'patronfinder', color:'var(--gold)' },
   quotes:{ name:'Quotes of the Saints', group:'Library', icon:'quote', color:'var(--wine)' },
   calendar:{ name:'Calendar of Feasts & Observances', group:'Explore', icon:'calendar', color:'var(--purple)' },
@@ -10435,6 +10823,8 @@ const HUBS = {
       { route:'learn/quiz', desc:'Ten fresh questions on the saints, Scripture, Church history, and great Catholic books.', meta:'New questions every time' },
       { route:'learn/mass', desc:isEastern() ? 'Every part of the Divine Liturgy of St. John Chrysostom, with what happens and why. Follow along on your phone.' : 'Every part of the Mass, with when to stand, sit, and kneel, and why. Follow along on your phone.', meta:`${(isEastern() ? LITURGY_PARTS : MASS_PARTS).reduce((n, s) => n + s.parts.length, 0)} parts` },
       { route:'learn/glossary', desc:'Short, clear definitions of the words of the faith, from Absolution to the Vulgate.', meta:`${GLOSSARY.length} terms` },
+      { route:'learn/icons', desc:'The great icons of East and West, from the Sinai Pantocrator to Rublev’s Trinity, and what to look for in each.', meta:`${FAMOUS_ICONS.length} icons` },
+      { route:'learn/eastern-churches', desc:'The twenty-three Eastern Catholic Churches in communion with Rome: Byzantine, Syriac, Chaldean, Armenian, and Alexandrian.', meta:'23 Churches' },
       { route:'resources', desc:'Trusted websites, podcasts, videos, and courses for going deeper in the faith.', meta:`${RESOURCES.length} resources` },
       { route:'community', desc:'Ask questions about the faith and talk them over with other Sanctify members.', meta:'Discussion forum' },
       (() => {
@@ -10762,6 +11152,8 @@ const ROUTES = {
   'learn/quiz':                  { cat:'quiz', parent:'learn' },
   'learn/mass':                  { cat:'mass', parent:'learn' },
   'learn/glossary':              { cat:'glossary', parent:'learn' },
+  'learn/icons':                 { cat:'icons', parent:'learn' },
+  'learn/eastern-churches':      { cat:'easternchurches', parent:'learn' },
   'learn/resources':             { cat:'resources', parent:'learn' },
   'resources':                   { cat:'resources' }
 };
@@ -11932,6 +12324,16 @@ function renderRosary(){
    SHOP
    ========================================================= */
 const SHOP_DATA = [
+  { kind:'icons', name:'Byzantine Church Supplies', domain:'byzantinechurchsupplies.com', url:'https://byzantinechurchsupplies.com',
+    desc:'The church goods store of the Ukrainian Catholic Archeparchy of Philadelphia, selling icons, wedding icons, prayer books, crosses, incense, and vestments. Its profits support St. Josaphat Ukrainian Catholic Seminary.' },
+  { kind:'icons', name:'The Art of the Icon', domain:'theartoftheicon.com', url:'https://theartoftheicon.com',
+    desc:'Icons handcrafted by artisans in Greece in the traditional manner, with separate collections of Byzantine and Catholic icons, along with crosses and other devotional items.' },
+  { kind:'icons', name:'Legacy Icons', domain:'legacyicons.com', url:'https://legacyicons.com',
+    desc:'A family business in Michigan making museum-quality icon reproductions mounted on hand-finished wood, including Catholic and Western images. Its founders are Orthodox, and it has worked with the Redemptorists.' },
+  { kind:'icons', name:'BlessedMart', domain:'blessedmart.com', url:'https://www.blessedmart.com',
+    desc:'A small family studio founded in Sofia, Bulgaria, in 2012, whose in-house iconographers hand-paint icons in Byzantine, Russian, and Greek styles and take custom commissions.' },
+  { kind:'icons', name:'Ancient Faith Store', domain:'store.ancientfaith.com', url:'https://store.ancientfaith.com/icons/',
+    desc:'The store of Ancient Faith Ministries, an Orthodox publisher, known for decades for its mounted icon prints in many sizes, from pocket icons to large icons for the home.' },
   { name:'Aquinas and More', domain:'aquinasandmore.com', url:'https://www.aquinasandmore.com',
     desc:'A family-run Catholic retailer based in Colorado, carrying books, Bibles, rosaries, medals, statues, icons, and vestments, with a long-standing pledge to sell nothing contrary to Church teaching.' },
   { name:'The Catholic Company', domain:'catholiccompany.com', url:'https://www.catholiccompany.com',
@@ -11946,7 +12348,14 @@ function renderShop(){
   entryListEl.innerHTML = '';
   const wrap = document.createElement('div');
   wrap.className = 'shop-list';
-  SHOP_DATA.forEach(shop => {
+  const group = (title, list) => {
+    const h = document.createElement('h3');
+    h.className = 'list-heading shop-heading';
+    h.textContent = title;
+    wrap.appendChild(h);
+    list.forEach(addShop);
+  };
+  const addShop = shop => {
     const card = document.createElement('div');
     card.className = 'shop-card';
     card.innerHTML = `
@@ -11958,11 +12367,13 @@ function renderShop(){
       <div class="shop-visit"><a class="btn" href="${escapeHtml(shop.url)}" target="_blank" rel="noopener">Visit site ↗</a></div>
     `;
     wrap.appendChild(card);
-  });
+  };
+  group('Icons', SHOP_DATA.filter(x => x.kind === 'icons'));
+  group('Catholic goods', SHOP_DATA.filter(x => x.kind !== 'icons'));
   entryListEl.appendChild(wrap);
   const note = document.createElement('div');
   note.className = 'shop-note';
-  note.textContent = 'These are independent retailers, not affiliated with this site. We do our best to point to established, reputable shops, but always use your own judgment before buying.';
+  note.textContent = 'These are independent retailers, not affiliated with this site. Some icon makers are Orthodox; their icons follow the same ancient tradition. We do our best to point to established, reputable shops, but always use your own judgment before buying.';
   entryListEl.appendChild(note);
 }
 
