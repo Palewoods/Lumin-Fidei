@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <style>
-    .tile{fill:#f6f0dc;stroke:#a6824a}
-    .cross{fill:#7a2426}
+    .tile{fill:#ffffff;stroke:#8f8f8f}
+    .cross{fill:#5f5f5f}
     @media (prefers-color-scheme: dark){
-      .tile{fill:#211c16;stroke:#c9a568}
-      .cross{fill:#e2989a}
+      .tile{fill:#3a3a3a;stroke:#9a9a9a}
+      .cross{fill:#ffffff}
     }
   </style>
   <rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/>

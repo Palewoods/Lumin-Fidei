@@ -6761,7 +6761,7 @@ function loadAllPortraits(){
   if(portraitsPromise) return portraitsPromise;
   if(Date.now() < portraitRetryAt) return Promise.resolve();
   portraitsPromise = (async () => {
-    let pending = library.filter(e => HAS_PICTURE.has(e.category) && !(e.id in portraitCache))
+    let pending = library.filter(e => HAS_PICTURE.has(e.category) && !(e.id in portraitCache) && !(SAINT_ICONS[e.id] && !ICON_FAILED.has(e.id)))
       .map(s => ({ s, cands:entryWikiCandidates(s) }));
     for(let round = 0; pending.length; round++){
       pending.filter(p => !p.cands[round]).forEach(p => { portraitCache[p.s.id] = null; });
@@ -6791,8 +6791,104 @@ function loadAllPortraits(){
   return portraitsPromise;
 }
 
+// Traditional icons from Wikimedia Commons, shown in place of the Wikipedia picture
+const SAINT_ICONS = {
+  s1:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Saint-Francis-_Niccolo_di_Segna%2C_Pisa.jpg/330px-Saint-Francis-_Niccolo_di_Segna%2C_Pisa.jpg',
+  s7:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Iconpeter.jpg/330px-Iconpeter.jpg',
+  s8:'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Image_depicting_Apostle_Paul_on_July_1%2C_2022.jpg/330px-Image_depicting_Apostle_Paul_on_July_1%2C_2022.jpg',
+  s10:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Rila_Mon._-_Fresco_mir._icon_030_Mary_Magdalene.jpg/330px-Rila_Mon._-_Fresco_mir._icon_030_Mary_Magdalene.jpg',
+  s11:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Saint_Joseph_%2818th_Century%29.jpg/330px-Saint_Joseph_%2818th_Century%29.jpg',
+  s13:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Benedict_of_Nursia.jpg/330px-Benedict_of_Nursia.jpg',
+  s14:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Icon_of_Saint_Patrick%2C_Christ_the_Saviour_Church.jpg/330px-Icon_of_Saint_Patrick%2C_Christ_the_Saviour_Church.jpg',
+  s17:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/13th-century_unknown_painters_-_Icon_of_St_Nicholas_-_WGA23492.jpg/330px-13th-century_unknown_painters_-_Icon_of_St_Nicholas_-_WGA23492.jpg',
+  s18:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Saintgeorge.jpg/330px-Saintgeorge.jpg',
+  s19:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Sebastian_by_M.Dikarev_%28Muz.ist.relig%29.jpg/330px-Sebastian_by_M.Dikarev_%28Muz.ist.relig%29.jpg',
+  s21:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Grecia%2C_icona_di_san_girolamo%2C_1500_ca.jpg/330px-Grecia%2C_icona_di_san_girolamo%2C_1500_ca.jpg',
+  s22:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Greek_Icon_of_Saint_Ambrose_of_Milan_2.jpg/330px-Greek_Icon_of_Saint_Ambrose_of_Milan_2.jpg',
+  s29:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Chiesa_San_Mauro_%28interior%2914.jpg/330px-Chiesa_San_Mauro_%28interior%2914.jpg',
+  s30:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Chiesa_SS._Pietro_e_Paolo_%28inside_view%2916.jpg/330px-Chiesa_SS._Pietro_e_Paolo_%28inside_view%2916.jpg',
+  s36:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Icon_of_St_Vincent_de_Paul%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg/330px-Icon_of_St_Vincent_de_Paul%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg',
+  s40:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/0191Hb._Archangel_Michael%2C_2nd_half_of_the_18th_century.jpg/330px-0191Hb._Archangel_Michael%2C_2nd_half_of_the_18th_century.jpg',
+  s44:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/%D0%A1%D0%B2%D1%8F%D1%82%D0%BE%D0%B9_%D0%A5%D1%80%D0%B8%D1%81%D1%82%D0%BE%D1%84%D0%BE%D1%80_%D0%9B%D0%B8%D0%B8%D0%BA%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_Saint_Christopher.jpg/330px-%D0%A1%D0%B2%D1%8F%D1%82%D0%BE%D0%B9_%D0%A5%D1%80%D0%B8%D1%81%D1%82%D0%BE%D1%84%D0%BE%D1%80_%D0%9B%D0%B8%D0%B8%D0%BA%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_Saint_Christopher.jpg',
+  s46:'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Petrozavodsk_FineArtsMuseum_Saint_Blaise_Megrgega_008_0418.jpg/330px-Petrozavodsk_FineArtsMuseum_Saint_Blaise_Megrgega_008_0418.jpg',
+  s47:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Saint-Barbara-Grk-ikon.png/330px-Saint-Barbara-Grk-ikon.png',
+  s48:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Anthony_the_Great_icon_%28lebanon%29.jpg/330px-Anthony_the_Great_icon_%28lebanon%29.jpg',
+  s63:'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/John_the_Baptist_icon_CPK.jpg/330px-John_the_Baptist_icon_CPK.jpg',
+  s65:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Icon_5_-_Saint_Stephen_%28Skopje%2C_Macedonia%29.jpg/330px-Icon_5_-_Saint_Stephen_%28Skopje%2C_Macedonia%29.jpg',
+  s66:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/St_Andrew_the_Apostle_-_Bulgarian_icon.jpg/330px-St_Andrew_the_Apostle_-_Bulgarian_icon.jpg',
+  s67:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/James_the_Greater_Apostle_Hajdudorog.JPG/330px-James_the_Greater_Apostle_Hajdudorog.JPG',
+  s68:'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/St-thomas-icon-756.jpg/330px-St-thomas-icon-756.jpg',
+  s69:'https://upload.wikimedia.org/wikipedia/commons/d/d7/Saint_Apostle_Bartholomew_Icon%2C_Cretan.jpg',
+  s70:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/The_Apostle_Matthew.jpg/330px-The_Apostle_Matthew.jpg',
+  s71:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/%D0%98%D0%BA%D0%BE%D0%BD%D0%B0_%D0%B5%D0%B2%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%9C%D0%B0%D1%80%D0%BA%D0%B0_Icon_of_Mark_the_Evangelist.jpg/330px-%D0%98%D0%BA%D0%BE%D0%BD%D0%B0_%D0%B5%D0%B2%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%9C%D0%B0%D1%80%D0%BA%D0%B0_Icon_of_Mark_the_Evangelist.jpg',
+  s72:'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Saint_Luke_the_Evangelist_-_icon.jpeg/330px-Saint_Luke_the_Evangelist_-_icon.jpeg',
+  s73:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/St._Barnabas-Ikone_%28cropped%29.jpg/330px-St._Barnabas-Ikone_%28cropped%29.jpg',
+  s74:'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Ignatius_Theophorus%2C_Ignatius_of_Antioch.jpg/330px-Ignatius_Theophorus%2C_Ignatius_of_Antioch.jpg',
+  s75:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Abbatiale_Saint-Polycarpe_de_Saint-Polycarpe_%2824%29.jpg/330px-Abbatiale_Saint-Polycarpe_de_Saint-Polycarpe_%2824%29.jpg',
+  s80:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Lawrence_of_Rome_by_M.Dikarev_%281897%2C_Hermitage%29.jpg/330px-Lawrence_of_Rome_by_M.Dikarev_%281897%2C_Hermitage%29.jpg',
+  s82:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/0102Hb._St._Constantine_the_Great_and_St._Helena_the_Great%2C_late_19th_-_early_20th_century.jpg/330px-0102Hb._St._Constantine_the_Great_and_St._Helena_the_Great%2C_late_19th_-_early_20th_century.jpg',
+  s83:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Ikone_Athanasius_von_Alexandria.jpg/330px-Ikone_Athanasius_von_Alexandria.jpg',
+  s84:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Ic%C3%B4ne_Ephrem_le_Syrien.jpg/330px-Ic%C3%B4ne_Ephrem_le_Syrien.jpg',
+  s85:'https://upload.wikimedia.org/wikipedia/commons/2/24/St._Martin_of_Tours.jpg',
+  s86:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Basil_of_Caesarea_icon.jpg/330px-Basil_of_Caesarea_icon.jpg',
+  s87:'https://upload.wikimedia.org/wikipedia/commons/e/e4/Gregory_of_Nazianzus.jpg',
+  s88:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Holy_Bishop_John_Chrysostom%2C_Arkhangelsk_Regional_Museum_of_Fine_Arts.JPG/330px-Holy_Bishop_John_Chrysostom%2C_Arkhangelsk_Regional_Museum_of_Fine_Arts.JPG',
+  s89:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Cyril_of_Alexandria_at_Catedral_Ortodoxa_San_Jorge.jpg/330px-Cyril_of_Alexandria_at_Catedral_Ortodoxa_San_Jorge.jpg',
+  s91:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Sainte_Genevieve_icon.jpg/330px-Sainte_Genevieve_icon.jpg',
+  s100:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Sts._Cyril_and_Methodius_Bulgarian_Enlighteners_Icon_by_Avram_Dichov%2C_1892.jpg/330px-Sts._Cyril_and_Methodius_Bulgarian_Enlighteners_Icon_by_Avram_Dichov%2C_1892.jpg',
+  s101:'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Wenceslaus_of_Bohemia_by_O._Chirikov.jpg/330px-Wenceslaus_of_Bohemia_by_O._Chirikov.jpg',
+  s143:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Icon_of_St_Maria_Goretti%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg/330px-Icon_of_St_Maria_Goretti%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg',
+  s155:'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Archangel_Gabriel_-_Orthodox_Icon.jpg/330px-Archangel_Gabriel_-_Orthodox_Icon.jpg',
+  s156:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/%22St.Archangel_Raphael%22%2Cegg_tempera%2C_goldleaf_on_wood%2C_sm_32x24.jpeg/330px-%22St.Archangel_Raphael%22%2Cegg_tempera%2C_goldleaf_on_wood%2C_sm_32x24.jpeg',
+  s158:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Philip_the_Apostle_icon.jpeg/330px-Philip_the_Apostle_icon.jpeg',
+  s159:'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Icon_of_Saint_James_the_Less_%2813th_c.%2C_Greece%29.jpg/330px-Icon_of_Saint_James_the_Less_%2813th_c.%2C_Greece%29.jpg',
+  s160:'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Simon_the_Zealot_-_Apostle.jpeg/330px-Simon_the_Zealot_-_Apostle.jpeg',
+  s161:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Saint_Timothy.jpg/330px-Saint_Timothy.jpg',
+  s164:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/SS._Cosmas_and_Damian._Oil_painting._Wellcome_V0017398.jpg/330px-SS._Cosmas_and_Damian._Oil_painting._Wellcome_V0017398.jpg',
+  s165:'https://upload.wikimedia.org/wikipedia/commons/d/d6/St.CatherineofAlexandria.jpg',
+  s168:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Stmaurice.jpg/330px-Stmaurice.jpg',
+  s169:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Januarius_by_O.Chirikov_%28Muz.ist._rel%29.jpg/330px-Januarius_by_O.Chirikov_%28Muz.ist._rel%29.jpg',
+  s173:'https://upload.wikimedia.org/wikipedia/commons/d/d4/Serbian_Fresco_Icon_of_Saint_Cyril_of_Jerusalem.jpg',
+  s184:'https://upload.wikimedia.org/wikipedia/commons/6/6b/John-of-Damascus_01.jpg',
+  s211:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Icon_of_St_Peter_Chanel%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg/330px-Icon_of_St_Peter_Chanel%2C_St_Mary%27s_Catholic_Church%2C_Northcote.jpg',
+  s227:'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Saint_Simeon_Stylites_the_Elder_%281664_icon%29.jpg/330px-Saint_Simeon_Stylites_the_Elder_%281664_icon%29.jpg',
+  s235:'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Rila_Mon._-_Fresco_mir._icon_002_Lazarus.jpg/330px-Rila_Mon._-_Fresco_mir._icon_002_Lazarus.jpg',
+  s249:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Saint_Anastasia.jpg/330px-Saint_Anastasia.jpg',
+  s251:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/St._Mary_of_Egypt.jpg/330px-St._Mary_of_Egypt.jpg',
+  s254:'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Melania_of_Rome.jpg/330px-Melania_of_Rome.jpg',
+  s265:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Saint_Ludmila_icon.jpg/330px-Saint_Ludmila_icon.jpg',
+  s266:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Helga_Olga.jpeg/330px-Helga_Olga.jpeg',
+  s268:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Icon_of_saint_Vladimir_%28c._1900%2C_Russia%2C_priv._coll.%29.jpg/330px-Icon_of_saint_Vladimir_%28c._1900%2C_Russia%2C_priv._coll.%29.jpg',
+  s278:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Grecia%2C_icona_a_due_facce_di_san_rocco%2C_retro_del_1743.jpg/330px-Grecia%2C_icona_a_due_facce_di_san_rocco%2C_retro_del_1743.jpg',
+  s292:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Saint_Josaphat_d%27Ukraine.jpg/330px-Saint_Josaphat_d%27Ukraine.jpg',
+  s323:'https://upload.wikimedia.org/wikipedia/commons/e/eb/Mar_Gregory_Thaumaturgus.jpg',
+  s327:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/St.Gregory_the_illuminator.jpg/330px-St.Gregory_the_illuminator.jpg',
+  s328:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Pope_Sylvester_I_in_byzantine_style.jpg/330px-Pope_Sylvester_I_in_byzantine_style.jpg',
+  s331:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Saint_Spyridon_Icon_from_Gorno_Statitsa_1720.jpg/330px-Saint_Spyridon_Icon_from_Gorno_Statitsa_1720.jpg',
+  s333:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Paul-Thebes-Hermit-Egypt-Ascetic-Prayer-Icon-Orthodox-crow-bread-6.png/330px-Paul-Thebes-Hermit-Egypt-Ascetic-Prayer-Icon-Orthodox-crow-bread-6.png',
+  s337:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/St._Nino_Icon1.jpg/330px-St._Nino_Icon1.jpg',
+  s356:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Icon_of_St_Vincent_of_Lerins_by_Bojan_Teodosijevi%C4%87.jpg/330px-Icon_of_St_Vincent_of_Lerins_by_Bojan_Teodosijevi%C4%87.jpg',
+  s370:'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Eastern_Orthodox_Icon_of_St._Martin_of_Braga.png/330px-Eastern_Orthodox_Icon_of_St._Martin_of_Braga.png',
+  s376:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Maximus_the_Confessor.jpg/330px-Maximus_the_Confessor.jpg',
+  s379:'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Rila_Mon._-_Fresco_mir._icon_022_Andrew_bishop_of_Crete.jpg/330px-Rila_Mon._-_Fresco_mir._icon_022_Andrew_bishop_of_Crete.jpg',
+  s388:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/John_Climacus.jpg/330px-John_Climacus.jpg',
+  s396:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Icon_of_Klymentiy_of_Univ_and_Leonid_Feodorov.jpg/330px-Icon_of_Klymentiy_of_Univ_and_Leonid_Feodorov.jpg',
+  s400:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/The_Holy_Blessed_Princes_and_Passion-Bearers_Boris_and_Gleb._Novgorod_School_of_Icon_Painting%2C_14th_century.jpg/330px-The_Holy_Blessed_Princes_and_Passion-Bearers_Boris_and_Gleb._Novgorod_School_of_Icon_Painting%2C_14th_century.jpg',
+  s403:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Blaj_Iconostasis_Sabbas.jpg/330px-Blaj_Iconostasis_Sabbas.jpg',
+  s404:'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Euthymius_the_Great.jpg/330px-Euthymius_the_Great.jpg',
+  s407:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Panteleimon_by_Byzantine_anonymous_%2815th_c.%2C_Pushkin_museum%29.jpg/330px-Panteleimon_by_Byzantine_anonymous_%2815th_c.%2C_Pushkin_museum%29.jpg',
+  s408:'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Rila_Mon._-_Fresco_mir._icon_013_John_the_Almoner.jpg/330px-Rila_Mon._-_Fresco_mir._icon_013_John_the_Almoner.jpg'
+};
+const ICON_FAILED = new Set();   // icons that would not load fall back to the Wikipedia picture
+function saintIcon(id){
+  const url = SAINT_ICONS[id], parts = url.split('/');
+  const file = url.includes('/thumb/') ? parts[parts.length - 2] : parts[parts.length - 1];
+  return { src:url, page:'https://commons.wikimedia.org/wiki/File:' + file, icon:true };
+}
+
 // Resolves to the picture, null if there is none, or undefined if the lookup hasn't succeeded yet
 function fetchSaintPortrait(s){
+  if(SAINT_ICONS[s.id] && !ICON_FAILED.has(s.id)) return Promise.resolve(saintIcon(s.id));
   if(s.id in portraitCache) return Promise.resolve(portraitCache[s.id]);
   return loadAllPortraits().then(() => portraitCache[s.id]);
 }
@@ -6823,9 +6919,20 @@ function fillPortrait(el, s){
     if(p === undefined){ portraitWaiting.add(el); return; }
     if(!p) return;
     const img = new Image();
-    img.alt = s.category === 'saint' ? 'Traditional image of ' + s.title : 'Illustration for ' + s.title;
+    img.alt = p.icon ? 'Icon of ' + s.title : s.category === 'saint' ? 'Traditional image of ' + s.title : 'Illustration for ' + s.title;
     img.decoding = 'async';
     img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('loaded'); };
+    img.onerror = () => {
+      if(!p.icon || ICON_FAILED.has(s.id)) return;
+      ICON_FAILED.add(s.id);
+      portraitsPromise = null;
+      fillPortrait(el, s);
+      const cap = el.parentElement && el.parentElement.querySelector('figcaption');
+      if(cap){
+        cap.innerHTML = '';
+        fetchSaintPortrait(s).then(w => { if(w && w.page && el.isConnected) cap.innerHTML = `<a href="${escapeHtml(w.page)}" target="_blank" rel="noopener">Image via Wikipedia ↗</a>`; });
+      }
+    };
     img.src = p.src;
   });
 }
@@ -9344,7 +9451,7 @@ function applyRite(){
   if(icon){
     if(!icon.dataset.latin) icon.dataset.latin = icon.getAttribute('href');
     icon.setAttribute('href', east
-      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#f3e9d2"/><path fill="#7a1f2b" fill-rule="evenodd" d="${CROSS_PATHS.eastern}"/></svg>`)
+      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><style>.tile{fill:#ffffff;stroke:#8f8f8f}.cross{fill:#5f5f5f}@media (prefers-color-scheme: dark){.tile{fill:#3a3a3a;stroke:#9a9a9a}.cross{fill:#ffffff}}</style><rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/><path class="cross" fill-rule="evenodd" transform="translate(32 32) scale(0.86) translate(-32 -32)" d="${CROSS_PATHS.eastern}"/></svg>`)
       : icon.dataset.latin);
   }
   // The switch itself
@@ -10308,7 +10415,7 @@ function openReadModal(id){
     fillPortrait(frame, e);
     fetchSaintPortrait(e).then(p => {
       if(p && p.page && currentReadId === e.id){
-        portraitEl.querySelector('figcaption').innerHTML = `<a href="${escapeHtml(p.page)}" target="_blank" rel="noopener">Image via Wikipedia ↗</a>`;
+        portraitEl.querySelector('figcaption').innerHTML = `<a href="${escapeHtml(p.page)}" target="_blank" rel="noopener">${p.icon ? 'Icon via Wikimedia Commons' : 'Image via Wikipedia'} ↗</a>`;
       }
     });
   } else {
