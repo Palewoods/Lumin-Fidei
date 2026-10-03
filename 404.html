@@ -72,6 +72,35 @@
     --line:rgba(42,30,20,0.18); --shadow:0 2px 14px rgba(42,30,20,0.18);
   }
 
+  :root[data-theme="mono"]{
+    --glow-rgb:150,150,150;
+    --parchment:#ffffff; --parchment-light:#ffffff; --parchment-dark:#ececec;
+    --ink:#000000; --ink-soft:#404040; --wine:#000000; --wine-dark:#000000;
+    --gold:#5c5c5c; --gold-light:#a3a3a3; --ink-rgb:0,0,0;
+    --line:rgba(0,0,0,0.2); --shadow:0 2px 14px rgba(0,0,0,0.1);
+  }
+  :root[data-theme="gray"]{
+    --glow-rgb:150,150,150;
+    --parchment:#ededed; --parchment-light:#fafafa; --parchment-dark:#dcdcdc;
+    --ink:#242424; --ink-soft:#5f5f5f; --wine:#4a4a4a; --wine-dark:#2b2b2b;
+    --gold:#8c8c8c; --gold-light:#b8b8b8; --ink-rgb:36,36,36;
+    --line:rgba(36,36,36,0.15); --shadow:0 2px 14px rgba(0,0,0,0.08);
+  }
+  :root[data-theme="mono-dark"]{
+    --glow-rgb:200,200,200;
+    --parchment:#000000; --parchment-light:#0a0a0a; --parchment-dark:#1a1a1a;
+    --ink:#ffffff; --ink-soft:#b0b0b0; --wine:#ffffff; --wine-dark:#ffffff;
+    --gold:#c9c9c9; --gold-light:#e6e6e6; --ink-rgb:255,255,255;
+    --line:rgba(255,255,255,0.2); --shadow:0 2px 20px rgba(0,0,0,0.7);
+  }
+  :root[data-theme="graphite"]{
+    --glow-rgb:200,200,200;
+    --parchment:#202020; --parchment-light:#2a2a2a; --parchment-dark:#363636;
+    --ink:#ebebeb; --ink-soft:#a3a3a3; --wine:#d4d4d4; --wine-dark:#ececec;
+    --gold:#9c9c9c; --gold-light:#bfbfbf; --ink-rgb:235,235,235;
+    --line:rgba(235,235,235,0.14); --shadow:0 2px 20px rgba(0,0,0,0.55);
+  }
+
   *{box-sizing:border-box;}
   body{
     margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 16px;
@@ -86,7 +115,7 @@
 
   .card{
     width:100%; max-width:580px; text-align:center; padding:44px 40px 36px;
-    background:radial-gradient(ellipse at top, rgba(199,165,101,0.2), transparent 60%), var(--parchment-light);
+    background:radial-gradient(ellipse at top, rgba(var(--glow-rgb,199,165,101),0.2), transparent 60%), var(--parchment-light);
     border:1px solid var(--gold-light);
     box-shadow:var(--shadow), inset 0 0 0 12px var(--parchment-light), inset 0 0 0 13px var(--wine),
       inset 0 0 0 17px var(--parchment-light), inset 0 0 0 18px var(--gold-light);
@@ -102,10 +131,10 @@
   .rule{display:flex; justify-content:center; gap:18px; margin:22px 0 18px;}
   .rule span{
     width:16px; height:16px; background:var(--gold);
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
-  :root[data-rite="eastern"] .rule span{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'/%3E%3C/svg%3E") center / contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'/%3E%3C/svg%3E") center / contain no-repeat;}
+  :root[data-rite="eastern"] .rule span{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z'/%3E%3C/svg%3E") center / contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z'/%3E%3C/svg%3E") center / contain no-repeat;}
 
   form{display:flex; max-width:400px; margin:0 auto;}
   input{
@@ -132,9 +161,9 @@
   try{
     var t = localStorage.getItem('sanctify.theme');
     // Themes without their own colors here fall back to Vespers (dark) or Parchment (light)
-    if(['liturgical-dark','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian'].indexOf(t) >= 0) t = 'dark';
-    if(['lily','rose-window','fresco'].indexOf(t) >= 0) t = 'light';
-    if(['dark','candlelight','marian','cloister','contrast','midnight','stained-glass','ivory','manuscript'].indexOf(t) < 0){
+    if(['liturgical-dark','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian','athos','lapis'].indexOf(t) >= 0) t = 'dark';
+    if(['lily','rose-window','fresco','pascha','vyshyvanka'].indexOf(t) >= 0) t = 'light';
+    if(['dark','candlelight','marian','cloister','contrast','midnight','stained-glass','ivory','manuscript','mono','gray','mono-dark','graphite'].indexOf(t) < 0){
       t = (t === 'light' || t === 'liturgical') ? 'light'
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
@@ -146,7 +175,7 @@
 <body>
   <main class="card">
     <a class="brand" href="/" data-home>
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z"/></svg>
       Sanctify
     </a>
 
@@ -209,6 +238,11 @@
     var guess = decodeURIComponent(location.pathname).replace(/\.html?$/i, '').split(/[\/_\-]+/).filter(Boolean).pop();
     if(guess && /^https?:$/.test(location.protocol) && guess.toLowerCase() !== '404') document.getElementById('q').value = guess;
   }catch(e){}
+
+  // Eastern Catholic edition: the three-bar Eastern cross
+  if(document.documentElement.getAttribute('data-rite') === 'eastern'){
+    document.querySelectorAll('.mark path').forEach(function(p){ p.setAttribute('d', 'M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z'); });
+  }
 </script>
 </body>
 </html>

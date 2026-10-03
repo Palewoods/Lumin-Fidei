@@ -37,7 +37,9 @@
   }
 
   :root{
-    --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0'/%3E%3C/svg%3E");
+    --glow-rgb:199,165,101;
+    --tint-rgb:166,130,74;
+    --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z'/%3E%3C/svg%3E");
   }
 
   :root[data-theme="dark"]{
@@ -205,6 +207,16 @@
   :root[data-theme="lily"]{ --parchment:#f1f5ee; --parchment-light:#fbfdf9; --parchment-dark:#e2eadc; --ink:#1f2a1f; --ink-soft:#56665a; --wine:#3f7a45; --wine-dark:#2c5a31; --gold:#a8913f; --gold-light:#c9b574; --green:#3f7a45; --indigo:#3b4f75; --purple:#64558a; --teal:#2f6e6c; --rose:#a0506a; --amber:#a26a2a; --ink-rgb:31,42,31; --line:rgba(31,42,31,0.15); --shadow:0 2px 14px rgba(31,42,31,0.14); }
   :root[data-theme="rose-window"]{ --parchment:#f6ecee; --parchment-light:#fdf7f8; --parchment-dark:#ecdadf; --ink:#2e1f24; --ink-soft:#6e5860; --wine:#a8466a; --wine-dark:#823050; --gold:#b08a47; --gold-light:#d1b27a; --green:#4f7254; --indigo:#445a8a; --purple:#75528a; --teal:#37706f; --rose:#a8466a; --amber:#a8692f; --ink-rgb:46,31,36; --line:rgba(46,31,36,0.15); --shadow:0 2px 14px rgba(46,31,36,0.14); }
   :root[data-theme="fresco"]{ --parchment:#f1e6d6; --parchment-light:#f9f1e5; --parchment-dark:#e6d5bd; --ink:#2f2419; --ink-soft:#6d5a47; --wine:#b5552f; --wine-dark:#8d3f1f; --gold:#b88a3a; --gold-light:#d8b171; --green:#5a7a4e; --indigo:#3f6e9c; --purple:#6d5585; --teal:#3e7a7a; --rose:#a85a6a; --amber:#b36a2a; --ink-rgb:47,36,25; --line:rgba(47,36,25,0.15); --shadow:0 2px 14px rgba(47,36,25,0.14); }
+  :root[data-theme="mono"], :root[data-theme="gray"]{ --glow-rgb:150,150,150; --tint-rgb:110,110,110; }
+  :root[data-theme="mono-dark"], :root[data-theme="graphite"]{ --glow-rgb:200,200,200; --tint-rgb:170,170,170; }
+  :root[data-theme="mono"]{ --parchment:#ffffff; --parchment-light:#ffffff; --parchment-dark:#ececec; --ink:#000000; --ink-soft:#404040; --wine:#000000; --wine-dark:#000000; --gold:#5c5c5c; --gold-light:#a3a3a3; --green:#262626; --indigo:#1a1a1a; --purple:#333333; --teal:#2b2b2b; --rose:#3d3d3d; --amber:#474747; --ink-rgb:0,0,0; --line:rgba(0,0,0,0.2); --shadow:0 2px 14px rgba(0,0,0,0.1); }
+  :root[data-theme="gray"]{ --parchment:#ededed; --parchment-light:#fafafa; --parchment-dark:#dcdcdc; --ink:#242424; --ink-soft:#5f5f5f; --wine:#4a4a4a; --wine-dark:#2b2b2b; --gold:#8c8c8c; --gold-light:#b8b8b8; --green:#555555; --indigo:#474747; --purple:#525252; --teal:#4d4d4d; --rose:#5c5c5c; --amber:#666666; --ink-rgb:36,36,36; --line:rgba(36,36,36,0.15); --shadow:0 2px 14px rgba(0,0,0,0.08); }
+  :root[data-theme="mono-dark"]{ --parchment:#000000; --parchment-light:#0a0a0a; --parchment-dark:#1a1a1a; --ink:#ffffff; --ink-soft:#b0b0b0; --wine:#ffffff; --wine-dark:#ffffff; --gold:#c9c9c9; --gold-light:#e6e6e6; --green:#dddddd; --indigo:#d6d6d6; --purple:#d0d0d0; --teal:#d9d9d9; --rose:#cccccc; --amber:#c4c4c4; --ink-rgb:255,255,255; --line:rgba(255,255,255,0.2); --shadow:0 2px 20px rgba(0,0,0,0.7); }
+  :root[data-theme="graphite"]{ --parchment:#202020; --parchment-light:#2a2a2a; --parchment-dark:#363636; --ink:#ebebeb; --ink-soft:#a3a3a3; --wine:#d4d4d4; --wine-dark:#ececec; --gold:#9c9c9c; --gold-light:#bfbfbf; --green:#b3b3b3; --indigo:#aeaeae; --purple:#b8b8b8; --teal:#b0b0b0; --rose:#bcbcbc; --amber:#c2c2c2; --ink-rgb:235,235,235; --line:rgba(235,235,235,0.14); --shadow:0 2px 20px rgba(0,0,0,0.55); }
+  :root[data-theme="pascha"]{ --parchment:#fbf8f6; --parchment-light:#ffffff; --parchment-dark:#f1e5e1; --ink:#2a1919; --ink-soft:#6b5252; --wine:#b3161b; --wine-dark:#880f13; --gold:#c39a3c; --gold-light:#dfc07a; --green:#3f6b45; --indigo:#33456b; --purple:#6b3f73; --teal:#2d6060; --rose:#a8324f; --amber:#b5651d; --ink-rgb:42,25,25; --line:rgba(42,25,25,0.15); --shadow:0 2px 14px rgba(42,25,25,0.1); }
+  :root[data-theme="vyshyvanka"]{ --parchment:#f6f3ec; --parchment-light:#fffdf8; --parchment-dark:#eae3d5; --ink:#161210; --ink-soft:#57504a; --wine:#bf141c; --wine-dark:#8e0d13; --gold:#2a2522; --gold-light:#8a817a; --green:#2f5a35; --indigo:#2a3550; --purple:#5a2f5e; --teal:#244e4e; --rose:#a0203d; --amber:#a3521b; --ink-rgb:22,18,16; --line:rgba(22,18,16,0.17); --shadow:0 2px 14px rgba(22,18,16,0.12); }
+  :root[data-theme="athos"]{ --parchment:#13140d; --parchment-light:#1b1c13; --parchment-dark:#27281c; --ink:#ece5cf; --ink-soft:#a9a185; --wine:#d8a948; --wine-dark:#ecc878; --gold:#c79a45; --gold-light:#e2c07a; --green:#9cb07a; --indigo:#8fa3c0; --purple:#b19bc4; --teal:#7ab2a8; --rose:#d08f9e; --amber:#e0a85a; --ink-rgb:236,229,207; --line:rgba(236,229,207,0.13); --shadow:0 2px 20px rgba(0,0,0,0.6); }
+  :root[data-theme="lapis"]{ --parchment:#0b1330; --parchment-light:#111b40; --parchment-dark:#1a2652; --ink:#e8ecf8; --ink-soft:#9ca7c8; --wine:#e3bd5f; --wine-dark:#f0d48e; --gold:#e3bd5f; --gold-light:#f0d48e; --green:#8cc49a; --indigo:#9db4f0; --purple:#b8a2e8; --teal:#79c4cc; --rose:#e59bb5; --amber:#e8ab62; --ink-rgb:232,236,248; --line:rgba(232,236,248,0.14); --shadow:0 2px 20px rgba(0,0,0,0.6); }
   :root[data-mode="dark"]{ color-scheme:dark; }
   :root[data-mode="dark"] ::selection{ color: var(--parchment); }
 
@@ -359,6 +371,7 @@
     .layout{padding:20px 16px 70px;}
     .top-actions{gap:6px;}
     #topSaved{display:none;}
+    .searchbar{min-width:0;}
   }
 
   /* ---------- Section header ---------- */
@@ -414,7 +427,7 @@
     border-left:3px solid var(--row-color, var(--wine));
     cursor:pointer;
   }
-  .entry-row:hover{background:rgba(166,130,74,0.08);}
+  .entry-row:hover{background:rgba(var(--tint-rgb),0.08);}
   .entry-row .row-top{display:flex; justify-content:space-between; gap:14px; align-items:baseline;}
   .entry-row h3{font-size:1.36rem;}
   .entry-row .cat-badge{
@@ -910,7 +923,7 @@
   .home-quote-foot{display:flex; justify-content:center; align-items:center; gap:18px; flex-wrap:wrap;}
   @media (max-width:600px){ .quote-hero{padding:28px 20px 16px;} }
   /* ---------- Eastern Catholic edition ---------- */
-  :root[data-rite="eastern"]{ --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' d='M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'/%3E%3C/svg%3E"); }
+  :root[data-rite="eastern"]{ --cross-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='black' fill-rule='evenodd' d='M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z'/%3E%3C/svg%3E"); }
   .rite-toggle svg{width:20px; height:20px;}
   .brand-rite{display:none; font-family:'Source Serif 4', serif; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-left:-4px; align-self:flex-end; padding-bottom:6px;}
   :root[data-rite="eastern"] .brand-rite{display:inline;}
@@ -1004,7 +1017,7 @@
 
   /* ---------- Today panel & patron filters ---------- */
   .today-panel{
-    border:1px solid var(--gold-light); background:rgba(166,130,74,0.08);
+    border:1px solid var(--gold-light); background:rgba(var(--tint-rgb),0.08);
     padding:16px 18px; margin-bottom:22px;
   }
   .today-label{font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--wine-dark); margin-bottom:8px;}
@@ -1041,7 +1054,7 @@
     display:flex; align-items:center; gap:12px; width:100%; padding:8px; cursor:pointer; text-align:left;
     font-family:'Source Serif 4', serif; color:var(--ink); background:none; border:0; border-radius:var(--radius);
   }
-  .theme-option:hover, .theme-option:focus-visible{background:rgba(166,130,74,0.14); outline:none;}
+  .theme-option:hover, .theme-option:focus-visible{background:rgba(var(--tint-rgb),0.14); outline:none;}
   .theme-swatch{
     flex:0 0 30px; height:30px; border-radius:50%; border:1px solid rgba(0,0,0,0.25);
     background:linear-gradient(135deg, var(--sw-bg) 50%, var(--sw-accent) 50%);
@@ -1152,11 +1165,11 @@
     border:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
   }
   .cal-cell::after{content:''; position:absolute; left:0; right:0; bottom:0; height:4px; background:var(--season); opacity:0.7;}
-  .cal-cell:hover{background:rgba(166,130,74,0.08);}
+  .cal-cell:hover{background:rgba(var(--tint-rgb),0.08);}
   .cal-cell:focus-visible{outline:2px solid var(--wine); outline-offset:-2px;}
   .cal-cell.other{opacity:0.42;}
   .cal-cell.sunday .cal-num{color:var(--wine);}
-  .cal-cell.selected{background:rgba(166,130,74,0.16); box-shadow:inset 0 0 0 2px var(--gold);}
+  .cal-cell.selected{background:rgba(var(--tint-rgb),0.16); box-shadow:inset 0 0 0 2px var(--gold);}
   .cal-num{font-size:0.88rem; font-weight:600; width:25px; height:25px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0;}
   .cal-cell.today .cal-num{background:var(--wine); color:var(--parchment-light);}
   .cal-cell-label{font-size:0.72rem; line-height:1.25; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
@@ -1180,7 +1193,7 @@
   .cal-read{font-family:'Source Serif 4', serif; font-size:0.84rem; background:none; border:none; padding:0; color:var(--wine); cursor:pointer; text-align:left;}
   .cal-read:hover{text-decoration:underline;}
   .cal-row.jump{cursor:pointer;}
-  .cal-row.jump:hover{background:rgba(166,130,74,0.08);}
+  .cal-row.jump:hover{background:rgba(var(--tint-rgb),0.08);}
   .cal-upcoming{margin-top:26px;}
   .cal-upcoming h3{font-size:1.35rem; color:var(--wine-dark); border-bottom:1px solid var(--gold-light); padding-bottom:6px; margin-bottom:4px;}
   .cal-up-item{
@@ -1188,7 +1201,7 @@
     font-family:'Source Serif 4', serif; font-size:0.93rem; color:var(--ink);
     background:none; border:0; border-bottom:1px solid var(--line); padding:9px 4px;
   }
-  .cal-up-item:hover{background:rgba(166,130,74,0.08);}
+  .cal-up-item:hover{background:rgba(var(--tint-rgb),0.08);}
   .cal-up-date{flex:0 0 56px; color:var(--ink-soft); font-size:0.85rem;}
   .cal-up-name{flex:1; min-width:0;}
   .today-season{
@@ -1371,7 +1384,7 @@
     text-align:left; padding:13px 16px; cursor:pointer; font-family:'Source Serif 4', serif; font-size:1rem;
     border:1px solid var(--line); background:var(--parchment-light); color:var(--ink); border-radius:var(--radius);
   }
-  .quiz-option:hover:not([disabled]){border-color:var(--gold); background:rgba(166,130,74,0.1);}
+  .quiz-option:hover:not([disabled]){border-color:var(--gold); background:rgba(var(--tint-rgb),0.1);}
   .quiz-option[disabled]{cursor:default;}
   .quiz-option.correct{border-color:var(--green); background:color-mix(in srgb, var(--green) 16%, var(--parchment-light)); font-weight:600;}
   .quiz-option.wrong{border-color:var(--wine); background:color-mix(in srgb, var(--wine) 12%, var(--parchment-light)); text-decoration:line-through;}
@@ -1869,7 +1882,7 @@
   .saint-portrait{
     position:relative; flex:0 0 64px; width:64px; height:80px; overflow:hidden;
     border-radius:32px 32px 4px 4px; border:1px solid var(--gold-light);
-    background:radial-gradient(circle at 50% 38%, rgba(199,165,101,0.35), transparent 62%), var(--parchment-dark);
+    background:radial-gradient(circle at 50% 38%, rgba(var(--glow-rgb),0.35), transparent 62%), var(--parchment-dark);
     display:flex; align-items:center; justify-content:center;
     box-shadow:inset 0 0 0 3px var(--parchment-light);
   }
@@ -1908,7 +1921,7 @@
     --accent:var(--wine);
     display:block; padding:8px; cursor:pointer; text-align:center;
     font-family:'Source Serif 4', serif; color:var(--ink);
-    background:radial-gradient(ellipse at top, rgba(199,165,101,0.18), transparent 65%), var(--parchment-light);
+    background:radial-gradient(ellipse at top, rgba(var(--glow-rgb),0.18), transparent 65%), var(--parchment-light);
     border:1px solid var(--gold-light);
     box-shadow:0 1px 3px rgba(var(--ink-rgb),0.12), 0 6px 16px rgba(var(--ink-rgb),0.07);
     transition:transform 0.18s ease, box-shadow 0.18s ease;
@@ -1926,7 +1939,7 @@
   .pc-corner.bl{bottom:-4px; left:-4px;} .pc-corner.br{bottom:-4px; right:-4px;}
   .pc-art{
     display:block; width:78px; height:78px; padding:8px; margin:2px 0 10px; color:var(--accent); border-radius:50%;
-    background:radial-gradient(circle, rgba(199,165,101,0.26), transparent 70%);
+    background:radial-gradient(circle, rgba(var(--glow-rgb),0.26), transparent 70%);
   }
   .pc-art svg, .read-art svg, .row-art svg{width:100%; height:100%; display:block;}
   .pc-title{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.2rem; line-height:1.15;}
@@ -1941,13 +1954,13 @@
   .read-art{display:none;}
   .read-modal.card-mode{
     position:relative; max-width:540px; padding:44px 46px 34px; border-color:var(--gold-light);
-    background:radial-gradient(ellipse at top, rgba(199,165,101,0.2), transparent 60%), var(--parchment-light);
+    background:radial-gradient(ellipse at top, rgba(var(--glow-rgb),0.2), transparent 60%), var(--parchment-light);
     box-shadow:var(--shadow), inset 0 0 0 12px var(--parchment-light), inset 0 0 0 13px var(--accent),
       inset 0 0 0 17px var(--parchment-light), inset 0 0 0 18px var(--gold-light);
   }
   .read-modal.card-mode .read-art{
     display:block; width:104px; height:104px; padding:10px; margin:0 auto 12px; color:var(--accent); border-radius:50%;
-    background:radial-gradient(circle, rgba(199,165,101,0.3), transparent 70%);
+    background:radial-gradient(circle, rgba(var(--glow-rgb),0.3), transparent 70%);
   }
   .read-modal.card-mode .modal-head{justify-content:center; text-align:center;}
   .read-modal.card-mode .modal-head > div{width:100%;}
@@ -1972,11 +1985,11 @@
 <script>
   try{
     var t = localStorage.getItem('sanctify.theme');
-    if(['light','dark','candlelight','marian','cloister','liturgical','contrast','liturgical-dark','midnight','stained-glass','ivory','manuscript','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian','lily','rose-window','fresco'].indexOf(t) < 0){
+    if(['light','dark','candlelight','marian','cloister','liturgical','contrast','liturgical-dark','midnight','stained-glass','ivory','manuscript','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian','lily','rose-window','fresco','mono','gray','mono-dark','graphite','pascha','vyshyvanka','athos','lapis'].indexOf(t) < 0){
       t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
     document.documentElement.setAttribute('data-theme', t);
-    if(['dark','candlelight','liturgical-dark','midnight','stained-glass','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian'].indexOf(t) >= 0) document.documentElement.setAttribute('data-mode', 'dark');
+    if(['dark','candlelight','liturgical-dark','midnight','stained-glass','compline','cathedral','byzantine','sacred-heart','stella-maris','hermitage','ember','tenebrae','obsidian','mono-dark','graphite','athos','lapis'].indexOf(t) >= 0) document.documentElement.setAttribute('data-mode', 'dark');
     var size = JSON.parse(localStorage.getItem('sanctify.textsize') || '"md"');
     if(size === 'lg' || size === 'xl') document.documentElement.setAttribute('data-textsize', size);
     var rite = new URLSearchParams(location.search).get('rite');
@@ -1995,7 +2008,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <button class="brand" id="brandHome" aria-label="Sanctify home">
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z"/></svg>
       <span>Sanctify</span>
       <small class="brand-rite">Eastern Catholic</small>
     </button>
@@ -2080,7 +2093,7 @@
     </div>
     <div class="nav-group">
       <ul><li><button class="navlink" id="surpriseBtn" type="button"><span class="nl-icon nl-spark" aria-hidden="true">✦</span>Surprise me</button></li>
-        <li><button class="navlink rite-switch-link" type="button"><span class="nl-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z"/></svg></span><span data-rite-switch>Switch to the Eastern Catholic edition</span></button></li></ul>
+        <li><button class="navlink rite-switch-link" type="button"><span class="nl-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path fill-rule="evenodd" d="M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z"/></svg></span><span data-rite-switch>Switch to the Eastern Catholic edition</span></button></li></ul>
     </div>
   </div>
 </nav>
@@ -2102,7 +2115,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path d="M29.5 9.8h5v44.4h-5zM17.8 20h28.4v5H17.8zM28.8 7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 9.8a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M28.8 57a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M26 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M31.6 54.2a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M11.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M14.6 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M45.8 22.5a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 19.7a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0M43 25.3a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" fill="currentColor"><path fill-rule="evenodd" d="M22 2h20v7.5H22zM28 9.5h8v9.5h-8zM9 19h46v7H9zM28 26h8v36h-8zM34.5 16.2a2.5 2.5 0 1 1-5 0a2.5 2.5 0 1 1 5 0zM11 20.4L29.6 20.6L34.4 20.6L53 20.4L53 22.6L34.6 25.8L34.1 37L33.3 49L33 58L31 58L30.7 49L29.9 37L29.4 25.8L11 22.6zM23.6 3.5h1.3v4.5h-1.3zM26.8 3.5h1.2v4.5h-1.2zM28 3.5h1.2l1.4 4.5h-1.2zM30.6 3.5h1.2v4.5h-1.2zM33.2 3.5h1.2v4.5h-1.2zM34.4 3.5h2v1.1h-2zM36.4 3.5h1.1v2.6h-1.1zM34.4 5.4h2v0.7h-2zM35 6.1h1.2l1.4 1.9h-1.3zM39.5 3.5h1.3v4.5h-1.3z"/></svg>
       <div><strong>Sanctify</strong><span>Prayers, saints, Scripture, and two thousand years of the Church, gathered in one place. Free, with no ads, and no account needed to read or pray.</span></div>
     </div>
     <div class="footer-cols">
@@ -2320,6 +2333,46 @@ const SEED_DATA = [
     content:'O Christ our God, who at all times and in every hour, in heaven and on earth, are worshipped and glorified; who are long-suffering, merciful, and compassionate; who love the just and show mercy to sinners; who call all to salvation through the promise of blessings to come: O Lord, in this hour receive our supplications and direct our lives according to your commandments. Sanctify our souls, purify our bodies, correct our thoughts, cleanse our intentions, and deliver us from all tribulation, evil, and distress. Surround us with your holy angels, that, guarded and guided by them, we may attain to the unity of the faith and to the knowledge of your unapproachable glory, for you are blessed unto ages of ages. Amen.' },
   { id:'pe16', category:'prayer', rite:'eastern', title:'We Have Seen the True Light', author:'Sung after Holy Communion in the Divine Liturgy', tags:['eastern','eucharist','communion'],
     content:'We have seen the true Light; we have received the heavenly Spirit; we have found the true faith, worshipping the undivided Trinity, who has saved us.' },
+  { id:'pe17', category:'prayer', rite:'eastern', title:'O Joyful Light (Phos Hilaron)', author:'Ancient Christian hymn, sung at every Vespers as the lamps are lit', tags:['eastern','evening','hymn'],
+    content:'O joyful Light of the holy glory of the immortal Father, heavenly, holy, blessed Jesus Christ!\n\nNow that we have come to the setting of the sun and behold the evening light, we praise God: Father, Son, and Holy Spirit.\n\nIt is fitting at all times to praise you with joyful voices, O Son of God, Giver of life. Therefore the whole world glorifies you.' },
+  { id:'pe18', category:'prayer', rite:'eastern', title:'The Cherubic Hymn', author:'Sung at the Great Entrance of the Divine Liturgy', tags:['eastern','eucharist','angels','hymn'],
+    content:'Let us, who mystically represent the Cherubim and sing the thrice-holy hymn to the life-creating Trinity, now lay aside all earthly cares,\n\nthat we may receive the King of all, escorted invisibly by the angelic hosts. Alleluia, alleluia, alleluia.' },
+  { id:'pe19', category:'prayer', rite:'eastern', title:'Kontakion of the Akathist', author:'Opening hymn of the Akathist to the Theotokos, 6th–7th century', tags:['eastern','marian','hymn'],
+    content:'To you, our leader in battle and defender, O Theotokos, we your servants, delivered from calamity, offer hymns of victory and thanksgiving.\n\nSince you possess invincible might, set us free from every danger, that we may cry out to you: Rejoice, O Bride unwedded!' },
+  { id:'pe20', category:'prayer', rite:'eastern', title:'Protection of Christians', author:'Kontakion to the Theotokos', tags:['eastern','marian'],
+    content:'O Protection of Christians that cannot be put to shame, mediation unfailing before the Creator, do not despise the voices of sinners who pray to you; but in your goodness come quickly to help us who call upon you in faith.\n\nHasten to intercede and speed to make supplication, O Theotokos, for you always protect those who honor you.' },
+  { id:'pe21', category:'prayer', rite:'eastern', title:'Troparion of the Nativity', author:'Sung at the Nativity of Christ, December 25', tags:['eastern','feasts','christmas'],
+    content:'Your Nativity, O Christ our God, has shone upon the world the light of knowledge.\n\nThrough it, those who worshipped the stars were taught by a star to adore you, the Sun of Righteousness, and to know you, the Dawn from on high. O Lord, glory to you!' },
+  { id:'pe22', category:'prayer', rite:'eastern', title:'Kontakion of the Nativity', author:'St. Romanos the Melodist, 6th century', tags:['eastern','feasts','christmas','hymn'],
+    content:'Today the Virgin gives birth to the One who is above all being, and the earth offers a cave to the Unapproachable One.\n\nAngels with shepherds give glory, and the magi journey with a star; for to us is born a young child, the God before all ages.' },
+  { id:'pe23', category:'prayer', rite:'eastern', title:'Troparion of Theophany', author:'Sung at Theophany, the Baptism of the Lord, January 6', tags:['eastern','feasts','baptism'],
+    content:'When you were baptized in the Jordan, O Lord, the worship of the Trinity was revealed. For the voice of the Father bore witness to you, calling you his beloved Son, and the Spirit, in the form of a dove, confirmed the truth of his word.\n\nO Christ our God, who appeared and enlightened the world, glory to you!' },
+  { id:'pe24', category:'prayer', rite:'eastern', title:'Troparion of the Annunciation', author:'Sung at the Annunciation, March 25', tags:['eastern','feasts','marian'],
+    content:'Today is the beginning of our salvation and the revelation of the eternal mystery. The Son of God becomes the Son of the Virgin, and Gabriel announces the good tidings of grace.\n\nTherefore let us cry out with him to the Theotokos: Rejoice, O full of grace, the Lord is with you!' },
+  { id:'pe25', category:'prayer', rite:'eastern', title:'Having Beheld the Resurrection', author:'Sung at Sunday Matins and throughout the Paschal season', tags:['eastern','pascha','feasts'],
+    content:'Having beheld the Resurrection of Christ, let us worship the holy Lord Jesus, the only sinless One. We venerate your Cross, O Christ, and we praise and glorify your holy Resurrection. For you are our God, and we know no other than you; we call upon your name.\n\nCome, all you faithful, let us venerate the holy Resurrection of Christ. For behold, through the Cross joy has come to all the world. Always blessing the Lord, let us praise his Resurrection; for by enduring the Cross for us, he has destroyed death by death.' },
+  { id:'pe26', category:'prayer', rite:'eastern', title:'Kontakion of Pascha', author:'Sung throughout the Paschal season', tags:['eastern','pascha','feasts','hymn'],
+    content:'Though you went down into the tomb, O Immortal One, you destroyed the power of Hades. You rose as victor, O Christ God, calling to the myrrh-bearing women: Rejoice!\n\nYou give peace to your apostles, and grant resurrection to the fallen.' },
+  { id:'pe27', category:'prayer', rite:'eastern', title:'Troparion of Pentecost', author:'Sung at Pentecost, fifty days after Pascha', tags:['eastern','feasts','holy spirit'],
+    content:'Blessed are you, O Christ our God, who made the fishermen all-wise by sending down upon them the Holy Spirit, and through them caught the whole world in your net.\n\nO Lover of mankind, glory to you!' },
+  { id:'pe28', category:'prayer', rite:'eastern', title:'Troparion of the Transfiguration', author:'Sung at the Holy Transfiguration, August 6', tags:['eastern','feasts'],
+    content:'You were transfigured on the mountain, O Christ God, revealing your glory to your disciples as far as they could bear it.\n\nLet your everlasting light also shine upon us sinners, through the prayers of the Theotokos. O Giver of light, glory to you!' },
+  { id:'pe29', category:'prayer', rite:'eastern', title:'Troparion of the Dormition', author:'Sung at the Dormition of the Theotokos, August 15', tags:['eastern','feasts','marian'],
+    content:'In giving birth you preserved your virginity; in your falling asleep you did not forsake the world, O Theotokos.\n\nYou passed over into life, for you are the Mother of Life; and by your prayers you deliver our souls from death.' },
+  { id:'pe30', category:'prayer', rite:'eastern', title:'Troparion of the Holy Cross', author:'Sung at the Exaltation of the Cross, September 14, and on Wednesdays and Fridays', tags:['eastern','feasts','passion'],
+    content:'O Lord, save your people and bless your inheritance. Grant your faithful victory over every adversary, and protect your people by your Cross.\n\nBefore your Cross we bow down, O Master, and your holy Resurrection we glorify.' },
+  { id:'pe31', category:'prayer', rite:'eastern', title:'Prayer to the Guardian Angel (Byzantine)', author:'From the Byzantine evening prayers', tags:['eastern','angels','evening'],
+    content:'O Angel of Christ, my holy guardian and protector of my soul and body, forgive me all my sins of this day, and deliver me from every snare of the enemy, that I may not anger my God by any sin.\n\nPray for me, a sinful and unworthy servant, that you may present me worthy of the kindness and mercy of the All-Holy Trinity, of the Mother of my Lord Jesus Christ, and of all the saints. Amen.' },
+  { id:'pe32', category:'prayer', rite:'eastern', title:'Into Your Hands', author:'From the Byzantine prayers before sleep', tags:['eastern','evening','night prayer'],
+    content:'Into your hands, O Lord Jesus Christ my God, I commend my spirit. Bless me, have mercy on me, and grant me eternal life. Amen.' },
+  { id:'pe33', category:'prayer', rite:'eastern', title:'Morning Prayer of the Optina Elders', author:'Traditionally attributed to the elders of Optina, 19th century; much loved among Byzantine Christians', tags:['eastern','morning','daily'],
+    content:'O Lord, grant that I may meet the coming day in peace. Help me in all things to rely upon your holy will. In every hour of the day, reveal your will to me. Bless my dealings with all who surround me.\n\nTeach me to treat whatever may happen to me throughout the day with peace of soul and with firm conviction that your will governs all. In all my deeds and words, guide my thoughts and feelings. In unforeseen events, let me not forget that all are sent by you.\n\nTeach me to act firmly and wisely, without embittering or embarrassing others. Give me strength to bear the fatigue of the coming day with all that it shall bring. Direct my will, teach me to pray, and pray yourself in me. Amen.' },
+  { id:'pe34', category:'prayer', rite:'eastern', title:'O God of Spirits and of All Flesh', author:'Byzantine prayer for the departed, from the Panachida', tags:['eastern','the dead'],
+    content:'O God of spirits and of all flesh, who trampled down death, overthrew the devil, and gave life to your world: give rest to the soul of your servant N., who has fallen asleep, in a place of light, a place of green pasture, a place of refreshment, from which all sickness, sorrow, and sighing have fled.\n\nAs a good God who loves mankind, forgive every sin committed in word, deed, or thought; for there is no one who lives and does not sin. You alone are without sin, your righteousness is everlasting, and your word is truth.\n\nFor you are the resurrection, the life, and the repose of your servant N., who has fallen asleep, O Christ our God, and we give glory to you, together with your Father who is without beginning, and your all-holy, good, and life-giving Spirit, now and ever and unto ages of ages. Amen.' },
+  { id:'pe35', category:'prayer', rite:'eastern', title:'The Song of Simeon', author:'Luke 2:29–32 (RSV-CE); sung at the end of Vespers', tags:['eastern','evening','scripture'],
+    content:'Lord, now lettest thou thy servant depart in peace, according to thy word;\nfor mine eyes have seen thy salvation\nwhich thou hast prepared in the presence of all peoples,\na light for revelation to the Gentiles,\nand for glory to thy people Israel.' },
+  { id:'pe36', category:'prayer', rite:'eastern', title:'Prayer of St. Basil the Great', author:'Attributed to St. Basil the Great; from the Byzantine Midnight Office', tags:['eastern','night prayer','evening'],
+    content:'We bless you, O God most high and Lord of mercy, who always do great and unsearchable things with us, glorious and wonderful, without number. You give us sleep for rest from our weakness, and repose from the labors of our much-toiling flesh.\n\nWe thank you that you have not destroyed us with our sins, but in your love for mankind you have raised us up. Enlighten the eyes of our understanding, raise our minds from the heavy sleep of sloth, open our mouths and fill them with your praise, that we may unceasingly sing and confess you, the God glorified in all and by all, the Father without beginning, with your only-begotten Son and your all-holy, good, and life-giving Spirit, now and ever and unto ages of ages. Amen.' },
   { id:'s1', category:'saint', title:'St. Francis of Assisi', author:'1181\u20131226, feast day October 4', tags:['founder','poverty','nature'],
     content:'Born to a wealthy cloth merchant in Assisi, Francis abandoned a comfortable life after a series of conversions, embracing radical poverty and founding the Franciscan order. He preached to the poor, rebuilt ruined churches, and is remembered for his tenderness toward creation, famously preaching to birds and taming a wolf in legend.\n\nIn 1224 he is said to have received the stigmata, the wounds of Christ, while praying on Mount La Verna. He died in 1226 and was canonized just two years later. He is the patron saint of animals, ecology, and Italy.',
     intercession:'St. Francis of Assisi, who found God in poverty and in every creature, teach us to hold this world lightly and to love it truly. Pray for us, that we may walk humbly, live simply, and see the hand of the Creator in all things. Amen.' },
@@ -3518,6 +3571,96 @@ const SEED_DATA = [
   { id:'s399', category:'saint', title:'Bl. Vasyl Velychkovsky', author:'1903–1973, feast day June 30', tags:['eastern','ukrainian greek catholic','martyr'],
     content:'Vasyl was a Ukrainian Greek Catholic Redemptorist priest who was secretly ordained a bishop while the Soviet Union had outlawed his Church. He spent years in Soviet prisons and labor camps.\n\nReleased and expelled, he died in Winnipeg, Canada, where his relics are honored today. He was beatified as a martyr in 2001.',
     intercession:'Blessed Vasyl, pray for us. Strengthen all who suffer for the faith under persecution. Amen.' },
+  { id:'s400', category:'saint', title:'Sts. Boris and Gleb', author:'d. 1015, feast day July 24', tags:['eastern','kyiv','passion-bearers'],
+    content:'Boris and Gleb were young princes of Kyiv, sons of St. Vladimir the Great. When their father died, their older brother Sviatopolk sent men to kill them to seize the throne.\n\nBoth refused to raise an army against their brother, choosing to die rather than shed Christian blood. They were the first saints honored in Kyivan Rus’, venerated as "passion-bearers," those who accepted an unjust death in imitation of Christ.',
+    intercession:'Holy passion-bearers Boris and Gleb, pray for us. Teach us to choose peace and to forgive those who harm us. Amen.' },
+  { id:'s401', category:'saint', title:'St. Anthony of the Kyiv Caves', author:'983–1073, feast day July 10', tags:['eastern','kyiv','monasticism'],
+    content:'Anthony became a monk on Mount Athos and returned to Kyiv, where he lived as a hermit in a cave on the hills above the Dnieper River. Disciples gathered around him and dug more caves.\n\nFrom this beginning grew the Kyiv Pechersk Lavra, the Monastery of the Caves, the great center of monastic life in Ukraine. He is honored as the father of monasticism in the lands of Rus’.',
+    intercession:'St. Anthony of the Caves, pray for us. Teach us to seek God in silence and prayer. Amen.' },
+  { id:'s402', category:'saint', title:'St. Theodosius of the Kyiv Caves', author:'c. 1008–1074, feast day May 3', tags:['eastern','kyiv','monasticism'],
+    content:'Theodosius left his wealthy family as a young man to join St. Anthony in the caves of Kyiv. As abbot he organized the growing community under the rule of the Studite monks of Constantinople.\n\nHe was known for his humility, wearing coarse clothing and doing the hardest work himself, and for his care for the poor and sick of Kyiv. He is a founder, with Anthony, of the Kyiv Caves Monastery.',
+    intercession:'St. Theodosius, pray for us. Make us humble servants of our brothers and sisters. Amen.' },
+  { id:'s403', category:'saint', title:'St. Sabbas the Sanctified', author:'439–532, feast day December 5', tags:['eastern','holy land','monasticism'],
+    content:'Sabbas was born in Cappadocia and became a monk in the Judean desert under St. Euthymius. In 483 he founded the Great Lavra in the Kidron valley near Jerusalem, now called Mar Saba, which is still inhabited by monks today.\n\nHe led the monks of Palestine, defended the Council of Chalcedon, and journeyed to Constantinople in old age to plead for his people. The monastic rule of Mar Saba shaped Byzantine worship for centuries.',
+    intercession:'St. Sabbas, pray for us. Bless all monks, and teach us to pray with the whole Church. Amen.' },
+  { id:'s404', category:'saint', title:'St. Euthymius the Great', author:'377–473, feast day January 20', tags:['eastern','holy land','monasticism'],
+    content:'Euthymius was an Armenian priest from Melitene who went to the Holy Land and spent the rest of his life in the Judean desert, founding communities of monks.\n\nHe converted many Arab tribesmen and baptized their chief. He was the spiritual father of St. Sabbas, and his loyalty to the Council of Chalcedon helped keep the monks of Palestine faithful to its teaching about Christ.',
+    intercession:'St. Euthymius, pray for us. Make us faithful to the true teaching about Christ. Amen.' },
+  { id:'s405', category:'saint', title:'St. Athanasius of Athos', author:'c. 920–1003, feast day July 5', tags:['eastern','athos','monasticism'],
+    content:'Athanasius was a teacher in Constantinople who became a monk. With the help of the emperor Nikephoros Phokas, he founded the Great Lavra on Mount Athos in 963, the first great monastery on the Holy Mountain.\n\nMount Athos became the heart of Byzantine monasticism. Athanasius died when the dome of a church under construction collapsed on him and several of his monks.',
+    intercession:'St. Athanasius, pray for us. Bless the monks of the Holy Mountain, and all who seek God in prayer. Amen.' },
+  { id:'s406', category:'saint', title:'St. Demetrius of Thessalonica', author:'d. c. 306, feast day October 26', tags:['eastern','martyr','soldiers'],
+    content:'Demetrius was a young Christian, by tradition a soldier and a deacon, who taught the faith in Thessalonica during the persecution of the emperor Maximian. He was arrested and killed with spears.\n\nHis tomb became a famous pilgrimage site, and the people of Thessalonica believed he defended their city from attack. He is one of the most beloved military saints of the East.',
+    intercession:'St. Demetrius, pray for us. Defend the defenseless, and give us courage to confess Christ. Amen.' },
+  { id:'s407', category:'saint', title:'St. Panteleimon', author:'d. c. 305, feast day July 27', tags:['eastern','martyr','physicians'],
+    content:'Panteleimon was a young physician in Nicomedia, the son of a pagan father and a Christian mother. Converted by a priest named Hermolaus, he healed the sick freely in the name of Christ.\n\nJealous doctors denounced him during the persecution of Diocletian, and he was beheaded. He is honored in the East as one of the "Unmercenary Healers" and a patron of physicians.',
+    intercession:'St. Panteleimon, pray for us. Heal the sick, and bless all who care for them. Amen.' },
+  { id:'s408', category:'saint', title:'St. John the Merciful', author:'c. 552–c. 619, feast day November 12', tags:['eastern','bishop','charity'],
+    content:'John was a widower from Cyprus who became Patriarch of Alexandria. He called the poor of the city "my lords and masters," kept a list of them, and gave so much that he died with almost nothing.\n\nHe built hospitals and homes for the poor and sheltered refugees fleeing the Persian invasion of the Holy Land. The Knights Hospitaller took him as their first patron.',
+    intercession:'St. John the Merciful, pray for us. Teach us to see Christ in the poor and to share all we have. Amen.' },
+  { id:'s409', category:'saint', title:'St. Nilus of Rossano', author:'c. 910–1004, feast day September 26', tags:['eastern','italo-greek','monasticism'],
+    content:'Nilus was a Greek-speaking monk from Calabria in southern Italy, where Byzantine Christianity flourished. He founded several monasteries and was famous for his learning and his fearless counsel to emperors and popes.\n\nAt the end of his life he founded the Abbey of Grottaferrata near Rome, which still celebrates the Byzantine liturgy in full communion with the pope today.',
+    intercession:'St. Nilus, pray for us. Bless the Italo-Albanian Church, and help East and West to live as one. Amen.' },
+  { id:'s410', category:'saint', title:'St. Gregory of Narek', author:'c. 951–1003, feast day February 27', tags:['eastern','armenia','doctor of the church'],
+    content:'Gregory was an Armenian monk and poet who lived at the monastery of Narek. His Book of Lamentations, ninety-five prayers "speaking with God from the depths of the heart," is the treasure of Armenian literature.\n\nArmenians have long kept it by the beds of the sick. In 2015 Pope Francis declared him a Doctor of the Church.',
+    intercession:'St. Gregory of Narek, pray for us. Teach us to speak to God from the depths of our hearts. Amen.' },
+  { id:'s411', category:'saint', title:'St. Mariam Thresia Chiramel Mankidiyan', author:'1876–1926, feast day June 8', tags:['eastern','syro-malabar','founder'],
+    content:'Mariam Thresia was a Syro-Malabar laywoman and mystic from Kerala, India. She visited the sick and the dying, cared for the poor of every caste, and helped troubled families.\n\nIn 1914 she founded the Congregation of the Holy Family to continue this work. She bore the marks of Christ’s Passion and suffered greatly in prayer. She was canonized in 2019.',
+    intercession:'St. Mariam Thresia, pray for us. Bless families, and help us to care for those in need around us. Amen.' },
+  { id:'s412', category:'saint', title:'Bl. Rani Maria Vattalil', author:'1954–1995, feast day February 25', tags:['eastern','syro-malabar','martyr'],
+    content:'Rani Maria was a Franciscan Clarist sister of the Syro-Malabar Church who worked among the poor landless villagers of Madhya Pradesh, helping them escape exploitation by moneylenders.\n\nIn 1995 a hired killer stabbed her to death on a crowded bus. Her family later forgave and embraced her killer, who repented. She was beatified as a martyr in 2017.',
+    intercession:'Blessed Rani Maria, pray for us. Give us courage to defend the poor, and the grace to forgive. Amen.' },
+  { id:'s413', category:'saint', title:'Bl. Kunjachan', author:'1891–1973, feast day October 16', tags:['eastern','syro-malabar','dalits'],
+    content:'Augustine Thevarparampil, called Kunjachan, "little father," was a short and humble Syro-Malabar priest in Kerala. He spent his life among the Dalits, the poorest and most despised people of the caste system.\n\nHe visited their homes, taught them the faith, and baptized thousands. He was beatified in 2006 as an apostle of the poor.',
+    intercession:'Blessed Kunjachan, pray for us. Help us to love those whom society rejects. Amen.' },
+  { id:'s414', category:'saint', title:'Sts. Francis, Abdel-Mooti, and Raphael Massabki', author:'d. 1860, feast day July 10', tags:['eastern','maronite','martyr'],
+    content:'The three Massabki brothers were Maronite laymen of Damascus: Francis, a married silk merchant and father of eight, Abdel-Mooti, a teacher, and Raphael. During the massacre of Christians in July 1860, they took refuge in the Franciscan friary.\n\nOffered their lives if they would become Muslims, they refused and were killed together with eight Franciscan friars. They were canonized in 2024.',
+    intercession:'Holy Massabki brothers, pray for us. Strengthen persecuted Christians in the Middle East. Amen.' },
+  { id:'s415', category:'saint', title:'Bl. Estephan Nehmé', author:'1889–1938, feast day August 30', tags:['eastern','maronite','lebanon'],
+    content:'Estephan was a brother of the Lebanese Maronite Order who spent most of his life working in the gardens and fields of the monastery of Kfifan, where St. Nimatullah is buried.\n\nHe was known for his gentleness and for the words he often repeated: "God sees me." He was beatified in 2010.',
+    intercession:'Blessed Estephan, pray for us. Help us to work quietly in the presence of God. Amen.' },
+  { id:'s416', category:'saint', title:'Bl. Mykolai Charnetskyi', author:'1884–1959, feast day April 2', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Mykolai was a Ukrainian Greek Catholic Redemptorist priest and seminary teacher, consecrated bishop to serve Ukrainian Catholics in Volhynia and Polissia.\n\nArrested by the Soviets in 1945, he endured years of interrogation and labor camps. Released near death, he died in Lviv in 1959. He was beatified in 2001.',
+    intercession:'Blessed Mykolai, pray for us. Strengthen pastors who suffer for their flocks. Amen.' },
+  { id:'s417', category:'saint', title:'Bl. Josaphat Kotsylovsky', author:'1876–1947, feast day November 17', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Josaphat was a Basilian monk and the Ukrainian Greek Catholic bishop of Przemyśl. After the Second World War, the Soviet and Polish communist authorities moved to destroy his Church.\n\nHe was arrested, handed over to the Soviets, and died in a labor camp near Kyiv in 1947. He was beatified in 2001.',
+    intercession:'Blessed Josaphat, pray for us. Keep the Church faithful in times of persecution. Amen.' },
+  { id:'s418', category:'saint', title:'Bl. Klymentiy Sheptytsky', author:'1869–1951, feast day May 1', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Klymentiy was a nobleman and lawyer, brother of Metropolitan Andrey Sheptytsky, who became a Studite monk and archimandrite. During the Nazi occupation he helped hide Jews in monasteries and convents.\n\nArrested by the Soviets in 1947, he died in Vladimir prison in 1951. He was beatified in 2001 and recognized by Yad Vashem as Righteous Among the Nations.',
+    intercession:'Blessed Klymentiy, pray for us. Give us courage to protect the persecuted. Amen.' },
+  { id:'s419', category:'saint', title:'Bl. Mykola Konrad and Volodymyr Pryjma', author:'d. 1941, feast day June 26', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Fr. Mykola Konrad was a Ukrainian Greek Catholic priest and teacher, and Volodymyr Pryjma the cantor and choir director of his parish in Stradch.\n\nIn June 1941 they went together to hear the confession of a sick woman. On their way home they were seized by Soviet secret police and killed in the woods. Both were beatified in 2001.',
+    intercession:'Blessed Mykola and Volodymyr, pray for us. Make us faithful in bringing Christ to the sick and dying. Amen.' },
+  { id:'s420', category:'saint', title:'Bl. Tarsykia Matskiv', author:'1919–1944, feast day July 18', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Olha Matskiv entered the Sisters Servants of Mary Immaculate and took the name Tarsykia. She offered her life to God for the conversion of those persecuting the Church.\n\nIn July 1944, when she answered the door of the convent in Krystynopil, a Soviet soldier shot her dead. She was twenty-four. She was beatified in 2001.',
+    intercession:'Blessed Tarsykia, pray for us. Help young people to offer their lives generously to God. Amen.' },
+  { id:'s421', category:'saint', title:'Bl. Olympia Bida', author:'1903–1952, feast day January 28', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Olympia was a Ukrainian Greek Catholic Sister of St. Joseph who led her community in Khyriv. When the Soviets arrested her and her sisters, she kept them together in prayer.\n\nDeported to Siberia, she continued to pray and teach the faith among the prisoners until she died of illness in 1952. She was beatified in 2001.',
+    intercession:'Blessed Olympia, pray for us. Keep us faithful in exile and suffering. Amen.' },
+  { id:'s422', category:'saint', title:'Bl. Petro Verhun', author:'1890–1957, feast day February 7', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Petro was a Ukrainian Greek Catholic priest who served Ukrainian Catholics in Berlin and was named apostolic visitor for Ukrainians in Germany.\n\nWhen Soviet forces took Berlin in 1945, he was arrested and sentenced to labor camps in Siberia, where he died in exile in 1957. He was beatified in 2001.',
+    intercession:'Blessed Petro, pray for us. Bless all who serve immigrants and people far from home. Amen.' },
+  { id:'s423', category:'saint', title:'Bl. Ivan Ziatyk', author:'1899–1952, feast day May 17', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Ivan was a Ukrainian Greek Catholic Redemptorist priest and seminary professor. After the communist authorities outlawed his Church, he continued to lead his community in secret.\n\nArrested in 1950, he was savagely beaten on Good Friday in a Siberian labor camp and died weeks later. He was beatified in 2001.',
+    intercession:'Blessed Ivan, pray for us. Unite our sufferings with the Passion of Christ. Amen.' },
+  { id:'s424', category:'saint', title:'Bl. Andrii Ishchak', author:'1887–1941, feast day June 26', tags:['eastern','ukrainian greek catholic','martyr'],
+    content:'Andrii was a Ukrainian Greek Catholic priest, a professor of canon law at the Lviv Theological Academy, and a parish priest in the village of Sykhiv.\n\nWhen Soviet troops retreated in June 1941, he refused to abandon his parishioners and was killed by soldiers. He was beatified in 2001.',
+    intercession:'Blessed Andrii, pray for us. Make shepherds faithful to their people in every danger. Amen.' },
+  { id:'s425', category:'saint', title:'Bl. Pavol Peter Gojdič', author:'1888–1960, feast day July 17', tags:['eastern','slovak greek catholic','martyr'],
+    content:'Pavol was a Basilian monk and the Slovak Greek Catholic bishop of Prešov. He protected Jews during the Second World War and was later recognized by Yad Vashem as Righteous Among the Nations.\n\nWhen the communists outlawed his Church in 1950, he refused to break with Rome. He was sentenced to life in prison and died in Leopoldov prison on his seventy-second birthday. He was beatified in 2001.',
+    intercession:'Blessed Pavol Peter, pray for us. Keep us faithful to the successor of Peter whatever the cost. Amen.' },
+  { id:'s426', category:'saint', title:'Bl. Metod Dominik Trčka', author:'1886–1959, feast day March 23', tags:['eastern','slovak greek catholic','martyr'],
+    content:'Metod was a Czech Redemptorist priest who adopted the Byzantine rite to serve Greek Catholics in Slovakia. He led missions and cared for the faithful during the war.\n\nArrested by the communists in 1950, he was imprisoned for years and died in Leopoldov prison after being punished for singing a Christmas carol. He was beatified in 2001.',
+    intercession:'Blessed Metod, pray for us. Help us to sing God’s praises in every circumstance. Amen.' },
+  { id:'s427', category:'saint', title:'Bl. Vasil Hopko', author:'1904–1976, feast day July 23', tags:['eastern','slovak greek catholic','martyr'],
+    content:'Vasil was the auxiliary bishop of the Greek Catholic eparchy of Prešov in Slovakia. When the communists suppressed his Church, he was imprisoned for thirteen years and tortured.\n\nReleased in poor health, he helped rebuild the Greek Catholic Church during the Prague Spring of 1968. He died of the effects of his imprisonment and was beatified in 2003.',
+    intercession:'Blessed Vasil, pray for us. Give hope to all who rebuild the Church after persecution. Amen.' },
+  { id:'s428', category:'saint', title:'Bl. Iuliu Hossu and the Romanian Martyr Bishops', author:'d. 1950–1970, feast day June 2', tags:['eastern','romanian greek catholic','martyr'],
+    content:'In 1948 the communist government of Romania outlawed the Romanian Greek Catholic Church and imprisoned its bishops for refusing to join the state-controlled Orthodox Church.\n\nSeven bishops died in prison or under house arrest, among them Iuliu Hossu of Cluj-Gherla, whom Pope St. Paul VI named a cardinal in secret. Pope Francis beatified all seven at Blaj in 2019.',
+    intercession:'Blessed martyr bishops of Romania, pray for us. Strengthen the Church in her unity and freedom. Amen.' },
+  { id:'s429', category:'saint', title:'St. Justin de Jacobis', author:'1800–1860, feast day July 31', tags:['eastern','ethiopia','missionary'],
+    content:'Justin was an Italian Vincentian priest sent to Ethiopia in 1839. He learned the language and customs of the people and adopted the ancient Ge’ez liturgy rather than imposing Latin customs.\n\nAs bishop he trained Ethiopian priests and laid the foundations of the Ethiopian Catholic Church. He died on a roadside while traveling to his people and was canonized in 1975.',
+    intercession:'St. Justin de Jacobis, pray for us. Bless the Churches of Ethiopia and Eritrea, and teach us to respect every culture. Amen.' },
   { id:'t58', category:'theology', group:'belief', art:'eastcross', title:'The Eastern Catholic Churches', author:'Catechism of the Catholic Church 1200–1209; Second Vatican Council, Orientalium Ecclesiarum', ccc:'1200–1209', tags:['eastern','church','liturgy'],
     content:'The Catholic Church is a communion of twenty-four Churches “of their own law” (sui iuris): the Latin Church and twenty-three Eastern Catholic Churches, each with its own liturgy, theology, spirituality, and discipline, all in full communion with the Bishop of Rome.\n\nThey belong to five great traditions: the Byzantine (fourteen Churches, including the Ukrainian, Ruthenian, Melkite, and Romanian), the Alexandrian (Coptic, Ethiopian, Eritrean), the Antiochene (Maronite, Syriac, Syro-Malankara), the Armenian, and the Chaldean or East Syriac (Chaldean and Syro-Malabar). The Second Vatican Council taught that their traditions are the heritage of the whole Church and must be preserved and treasured.',
     scripture:['John 17:20–21', 'Ephesians 4:4–6'],
@@ -4830,7 +4973,12 @@ const SAINT_META = {
   s371:'fathers 594 bi sc', s372:'early 600 bi', s373:'early 609 bi sc', s374:'early 614 bi mi', s375:'early 638 bi sc', s376:'early 662 mo sc ma',
   s377:'early 667 bi sc', s378:'early 733 bi sc', s379:'early 740 bi sc', s380:'early 826 mo', s381:'early 865 bi mi mo', s382:'early 973 bi',
   s383:'early 994 bi mo mi te', s384:'medieval 1079 bi ma', s385:'medieval 1148 bi', s386:'medieval 1180 bi mo', s387:'reform 1555 bi mo',
-  s388:'early 649 mo sc', s389:'fathers 556 pr sc', s390:'medieval 1022 mo my sc', s391:'revolution 1871 pr fo te', s392:'modern 1946 nu my', s393:'modern 1952 nu my', s394:'revolution 1858 mo pr te', s395:'modern 1915 bi ma', s396:'modern 1935 pr ma', s397:'modern 1944 pr ma pa', s398:'modern 1947 bi ma', s399:'modern 1973 bi ma mo'
+  s388:'early 649 mo sc', s389:'fathers 556 pr sc', s390:'medieval 1022 mo my sc', s391:'revolution 1871 pr fo te', s392:'modern 1946 nu my', s393:'modern 1952 nu my', s394:'revolution 1858 mo pr te', s395:'modern 1915 bi ma', s396:'modern 1935 pr ma', s397:'modern 1944 pr ma pa', s398:'modern 1947 bi ma', s399:'modern 1973 bi ma mo',
+  s400:'medieval 1015 ro ma yo', s401:'medieval 1073 mo fo', s402:'medieval 1074 mo fo', s403:'fathers 532 mo fo', s404:'fathers 473 mo pr mi', s405:'medieval 1003 mo fo',
+  s406:'martyrs 306 ma so', s407:'martyrs 305 ma me yo', s408:'early 619 bi', s409:'medieval 1004 mo fo sc', s410:'medieval 1003 mo dr sc my', s411:'modern 1926 nu fo my',
+  s412:'modern 1995 nu ma', s413:'modern 1973 pr mi', s414:'revolution 1860 ma la pa te', s415:'modern 1938 mo wo', s416:'modern 1959 bi ma te', s417:'modern 1947 bi mo ma',
+  s418:'modern 1951 mo ma', s419:'modern 1941 pr ma la', s420:'modern 1944 nu ma yo', s421:'modern 1952 nu ma', s422:'modern 1957 pr ma mi', s423:'modern 1952 pr ma te',
+  s424:'modern 1941 pr ma te', s425:'modern 1960 bi mo ma', s426:'modern 1959 pr ma mi', s427:'modern 1976 bi ma', s428:'modern 1970 bi ma', s429:'revolution 1860 bi mi'
 };
 // What each saint is a patron of (traditional and official patronages; not every saint has one)
 const SAINT_PATRONS = {
@@ -4928,7 +5076,8 @@ const SAINT_PATRONS = {
   s336:'Ethiopia', s337:'Georgia', s339:'Piedmont', s340:'Verona, fishermen', s351:'Turin', s352:'Scotland', s362:'translators, Armenia',
   s363:'Austria', s365:'France, Reims', s369:'Paris', s370:'Braga', s372:'Seville', s374:'Glasgow', s377:'Toledo',
   s381:'Denmark, Scandinavia', s382:'Augsburg', s383:'Regensburg, carpenters, woodcarvers', s384:'Poland, Kraków', s385:'Armagh',
-  s386:'Dublin', s387:'Valencia, the poor'
+  s386:'Dublin', s387:'Valencia, the poor',
+  s406:'Thessalonica, soldiers', s407:'physicians, midwives, the sick', s408:'the poor, the Knights Hospitaller'
 };
 SEED_DATA.forEach(e => { if(SAINT_PATRONS[e.id]) e.patron = SAINT_PATRONS[e.id]; });
 const SAINT_ERAS = [
@@ -5342,6 +5491,7 @@ const PRAYER_TOPICS = [
   ['mercy', 'Penance & mercy', ['confession', 'penance', 'mercy', 'humility', 'passion']],
   ['dead', 'For the dead', ['the dead', 'purgatory']],
   ['night', 'Evening & night', ['night prayer', 'evening']],
+  ['feasts', 'Feasts & seasons', ['feasts', 'pascha']],
   ['eastern', 'Byzantine', ['eastern']],
   ['latin', 'Latin', ['latin']]
 ];
@@ -5793,7 +5943,7 @@ const CARD_ART = (() => {
     rays: `<circle cx="32" cy="20" r="7"/>${rays(32, 20, 10.5, 15.5, 12)}<path d="M14 54H50C55 54 57 50 55 46C53 43 50 42 48 43C47 38 42 35 37 37C35 33 29 32 26 35C23 37 22 40 23 42C19 41 15 43 14 46C12 49 12 54 14 54Z"/>`,
     lily: `<path d="M32 58V26"/><path d="M32 48c-6-2-10-6-11-11 6 1 10 5 11 11zM32 42c6-2 10-6 11-11-6 1-10 5-11 11z"/>${lilyHead(32, 26, 1.5)}`,
     trinity: `<path d="M32 13 53 49H11z"/><circle cx="32" cy="36" r="5.5"/><circle cx="32" cy="36" r="1.6" fill="currentColor"/>${rays(32, 34, 25, 30, 7, -60, 60)}`,
-    budcross: '<circle cx="32" cy="32" r="25"/><path d="M32 13v38M20 26h24"/>' + [[32, 10.6], [29.8, 12.8], [34.2, 12.8], [32, 53.4], [29.8, 51.2], [34.2, 51.2], [17.6, 26], [19.8, 23.8], [19.8, 28.2], [46.4, 26], [44.2, 23.8], [44.2, 28.2]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.3" fill="currentColor" stroke="none"/>`).join(''),
+    budcross: '<circle cx="32" cy="32" r="25"/><rect x="25.5" y="8.6" width="13" height="6.4" rx="0.6"/><text x="32" y="13.4" text-anchor="middle" font-family="Georgia, serif" font-size="3.9" font-weight="700" letter-spacing="0.2" fill="currentColor" stroke="none">INRI</text><path d="M29.5 15v9H17v5h12.5v26h5V29H47v-5H34.5v-9"/><circle cx="32" cy="20.6" r="1.8" fill="currentColor" stroke="none"/><path d="M18.6 25.4L30 26.6H34L45.4 25.4V27L34.2 28.5L33.6 38L33 49H31L30.4 38L29.8 28.5L18.6 27Z" fill="currentColor" stroke="none"/>',
     keys: '<circle cx="17" cy="17" r="6"/><path d="M21.2 21.2 50 50M44 44l-4 4M48 48l-4 4"/><circle cx="47" cy="17" r="6"/><path d="M42.8 21.2 14 50M20 44l4 4M16 48l4 4"/>',
     rose: `<circle cx="32" cy="23" r="12"/><path d="M26 21c0-4 3-6 6-6s6 2 6 6-3 6-6 6-4-2-4-4 1-3 3-3"/><path d="M21 27c3 3 7 4 11 4s8-1 11-4"/><path d="M32 35v23"/>${leaf(25.5, 46, -30)}${leaf(38.5, 51, 30)}`,
     sword: '<path d="M32 5l3 5v32h-6V10z"/><path d="M21 42h22"/><path d="M32 42v10"/><circle cx="32" cy="55" r="2.5"/><path d="M21 42c-7-2-12-9-12-17 4 3 8 5 12 5M43 42c7-2 12-9 12-17-4 3-8 5-12 5M13 33c3 2 6 3 9 3M51 33c-3 2-6 3-9 3"/>',
@@ -5827,7 +5977,13 @@ const PRAYER_CARDS = {
   pe7:{ art:'eastcross', accent:'var(--purple)' }, pe8:{ art:'sunrise', accent:'var(--wine)' }, pe9:{ art:'eastcross', accent:'var(--wine)' },
   pe10:{ art:'chalice', accent:'var(--wine)' }, pe11:{ art:'sunrise', accent:'var(--gold)' }, pe12:{ art:'wheat', accent:'var(--green)' },
   pe13:{ art:'wheat', accent:'var(--green)' }, pe14:{ art:'candle', accent:'var(--purple)' }, pe15:{ art:'lantern', accent:'var(--indigo)' },
-  pe16:{ art:'rays', accent:'var(--gold)' },
+  pe16:{ art:'rays', accent:'var(--gold)' }, pe17:{ art:'lantern', accent:'var(--amber)' }, pe18:{ art:'wings', accent:'var(--gold)' },
+  pe19:{ art:'crown', accent:'var(--indigo)' }, pe20:{ art:'lily', accent:'var(--indigo)' }, pe21:{ art:'stars', accent:'var(--gold)' },
+  pe22:{ art:'stars', accent:'var(--indigo)' }, pe23:{ art:'dove', accent:'var(--teal)' }, pe24:{ art:'lily', accent:'var(--teal)' },
+  pe25:{ art:'sunrise', accent:'var(--wine)' }, pe26:{ art:'sunrise', accent:'var(--gold)' }, pe27:{ art:'flame', accent:'var(--wine)' },
+  pe28:{ art:'rays', accent:'var(--gold)' }, pe29:{ art:'crown', accent:'var(--purple)' }, pe30:{ art:'eastcross', accent:'var(--wine)' },
+  pe31:{ art:'wings', accent:'var(--teal)' }, pe32:{ art:'moon', accent:'var(--indigo)' }, pe33:{ art:'sunrise', accent:'var(--green)' },
+  pe34:{ art:'candle', accent:'var(--purple)' }, pe35:{ art:'lantern', accent:'var(--indigo)' }, pe36:{ art:'moon', accent:'var(--purple)' },
   p2:{ art:'rays', accent:'var(--gold)' },
   p3:{ art:'lily', accent:'var(--indigo)' },
   p4:{ art:'trinity', accent:'var(--gold)' },
@@ -5901,7 +6057,7 @@ function buildPrayerCards(list){
         <span class="pc-corner tl"></span><span class="pc-corner tr"></span><span class="pc-corner bl"></span><span class="pc-corner br"></span>
         <span class="pc-art">${cardArt(c.art)}</span>
         <span class="pc-title">${escapeHtml(e.title)}</span>
-        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${crossPath()}"/></svg></span>
+        <span class="pc-rule"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="${crossPath()}"/></svg></span>
         <span class="pc-line">${escapeHtml(excerptOf(e.content, 90))}</span>
       </span>`;
     card.addEventListener('click', () => openReadModal(id));
@@ -6285,7 +6441,8 @@ const SAINT_WIKI = {
   'Bl. Leonid Feodorov':'Leonid Feodorov',
   'Bl. Emilian Kovch':'Emilian Kovch',
   'Bl. Theodore Romzha':'Theodore Romzha',
-  'Bl. Vasyl Velychkovsky':'Vasyl Velychkovsky'
+  'Bl. Vasyl Velychkovsky':'Vasyl Velychkovsky',
+  'St. Anthony of the Kyiv Caves':'Anthony of Kiev', 'St. Theodosius of the Kyiv Caves':'Theodosius of Kiev', 'St. Athanasius of Athos':'Athanasius the Athonite', 'St. Demetrius of Thessalonica':'Demetrius of Thessaloniki', 'St. John the Merciful':'John the Almsgiver', 'St. Nilus of Rossano':'Nilus the Younger', 'St. Mariam Thresia Chiramel Mankidiyan':'Mariam Thresia Chiramel', 'Bl. Rani Maria Vattalil':'Mariam Vattalil', 'Sts. Francis, Abdel-Mooti, and Raphael Massabki':'The Massabki Brothers', 'Bl. Estephan Nehmé':'Stephen Nehmé', 'Bl. Mykolai Charnetskyi':'Nicholas Charnetsky', 'Bl. Josaphat Kotsylovsky':'Josaphat Kotsylovsky', 'Bl. Klymentiy Sheptytsky':'Klymentiy Sheptytsky', 'Bl. Mykola Konrad and Volodymyr Pryjma':'Mykola Konrad', 'Bl. Tarsykia Matskiv':'Tarsykia Matskiv', 'Bl. Petro Verhun':'Petro Verhun', 'Bl. Ivan Ziatyk':'Ivan Ziatyk', 'Bl. Andrii Ishchak':'Andriy Ishchak', 'Bl. Pavol Peter Gojdič':'Pavol Peter Gojdič', 'Bl. Vasil Hopko':'Vasil Hopko', 'Bl. Iuliu Hossu and the Romanian Martyr Bishops':'Iuliu Hossu'
 };
 // Wikipedia articles used for pictures of books and Church history events (first match with an image wins)
 const ENTRY_WIKI = {
@@ -6777,20 +6934,24 @@ const SEASON_ACCENT = { violet:'#5b3f86', white:'#94701a', green:'#3e6b3a', red:
 const SEASON_ACCENT_DARK = { violet:'#b99be6', white:'#e3c46e', green:'#86bb80', red:'#e8716f', rose:'#e991b5' };
 const SEASONAL_THEMES = new Set(['liturgical', 'liturgical-dark']);
 function todaysLiturgicalColor(){
-  const name = liturgicalSeason(startOfToday()).colorName;
-  return name === 'white and red' ? 'red' : name;
+  // The Byzantine calendar is defined further down, so on first load in the Eastern edition
+  // this can run too early; applyRite() sets the season color again once everything is ready.
+  try{
+    const name = liturgicalSeason(startOfToday()).colorName;
+    return name === 'white and red' ? 'red' : name;
+  }catch(e){ return 'green'; }
 }
 
 const THEMES = [
   { key:'light', mode:'light', name:'Parchment', desc:'Warm light pages (default)', swatch:['#f6f0dc','#7a2426'] },
-  { key:'liturgical', mode:'light', name:'Liturgical Season', desc:'Accent follows today’s liturgical color', swatch:['#f6f0dc', SEASON_ACCENT[todaysLiturgicalColor()] || '#3e6b3a'] },
+  { key:'liturgical', mode:'light', name:'Liturgical Season', desc:'Accent follows today’s liturgical color', get swatch(){ return ['#f6f0dc', SEASON_ACCENT[todaysLiturgicalColor()] || '#3e6b3a']; } },
   { key:'manuscript', mode:'light', name:'Illuminated Manuscript', desc:'Vellum, vermilion, and lapis blue', swatch:['#f7eed8','#ad2f1d'] },
   { key:'ivory', mode:'light', name:'Ivory & Gold', desc:'Bright, formal, and gilded', swatch:['#fffdf8','#b8963e'] },
   { key:'marian', mode:'light', name:'Marian Blue', desc:'Soft blue and white', swatch:['#f7f9fc','#2f5597'] },
   { key:'cloister', mode:'light', name:'Cloister', desc:'Quiet stone and olive', swatch:['#f1f0eb','#4b5d38'] },
   { key:'contrast', mode:'light', name:'High Contrast', desc:'Maximum legibility', swatch:['#ffffff','#000000'] },
   { key:'dark', mode:'dark', name:'Vespers', desc:'Dark mode for evening prayer', swatch:['#211c16','#c15759'] },
-  { key:'liturgical-dark', mode:'dark', name:'Liturgical Season (Dark)', desc:'Dark, with today’s liturgical color', swatch:['#1e1a15', SEASON_ACCENT_DARK[todaysLiturgicalColor()] || '#86bb80'] },
+  { key:'liturgical-dark', mode:'dark', name:'Liturgical Season (Dark)', desc:'Dark, with today’s liturgical color', get swatch(){ return ['#1e1a15', SEASON_ACCENT_DARK[todaysLiturgicalColor()] || '#86bb80']; } },
   { key:'candlelight', mode:'dark', name:'Candlelight', desc:'A deep, warm amber glow', swatch:['#24190f','#e0894a'] },
   { key:'midnight', mode:'dark', name:'Midnight', desc:'Deep navy for night prayer', swatch:['#151d2c','#93b3ff'] },
   { key:'stained-glass', mode:'dark', name:'Stained Glass', desc:'Jewel tones on dark stone', swatch:['#1c1925','#ec5468'] },
@@ -6805,7 +6966,15 @@ const THEMES = [
   { key:'obsidian', mode:'dark', name:'Obsidian', desc:'True black, easy on phone screens', swatch:['#0b0b0b','#d9b25f'] },
   { key:'lily', mode:'light', name:'Lily', desc:'White and green, fresh as Easter', swatch:['#fbfdf9','#3f7a45'] },
   { key:'rose-window', mode:'light', name:'Rose Window', desc:'Soft rose and gold light', swatch:['#fdf7f8','#a8466a'] },
-  { key:'fresco', mode:'light', name:'Fresco', desc:'Warm plaster, terracotta, and sky blue', swatch:['#f9f1e5','#b5552f'] }
+  { key:'fresco', mode:'light', name:'Fresco', desc:'Warm plaster, terracotta, and sky blue', swatch:['#f9f1e5','#b5552f'] },
+  { key:'mono', mode:'light', name:'Black & White', desc:'Pure black ink on white, no color at all', swatch:['#ffffff','#000000'] },
+  { key:'gray', mode:'light', name:'Gray & White', desc:'Soft grays on white, calm and plain', swatch:['#fafafa','#4a4a4a'] },
+  { key:'mono-dark', mode:'dark', name:'White on Black', desc:'Pure white on black, no color at all', swatch:['#000000','#ffffff'] },
+  { key:'graphite', mode:'dark', name:'Graphite', desc:'Charcoal and silver grays', swatch:['#2a2a2a','#d4d4d4'] },
+  { key:'pascha', mode:'light', name:'Pascha', desc:'Paschal white and red: Christ is risen!', swatch:['#ffffff','#b3161b'] },
+  { key:'vyshyvanka', mode:'light', name:'Vyshyvanka', desc:'White linen with red and black embroidery', swatch:['#fffdf8','#bf141c'] },
+  { key:'athos', mode:'dark', name:'Athos', desc:'Dark olive wood and beeswax candlelight', swatch:['#1b1c13','#d8a948'] },
+  { key:'lapis', mode:'dark', name:'Lapis', desc:'Deep icon blue and burnished gold', swatch:['#111b40','#e3bd5f'] }
 ];
 
 const themeToggleBtn = document.getElementById('themeToggle');
@@ -8948,11 +9117,11 @@ function homeQuoteHtml(){
    ========================================================= */
 const CROSS_PATHS = {
   latin:document.querySelector('.brand .mark path').getAttribute('d'),
-  eastern:'M29.5 6h5v52h-5zM24 11.5h16v4.5H24zM15 20.5h34v5H15zM22.06 38.26L43.2 44.32L41.94 48.74L20.8 42.68z'
+  eastern:'M29 2h6v7h-6zM22 9h20v5H22zM29 14h6v5h-6zM8 19h48v7H8zM29 26h6v17.76l-6-1.72zM18 38.9L46 46.9L46 52.1L18 44.1zM29 47.24L35 48.96V62h-6z'
 };
 function isEastern(){ return document.documentElement.dataset.rite === 'eastern'; }
 function crossPath(){ return CROSS_PATHS[isEastern() ? 'eastern' : 'latin']; }
-CARD_ART.eastcross = '<circle cx="32" cy="32" r="25"/><path d="M32 12v40M26.5 17.5h11M21 25h22M25.5 40.5l13 4"/>';
+CARD_ART.eastcross = '<circle cx="32" cy="32" r="25"/><path d="M32 8.5v47M25 15h14M16.5 23.5h31M23 39l18 5.5"/>';
 CARD_ART.rope = (() => {
   let d = '';
   for(let i = 0; i < 18; i++){
@@ -8968,7 +9137,7 @@ const LATIN_ONLY = new Set(['p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p11', 'p1
   'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p30', 'p32', 'p33', 'p34', 'p35', 'p37', 'p38', 'p39', 'p40', 'p41', 'p43', 'p44',
   'p45', 'p46', 'p47', 'p48']);
 // Saints shown on the Byzantine calendar: everyone before 1054, plus these Eastern saints and blesseds
-const EASTERN_SAINTS = new Set(['s139', 's216', 's231', 's292', 's388', 's389', 's390', 's391', 's392', 's393', 's394', 's395', 's396', 's397', 's398', 's399']);
+const EASTERN_SAINTS = new Set(['s139', 's216', 's231', 's292', 's388', 's389', 's390', 's391', 's392', 's393', 's394', 's395', 's396', 's397', 's398', 's399', 's400', 's401', 's402', 's403', 's404', 's405', 's406', 's407', 's408', 's409', 's410', 's411', 's412', 's413', 's414', 's415', 's416', 's417', 's418', 's419', 's420', 's421', 's422', 's423', 's424', 's425', 's426', 's427', 's428', 's429']);
 const LIBRARY_ALL = library.slice();
 
 // Names that change between the editions: [Latin, Eastern]
@@ -9057,7 +9226,14 @@ const EAST_FIXED = [
   { month:8, day:1, name:'The Dormition Fast begins', type:'Fast', note:'Two weeks of fasting in honor of the Theotokos.' },
   { month:8, day:6, name:'Holy Transfiguration of Our Lord', type:'Great Feast', note:'Christ reveals his glory on Mount Tabor. Fruits are blessed in church.' },
   { month:8, day:15, name:'Dormition of the Most Holy Theotokos', type:'Great Feast', note:'The falling asleep of the Mother of God and her passing into heavenly glory.' },
-  { month:8, day:29, name:'Beheading of St. John the Baptist', type:'Feast', note:'A day of strict fasting.' }
+  { month:8, day:29, name:'Beheading of St. John the Baptist', type:'Feast', note:'A day of strict fasting.' },
+  { month:12, day:5, name:'St. Sabbas the Sanctified', type:'Commemoration', note:'Founder of the Great Lavra in the Judean desert.' },
+  { month:1, day:20, name:'St. Euthymius the Great', type:'Commemoration', note:'Father of the monks of the Judean desert.' },
+  { month:5, day:3, name:'St. Theodosius of the Kyiv Caves', type:'Commemoration', note:'Abbot and co-founder of the Kyiv Caves Monastery.' },
+  { month:7, day:5, name:'St. Athanasius of Athos', type:'Commemoration', note:'Founder of the Great Lavra on the Holy Mountain.' },
+  { month:7, day:10, name:'St. Anthony of the Kyiv Caves', type:'Commemoration', note:'Father of monasticism in the lands of Rus’.' },
+  { month:7, day:24, name:'Sts. Boris and Gleb, Passion-Bearers', type:'Commemoration', note:'Princes of Kyiv who would not shed their brother’s blood.' },
+  { month:7, day:27, name:'St. Panteleimon the Great-Martyr and Healer', type:'Commemoration', note:'Physician and martyr, one of the Unmercenary Healers.' }
 ];
 const eastMoveableCache = {};
 function easternMoveable(y){
@@ -9130,6 +9306,7 @@ function swapObject(target, source){ Object.keys(target).forEach(k => delete tar
 /* ---------- Switching editions ---------- */
 function applyRite(){
   const east = isEastern();
+  if(SEASONAL_THEMES.has(document.documentElement.dataset.theme)) document.documentElement.setAttribute('data-season', todaysLiturgicalColor());
   // Which prayers are shown
   const keep = LIBRARY_ALL.filter(e => east ? !LATIN_ONLY.has(e.id) : e.rite !== 'eastern');
   library.length = 0;
@@ -9167,13 +9344,13 @@ function applyRite(){
   if(icon){
     if(!icon.dataset.latin) icon.dataset.latin = icon.getAttribute('href');
     icon.setAttribute('href', east
-      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#f3e9d2"/><path fill="#7a1f2b" d="${CROSS_PATHS.eastern}"/></svg>`)
+      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#f3e9d2"/><path fill="#7a1f2b" fill-rule="evenodd" d="${CROSS_PATHS.eastern}"/></svg>`)
       : icon.dataset.latin);
   }
   // The switch itself
   const btn = document.getElementById('riteToggle');
   if(btn){
-    btn.innerHTML = `<svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${east ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg>`;
+    btn.innerHTML = `<svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="${east ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg>`;
     btn.title = east ? 'Switch to the Roman Catholic edition' : 'Switch to the Eastern Catholic edition';
     btn.setAttribute('aria-label', btn.title);
   }
@@ -9211,7 +9388,7 @@ function ropeSvg(size, count){
     <circle class="rope-cord" cx="${cx}" cy="${cy}" r="${r}"/>
     <path class="rope-cord" d="M150 ${cy + r}V262"/>
     ${knots}
-    <g class="rope-cross" transform="translate(130 252) scale(0.62)"><path d="${CROSS_PATHS.eastern}"/></g>
+    <g class="rope-cross" transform="translate(130 252) scale(0.62)"><path fill-rule="evenodd" d="${CROSS_PATHS.eastern}"/></g>
     <path class="rope-tassel" d="M150 290v30M144 291l-6 28M156 291l6 28M147 291l-3 29M153 291l3 29"/>
   </svg>`;
 }
@@ -9491,7 +9668,7 @@ function easternPrayCards(){
 }
 
 function riteBannerHtml(){
-  const cross = `<span class="rite-banner-cross"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="${isEastern() ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg></span>`;
+  const cross = `<span class="rite-banner-cross"><svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="${isEastern() ? CROSS_PATHS.latin : CROSS_PATHS.eastern}"/></svg></span>`;
   return isEastern()
     ? `<section class="rite-banner">${cross}<div><strong>The Eastern Catholic edition</strong> follows the Byzantine tradition, shared by the Ukrainian, Ruthenian, Melkite, Romanian, and other Greek Catholic Churches. The Maronite, Syro-Malabar, Chaldean, Armenian, Coptic, and other Eastern Catholic Churches have their own liturgies. <button class="text-link" data-open="t58">About the Eastern Catholic Churches →</button></div><button class="btn quiet" data-rite-switch>Switch to the Roman Catholic edition</button></section>`
     : `<section class="rite-banner">${cross}<div><strong>Eastern Catholic?</strong> Switch to the edition for the Byzantine tradition, with the Divine Liturgy, the Jesus Prayer, Byzantine prayers, and the Byzantine calendar.</div><button class="btn quiet" data-rite-switch>Switch to the Eastern Catholic edition</button></section>`;
@@ -9739,7 +9916,7 @@ function heroRosette(){
     <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.35"/>
     <circle cx="110" cy="110" r="52" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
     <path d="${rays}" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
-    <g class="hero-cross" transform="translate(68.4 68.4) scale(1.3)"><path d="${cross}"/></g>
+    <g class="hero-cross" transform="translate(68.4 68.4) scale(1.3)"><path fill-rule="evenodd" d="${cross}"/></g>
   </svg>`;
 }
 
@@ -11046,7 +11223,7 @@ function rosarySvg(currentKey, seq, center){
     const state = b.order < cur ? ' done' : b.order === cur ? ' current' : '';
     const step = firstStep[b.key];
     const go = step !== undefined ? ` data-goto="${step}"` : '';
-    if(b.size === 'cross') out.push(`<g class="rs-cross${state}"${go}><path transform="translate(126 397) scale(.75)" d="${crossPath}"/></g>`);
+    if(b.size === 'cross') out.push(`<g class="rs-cross${state}"${go}><path fill-rule="evenodd" transform="translate(126 397) scale(.75)" d="${crossPath}"/></g>`);
     else if(b.size === 'medal') out.push(`<ellipse class="rs-medal${state}"${go} cx="150" cy="${b.y}" rx="8.5" ry="11"/>`);
     else out.push(`<circle class="rs-bead rs-${b.size}${state}"${go} cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="${b.size === 'big' ? 7.2 : 4.7}"/>`);
   });
