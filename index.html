@@ -10104,7 +10104,7 @@ function applyRite(){
   if(icon){
     if(!icon.dataset.latin) icon.dataset.latin = icon.getAttribute('href');
     icon.setAttribute('href', east
-      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><style>.tile{fill:#f6f0dc;stroke:#a6824a}.cross{fill:#7a2426}@media (prefers-color-scheme: dark){.tile{fill:#211c16;stroke:#c9a568}.cross{fill:#e2989a}}</style><rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/><path class="cross" fill-rule="evenodd" transform="translate(32 32) scale(0.86) translate(-32 -32)" d="${CROSS_PATHS.eastern}"/></svg>`)
+      ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><style>.tile{fill:#f6f0dc;stroke:#a6824a}.cross{fill:#7a2426}</style><rect class="tile" x="2" y="2" width="60" height="60" rx="13" stroke-width="2.5"/><path class="cross" fill-rule="evenodd" transform="translate(32 32) scale(0.86) translate(-32 -32)" d="${CROSS_PATHS.eastern}"/></svg>`)
       : icon.dataset.latin);
   }
   // The switch itself
