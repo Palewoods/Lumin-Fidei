@@ -11,12 +11,16 @@
 
    Passwords are salted and hashed with PBKDF2; sign-ins are kept in an
    HttpOnly cookie, and only a hash of each session token is stored.
+   Profile pictures are small JPEG, PNG, or WebP images (resized in the
+   browser before upload), checked by their file signature and stored in D1.
    ========================================================= */
 
 const CATEGORIES = ['general', 'prayer', 'faith', 'saints', 'study'];
 const COOKIE = '__Host-sanctify';
 const SESSION_DAYS = 30;
 const PAGE_SIZE = 20;
+const AVATAR_MAX_BYTES = 120 * 1024;
+const AVATAR_TYPES = { 'image/jpeg':[0xFF, 0xD8, 0xFF], 'image/png':[0x89, 0x50, 0x4E, 0x47], 'image/webp':[0x52, 0x49, 0x46, 0x46] };
 const RESERVED_NAMES = new Set(['admin', 'administrator', 'moderator', 'mod', 'sanctify', 'staff', 'support', 'system', 'pope', 'vatican']);
 
 const SCHEMA = [
@@ -54,6 +58,11 @@ const SCHEMA = [
      post_id INTEGER NOT NULL,
      user_id INTEGER NOT NULL,
      PRIMARY KEY (post_id, user_id))`,
+  `CREATE TABLE IF NOT EXISTS avatars (
+     user_id INTEGER PRIMARY KEY,
+     mime TEXT NOT NULL,
+     data TEXT NOT NULL,
+     updated_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS limits (
      key TEXT PRIMARY KEY,
      count INTEGER NOT NULL,
@@ -86,13 +95,16 @@ export async function onRequest({ request, env }){
   try{
     await ensureSchema(env.DB);
     const ctx = { request, env, db:env.DB, now:Date.now(), url };
-    ctx.user = await currentUser(ctx);
     let m;
+    if((m = path.match(/^avatar\/([A-Za-z0-9_]{3,20})$/)) && (method === 'GET' || method === 'HEAD')) return await getAvatar(ctx, m[1]);
+    ctx.user = await currentUser(ctx);
     if(path === 'me' && method === 'GET') return json({ user:publicUser(ctx.user) });
     if(path === 'signup' && method === 'POST') return await signup(ctx);
     if(path === 'login' && method === 'POST') return await login(ctx);
     if(path === 'logout' && method === 'POST') return await logout(ctx);
     if(path === 'account' && method === 'DELETE') return await deleteAccount(ctx);
+    if(path === 'account/avatar' && method === 'PUT') return await setAvatar(ctx);
+    if(path === 'account/avatar' && method === 'DELETE') return await removeAvatar(ctx);
     if(path === 'posts' && method === 'GET') return await listPosts(ctx);
     if(path === 'posts' && method === 'POST') return await createPost(ctx);
     if((m = path.match(/^posts\/(\d+)$/))){
@@ -142,13 +154,13 @@ async function login(ctx){
   await limit(ctx, 'login:' + await ipKey(ctx), 10, 15 * 60 * 1000, 'Too many sign-in attempts. Please wait a few minutes and try again.');
   await limit(ctx, 'login-user:' + name.toLowerCase(), 10, 15 * 60 * 1000, 'Too many sign-in attempts for this account. Please wait a few minutes and try again.');
 
-  const row = name ? await ctx.db.prepare('SELECT id, username, pass_hash, salt, created_at FROM users WHERE username = ?').bind(name).first() : null;
+  const row = name ? await ctx.db.prepare('SELECT u.id, u.username, u.pass_hash, u.salt, u.created_at, a.updated_at AS avatar_v FROM users u LEFT JOIN avatars a ON a.user_id = u.id WHERE u.username = ?').bind(name).first() : null;
   // Hash even when the user doesn't exist, so the response time doesn't reveal which usernames are real
   const hash = await hashPassword(String(password || ''), row ? row.salt : '00'.repeat(16));
   if(!row || !sameHash(hash, row.pass_hash)) throw new HttpError(401, 'That username and password don’t match.');
 
   await ctx.db.prepare('DELETE FROM sessions WHERE expires_at < ?').bind(ctx.now).run();
-  const user = { id:row.id, username:row.username, created_at:row.created_at };
+  const user = { id:row.id, username:row.username, created_at:row.created_at, avatar_v:row.avatar_v };
   return json({ user:publicUser(withRole(ctx, user)) }, 200, { 'Set-Cookie':await startSession(ctx, row.id) });
 }
 
@@ -166,9 +178,45 @@ async function deleteAccount(ctx){
   if(!row || !sameHash(await hashPassword(String(password || ''), row.salt), row.pass_hash)) throw new HttpError(401, 'That password isn’t right.');
   await ctx.db.batch([
     ctx.db.prepare('DELETE FROM sessions WHERE user_id = ?').bind(user.id),
+    ctx.db.prepare('DELETE FROM avatars WHERE user_id = ?').bind(user.id),
     ctx.db.prepare('DELETE FROM users WHERE id = ?').bind(user.id)
   ]);
   return json({ ok:true }, 200, { 'Set-Cookie':clearCookie() });
+}
+
+/* ---------- Profile pictures ---------- */
+async function setAvatar(ctx){
+  const user = requireUser(ctx);
+  const { image } = await readBody(ctx, 200000);
+  const m = /^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+\/]+={0,2})$/.exec(String(image || ''));
+  if(!m) throw new HttpError(400, 'Please choose a JPEG, PNG, or WebP picture.');
+  let bytes;
+  try{ bytes = Uint8Array.from(atob(m[2]), c => c.charCodeAt(0)); }catch(err){ throw new HttpError(400, 'That picture couldn’t be read.'); }
+  if(bytes.length > AVATAR_MAX_BYTES) throw new HttpError(413, 'That picture is too large. Please choose a smaller one.');
+  const sig = AVATAR_TYPES[m[1]];
+  const webpOk = m[1] !== 'image/webp' || String.fromCharCode(...bytes.slice(8, 12)) === 'WEBP';
+  if(bytes.length < 12 || !sig.every((b, i) => bytes[i] === b) || !webpOk) throw new HttpError(400, 'That file isn’t a valid picture.');
+  await limit(ctx, 'avatar:' + user.id, 10, 60 * 60 * 1000, 'You’ve changed your picture several times recently. Please try again later.');
+  await ctx.db.prepare('INSERT INTO avatars (user_id, mime, data, updated_at) VALUES (?, ?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET mime = excluded.mime, data = excluded.data, updated_at = excluded.updated_at')
+    .bind(user.id, m[1], m[2], ctx.now).run();
+  return json({ user:publicUser({ ...user, avatar_v:ctx.now }) });
+}
+
+async function removeAvatar(ctx){
+  const user = requireUser(ctx);
+  await ctx.db.prepare('DELETE FROM avatars WHERE user_id = ?').bind(user.id).run();
+  return json({ user:publicUser({ ...user, avatar_v:null }) });
+}
+
+// Serves a member's picture; the ?v= version in the URL changes whenever the picture does
+async function getAvatar(ctx, name){
+  const row = await ctx.db.prepare('SELECT a.mime, a.data FROM avatars a JOIN users u ON u.id = a.user_id WHERE u.username = ?').bind(name).first();
+  if(!row) return new Response('Not found', { status:404, headers:{ 'Cache-Control':'no-store', 'X-Content-Type-Options':'nosniff' } });
+  const bytes = Uint8Array.from(atob(row.data), c => c.charCodeAt(0));
+  return new Response(bytes, { status:200, headers:{
+    'Content-Type':row.mime, 'Cache-Control':'public, max-age=86400', 'X-Content-Type-Options':'nosniff',
+    'Content-Security-Policy':"default-src 'none'; sandbox", 'Content-Disposition':'inline'
+  }});
 }
 
 /* ---------- Posts and replies ---------- */
@@ -188,15 +236,15 @@ async function listPosts(ctx){
   }
   const { results } = await ctx.db.prepare(
     `SELECT p.id, p.category, p.title, substr(p.body, 1, 240) AS excerpt, p.created_at, p.last_activity,
-            p.reply_count, p.prayer_count, u.username
-       FROM posts p LEFT JOIN users u ON u.id = p.user_id
+            p.reply_count, p.prayer_count, u.username, a.updated_at AS avatar_v
+       FROM posts p LEFT JOIN users u ON u.id = p.user_id LEFT JOIN avatars a ON a.user_id = p.user_id
       WHERE ${where.join(' AND ')}
       ORDER BY p.last_activity DESC, p.id DESC
       LIMIT ? OFFSET ?`
   ).bind(...args, PAGE_SIZE + 1, page * PAGE_SIZE).all();
   return json({
     posts:results.slice(0, PAGE_SIZE).map(r => ({
-      id:r.id, category:r.category, title:r.title, excerpt:r.excerpt, author:r.username || null,
+      id:r.id, category:r.category, title:r.title, excerpt:r.excerpt, author:r.username || null, authorAvatar:r.username ? r.avatar_v || null : null,
       createdAt:r.created_at, lastActivity:r.last_activity, replies:r.reply_count, prayers:r.prayer_count
     })),
     more:results.length > PAGE_SIZE
@@ -205,11 +253,11 @@ async function listPosts(ctx){
 
 async function getPost(ctx, id){
   const post = await ctx.db.prepare(
-    `SELECT p.*, u.username FROM posts p LEFT JOIN users u ON u.id = p.user_id WHERE p.id = ? AND p.deleted = 0`
+    `SELECT p.*, u.username, a.updated_at AS avatar_v FROM posts p LEFT JOIN users u ON u.id = p.user_id LEFT JOIN avatars a ON a.user_id = p.user_id WHERE p.id = ? AND p.deleted = 0`
   ).bind(id).first();
   if(!post) throw new HttpError(404, 'This post doesn’t exist or has been removed.');
   const { results } = await ctx.db.prepare(
-    `SELECT r.id, r.user_id, r.body, r.created_at, u.username FROM replies r LEFT JOIN users u ON u.id = r.user_id
+    `SELECT r.id, r.user_id, r.body, r.created_at, u.username, a.updated_at AS avatar_v FROM replies r LEFT JOIN users u ON u.id = r.user_id LEFT JOIN avatars a ON a.user_id = r.user_id
       WHERE r.post_id = ? AND r.deleted = 0 ORDER BY r.created_at ASC, r.id ASC LIMIT 500`
   ).bind(id).all();
   const user = ctx.user;
@@ -217,12 +265,12 @@ async function getPost(ctx, id){
   const canRemove = ownerId => !!user && (user.id === ownerId || user.admin);
   return json({
     post:{
-      id:post.id, category:post.category, title:post.title, body:post.body, author:post.username || null,
+      id:post.id, category:post.category, title:post.title, body:post.body, author:post.username || null, authorAvatar:post.username ? post.avatar_v || null : null,
       createdAt:post.created_at, replies:post.reply_count, prayers:post.prayer_count, prayed,
       mine:!!user && user.id === post.user_id, canRemove:canRemove(post.user_id)
     },
     replies:results.map(r => ({
-      id:r.id, body:r.body, author:r.username || null, createdAt:r.created_at,
+      id:r.id, body:r.body, author:r.username || null, authorAvatar:r.username ? r.avatar_v || null : null, createdAt:r.created_at,
       mine:!!user && user.id === r.user_id, canRemove:canRemove(r.user_id)
     }))
   });
@@ -299,7 +347,7 @@ async function currentUser(ctx){
   const token = readCookie(ctx.request, COOKIE);
   if(!token || !/^[0-9a-f]{64}$/.test(token)) return null;
   const row = await ctx.db.prepare(
-    'SELECT u.id, u.username, u.created_at FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ? AND s.expires_at > ?'
+    'SELECT u.id, u.username, u.created_at, a.updated_at AS avatar_v FROM sessions s JOIN users u ON u.id = s.user_id LEFT JOIN avatars a ON a.user_id = u.id WHERE s.token_hash = ? AND s.expires_at > ?'
   ).bind(await sha256(token), ctx.now).first();
   return row ? withRole(ctx, row) : null;
 }
@@ -320,7 +368,7 @@ function withRole(ctx, user){
 }
 
 function publicUser(user){
-  return user ? { username:user.username, createdAt:user.created_at, admin:!!user.admin } : null;
+  return user ? { username:user.username, createdAt:user.created_at, admin:!!user.admin, avatar:user.avatar_v || null } : null;
 }
 
 function requireUser(ctx){
@@ -345,11 +393,11 @@ async function ipKey(ctx){
   return (await sha256('ip:' + (ctx.request.headers.get('CF-Connecting-IP') || 'unknown'))).slice(0, 32);
 }
 
-async function readBody(ctx){
+async function readBody(ctx, max = 20000){
   const type = ctx.request.headers.get('Content-Type') || '';
   if(!type.includes('application/json')) throw new HttpError(415, 'Expected JSON.');
   const text = await ctx.request.text();
-  if(text.length > 20000) throw new HttpError(413, 'That’s too long.');
+  if(text.length > max) throw new HttpError(413, 'That’s too long.');
   try{
     const data = JSON.parse(text);
     if(!data || typeof data !== 'object') throw new Error('not an object');
